@@ -16,7 +16,7 @@ input, textarea {
 
 html, body {
     height: 100%;
-    background: linear-gradient(180deg, #FFF 80%, #00FF75 100%);
+    background: linear-gradient(180deg, #FFF 26.21%, #00FF75 120.91%);
 }
 
 @media (min-width: 576px) {
