@@ -11,10 +11,6 @@
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.8",
     "styled-reset": "^4.5.2",
-    "stylelint": "^16.3.1",
-    "stylelint-config-concentric-order": "^5.2.0",
-    "stylelint-config-recommended": "^14.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
