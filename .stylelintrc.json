@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "stylelint-config-recommend",
+    "stylelint-config-styled-components",
+    "stylelint-config-concentric-order"
+  ]
+}
