@@ -13,7 +13,6 @@ export default Makerspage;
 
 const Test = styled.div`
   display: flex;
-  z-index: 1;
-  width: 100%;
+  z-index: 3;
   background-color: red;
 `;
