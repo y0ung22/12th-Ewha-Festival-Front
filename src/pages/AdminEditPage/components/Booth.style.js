@@ -41,8 +41,56 @@ const ImgContainer = styled.div`
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 `;
 
+const ImgEditBtn = styled.div`
+  position: absolute;
+  display: flex;
+  width: 350px;
+  height: 54px;
+  padding: 10px 133px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.34);
+  border-radius: 0px 0px 15px 15px;
+
+  color: white;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.5px;
+`;
+
+const SubmitBtn = styled.button`
+  display: inline-flex;
+  padding: 10px 146px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #03d664;
+  background: #07fb77;
+
+  color: white;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.5px;
+
+  cursor: pointer;
+  outline: none;
+`;
+
 export const B = {
   InputContainer,
   Title,
-  ImgContainer
+  ImgContainer,
+  ImgEditBtn,
+  SubmitBtn
 };
