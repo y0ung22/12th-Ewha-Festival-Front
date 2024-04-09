@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MakersPage = () => {
+const MenuEditPage = () => {
   return <></>;
 };
 
-export default MakersPage;
+export default MenuEditPage;
