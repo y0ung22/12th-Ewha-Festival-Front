@@ -54,7 +54,7 @@ const BoothTime = ({ onDayEdit }) => {
             src={row.selected ? check_green : check_gray}
             onClick={() => handleRowClick(index)}
           />
-          <Text>{row.date}</Text>
+          <Text style={{ width: '62px' }}>{row.date}</Text>
           <InputContainer>
             <input
               type='text'
@@ -107,7 +107,7 @@ const CheckIcon = styled.img`
 `;
 
 const Text = styled.div`
-  color: #000;
+  color: var(--bk01);
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
@@ -126,12 +126,12 @@ const InputContainer = styled.div`
     gap: 7px;
     border-radius: 10px;
     border: 1px solid #e7e7e7;
-    background: linear-gradient(334deg, #fff 71.49%, #fff 169%);
+    background: linear-gradient(334deg, var(--wh) 71.49%, var(--wh) 169%);
     box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
   }
 
   input::placeholder {
-    color: var(--gray01, #bbb);
+    color: var(--gray01);
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;

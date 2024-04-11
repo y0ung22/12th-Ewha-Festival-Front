@@ -1,11 +1,15 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
-const BoothOpened = () => {
+const BoothOpened = ({ opened, setOpened }) => {
   return (
     <Wrapper>
-      <OpenedBtn>운영 중</OpenedBtn>
-      <ClosedBtn>운영 종료</ClosedBtn>
+      <OpenedBtn $active={opened} onClick={() => setOpened(true)}>
+        운영 중
+      </OpenedBtn>
+      <ClosedBtn $active={!opened} onClick={() => setOpened(false)}>
+        운영 종료
+      </ClosedBtn>
     </Wrapper>
   );
 };
@@ -27,10 +31,12 @@ const BtnStyle = styled.div`
   border-radius: 30px;
   border: 1px solid;
 
-  border-color: ${props => (props.$active ? '#03D664' : '#F2F2F2')};
-  background-color: ${props => (props.$active ? '#00F16F' : '#F7F7F7')};
+  border-color: ${props =>
+    props.$active ? 'var(--green02)' : 'var(--gray02)'};
+  background-color: ${props =>
+    props.$active ? 'var(--green01)' : 'var(--gray03)'};
 
-  color: ${props => (props.$active ? 'white' : '#BBB')};
+  color: ${props => (props.$active ? 'var(--wh)' : 'var(--gray01)')};
   text-align: center;
   font-family: Pretendard;
   font-size: 15px;

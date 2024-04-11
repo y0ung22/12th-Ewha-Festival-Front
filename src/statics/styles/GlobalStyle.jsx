@@ -38,7 +38,7 @@ html, body {
     --gray04: #C1D9CC;
     --gray05: #8E8E8E;
 
-    --green_01: #00F16F;
+    --green01: #00F16F;
     --green02: #03D664;
     --green03: #00FF75;
     --green04: #1EF380;
