@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
 import { B } from './Booth.style';
 
 const BoothThumbnail = ({ onImgUpload }) => {
@@ -26,7 +25,7 @@ const BoothThumbnail = ({ onImgUpload }) => {
   return (
     <B.ImgContainer>
       {prevUrl && <img src={prevUrl} alt='Thumbnail Preview' />}
-      <B.ImgEditBtn>사진 교체하기</B.ImgEditBtn>
+      <B.ImgEditBtn onClick={handleBtnClick}>사진 교체하기</B.ImgEditBtn>
       <input
         type='file'
         onChange={handleImgChange}

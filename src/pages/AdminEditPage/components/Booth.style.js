@@ -62,6 +62,8 @@ const ImgEditBtn = styled.div`
   font-weight: 700;
   line-height: 20px; /* 125% */
   letter-spacing: -0.5px;
+
+  cursor: pointer;
 `;
 
 const SubmitBtn = styled.button`
