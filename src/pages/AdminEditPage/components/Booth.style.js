@@ -27,7 +27,7 @@ const InputContainer = styled.div`
   gap: 7px;
   border-radius: 15px;
   border: 1px solid #e7e7e7;
-  background: linear-gradient(334deg, #fff 71.49%, #fff 169%);
+  background: linear-gradient(334deg, var(--wh) 71.49%, var(--wh) 169%);
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   textarea {
