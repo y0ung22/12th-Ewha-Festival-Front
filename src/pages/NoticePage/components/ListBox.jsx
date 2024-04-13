@@ -42,7 +42,7 @@ const Container = styled.div`
     gap: 10px;
 
     span:nth-child(1) {
-      color: var(--green_01);
+      color: var(--green01);
       font-size: 12px;
       font-weight: 400;
       line-height: 12px;
