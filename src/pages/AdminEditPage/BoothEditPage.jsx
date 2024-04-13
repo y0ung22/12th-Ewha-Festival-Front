@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
-import { B } from './components/Booth.style';
+import { S } from './components/AdminEdit.style';
 
 // components
 import TopBar from '../../_common/TopBar';
@@ -11,7 +10,7 @@ import BoothOpened from './components/BoothOpened';
 
 const BoothEditPage = () => {
   const formRef = useRef();
-  const [thumbnail, setThumbnail] = useState(null);
+  const [thumnail, setThumnail] = useState(null);
   const [name, setName] = useState('');
   const [realtime, setRealtime] = useState('');
   const [day, setDay] = useState({
@@ -24,7 +23,7 @@ const BoothEditPage = () => {
   const [opened, setOpened] = useState(true);
 
   const handleImgUpload = file => {
-    setThumbnail(file);
+    setThumnail(file);
   };
 
   const handleDayEdit = days => {
@@ -35,8 +34,8 @@ const BoothEditPage = () => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
-    if (thumbnail) {
-      formData.append('thumbnail', thumbnail);
+    if (thumnail) {
+      formData.append('thumnail', thumnail);
     }
     formData.append('name', name);
     formData.append('realtime', realtime);
@@ -48,18 +47,19 @@ const BoothEditPage = () => {
     formData.append('description', description);
     formData.append('contact', contact);
     formData.append('opened', opened);
-    // axios.patch
+
+    // PATCH 로직 -> 추후 별도 API 파일에 작성 예정
   };
 
   return (
     <>
       <TopBar />
-      <Wrapper>
+      <S.Wrapper>
         <form ref={formRef} onSubmit={handleSubmit}>
           <BoothThumbnail onImgUpload={handleImgUpload} />
-          <B.Box>
-            <B.Title>부스 이름</B.Title>
-            <B.InputContainer num='20px'>
+          <S.Box>
+            <S.Title text={'부스 이름'} />
+            <S.InputContainer>
               <textarea
                 id='name'
                 onChange={e => setName(e.target.value)}
@@ -68,11 +68,11 @@ const BoothEditPage = () => {
               >
                 {name}
               </textarea>
-            </B.InputContainer>
-          </B.Box>
-          <B.Box num='35px'>
-            <B.Title>실시간 공지사항</B.Title>
-            <B.InputContainer>
+            </S.InputContainer>
+          </S.Box>
+          <S.Box num='35px'>
+            <S.Title text={'실시간 공지사항'} />
+            <S.InputContainer num='80px'>
               <textarea
                 id='realtime'
                 onChange={e => setRealtime(e.target.value)}
@@ -81,15 +81,15 @@ const BoothEditPage = () => {
               >
                 {realtime}
               </textarea>
-            </B.InputContainer>
-          </B.Box>
-          <B.Box num='37px'>
-            <B.Title>부스 운영시간</B.Title>
+            </S.InputContainer>
+          </S.Box>
+          <S.Box num='37px'>
+            <S.Title text={'부스 운영시간'} />
             <BoothTime onDayEdit={handleDayEdit} />
-          </B.Box>
-          <B.Box num='69px'>
-            <B.Title>부스 소개글</B.Title>
-            <B.InputContainer>
+          </S.Box>
+          <S.Box num='69px'>
+            <S.Title text={'부스 소개글'} />
+            <S.InputContainer num='80px'>
               <textarea
                 id='description'
                 onChange={e => setDescription(e.target.value)}
@@ -98,11 +98,11 @@ const BoothEditPage = () => {
               >
                 {description}
               </textarea>
-            </B.InputContainer>
-          </B.Box>
-          <B.Box num='76px'>
-            <B.Title>부스 운영진 연락처</B.Title>
-            <B.InputContainer num='40px'>
+            </S.InputContainer>
+          </S.Box>
+          <S.Box num='76px'>
+            <S.Title text={'부스 운영진 연락처'} />
+            <S.InputContainer num='40px'>
               <textarea
                 id='contact'
                 onChange={e => setContact(e.target.value)}
@@ -110,26 +110,18 @@ const BoothEditPage = () => {
               >
                 {contact}
               </textarea>
-            </B.InputContainer>
-          </B.Box>
-          <B.Box>
-            <B.Title>운영여부</B.Title>
+            </S.InputContainer>
+          </S.Box>
+          <S.Box>
+            <S.Title text={'운영여부'} />
             <BoothOpened opened={opened} setOpened={setOpened} />
-          </B.Box>
-          <B.SubmitBtn type='submit'>작성 완료</B.SubmitBtn>
+          </S.Box>
+          <S.SubmitBtn type='submit'>작성 완료</S.SubmitBtn>
         </form>
-      </Wrapper>
+      </S.Wrapper>
       <Footer />
     </>
   );
 };
 
 export default BoothEditPage;
-
-const Wrapper = styled.div`
-  height: 100%;
-  background-color: white !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;

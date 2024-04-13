@@ -50,6 +50,17 @@ const Box = styled.div`
   box-shadow: 0px 0px 4px 0px rgba(210, 210, 210, 0.54) inset;
 `;
 
+const Img = styled.div`
+  width: 146px;
+  height: 182px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 1px solid var(--wh02, rgba(251, 251, 251, 0.3));
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.5) -42.34%, rgba(0, 0, 0, 0) 87.59%),
+    url(<path-to-image>) lightgray 50% / cover no-repeat;
+`;
+
 const Info = styled.div`
   display: flex;
   width: 30px;
@@ -108,6 +119,7 @@ export const S = {
   Title,
   BoxContainer,
   Box,
+  Img,
   Info,
   Name,
   Part,

@@ -7,11 +7,13 @@ const MakersBox = ({ data }) => {
     <>
       {data.map(maker => (
         <S.Box key={maker.id}>
-          <S.Info>{maker.info}</S.Info>
-          <S.Name>{maker.name}</S.Name>
-          <PartContainer />
-          <S.Part>{maker.part}</S.Part>
-          <S.Work>{maker.work}</S.Work>
+          <S.Img>
+            <S.Info>{maker.info}</S.Info>
+            <S.Name>{maker.name}</S.Name>
+            <PartContainer />
+            <S.Part>{maker.part}</S.Part>
+            <S.Work>{maker.work}</S.Work>
+          </S.Img>
         </S.Box>
       ))}
     </>

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { B } from './Booth.style';
+import { S } from './AdminEdit.style';
 
 const BoothThumbnail = ({ onImgUpload }) => {
   const [prevUrl, setPrevUrl] = useState('');
@@ -25,17 +25,17 @@ const BoothThumbnail = ({ onImgUpload }) => {
 
   return (
     <Wrapper>
-      <B.Title>대표 사진</B.Title>
-      <B.ImgContainer>
+      <S.Title text={'대표 사진'} />
+      <S.BImgContainer>
         {prevUrl && <img src={prevUrl} alt='Thumbnail Preview' />}
-        <B.ImgEditBtn onClick={handleBtnClick}>사진 교체하기</B.ImgEditBtn>
+        <S.BImgEditBtn onClick={handleBtnClick}>사진 교체하기</S.BImgEditBtn>
         <input
           type='file'
           onChange={handleImgChange}
           ref={fileInputRef}
           style={{ display: 'none' }}
         />
-      </B.ImgContainer>
+      </S.BImgContainer>
     </Wrapper>
   );
 };

@@ -1,0 +1,213 @@
+import styled from 'styled-components';
+
+// (공통) 중앙 정렬 Wrapper
+const Wrapper = styled.div`
+  height: 100%;
+  background-color: white !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+// (공통) Title+요소 묶는 박스
+const Box = styled.div`
+  margin-top: ${({ num }) => num || '25px'};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+`;
+
+// (공통) 두꺼운 제목 텍스트
+const Title = ({ text }) => {
+  return <TitleText>{text}</TitleText>;
+};
+
+const TitleText = styled.div`
+  color: var(--bk01);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: -0.5px;
+`;
+
+// (공통) input 스타일
+const InputContainer = styled.div`
+  display: flex;
+  width: 350px;
+  padding: 11px 14px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+
+  border-radius: 15px;
+  border: 1px solid #e7e7e7;
+  background: linear-gradient(334deg, var(--wh) 71.49%, var(--wh) 169%);
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+
+  textarea {
+    width: 317px;
+    height: ${({ num }) => num || '20px'};
+    resize: none;
+    color: var(--bk01);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 166.667% */
+    letter-spacing: -0.5px;
+  }
+
+  textarea::placeholder {
+    color: var(--gray01);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 166.667% */
+    letter-spacing: -0.5px;
+  }
+`;
+
+// (공통) 작성 완료 버튼
+const SubmitBtn = styled.button`
+  margin-top: ${({ num1 }) => num1 || '121px;'};
+  margin-bottom: ${({ num2 }) => num2 || '178px;'};
+
+  display: inline-flex;
+  padding: 10px 146px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--green02);
+  background: #07fb77;
+
+  color: white;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.5px;
+
+  cursor: pointer;
+  outline: none;
+`;
+
+// (공통 스타일) 이미지 수정/추가 버튼
+const ImgBtn = styled.div`
+  position: absolute;
+  display: flex;
+  height: 54px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  color: white;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.5px;
+
+  cursor: pointer;
+`;
+
+// (BoothEditPage) 부스 썸네일 수정
+const BImgContainer = styled.div`
+  display: flex;
+  width: 350px;
+  height: 197px;
+  padding-top: 143px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background:
+    linear-gradient(
+      336deg,
+      rgba(0, 0, 0, 0.2) -23.55%,
+      rgba(0, 0, 0, 0) 129.38%
+    ),
+    url(<path-to-image>) lightgray 50% / cover no-repeat;
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+`;
+
+const BImgEditBtn = styled(ImgBtn)`
+  width: 350px;
+  padding: 10px 133px;
+  background: rgba(0, 0, 0, 0.34);
+  border-radius: 0px 0px 15px 15px;
+`;
+
+// (MenuAddPage) 메뉴 썸네일 추가
+const MImgContainer = styled.div`
+  width: 170px;
+  height: 197px;
+
+  border-radius: 20px;
+  background: var(--green05);
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+`;
+
+const MImgAddBtn = styled(ImgBtn)`
+  width: 170px;
+  padding: 10px;
+  margin-top: 143px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 0px 0px 20px 20px;
+`;
+
+// (MenuEditPage)
+const MenuBox = styled.div`
+  width: 170px;
+  height: 197px;
+  flex-shrink: 0;
+
+  border-radius: 20px;
+  background:
+    linear-gradient(
+      336deg,
+      rgba(0, 0, 0, 0.2) -23.55%,
+      rgba(0, 0, 0, 0) 129.38%
+    ),
+    url(<path-to-image>) lightgray 50% / cover no-repeat;
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+`;
+
+const AddMenuBox = styled.div`
+  display: flex;
+  width: 170px;
+  height: 197px;
+  padding: 60px 41px 46px 41px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 13px;
+  flex-shrink: 0;
+
+  border-radius: 20px;
+  border: 1.5px solid var(--gray04);
+  background: var(--wh01);
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+`;
+
+export const S = {
+  Wrapper,
+  Box,
+  Title,
+  InputContainer,
+  SubmitBtn,
+  BImgContainer,
+  BImgEditBtn,
+  MImgContainer,
+  MImgAddBtn,
+  MenuBox,
+  AddMenuBox
+};
