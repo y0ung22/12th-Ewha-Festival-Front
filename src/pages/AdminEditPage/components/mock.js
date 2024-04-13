@@ -21,5 +21,12 @@ export const menuData = [
     price: 5000,
     img: example,
     is_soldout: false
+  },
+  {
+    id: 4,
+    menu: '바닐라 라떼',
+    price: 5000,
+    img: example,
+    is_soldout: false
   }
 ];

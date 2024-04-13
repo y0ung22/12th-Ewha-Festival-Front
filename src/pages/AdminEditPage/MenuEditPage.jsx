@@ -22,7 +22,7 @@ const MenuEditPage = () => {
       <S.Wrapper>
         <Container>
           <S.Title text={'수정할 메뉴를 선택해주세요'} />
-          <List>
+          <List dataLength={menuData.length}>
             {menuData.map((item, index) => (
               <GoMenuEdit
                 key={index}
@@ -57,7 +57,8 @@ const List = styled.div`
   width: 390px;
   display: flex;
   padding: 0px 17px;
-  justify-content: center;
+  justify-content: ${({ dataLength }) =>
+    dataLength % 2 !== 0 ? 'center' : 'flex-start'};
   align-items: flex-start;
   align-content: flex-start;
   gap: 14px 10px;

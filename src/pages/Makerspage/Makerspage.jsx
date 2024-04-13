@@ -22,13 +22,13 @@ const MakersPage = () => {
         </Text>
         <Wrapper2>
           <S.Title>멋쟁이사자처럼 12기 운영진</S.Title>
-          <S.BoxContainer>
+          <S.BoxContainer dataLength={LionsData.length}>
             <MakersBox data={LionsData} />
           </S.BoxContainer>
         </Wrapper2>
         <Wrapper2>
           <S.Title>대동제 TF 운영진</S.Title>
-          <S.BoxContainer>
+          <S.BoxContainer dataLength={TfData.length}>
             <MakersBox data={TfData} />
           </S.BoxContainer>
         </Wrapper2>

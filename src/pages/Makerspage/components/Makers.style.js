@@ -18,13 +18,17 @@ const Title = styled.div`
   font-weight: 700;
   line-height: 20px; /* 153.846% */
   letter-spacing: -0.5px;
+  z-index: 1;
 `;
 
 const BoxContainer = styled.div`
+  margin-top: -19px;
+
   display: flex;
   width: 330px;
   padding: 27px 15px;
-  justify-content: center;
+  justify-content: ${({ dataLength }) =>
+    dataLength % 2 !== 0 ? 'flex-start' : 'center'};
   align-items: flex-start;
   align-content: flex-start;
   gap: 11px 7px;
@@ -43,6 +47,8 @@ const BoxContainer = styled.div`
 `;
 
 const Box = styled.div`
+  position: relative;
+
   width: 146px;
   height: 182px;
   flex-shrink: 0;
@@ -58,10 +64,14 @@ const Img = styled.div`
   border: 1px solid var(--wh02, rgba(251, 251, 251, 0.3));
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.5) -42.34%, rgba(0, 0, 0, 0) 87.59%),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
+    url(${({ img }) => img}) lightgray 50% / cover no-repeat;
 `;
 
 const Info = styled.div`
+  position: absolute;
+  top: 13px;
+  left: 12px;
+
   display: flex;
   width: 30px;
   height: 13px;
@@ -79,6 +89,10 @@ const Info = styled.div`
 `;
 
 const Name = styled.div`
+  position: absolute;
+  top: 24px;
+  left: 12px;
+
   color: var(--wh);
   font-family: Pretendard;
   font-size: 18px;
@@ -86,6 +100,20 @@ const Name = styled.div`
   font-weight: 600;
   line-height: 20px; /* 111.111% */
   letter-spacing: -0.5px;
+`;
+
+const PartContainer = styled.div`
+  position: absolute;
+  top: 13px;
+  right: 12px;
+
+  display: inline-flex;
+  padding: 0px 6px;
+  align-items: center;
+  gap: 2px;
+
+  border-radius: 10px;
+  background: var(--bk02);
 `;
 
 const Part = styled.div`
@@ -106,6 +134,10 @@ const Part = styled.div`
 `;
 
 const Work = styled.div`
+  position: absolute;
+  bottom: 13px;
+  left: 12px;
+
   color: var(--wh);
   font-family: Pretendard;
   font-size: 10px;
@@ -113,6 +145,7 @@ const Work = styled.div`
   font-weight: 400;
   line-height: 15px; /* 150% */
   letter-spacing: -0.5px;
+  white-space: pre-wrap;
 `;
 
 export const S = {
@@ -122,6 +155,7 @@ export const S = {
   Img,
   Info,
   Name,
+  PartContainer,
   Part,
   Work
 };
