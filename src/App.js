@@ -11,6 +11,12 @@ function App() {
   return (
     <>
       <GlobalStyles />
+      <MenuEditPage />
+      <MakersPage />
+      <GlobalStyles />
+      <BoothEditPage />
+      <MenuEditDetailPage />
+      <MenuAddPage />
     </>
   );
 }
