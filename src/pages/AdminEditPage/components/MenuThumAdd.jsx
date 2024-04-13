@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { S } from './AdminEdit.style';
 
-const MenuThumbnail = ({ onImgUpload }) => {
+const MenuThumAdd = ({ onImgUpload }) => {
   const [prevUrl, setPrevUrl] = useState('');
   const fileInputRef = useRef(null);
 
@@ -28,7 +28,7 @@ const MenuThumbnail = ({ onImgUpload }) => {
       <S.Title text={'대표 사진'} />
       <S.MImgContainer>
         {prevUrl && <img src={prevUrl} alt='Thumbnail Preview' />}
-        <S.MImgAddBtn onClick={handleBtnClick}>사진 교체하기</S.MImgAddBtn>
+        <S.MImgAddBtn onClick={handleBtnClick}>사진 추가하기</S.MImgAddBtn>
         <input
           type='file'
           onChange={handleImgChange}
@@ -40,7 +40,7 @@ const MenuThumbnail = ({ onImgUpload }) => {
   );
 };
 
-export default MenuThumbnail;
+export default MenuThumAdd;
 
 const Wrapper = styled.div`
   margin-top: 16px;

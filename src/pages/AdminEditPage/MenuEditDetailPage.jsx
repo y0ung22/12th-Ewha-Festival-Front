@@ -4,10 +4,10 @@ import { S } from './components/AdminEdit.style';
 import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
 
-import MenuThumAdd from './components/MenuThumAdd';
+import MenuThumEdit from './components/MenuThumEdit';
 import MenuOpened from './components/MenuOpened';
 
-const MenuAddPage = () => {
+const MenuEditDetailPage = () => {
   const [img, setImg] = useState(null);
   const [menu, setMenu] = useState('');
   const [price, setPrice] = useState('');
@@ -29,7 +29,7 @@ const MenuAddPage = () => {
       is_soldout // True가 운영 중
     };
 
-    // POST 로직 -> 추후 별도 API 파일에 작성 예정
+    // PATCH 로직 -> 추후 별도 API 파일에 작성 예정
   };
 
   return (
@@ -37,7 +37,7 @@ const MenuAddPage = () => {
       <TopBar />
       <S.Wrapper>
         <form onSubmit={handleSubmit}>
-          <MenuThumAdd onImgUpload={handleImgUpload} />
+          <MenuThumEdit onImgUpload={handleImgUpload} />
           <S.Box>
             <S.Title text={'메뉴 이름'} />
             <S.InputContainer>
@@ -78,4 +78,4 @@ const MenuAddPage = () => {
   );
 };
 
-export default MenuAddPage;
+export default MenuEditDetailPage;

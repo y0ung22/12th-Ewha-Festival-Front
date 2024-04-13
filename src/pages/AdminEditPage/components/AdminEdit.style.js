@@ -2,9 +2,12 @@ import styled from 'styled-components';
 
 // (공통) 중앙 정렬 Wrapper
 const Wrapper = styled.div`
+  width: 100%;
   height: 100%;
   background-color: white !important;
+
   display: flex;
+  padding: 0px 20px;
   flex-direction: column;
   align-items: center;
 `;
@@ -12,7 +15,8 @@ const Wrapper = styled.div`
 // (공통) Title+요소 묶는 박스
 const Box = styled.div`
   margin-top: ${({ num }) => num || '25px'};
-  display: flex;
+
+  display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
@@ -77,7 +81,7 @@ const SubmitBtn = styled.button`
   margin-bottom: ${({ num2 }) => num2 || '178px;'};
 
   display: inline-flex;
-  padding: 10px 146px;
+  padding: 10px 145px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -164,40 +168,6 @@ const MImgAddBtn = styled(ImgBtn)`
   border-radius: 0px 0px 20px 20px;
 `;
 
-// (MenuEditPage)
-const MenuBox = styled.div`
-  width: 170px;
-  height: 197px;
-  flex-shrink: 0;
-
-  border-radius: 20px;
-  background:
-    linear-gradient(
-      336deg,
-      rgba(0, 0, 0, 0.2) -23.55%,
-      rgba(0, 0, 0, 0) 129.38%
-    ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
-  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
-`;
-
-const AddMenuBox = styled.div`
-  display: flex;
-  width: 170px;
-  height: 197px;
-  padding: 60px 41px 46px 41px;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 13px;
-  flex-shrink: 0;
-
-  border-radius: 20px;
-  border: 1.5px solid var(--gray04);
-  background: var(--wh01);
-  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
-`;
-
 export const S = {
   Wrapper,
   Box,
@@ -207,7 +177,5 @@ export const S = {
   BImgContainer,
   BImgEditBtn,
   MImgContainer,
-  MImgAddBtn,
-  MenuBox,
-  AddMenuBox
+  MImgAddBtn
 };
