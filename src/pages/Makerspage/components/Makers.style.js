@@ -1,5 +1,39 @@
 import styled from 'styled-components';
 
+// MakersPage
+const Wrapper1 = styled.div`
+  width: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 140px;
+`;
+
+const Wrapper2 = styled.div`
+  width: 330px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 74px;
+`;
+
+const Text = styled.div`
+  color: var(--bk01);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 108.333% */
+  letter-spacing: -0.5px;
+
+  margin-top: 37px;
+`;
+
+// 구성 요소 박스
 const Title = styled.div`
   display: inline-flex;
   padding: 8px 24px;
@@ -22,7 +56,7 @@ const Title = styled.div`
 `;
 
 const BoxContainer = styled.div`
-  margin-top: -19px;
+  margin-top: -18px;
 
   display: flex;
   width: 330px;
@@ -48,11 +82,10 @@ const BoxContainer = styled.div`
 
 const Box = styled.div`
   position: relative;
-
   width: 146px;
   height: 182px;
   flex-shrink: 0;
-
+  border-radius: 15px;
   box-shadow: 0px 0px 4px 0px rgba(210, 210, 210, 0.54) inset;
 `;
 
@@ -149,6 +182,9 @@ const Work = styled.div`
 `;
 
 export const S = {
+  Wrapper1,
+  Wrapper2,
+  Text,
   Title,
   BoxContainer,
   Box,
