@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { S } from './components/AdminEdit.style';
 
 import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
@@ -19,9 +18,9 @@ const MenuEditPage = () => {
   return (
     <>
       <TopBar />
-      <S.Wrapper>
+      <Wrapper>
         <Container>
-          <S.Title text={'수정할 메뉴를 선택해주세요'} />
+          <Title>수정할 메뉴를 선택해주세요</Title>
           <List dataLength={menuData.length}>
             {menuData.map((item, index) => (
               <GoMenuEdit
@@ -35,13 +34,23 @@ const MenuEditPage = () => {
             <GoMenuAdd />
           </List>
         </Container>
-      </S.Wrapper>
+      </Wrapper>
       <Footer />
     </>
   );
 };
 
 export default MenuEditPage;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: white !important;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Container = styled.div`
   margin-top: 16px;
@@ -53,12 +62,24 @@ const Container = styled.div`
   gap: 16px;
 `;
 
+const Title = styled.div`
+  color: var(--bk01);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: -0.5px;
+
+  padding: 0px 20px;
+`;
+
 const List = styled.div`
   width: 390px;
   display: flex;
-  padding: 0px 17px;
+  padding: 0px 20px;
   justify-content: ${({ dataLength }) =>
-    dataLength % 2 !== 0 ? 'center' : 'flex-start'};
+    dataLength % 2 === 0 ? 'flex-start' : 'center'};
   align-items: flex-start;
   align-content: flex-start;
   gap: 14px 10px;

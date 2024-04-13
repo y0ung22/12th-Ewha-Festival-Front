@@ -10,12 +10,7 @@ import MakersPage from './pages/Makerspage/Makerspage';
 function App() {
   return (
     <>
-      <MakersPage />
       <GlobalStyles />
-      <BoothEditPage />
-      <MenuEditPage />
-      <MenuEditDetailPage />
-      <MenuAddPage />
     </>
   );
 }

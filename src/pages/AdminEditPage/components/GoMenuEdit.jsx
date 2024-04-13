@@ -43,6 +43,8 @@ const Overlay = styled.div`
   font-weight: 800;
   line-height: 20px; /* 83.333% */
   letter-spacing: -0.3px;
+
+  z-index: 1;
 `;
 
 const Box = styled.div`
@@ -60,6 +62,8 @@ const Box = styled.div`
     url(${({ img }) => img}) lightgray 50% / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
+  cursor: pointer;
+
   img {
     position: absolute;
     top: 20px;
@@ -68,6 +72,9 @@ const Box = styled.div`
     width: 26px;
     height: 26px;
     flex-shrink: 0;
+
+    z-index: 2;
+    cursor: grab;
   }
 `;
 
