@@ -7,15 +7,15 @@ import Footer from '../../_common/Footer';
 
 const NoticeMyPage = () => {
   return (
-    <S.ListWrapper>
+    <S.Wrapper>
       <TopBar />
       <S.MainText>내가 올린 글</S.MainText>
       <S.List>
         <ListBox />
         <ListBox />
       </S.List>
-      {/* <Footer /> */}
-    </S.ListWrapper>
+      <Footer />
+    </S.Wrapper>
   );
 };
 

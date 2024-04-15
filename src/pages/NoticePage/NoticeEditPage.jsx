@@ -28,7 +28,7 @@ const NoticeEditPage = () => {
           <CommonBtn color='green'>완료</CommonBtn>
         </S.BtnContainer>
       </S.Container>
-      {/* <Footer /> */}
+      <Footer />
     </S.Wrapper>
   );
 };

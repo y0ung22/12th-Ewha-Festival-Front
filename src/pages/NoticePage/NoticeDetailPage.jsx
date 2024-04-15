@@ -28,7 +28,7 @@ const NoticeDetailPage = () => {
           <CommonBtn color='green'>수정</CommonBtn>
         </S.BtnContainer>
       </S.Container>
-      {/* <Footer /> */}
+      <Footer />
     </S.Wrapper>
   );
 };
