@@ -21,6 +21,9 @@ html, body {
     font-family: Pretendard;
     height: 100%;
     background: linear-gradient(180deg, #FFF 26.21%, #00FF75 120.91%);
+    
+    position: relative;
+    z-index: 0;
 }
 
 a {
