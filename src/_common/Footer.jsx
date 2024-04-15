@@ -32,6 +32,7 @@ const Footer = () => {
 export default Footer;
 
 const Wrapper = styled.div`
+  position: relative;
   margin-top: auto;
   display: flex;
   flex-direction: column;
@@ -39,6 +40,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 158.08px;
   flex-shrink: 0;
+  z-index: 99999;
+
   background: #efefef;
   border-top: 1.04px solid #9b9b9b;
 
