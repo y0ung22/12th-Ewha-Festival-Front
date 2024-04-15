@@ -6,7 +6,12 @@ import { ReactComponent as BackIcon } from '../assets/icons/back.svg';
 import { ReactComponent as LogoGreen } from '../assets/icons/LiberEwha-green.svg';
 import { ReactComponent as LogoWhite } from '../assets/icons/LiberEwha-white.svg';
 
-const TopBar = ({ isMenu = false, isWhite = false, backLink }) => {
+const TopBar = ({
+  isMenu = false,
+  isMain = false,
+  isWhite = false,
+  backLink
+}) => {
   // const navigate = useNavigate();
 
   const [isSideBarOpen, setSideBarOpen] = useState(false);
@@ -19,7 +24,10 @@ const TopBar = ({ isMenu = false, isWhite = false, backLink }) => {
     <>
       <Wrapper>
         {isMenu ? (
-          <Menu onClick={() => setSideBarOpen(true)} />
+          <Menu
+            onClick={() => setSideBarOpen(true)}
+            fill={isMain ? '#F7F7F7' : '#8E8E8E'}
+          />
         ) : (
           <Back onClick={handleBackClick} />
         )}
@@ -33,11 +41,19 @@ const TopBar = ({ isMenu = false, isWhite = false, backLink }) => {
 export default TopBar;
 
 const Wrapper = styled.div`
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 104px;
   flex-shrink: 0;
+  z-index: 99999;
+
+  @media (min-width: 576px) {
+    width: 390px;
+    margin: 0 auto;
+  }
 
   div {
     margin: 61px 19px 23px auto;
