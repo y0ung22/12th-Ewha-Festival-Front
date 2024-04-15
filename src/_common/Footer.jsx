@@ -42,6 +42,9 @@ const Wrapper = styled.div`
   flex-shrink: 0;
   z-index: 99999;
 
+  margin-top: auto;
+  transform: translateY(-100%);
+
   background: #efefef;
   border-top: 1.04px solid #9b9b9b;
 

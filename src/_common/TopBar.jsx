@@ -41,13 +41,19 @@ const TopBar = ({
 export default TopBar;
 
 const Wrapper = styled.div`
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 104px;
   flex-shrink: 0;
   z-index: 99999;
+
+  @media (min-width: 576px) {
+    width: 390px;
+    margin: 0 auto;
+  }
 
   div {
     margin: 61px 19px 23px auto;
