@@ -3,10 +3,12 @@ import { styled } from 'styled-components';
 
 import { ReactComponent as MenuIcon } from '../assets/icons/menu.svg';
 import { ReactComponent as BackIcon } from '../assets/icons/back.svg';
+import { ReactComponent as LogoGreen } from '../assets/icons/LiberEwha-green.svg';
+import { ReactComponent as LogoWhite } from '../assets/icons/LiberEwha-white.svg';
 
 import Sidebar from './Sidebar';
 
-const TopBar = ({ isMenu = false, backLink }) => {
+const TopBar = ({ isMenu = false, isWhite = false, backLink }) => {
   // const navigate = useNavigate();
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -23,7 +25,7 @@ const TopBar = ({ isMenu = false, backLink }) => {
         ) : (
           <Back onClick={handleBackClick} />
         )}
-        <span>2024 이화여대 대동제</span>
+        <div>{isWhite ? <LogoWhite /> : <LogoGreen />}</div>
       </Wrapper>
       {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} />}
     </>
@@ -39,14 +41,8 @@ const Wrapper = styled.div`
   height: 104px;
   flex-shrink: 0;
 
-  span {
+  div {
     margin: 61px 19px 23px auto;
-    color: var(--bk01);
-    text-align: right;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: -0.5px;
   }
 `;
 
