@@ -5,7 +5,7 @@ const MainBox = ({ item }) => {
     <Wrapper>
       <Title>{item.title}</Title>
       <Guide>{item.guide}</Guide>
-      <Background src={item.image} />
+      <Background src={item.image} alt='' />
     </Wrapper>
   );
 };

@@ -14,8 +14,7 @@ const MainPage = () => {
         <TopBar isWhite={true} isMenu={true} isMain={true} />
         <ScrapBook />
         <MainBottomSheet />
-
-        <Background src={background} />
+        <Background src={background} alt='배경 이미지' />
       </Wrapper>
       <Footer />
     </>

@@ -1,23 +1,22 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const ScrapBook = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <Wrapper>
-      <Title>
-        2024
-        <br />
-        이화여대 대동제
-      </Title>
+      <Title>{'2024 \n 이화여대 대동제'}</Title>
       <ScrapBox>
-        <ScrapTitle>나의 스크랩북 열기</ScrapTitle>
+        <ScrapTitle isLogin={isLogin} onClick={() => setIsLogin(!isLogin)}>
+          {isLogin ? '나의 스크랩북 열기' : '로그인 하러가기'}
+        </ScrapTitle>
         <BlurBox>
           <>
             <Guide>
-              이화연님
-              <br />
-              대동제에서 잊지 못할
-              <br />
-              추억을 만들어봐요🍀
+              {isLogin
+                ? '이화연님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀'
+                : '로그인하면\n사이트를 더 편하게\n즐길 수 있어요🍀'}
             </Guide>
             <TagBox>
               <Tag>#2024_대동제</Tag>
@@ -44,6 +43,7 @@ const Wrapper = styled.section`
 `;
 
 const Title = styled.div`
+  white-space: pre-line;
   color: var(--wh);
   font-size: 1.5rem;
   font-weight: 600;
@@ -76,7 +76,8 @@ const ScrapTitle = styled.div`
   font-size: 0.8125rem;
 
   border-radius: 1.875rem;
-  background: var(--green_01, #00f16f);
+  background: ${({ isLogin }) =>
+    isLogin ? 'var(--green01)' : 'var(--purple)'};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 `;
 
@@ -103,6 +104,7 @@ const BlurBox = styled.div`
 `;
 
 const Guide = styled.div`
+  white-space: pre-line;
   color: var(--wh01, var(--wh, #fff));
   font-family: Pretendard;
   font-size: 24px;

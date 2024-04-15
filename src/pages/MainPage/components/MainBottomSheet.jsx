@@ -79,6 +79,8 @@ const Wrapper = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
 
   width: 100%;
   padding: 1.875rem 1.0625rem;

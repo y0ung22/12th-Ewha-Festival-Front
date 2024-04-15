@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <MainPage />
+      <BoothListPage />
     </>
   );
 }
