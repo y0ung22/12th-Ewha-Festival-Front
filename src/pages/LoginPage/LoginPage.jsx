@@ -1,29 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TopBar from '../../_common/TopBar';
-import { ReactComponent as ID } from '../../assets/icons/id.svg';
-import { ReactComponent as PW } from '../../assets/icons/pw.svg';
-import { ReactComponent as Kakao } from '../../assets/icons/kakao_login.svg';
+import { ReactComponent as BackIcon } from '../../assets/icons/back.svg';
+import { ReactComponent as IdIcon } from '../SignupPage/images/id.svg';
+import { ReactComponent as PwIcon } from '../SignupPage/images/pw.svg';
+import { ReactComponent as KaKaoIcon } from '../SignupPage/images/kakao_login.svg';
 
 const LoginPage = () => {
+  const handleBackClick = () => {
+    // backLink ? navigate(backLink) : navigate(-1);
+  };
+
   return (
     <>
-      <TopBar isMenu={true} />
       <Wrapper>
+        <TopBarBack>
+          <BackIcon onClick={handleBackClick} />
+        </TopBarBack>
         <Title>로그인</Title>
         <Input>
-          <ID />
+          <IdIcon />
           <input placeholder='아이디'></input>
         </Input>
         <Input>
-          <PW />
+          <PwIcon />
           <input placeholder='비밀번호'></input>
         </Input>
         <LoginBtn>로그인</LoginBtn>
         <KakaoLogin>
           <ImgDiv>
-            <Kakao />
+            <KaKaoIcon />
           </ImgDiv>
           <span>카카오 로그인</span>
         </KakaoLogin>
@@ -36,13 +42,20 @@ const LoginPage = () => {
 export default LoginPage;
 
 const Wrapper = styled.div`
-  display: flex;
   width: 100%;
-  height: 100%;
-  position: fixed;
+  height: 100vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
+`;
+
+const TopBarBack = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding-top: 56px;
+  padding-left: 17px;
 `;
 
 const Title = styled.div`

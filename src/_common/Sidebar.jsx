@@ -2,11 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as Search } from '../assets/icons/search.svg';
+import { ReactComponent as CloseBtn } from '../assets/icons/close.svg';
 
-const Sidebar = () => {
+const Sidebar = ({ setSidebarOpen }) => {
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   return (
     <>
       <Wrapper>
+        <IconDiv onClick={closeSidebar}>
+          <CloseBtn />
+        </IconDiv>
         <SearchBar>
           <input placeholder='검색어를 입력해주세요'></input>
           <Search />
@@ -31,11 +39,16 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 99;
-  background: linear-gradient(180deg, #fff 26.21%, #00ff75 120.91%);
+  background: var(--wh);
   padding: 0 21px;
 `;
 
+const IconDiv = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 58px;
+  margin-bottom: 29px;
+`;
 const SearchBar = styled.div`
   width: 100%;
   height: 30px;

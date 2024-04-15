@@ -4,10 +4,12 @@ import { styled } from 'styled-components';
 import { ReactComponent as MenuIcon } from '../assets/icons/menu.svg';
 import { ReactComponent as BackIcon } from '../assets/icons/back.svg';
 
+import Sidebar from './Sidebar';
+
 const TopBar = ({ isMenu = false, backLink }) => {
   // const navigate = useNavigate();
 
-  const [isSideBarOpen, setSideBarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const handleBackClick = () => {
     // backLink ? navigate(backLink) : navigate(-1);
@@ -17,13 +19,13 @@ const TopBar = ({ isMenu = false, backLink }) => {
     <>
       <Wrapper>
         {isMenu ? (
-          <Menu onClick={() => setSideBarOpen(true)} />
+          <Menu onClick={() => setSidebarOpen(true)} />
         ) : (
           <Back onClick={handleBackClick} />
         )}
         <span>2024 이화여대 대동제</span>
       </Wrapper>
-      {/* {isSideBarOpen && <SideBar setSideBarOpen={setSideBarOpen} />} */}
+      {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} />}
     </>
   );
 };
