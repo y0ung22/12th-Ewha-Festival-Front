@@ -8,15 +8,15 @@ import Footer from '../../_common/Footer';
 const NoticeListPage = () => {
   return (
     <>
-      <S.ListWrapper>
+      <S.Wrapper>
         <TopBar />
         <S.MainText>공지사항</S.MainText>
         <S.List>
           <ListBox />
           <ListBox />
         </S.List>
-        {/* <Footer /> */}
-      </S.ListWrapper>
+        <Footer />
+      </S.Wrapper>
     </>
   );
 };
