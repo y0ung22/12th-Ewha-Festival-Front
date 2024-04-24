@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Comment = ({ c }) => {
@@ -26,27 +26,27 @@ const Comment = ({ c }) => {
   );
 };
 
-export default Comment;
+export default React.memo(Comment);
 
 const Box = styled.div`
   display: flex;
   width: 100%;
-  padding: 11px 14px;
+  padding: 0.6875rem 0.875rem;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   justify-content: space-between;
   align-items: flex-start;
   flex-shrink: 0;
-  border-radius: 15px;
+  border-radius: 0.9375rem;
   border: 1px solid var(--gray02);
   background: var(--wh);
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   color: var(--bk01);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.5px;
+  line-height: 1.25rem;
+  letter-spacing: -0.03125rem;
 
   div {
     display: flex;
@@ -58,10 +58,8 @@ const Box = styled.div`
     margin-left: auto;
     color: var(--gray01);
     text-align: right;
-    font-size: 10px;
+    font-size: 0.625rem;
     font-weight: 400;
-    line-height: 20px;
-    letter-spacing: -0.5px;
   }
 `;
 
@@ -74,6 +72,7 @@ const Writer = styled.div`
   div:nth-child(1) {
     font-weight: 800;
   }
+
   span {
     font-weight: 600;
   }
