@@ -13,6 +13,12 @@ import MakersPage from './pages/Makerspage/Makerspage';
 import MainPage from './pages/MainPage/MainPage';
 import BoothListPage from './pages/ListPage/BoothListPage';
 import SearchPage from './pages/SearchPage/SearchPage';
+import DetailPage from './pages/DetailPage/DetailPage';
+
+import NoticeListPage from './pages/NoticePage/NoticeListPage';
+import NoticeDetailPage from './pages/NoticePage/NoticeDetailPage';
+import NoticeWritePage from './pages/NoticePage/NoticeWritePage';
+import NoticeEditPage from './pages/NoticePage/NoticeEditPage';
 
 function App() {
   return (
@@ -23,6 +29,12 @@ function App() {
           <Route path={'/login'} element={<LoginPage />}></Route>
           <Route path={'/signup'} element={<SignupPage />}></Route>
           <Route path={'/boothedit'} element={<BoothEditPage />}></Route>
+          <Route path={'/detail/:id'} element={<DetailPage />} />
+
+          <Route path={'/notice'} element={<NoticeListPage />} />
+          <Route path={'/notice/:id'} element={<NoticeDetailPage />} />
+          <Route path={'/notice/write'} element={<NoticeWritePage />} />
+          <Route path={'/notice/edit'} element={<NoticeEditPage />} />
         </Routes>
       </BrowserRouter>
     </>

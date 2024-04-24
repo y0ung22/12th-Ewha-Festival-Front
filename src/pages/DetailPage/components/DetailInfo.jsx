@@ -39,26 +39,26 @@ const DetailInfo = ({ b }) => {
 export default DetailInfo;
 
 const Container = styled.div`
-  margin-top: 23px;
-  margin-bottom: 35px;
+  margin-top: 1.44rem;
+  margin-bottom: 2.19rem;
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 1.0625rem;
   width: 100%;
 
   div {
     display: flex;
     flex-direction: row;
-    gap: 18px;
+    gap: 1.125rem;
 
     color: var(--bk01);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 400;
-    line-height: 20px;
-    letter-spacing: -0.5px;
+    line-height: 1.25rem;
+    letter-spacing: -0.03125rem;
 
     span:nth-child(1) {
-      width: 55px;
+      width: 3.4375rem;
       flex-shrink: 0;
       font-weight: 600;
     }
@@ -74,8 +74,8 @@ const Container = styled.div`
 
 const Vector = styled(VectorIcon)`
   margin-left: auto;
-  width: 19px;
-  height: 19px;
+  width: 1.1875rem;
+  height: 1.1875rem;
   flex-shrink: 0;
   transform: ${({ isExpanded }) =>
     isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'};

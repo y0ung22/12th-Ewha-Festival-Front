@@ -19,7 +19,7 @@ const NoticeDetailPage = () => {
           국군은 국가의 안전보장과 국토방위의 신성한 의무를 수행함을 사명으로
         </S.Content>
         <Writer>
-          <span>TF 팀</span>
+          <span>(준)축제준비위원회</span>
           <span>2024-02-15</span>
         </Writer>
         <S.GreenLine />
