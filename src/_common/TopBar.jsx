@@ -50,6 +50,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 6.5rem;
   flex-shrink: 0;
+  background: var(--wh);
   z-index: 99999;
 
   @media (min-width: 576px) {
