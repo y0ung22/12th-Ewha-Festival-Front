@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import Modal from '../../../_common/Modal';
+
 import check_gray from '../images/check_gray.svg';
 import check_green from '../images/check_green.svg';
 
@@ -10,7 +12,7 @@ const BoothTime = ({ onDayEdit }) => {
     { date: '9일 목요일', start_time: '', end_time: '', selected: false },
     { date: '10일 금요일', start_time: '', end_time: '', selected: false }
   ]);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 유효한 입력 형식인지 검증
   const isValidFormat = time => {
@@ -39,48 +41,59 @@ const BoothTime = ({ onDayEdit }) => {
     // 입력 형식 검증
     if (type === 'start_time' || type === 'end_time') {
       if (!isValidFormat(value)) {
-        setErrorMsg('시간 형식은 HH:mm 이어야 합니다.'); // 나중에 모달로 변경
+        setIsModalOpen(true);
       } else {
-        setErrorMsg(''); // 에러 메시지 초기화
+        setIsModalOpen(false);
       }
     }
   };
 
   return (
-    <Wrapper>
-      {rows.map((row, index) => (
-        <RowContainer key={row.date}>
-          <CheckIcon
-            src={row.selected ? check_green : check_gray}
-            onClick={() => handleRowClick(index)}
-          />
-          <Text style={{ width: '62px' }}>{row.date}</Text>
-          <InputContainer>
-            <input
-              type='text'
-              value={row.start_time}
-              onChange={e =>
-                handleInputChange(index, 'start_time', e.target.value)
-              }
-              placeholder='예)9:00'
-              disabled={!row.selected}
+    <>
+      <Wrapper>
+        {rows.map((row, index) => (
+          <RowContainer key={row.date}>
+            <CheckIcon
+              src={row.selected ? check_green : check_gray}
+              onClick={() => handleRowClick(index)}
             />
-          </InputContainer>
-          <Text>~</Text>
-          <InputContainer>
-            <input
-              type='text'
-              value={row.end_time}
-              onChange={e =>
-                handleInputChange(index, 'end_time', e.target.value)
-              }
-              placeholder='예)13:00'
-              disabled={!row.selected}
-            />
-          </InputContainer>
-        </RowContainer>
-      ))}
-    </Wrapper>
+            <Text style={{ width: '62px' }}>{row.date}</Text>
+            <InputContainer>
+              <input
+                type='text'
+                value={row.start_time}
+                onChange={e =>
+                  handleInputChange(index, 'start_time', e.target.value)
+                }
+                placeholder='예)9:00'
+                disabled={!row.selected}
+              />
+            </InputContainer>
+            <Text>~</Text>
+            <InputContainer>
+              <input
+                type='text'
+                value={row.end_time}
+                onChange={e =>
+                  handleInputChange(index, 'end_time', e.target.value)
+                }
+                placeholder='예)13:00'
+                disabled={!row.selected}
+              />
+            </InputContainer>
+          </RowContainer>
+        ))}
+      </Wrapper>
+      {isModalOpen && (
+        <Modal
+          title='정보 수정 오류'
+          msg1='제시된 형식에 알맞게 다시 작성해주세요'
+          msg2={`😮\n올바른 시간 형식으로 입력해주세요.`}
+          setIsModalOpen={setIsModalOpen}
+          msgType={2}
+        />
+      )}
+    </>
   );
 };
 

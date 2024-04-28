@@ -34,8 +34,8 @@ const MenuEditPage = () => {
             <GoMenuAdd />
           </List>
         </Container>
+        <Footer />
       </Wrapper>
-      <Footer />
     </>
   );
 };
@@ -44,8 +44,8 @@ export default MenuEditPage;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: white !important;
+  min-height: 100vh;
+  background-color: white;
 
   display: flex;
   flex-direction: column;

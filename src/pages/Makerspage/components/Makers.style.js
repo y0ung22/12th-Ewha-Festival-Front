@@ -1,5 +1,40 @@
 import styled from 'styled-components';
 
+// MakersPage
+const Wrapper1 = styled.div`
+  width: 390px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 140px;
+`;
+
+const Wrapper2 = styled.div`
+  width: 330px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 74px;
+`;
+
+const Text = styled.div`
+  color: var(--green06);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 108.333% */
+  letter-spacing: -0.5px;
+
+  margin-top: 37px;
+`;
+
+// 구성 요소 박스
 const Title = styled.div`
   display: inline-flex;
   padding: 8px 24px;
@@ -22,7 +57,7 @@ const Title = styled.div`
 `;
 
 const BoxContainer = styled.div`
-  margin-top: -19px;
+  margin-top: -18px;
 
   display: flex;
   width: 330px;
@@ -48,11 +83,10 @@ const BoxContainer = styled.div`
 
 const Box = styled.div`
   position: relative;
-
   width: 146px;
   height: 182px;
   flex-shrink: 0;
-
+  border-radius: 15px;
   box-shadow: 0px 0px 4px 0px rgba(210, 210, 210, 0.54) inset;
 `;
 
@@ -107,10 +141,12 @@ const PartContainer = styled.div`
   top: 13px;
   right: 12px;
 
+  width: auto;
+  min-width: 34px;
   display: inline-flex;
   padding: 0px 6px;
   align-items: center;
-  gap: 2px;
+  gap: 12px;
 
   border-radius: 10px;
   background: var(--bk02);
@@ -118,7 +154,7 @@ const PartContainer = styled.div`
 
 const Part = styled.div`
   display: flex;
-  width: 33px;
+  min-width: 22px;
   height: 15px;
   flex-direction: column;
   justify-content: center;
@@ -148,7 +184,26 @@ const Work = styled.div`
   white-space: pre-wrap;
 `;
 
+// 하단 멘트
+const Explain = styled.div`
+  margin-top: 15px;
+  margin-bottom: 70px;
+
+  color: var(--bk01);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 200% */
+  letter-spacing: -0.5px;
+`;
+
 export const S = {
+  Wrapper1,
+  Wrapper2,
+  Text,
+  Explain,
   Title,
   BoxContainer,
   Box,
