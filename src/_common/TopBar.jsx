@@ -11,6 +11,7 @@ import Sidebar from './Sidebar';
 const TopBar = ({
   isMenu = false,
   isMain = false,
+  isAbout = false,
   isWhite = false,
   backLink
 }) => {
@@ -24,7 +25,13 @@ const TopBar = ({
 
   return (
     <>
-      <Wrapper style={{ background: !isMain && 'var(--wh)' }}>
+      <Wrapper
+        style={{
+          background: !isMain && 'var(--wh)',
+          backgroundColor: isAbout && 'rgba(255, 255, 255, 0.4)',
+          backdropFilter: isAbout && 'blur(2px)'
+        }}
+      >
         {isMenu ? (
           <Menu
             onClick={() => setSidebarOpen(true)}
