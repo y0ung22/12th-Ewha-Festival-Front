@@ -22,6 +22,8 @@ import NoticeDetailPage from './pages/NoticePage/NoticeDetailPage';
 import NoticeWritePage from './pages/NoticePage/NoticeWritePage';
 import NoticeEditPage from './pages/NoticePage/NoticeEditPage';
 
+import FacilityPage from './pages/FacilityPage/FacilityPage';
+
 function App() {
   return (
     <>
@@ -39,6 +41,10 @@ function App() {
           <Route path={'/notice/:id'} element={<NoticeDetailPage />} />
           <Route path={'/notice/write'} element={<NoticeWritePage />} />
           <Route path={'/notice/edit'} element={<NoticeEditPage />} />
+
+          <Route path={'/boothlist'} element={<BoothListPage />} />
+
+          <Route path={'/facility'} element={<FacilityPage />} />
         </Routes>
       </BrowserRouter>
     </>
