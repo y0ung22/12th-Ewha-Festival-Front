@@ -12,6 +12,9 @@ import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';
 import MakersPage from './pages/Makerspage/Makerspage';
 
+import AboutPage from './pages/AboutPage/AboutPage';
+import DetailPage from './pages/DetailPage/DetailPage';
+
 import NoticeListPage from './pages/NoticePage/NoticeListPage';
 import NoticeDetailPage from './pages/NoticePage/NoticeDetailPage';
 import NoticeWritePage from './pages/NoticePage/NoticeWritePage';
@@ -32,6 +35,7 @@ function App() {
           <Route path={'/signup'} element={<SignupPage />}></Route>
           <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
           <Route path={'/detail/:id'} element={<DetailPage />} />
+          <Route path={'/about'} element={<AboutPage />} />
 
           <Route path={'/boothedit'} element={<BoothEditPage />} />
           <Route path={'/menuedit'} element={<MenuEditPage />} />
