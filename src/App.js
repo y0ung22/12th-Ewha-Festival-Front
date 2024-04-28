@@ -44,14 +44,6 @@ function App() {
           <Route path={'/notice/:id'} element={<NoticeDetailPage />} />
           <Route path={'/notice/write'} element={<NoticeWritePage />} />
           <Route path={'/notice/edit'} element={<NoticeEditPage />} />
-
-          <Route path={'/main'} element={<MainPage />} />
-          <Route path={'/boothlist'} element={<BoothListPage />} />
-          <Route path={'/programlist'} element={<ProgramListPage />} />
-          <Route path={'/programdetail'} element={<ProgramDetailPage />} />
-
-          <Route path={'/my'} element={<MyPage />} />
-          <Route path={'/facility'} element={<FacilityPage />} />
         </Routes>
       </BrowserRouter>
     </>
