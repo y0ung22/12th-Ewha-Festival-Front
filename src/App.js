@@ -9,7 +9,7 @@ import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';
 import MakersPage from './pages/Makerspage/Makerspage';
-
+import AboutPage from './pages/AboutPage/AboutPage';
 import MainPage from './pages/MainPage/MainPage';
 import BoothListPage from './pages/ListPage/BoothListPage';
 import SearchPage from './pages/SearchPage/SearchPage';
@@ -30,6 +30,7 @@ function App() {
           <Route path={'/signup'} element={<SignupPage />}></Route>
           <Route path={'/boothedit'} element={<BoothEditPage />}></Route>
           <Route path={'/detail/:id'} element={<DetailPage />} />
+          <Route path={'/about'} element={<AboutPage />} />
 
           <Route path={'/notice'} element={<NoticeListPage />} />
           <Route path={'/notice/:id'} element={<NoticeDetailPage />} />
