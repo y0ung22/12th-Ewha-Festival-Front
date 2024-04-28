@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import Modal from '../../../_common/Modal';
 
 import trash from '../images/trash.svg';
 
 const GoMenuEdit = ({ menu, price, img, is_soldout }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
   return (
-    <Box img={img}>
-      <img src={trash} alt='삭제' />
-      <Name>{menu}</Name>
-      <Price>{price}원</Price>
-      {is_soldout || <Overlay>운영 종료</Overlay>}
-    </Box>
+    <>
+      <Box img={img}>
+        <img src={trash} alt='삭제' onClick={toggleModal} />
+        <Name>{menu}</Name>
+        <Price>{price}원</Price>
+        {is_soldout || <Overlay>운영 종료</Overlay>}
+      </Box>
+      {isModalOpen && (
+        <Modal
+          title='메뉴 삭제'
+          msg1='메뉴를 삭제하시겠습니까?'
+          msg2='삭제된 내용은 되돌릴 수 없습니다'
+          msgType={1}
+        />
+      )}
+    </>
   );
 };
 

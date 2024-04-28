@@ -4,13 +4,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
-
-import MainPage from './pages/MainPage/MainPage';
-import BoothListPage from './pages/ListPage/BoothListPage';
-import SearchPage from './pages/SearchPage/SearchPage';
-import DetailPage from './pages/DetailPage/DetailPage';
-
+import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
 import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
+
 import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';
@@ -21,6 +17,11 @@ import NoticeDetailPage from './pages/NoticePage/NoticeDetailPage';
 import NoticeWritePage from './pages/NoticePage/NoticeWritePage';
 import NoticeEditPage from './pages/NoticePage/NoticeEditPage';
 
+import MyPage from './pages/MyPage/MyPage';
+import FacilityPage from './pages/FacilityPage/FacilityPage';
+import ProgramListPage from './pages/ProgramPage/ProgramListPage';
+import ProgramDetailPage from './pages/ProgramPage/ProgramDetailPage';
+
 function App() {
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path={'/login'} element={<LoginPage />}></Route>
           <Route path={'/signup'} element={<SignupPage />}></Route>
+          <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
           <Route path={'/detail/:id'} element={<DetailPage />} />
 
           <Route path={'/boothedit'} element={<BoothEditPage />} />

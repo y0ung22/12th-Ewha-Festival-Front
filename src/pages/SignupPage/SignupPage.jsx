@@ -8,6 +8,7 @@ import { ReactComponent as NameIcon } from './images/namelogo.svg';
 import { ReactComponent as CheckedIcon } from './images/checked.svg';
 import { ReactComponent as UncheckedIcon } from './images/unchecked.svg';
 
+import TopBar from '../../_common/TopBar';
 import Modal from '../../_common/Modal';
 
 const SignupPage = () => {
@@ -26,24 +27,27 @@ const SignupPage = () => {
   };
   const { id, passwd, passwdCheck, nickname } = userData;
 
+  //아이디 중복확인
+  const [isIdValid, setIsIdValid] = useState(false);
+  const clickIdValid = () => {
+    //아이디 중복확인 api
+    setIsIdValid(true);
+  };
   //비밀번호 중복확인
   const isPwSame = (passwd != '') & (passwd === passwdCheck);
 
-  const handleBackClick = () => {
-    // backLink ? navigate(backLink) : navigate(-1);
-  };
-
+  const isFieldSatisfied = id && passwd && passwdCheck && isPwSame && nickname;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const clickComplete = () => {
-    setIsModalOpen(true);
+    if (isFieldSatisfied) {
+      setIsModalOpen(true);
+    }
   };
 
   return (
     <>
       <Wrapper>
-        <TopBarBack>
-          <BackIcon onClick={handleBackClick} />
-        </TopBarBack>
+        <TopBar isMenu={false} isMain={false} isWhite={true} />
         <Title>회원가입</Title>
         <form onChange={handleInput}>
           <RowBox>
@@ -56,9 +60,9 @@ const SignupPage = () => {
                 value={id}
               ></input>
             </Input>
-            <IdCheckBtn>중복확인</IdCheckBtn>
+            <IdCheckBtn onClick={clickIdValid}>중복확인</IdCheckBtn>
           </RowBox>
-          <IdCheckMsg>*사용 가능한 아이디입니다.</IdCheckMsg>
+          {isIdValid && <IdCheckMsg>*사용 가능한 아이디입니다.</IdCheckMsg>}
           <RowBox>
             <Input num='250px'>
               <PwIcon />
@@ -89,30 +93,30 @@ const SignupPage = () => {
                 placeholder='닉네임(최대 8자)'
                 name='nickname'
                 value={nickname}
+                maxLength={8}
               ></input>
             </Input>
           </RowBox>
         </form>
-        <LoginBtn onClick={clickComplete}>회원가입</LoginBtn>
+        <LoginBtn isFieldSatisfied={isFieldSatisfied} onClick={clickComplete}>
+          회원가입
+        </LoginBtn>
       </Wrapper>
       {isModalOpen && (
-        <ModalWrapper>
-          <Background />
-          <Modal
-            msgType={1}
-            title='회원가입 완료'
-            msg1='회원가입을 완료하시겠습니까?'
-            msg2='작성한 회원 정보는 이후 변경이 어려워요.'
-            option={2}
-            setIsModalOpen={setIsModalOpen}
-          />
-        </ModalWrapper>
+        <Modal
+          msgType={1}
+          title='회원가입 완료'
+          msg1='회원가입을 완료하시겠습니까?'
+          msg2='작성한 회원 정보는 이후 변경이 어려워요.'
+          setIsModalOpen={setIsModalOpen}
+        />
       )}
     </>
   );
 };
 
 export default SignupPage;
+
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -122,51 +126,43 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 
-const TopBarBack = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  padding-top: 56px;
-  padding-left: 17px;
-`;
-
 const Title = styled.div`
   color: var(--bk01);
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 26px; /* 108.333% */
-  letter-spacing: -0.5px;
-  margin-top: 37px;
-  margin-bottom: 97px;
+  line-height: 1.625rem; /* 108.333% */
+  letter-spacing: -0.03125rem;
+  margin-top: 2.3125rem;
+  margin-bottom: 6.0625rem;
 `;
 
 const RowBox = styled.div`
   display: flex;
-  width: 250px;
+  width: 15.625rem;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 const IdCheckBtn = styled.div`
   display: flex;
-  width: 58px;
-  height: 46px;
+  width: 3.625rem;
+  height: 2.875rem;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background: var(--green04);
   justify-content: center;
   align-items: center;
 
   color: var(--wh);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%; /* 12px */
-  letter-spacing: -0.5px;
+  letter-spacing: -0.03125rem;
 `;
 
 const IdCheckMsg = styled.div`
@@ -174,11 +170,11 @@ const IdCheckMsg = styled.div`
   display: flex;
   align-items: flex-start;
   color: var(--purple);
-  font-size: 8px;
+  font-size: 0.5rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%; /* 8px */
-  letter-spacing: -0.5px;
+  letter-spacing: -0.03125rem;
   margin-top: 7px;
   margin-left: 6px;
 `;
@@ -220,7 +216,8 @@ const LoginBtn = styled.div`
   height: 46px;
   flex-shrink: 0;
   border-radius: 8px;
-  background-color: var(--green04);
+  background-color: ${props =>
+    props.isFieldSatisfied ? `var(--green04)` : `var(--green05)`};
   margin-top: 46px;
   margin-bottom: 15px;
 
@@ -231,30 +228,4 @@ const LoginBtn = styled.div`
   font-weight: 700;
   line-height: 26px; /* 162.5% */
   letter-spacing: -0.5px;
-`;
-
-//모달
-const ModalWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-`;
-
-const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 100;
 `;
