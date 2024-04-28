@@ -41,20 +41,20 @@ const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 200;
+  z-index: 99999;
 `;
 
 const Background = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 100;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99997;
 `;
 
 const Wrapper = styled.div`
@@ -63,7 +63,7 @@ const Wrapper = styled.div`
   width: 17.875rem;
   border-radius: 0.625rem;
   background: var(--wh);
-  z-index: 101;
+  z-index: 99998;
 `;
 
 const Title = styled.div`

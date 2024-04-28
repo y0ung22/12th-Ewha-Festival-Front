@@ -72,8 +72,8 @@ const MenuEditDetailPage = () => {
             작성 완료
           </S.SubmitBtn>
         </form>
+        <Footer />
       </S.Wrapper>
-      <Footer />
     </>
   );
 };

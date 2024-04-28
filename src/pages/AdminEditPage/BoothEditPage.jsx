@@ -118,8 +118,8 @@ const BoothEditPage = () => {
           </S.Box>
           <S.SubmitBtn type='submit'>작성 완료</S.SubmitBtn>
         </form>
+        <Footer />
       </S.Wrapper>
-      <Footer />
     </>
   );
 };

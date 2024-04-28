@@ -1,22 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
+import TopBar from '../../_common/TopBar';
 import { ReactComponent as BackIcon } from '../../assets/icons/back.svg';
 import { ReactComponent as IdIcon } from '../SignupPage/images/id.svg';
 import { ReactComponent as PwIcon } from '../SignupPage/images/pw.svg';
 import { ReactComponent as KaKaoIcon } from '../SignupPage/images/kakao_login.svg';
 
 const LoginPage = () => {
-  const handleBackClick = () => {
-    // backLink ? navigate(backLink) : navigate(-1);
+  const navigate = useNavigate();
+  const gotoSignup = () => {
+    navigate('/signup');
   };
 
   return (
     <>
       <Wrapper>
-        <TopBarBack>
-          <BackIcon onClick={handleBackClick} />
-        </TopBarBack>
+        <TopBar isMenu={false} isMain={false} isWhite={true} />
         <Title>로그인</Title>
         <Input>
           <IdIcon />
@@ -33,7 +34,9 @@ const LoginPage = () => {
           </ImgDiv>
           <span>카카오 로그인</span>
         </KakaoLogin>
-        <GotoSignUp>계정이 없다면? 회원가입 하러 가기</GotoSignUp>
+        <GotoSignUp onClick={gotoSignup}>
+          계정이 없다면? 회원가입 하러 가기
+        </GotoSignUp>
       </Wrapper>
     </>
   );
@@ -48,14 +51,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
-`;
-
-const TopBarBack = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  padding-top: 56px;
-  padding-left: 17px;
 `;
 
 const Title = styled.div`
