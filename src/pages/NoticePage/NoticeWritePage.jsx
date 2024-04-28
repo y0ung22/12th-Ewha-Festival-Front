@@ -34,7 +34,7 @@ const NoticeWritePage = () => {
   const [cancelModal, setCancelModal] = useState(false);
   const [submitModal, setSubmitModal] = useState(false);
   const SubmitModalOpen = () => {
-    if (newTitle.trim() !== null && newContent.trim() !== null) {
+    if (newTitle.trim() !== '' && newContent.trim() !== '') {
       setSubmitModal(true);
     }
   };
@@ -45,8 +45,8 @@ const NoticeWritePage = () => {
         <TopBar />
         <S.MainText>공지 작성하기</S.MainText>
         <S.Container>
-          <TitleInput handleTitle={handleTitle} />
-          <ContentInput handleContent={handleContent} />
+          <TitleInput newTitle={newTitle} handleTitle={handleTitle} />
+          <ContentInput newContent={newContent} handleContent={handleContent} />
           <S.BtnContainer>
             <CommonBtn onClick={() => setCancelModal(true)}>취소</CommonBtn>
             <CommonBtn color='green' onClick={SubmitModalOpen}>
