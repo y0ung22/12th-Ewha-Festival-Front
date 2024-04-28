@@ -15,7 +15,6 @@ const ProgramDetailPage = () => {
           <ProgramInfo b={programData} />
         </Container>
       </Wrapper>
-      ;
     </>
   );
 };

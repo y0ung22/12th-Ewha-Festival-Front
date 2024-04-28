@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as VectorThin } from '../../../assets/icons/vector_thin.svg';
@@ -36,7 +35,6 @@ const Wrapper = styled.div`
   border-radius: 0.9375rem;
   border: 1px solid var(--gray04);
   background: var(--wh);
-  margin-bottom: 1.12rem;
 `;
 
 const ImgDiv = styled.div`
@@ -67,7 +65,6 @@ const Place = styled.div`
   flex-shrink: 0;
   color: var(--bk01);
   font-size: 1rem;
-  font-style: normal;
   font-weight: 600;
   line-height: 1.375rem; /* 137.5% */
   letter-spacing: -0.03125rem;
@@ -82,7 +79,6 @@ const Detail = styled.div`
 
   color: var(--gray05);
   font-size: 0.75rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 1.375rem; /* 183.333% */
   letter-spacing: -0.03125rem;
