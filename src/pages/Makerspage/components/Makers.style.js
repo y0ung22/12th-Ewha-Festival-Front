@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // MakersPage
 const Wrapper1 = styled.div`
   width: 390px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +22,7 @@ const Wrapper2 = styled.div`
 `;
 
 const Text = styled.div`
-  color: var(--bk01);
+  color: var(--green06);
   text-align: center;
   font-family: Pretendard;
   font-size: 24px;
@@ -140,10 +141,12 @@ const PartContainer = styled.div`
   top: 13px;
   right: 12px;
 
+  width: auto;
+  min-width: 34px;
   display: inline-flex;
   padding: 0px 6px;
   align-items: center;
-  gap: 2px;
+  gap: 12px;
 
   border-radius: 10px;
   background: var(--bk02);
@@ -151,7 +154,7 @@ const PartContainer = styled.div`
 
 const Part = styled.div`
   display: flex;
-  width: 33px;
+  min-width: 22px;
   height: 15px;
   flex-direction: column;
   justify-content: center;
@@ -181,10 +184,26 @@ const Work = styled.div`
   white-space: pre-wrap;
 `;
 
+// 하단 멘트
+const Explain = styled.div`
+  margin-top: 15px;
+  margin-bottom: 70px;
+
+  color: var(--bk01);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 200% */
+  letter-spacing: -0.5px;
+`;
+
 export const S = {
   Wrapper1,
   Wrapper2,
   Text,
+  Explain,
   Title,
   BoxContainer,
   Box,

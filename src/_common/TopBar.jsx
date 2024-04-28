@@ -3,11 +3,20 @@ import { styled } from 'styled-components';
 
 import { ReactComponent as MenuIcon } from '../assets/icons/menu.svg';
 import { ReactComponent as BackIcon } from '../assets/icons/back.svg';
+import { ReactComponent as LogoGreen } from '../assets/icons/LiberEwha-green.svg';
+import { ReactComponent as LogoWhite } from '../assets/icons/LiberEwha-white.svg';
 
-const TopBar = ({ isMenu = false, backLink }) => {
+import Sidebar from './Sidebar';
+
+const TopBar = ({
+  isMenu = false,
+  isMain = false,
+  isWhite = false,
+  backLink
+}) => {
   // const navigate = useNavigate();
 
-  const [isSideBarOpen, setSideBarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const handleBackClick = () => {
     // backLink ? navigate(backLink) : navigate(-1);
@@ -15,43 +24,48 @@ const TopBar = ({ isMenu = false, backLink }) => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper style={{ background: !isMain && 'var(--wh)' }}>
         {isMenu ? (
-          <Menu onClick={() => setSideBarOpen(true)} />
+          <Menu
+            onClick={() => setSidebarOpen(true)}
+            fill={isMain ? '#F7F7F7' : '#8E8E8E'}
+          />
         ) : (
           <Back onClick={handleBackClick} />
         )}
-        <span>2024 이화여대 대동제</span>
+        <div>{isWhite ? <LogoWhite /> : <LogoGreen />}</div>
       </Wrapper>
-      {/* {isSideBarOpen && <SideBar setSideBarOpen={setSideBarOpen} />} */}
+      {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} />}
     </>
   );
 };
 
-export default TopBar;
+export default React.memo(TopBar);
 
 const Wrapper = styled.div`
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 104px;
+  height: 6.5rem;
   flex-shrink: 0;
+  z-index: 99999;
 
-  span {
-    margin: 61px 19px 23px auto;
-    color: var(--bk01);
-    text-align: right;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: -0.5px;
+  @media (min-width: 576px) {
+    width: 24.375rem;
+    margin: 0 auto;
+  }
+
+  div {
+    margin: 3.81rem 1.19rem 1.44rem auto;
   }
 `;
 
 const Menu = styled(MenuIcon)`
-  margin: 60px auto 26px 20px;
+  margin: 3.75rem auto 1.63rem 1.25rem;
 `;
 
 const Back = styled(BackIcon)`
-  margin: 57px auto 23px 20px;
+  margin: 3.56rem auto 1.44rem 1.25rem;
 `;

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 // (공통) 중앙 정렬 Wrapper
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: white !important;
+  min-height: 100vh;
+  background-color: white;
 
   display: flex;
   padding: 0px 20px;

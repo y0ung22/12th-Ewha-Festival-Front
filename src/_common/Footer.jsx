@@ -29,38 +29,40 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);
 
 const Wrapper = styled.div`
+  position: relative;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 158.08px;
+  height: 9.88rem;
   flex-shrink: 0;
   background: #efefef;
-  border-top: 1.04px solid #9b9b9b;
+  border-top: 0.065rem solid #9b9b9b;
 
   color: #9b9b9b;
   text-align: center;
 
   div:nth-child(1) {
-    margin-top: 20.84px;
-    height: 34px;
-    font-size: 10.4px;
+    margin-top: 1.3rem;
+    height: 2.125rem;
+    font-size: 0.65rem;
     font-weight: 500;
-    line-height: 16.64px;
+    line-height: 1.04rem;
   }
 
   div:nth-child(2) {
-    margin-top: 19.16px;
-    margin-bottom: 19.37px;
+    margin-top: 1.2rem;
+    margin-bottom: 1.21rem;
     display: flex;
-    gap: 16px;
+    gap: 1rem;
   }
 
   div:nth-child(3) {
-    font-size: 8.32px;
+    font-size: 0.52rem;
     font-weight: 300;
     line-height: normal;
   }

@@ -13,12 +13,21 @@ input, textarea {
     font-family: Pretendard;
     border: none;
     outline: none;
+    resize: none;
+    background: transparent;
 }
 
 html, body {
     font-family: Pretendard;
     height: 100%;
-    background: linear-gradient(180deg, #FFF 26.21%, #00FF75 120.91%);
+    //background: linear-gradient(180deg, #FFF 26.21%, #00FF75 120.91%);
+    
+    position: relative;
+    z-index: 0;
+}
+
+a {
+  text-decoration-line: none;
 }
 
 @media (min-width: 576px) {
@@ -43,6 +52,8 @@ html, body {
     --green03: #00FF75;
     --green04: #1EF380;
     --green05: rgba(0, 241, 111, 0.40);
+    --green06: #00482A;
+    --mint01: #5AEAAE;
     --wh: #FFF;
 
     --purple: #9747FF;

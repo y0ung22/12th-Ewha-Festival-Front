@@ -32,8 +32,11 @@ const MakersPage = () => {
             <MakersBox data={TfData} />
           </S.BoxContainer>
         </S.Wrapper2>
+        <S.Explain>
+          *총 63인의 축제준비위원회 위원들과 함께 운영하고 있습니다.
+        </S.Explain>
+        <Footer />
       </S.Wrapper1>
-      <Footer />
     </>
   );
 };
