@@ -23,7 +23,7 @@ const TrashcanCard = () => {
         </Container>
         {isOpen && (
           <>
-            <hr />
+            <Line />
             <MapDiv>
               <CampusMap height='auto' />
             </MapDiv>
@@ -44,12 +44,6 @@ const Wrapper = styled.div`
   border-radius: 0.9375rem;
   border: 1px solid var(--gray04);
   background: var(--wh);
-
-  hr {
-    width: 21.81256rem;
-    height: 0rem;
-    border-top: dotted #c1d9cc;
-  }
 `;
 
 const Container = styled.div`
@@ -103,4 +97,10 @@ const MapDiv = styled.div`
   background-color: var(--gray04);
   align-self: center;
   margin: 0.69rem 0;
+`;
+
+const Line = styled.div`
+  width: 21.81256rem;
+  border-top: dotted #c1d9cc;
+  line-height: 0.1rem;
 `;

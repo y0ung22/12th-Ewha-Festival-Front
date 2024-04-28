@@ -8,9 +8,14 @@ import { CommonBtn } from '../../_common/Button';
 import { ReactComponent as CampusMap } from './images/campus_map.svg';
 import TrashcanCard from './TrashcanCard';
 
+const option = ['쓰레기통', '그릇 반납'];
+
 const FacilityPage = () => {
-  const option = ['쓰레기통', '그릇반납'];
   const [select, setSelect] = useState('쓰레기통');
+
+  const handleOption = selectedOption => {
+    setSelect(selectedOption);
+  };
 
   return (
     <>
@@ -21,9 +26,17 @@ const FacilityPage = () => {
           <CampusMap />
         </CampusMapImg>
         <BtnContainer>
-          <CommonBtn color='green'>쓰레기통</CommonBtn>
-          <CommonBtn>그릇 반납</CommonBtn>
+          {option.map(opt => (
+            <CommonBtn
+              key={opt}
+              onClick={() => handleOption(opt)}
+              color={select === opt ? 'green' : undefined}
+            >
+              {opt}
+            </CommonBtn>
+          ))}
         </BtnContainer>
+        {/* CardList 컴포넌트 -> 그릇반납 ui 나온 후 작업*/}
         <TrashcanCard />
       </Wrapper>
       <Footer />
