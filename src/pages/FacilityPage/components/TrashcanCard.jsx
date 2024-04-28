@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as VectorThin } from '../../assets/icons/vector_thin.svg';
-import { ReactComponent as CampusMap } from './images/campus_map.svg';
+import { ReactComponent as VectorThin } from '../../../assets/icons/vector_thin.svg';
+import { ReactComponent as CampusMap } from '../images/campus_map.svg';
 
 const TrashcanCard = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -6,9 +6,9 @@ import Footer from '../../_common/Footer';
 import { CommonBtn } from '../../_common/Button';
 
 import { ReactComponent as CampusMap } from './images/campus_map.svg';
-import TrashcanCard from './TrashcanCard';
+import TrashcanCard from './components/TrashcanCard';
 
-const option = ['쓰레기통', '그릇 반납'];
+const options = ['쓰레기통', '그릇 반납'];
 
 const FacilityPage = () => {
   const [select, setSelect] = useState('쓰레기통');
@@ -26,7 +26,7 @@ const FacilityPage = () => {
           <CampusMap />
         </CampusMapImg>
         <BtnContainer>
-          {option.map(opt => (
+          {options.map(opt => (
             <CommonBtn
               key={opt}
               onClick={() => handleOption(opt)}

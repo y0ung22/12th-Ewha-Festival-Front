@@ -13,7 +13,7 @@ const Sidebar = ({ setSidebarOpen }) => {
 
   //목록별 이동링크
   const menuItems = [
-    { menu: '부스 목록 보러가기', link: '/booth' },
+    { menu: '부스 목록 보러가기', link: '/' },
     { menu: '공연 목록 보러가기', link: '/' },
     { menu: '축제 일정 보러가기', link: '/' },
     { menu: '주요 시설 보러가기', link: '/' },
