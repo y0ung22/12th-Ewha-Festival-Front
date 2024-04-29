@@ -5,12 +5,14 @@ import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
 
 import MenuThumEdit from './components/MenuThumEdit';
+import MenuVegan from './components/MenuVegan';
 import MenuOpened from './components/MenuOpened';
 
 const MenuEditDetailPage = () => {
   const [img, setImg] = useState(null);
   const [menu, setMenu] = useState('');
   const [price, setPrice] = useState('');
+  const [vegan, setVegan] = useState('');
   const [opened, setOpened] = useState(true);
 
   const handleImgUpload = file => {
@@ -26,6 +28,7 @@ const MenuEditDetailPage = () => {
       img,
       menu,
       price,
+      vegan,
       is_soldout // True가 운영 중
     };
 
@@ -63,6 +66,10 @@ const MenuEditDetailPage = () => {
                 {price}
               </textarea>
             </S.InputContainer>
+          </S.Box>
+          <S.Box num={'40px'}>
+            <S.Title text={'비건 여부'} />
+            <MenuVegan setVegan={setVegan} />
           </S.Box>
           <S.Box num={'40px'}>
             <S.Title text={'운영여부'} />
