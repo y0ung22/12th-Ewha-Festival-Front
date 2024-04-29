@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import Modal from '../../../_common/Modal';
+
 const Comment = ({ c }) => {
+  const [deleteModal, setDeleteModal] = useState(false);
+
   return (
-    <Box>
-      <Writer>
-        <div
-          style={{
-            color: c.manager ? 'var(--purple)' : 'var(--green02)'
-          }}
-        >
-          {c.nickname}
-        </div>
-        {c.mine && (
-          <div>
-            <span>삭제</span>
-            <Bar />
-            <span>수정</span>
+    <>
+      <Box>
+        <Writer>
+          <div
+            style={{
+              color: c.manager ? 'var(--purple)' : 'var(--green02)'
+            }}
+          >
+            {c.nickname}
           </div>
-        )}
-      </Writer>
-      <div>{c.content}</div>
-      <span>작성시간 {c.created_at}</span>
-    </Box>
+          {c.mine && <span onClick={() => setDeleteModal(true)}>삭제</span>}
+        </Writer>
+        <div>{c.content}</div>
+        <span>작성시간 {c.created_at}</span>
+      </Box>
+
+      {deleteModal && (
+        <Modal
+          msgType={1}
+          title='방명록 삭제'
+          msg1='해당 방명록을 삭제하시겠습니까?'
+          msg2='삭제된 방명록은 다시 불러올 수 없습니다.'
+          option={2}
+          setIsModalOpen={setDeleteModal}
+        />
+      )}
+    </>
   );
 };
 
@@ -69,19 +80,11 @@ const Writer = styled.div`
   align-items: center;
   width: 100%;
 
-  div:nth-child(1) {
+  div {
     font-weight: 800;
   }
 
   span {
     font-weight: 600;
   }
-`;
-
-const Bar = styled.svg`
-  margin: auto 4px;
-  width: 1px;
-  height: 12px;
-  background: var(--gray01);
-  flex-shrink: 0;
 `;

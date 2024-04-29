@@ -5,7 +5,7 @@ import Footer from '../../_common/Footer';
 import ScrapBook from './components/ScrapBook';
 import MainBottomSheet from './components/MainBottomSheet';
 
-import background from './images/background.png';
+import background from '../../assets/images/background.png';
 
 const MainPage = () => {
   return (

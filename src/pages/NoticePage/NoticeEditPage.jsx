@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import { S } from './Notice.style';
 
 import TopBar from '../../_common/TopBar';
@@ -9,8 +10,10 @@ import ContentInput from './components/ContentInput';
 import Modal from '../../_common/Modal';
 
 const NoticeEditPage = () => {
-  const [newTitle, setNewTitle] = useState('');
-  const [newContent, setNewContent] = useState('');
+  const location = useLocation();
+
+  const [newTitle, setNewTitle] = useState(location.state?.title);
+  const [newContent, setNewContent] = useState(location.state?.content);
   const [textLimitModal, setTextLimitModal] = useState(false);
 
   const handleTitle = useCallback(e => {
@@ -31,10 +34,10 @@ const NoticeEditPage = () => {
     }
   }, []);
 
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [cancelModal, setCancelModal] = useState(false);
   const [submitModal, setSubmitModal] = useState(false);
   const SubmitModalOpen = () => {
-    if (newTitle.trim() !== null && newContent.trim() !== null) {
+    if (newTitle.trim() !== '' && newContent.trim() !== '') {
       setSubmitModal(true);
     }
   };
@@ -44,26 +47,26 @@ const NoticeEditPage = () => {
         <TopBar />
         <S.MainText>공지 수정하기</S.MainText>
         <S.Container>
-          <TitleInput handleTitle={handleTitle} />
-          <ContentInput handleContent={handleContent} />
+          <TitleInput newTitle={newTitle} handleTitle={handleTitle} />
+          <ContentInput newContent={newContent} handleContent={handleContent} />
           <S.BtnContainer>
-            <CommonBtn onClick={() => setDeleteModal(true)}>삭제</CommonBtn>
+            <CommonBtn onClick={() => setCancelModal(true)}>취소</CommonBtn>
             <CommonBtn color='green' onClick={SubmitModalOpen}>
-              수정
+              완료
             </CommonBtn>
           </S.BtnContainer>
         </S.Container>
         <Footer />
       </S.Wrapper>
 
-      {deleteModal && (
+      {cancelModal && (
         <Modal
           msgType={1}
-          title='공지 삭제'
-          msg1='해당 공지사항을 삭제하시겠습니까?'
-          msg2='삭제된 글은 다시 불러올 수 없습니다.'
+          title='공지 수정 취소'
+          msg1='공지사항 수정을 취소하시겠습니까?'
+          msg2='수정된 내용은 저장되지 않습니다.'
           option={2}
-          setIsModalOpen={setDeleteModal}
+          setIsModalOpen={setCancelModal}
         />
       )}
 

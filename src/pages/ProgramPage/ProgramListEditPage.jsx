@@ -3,21 +3,17 @@ import { S } from './components/Program.style';
 
 import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
-import CategorySlide from '../../_common/CategorySlide';
 import ProgramCard from './components/ProgramCard';
 
 import { programData } from './components/mock';
 
-const ProgramListPage = () => {
-  const options = ['수', '목', '금'];
-
+const ProgramListEditPage = () => {
   return (
     <>
       <TopBar />
       <S.Wrapper>
-        <S.Title>축제 일정</S.Title>
+        <S.Title num='2.31rem'>부스 수정하기</S.Title>
         <S.List>
-          <CategorySlide options={options} />
           {programData.map((item, index) => (
             <ProgramCard
               key={index}
@@ -33,4 +29,4 @@ const ProgramListPage = () => {
   );
 };
 
-export default ProgramListPage;
+export default ProgramListEditPage;

@@ -1,12 +1,19 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const ListBox = () => {
+const ListBox = ({ d }) => {
+  const navigate = useNavigate();
+
   return (
-    <Container>
-      <div>[공지] 공지사항</div>
+    <Container
+      onClick={() => {
+        navigate(`/notice/${d.id}`);
+      }}
+    >
+      <div>{d.title}</div>
       <div>
         <span>(준)축제준비위원회</span>
-        <span>2024-02-15</span>
+        <span>{d.updated_at.split(' ')[0] || d.created_at.split(' ')[0]}</span>
       </div>
     </Container>
   );
