@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
 import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
 
+import DetailPage from './pages/DetailPage/DetailPage';
 import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';

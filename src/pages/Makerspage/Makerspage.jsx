@@ -27,7 +27,9 @@ const MakersPage = () => {
           </S.BoxContainer>
         </S.Wrapper2>
         <S.Wrapper2>
-          <S.Title>대동제 TF 운영진</S.Title>
+          <S.Title>
+            {'('}준{')'}축제준비위원회 운영진
+          </S.Title>
           <S.BoxContainer dataLength={TfData.length}>
             <MakersBox data={TfData} />
           </S.BoxContainer>
