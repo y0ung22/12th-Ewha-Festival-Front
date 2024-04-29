@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as ScrapOff } from '../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../assets/icons/scrap-on.svg';
 
-const ScrapCard = ({ item }) => {
+const ScrapCard = ({ item, size }) => {
   return (
     // <Card>
     //   {item.is_liked ? <ScrapOn /> : <ScrapOff />}
@@ -13,9 +13,9 @@ const ScrapCard = ({ item }) => {
     //   </div>
     //   {item.opened  && <ClosedSign>운영종료</ClosedSign>}
     // </Card>
-    <Card>
+    <Card size={size}>
       {true ? <ScrapOn /> : <ScrapOff />}
-      <SpanDiv>
+      <SpanDiv size={size}>
         <span>부스명입니다부스명입니다</span>
         <span>생활관 . 음식</span>
       </SpanDiv>
@@ -28,10 +28,10 @@ export default ScrapCard;
 
 const Card = styled.div`
   position: relative;
-  width: 170px;
-  height: 197px;
+  width: ${props => (props.size === 'small' ? '9.125rem' : '170px')};
+  height: ${props => (props.size === 'small' ? '11.375rem' : '197px')};
   flex-shrink: 0;
-  border-radius: 20px;
+  border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
   background:
     linear-gradient(
       336deg,
@@ -51,9 +51,9 @@ const Card = styled.div`
 
 const SpanDiv = styled.div`
   position: absolute;
-  left: 17px;
+  left: ${props => (props.size === 'small' ? '0.75rem' : '17px')};
   right: 17px;
-  bottom: 14px;
+  bottom: ${props => (props.size === 'small' ? '0.62rem' : '14px')};
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -65,7 +65,7 @@ const SpanDiv = styled.div`
   letter-spacing: -0.3px;
 
   span:nth-child(1) {
-    width: 9rem;
+    width: ${props => (props.size === 'small' ? '7.8rem' : '9rem')};
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
