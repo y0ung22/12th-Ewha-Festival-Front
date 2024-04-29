@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as Search } from '../assets/icons/search.svg';
 import { ReactComponent as CloseBtn } from '../assets/icons/close.svg';
@@ -8,6 +9,18 @@ const Sidebar = ({ setSidebarOpen }) => {
   const closeSidebar = () => {
     setSidebarOpen(false);
   };
+  const navigate = useNavigate();
+
+  //목록별 이동링크
+  const menuItems = [
+    { menu: '부스 목록 보러가기', link: '/' },
+    { menu: '공연 목록 보러가기', link: '/' },
+    { menu: '축제 일정 보러가기', link: '/' },
+    { menu: '주요 시설 보러가기', link: '/' },
+    { menu: '대동제 공지 보러가기', link: '/' },
+    { menu: '배리어프리 확인하기', link: '/' },
+    { menu: '마이페이지', link: '/' }
+  ];
 
   return (
     <>
@@ -20,11 +33,11 @@ const Sidebar = ({ setSidebarOpen }) => {
           <Search />
         </SearchBar>
         <List>
-          <Goto>부스 목록 보러가기</Goto>
-          <Goto>공연 목록 보러가기</Goto>
-          <Goto>쓰레기통 위치 찾기</Goto>
-          <Goto>TF팀 공지 보러가기</Goto>
-          <Goto>마이페이지</Goto>
+          {menuItems.map((item, index) => (
+            <Goto key={index} onClick={() => navigate(item.link)}>
+              {item.menu}
+            </Goto>
+          ))}
         </List>
       </Wrapper>
     </>

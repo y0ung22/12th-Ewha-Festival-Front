@@ -11,10 +11,10 @@ import Sidebar from './Sidebar';
 const TopBar = ({
   isMenu = false,
   isMain = false,
+  isAbout = false,
   isWhite = false,
   backLink
 }) => {
-
   // const navigate = useNavigate();
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -25,7 +25,13 @@ const TopBar = ({
 
   return (
     <>
-      <Wrapper>
+      <Wrapper
+        style={{
+          background: !isMain && 'var(--wh)',
+          backgroundColor: isAbout && 'rgba(255, 255, 255, 0.4)',
+          backdropFilter: isAbout && 'blur(2px)'
+        }}
+      >
         {isMenu ? (
           <Menu
             onClick={() => setSidebarOpen(true)}
@@ -41,7 +47,7 @@ const TopBar = ({
   );
 };
 
-export default TopBar;
+export default React.memo(TopBar);
 
 const Wrapper = styled.div`
   position: sticky;
@@ -49,24 +55,24 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 104px;
+  height: 6.5rem;
   flex-shrink: 0;
-  z-index: 99999;
+  z-index: 99;
 
   @media (min-width: 576px) {
-    width: 390px;
+    width: 24.375rem;
     margin: 0 auto;
   }
 
   div {
-    margin: 61px 19px 23px auto;
+    margin: 3.81rem 1.19rem 1.44rem auto;
   }
 `;
 
 const Menu = styled(MenuIcon)`
-  margin: 60px auto 26px 20px;
+  margin: 3.75rem auto 1.63rem 1.25rem;
 `;
 
 const Back = styled(BackIcon)`
-  margin: 57px auto 23px 20px;
+  margin: 3.56rem auto 1.44rem 1.25rem;
 `;

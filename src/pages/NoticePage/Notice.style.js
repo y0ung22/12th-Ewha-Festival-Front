@@ -11,9 +11,10 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 0.9375rem;
   width: 100%;
-  padding: 0 20px;
+  min-height: 30.9rem;
+  padding: 0 1.25rem;
 `;
 
 const Wrapper = styled.div`

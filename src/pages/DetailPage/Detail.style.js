@@ -17,14 +17,14 @@ const Container = styled.div`
 `;
 
 const SubTitle = styled.div`
-  margin: 25px auto 16px;
+  margin: 1.56rem auto 1rem;
   width: 100%;
 
   color: var(--gray01);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
-  line-height: 20px;
-  letter-spacing: -0.5px;
+  line-height: 1.25rem;
+  letter-spacing: -0.03125rem;
 `;
 
 export const S = {

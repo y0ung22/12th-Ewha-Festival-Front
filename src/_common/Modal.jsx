@@ -1,76 +1,106 @@
 import styled, { css } from 'styled-components';
 
-const Modal = ({ msgType, title, msg1, msg2, option, setIsModalOpen }) => {
-  //아니오로  모달 닫기
+const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen }) => {
+  // 모달 닫기
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
   return (
-    <>
+    <ModalWrapper>
+      <Background />
       <Wrapper>
         <Title>{title}</Title>
         <Contents>
-          <Msg1 msgType={msgType}>{msg1}</Msg1>
+          <Msg1 {...{ msgType, msg2 }}>{msg1}</Msg1>
           <Msg2 msgType={msgType}>{msg2}</Msg2>
           <Btn>
-            <BtnNo onClick={handleClose}>아니오</BtnNo>
-            {option === 2 && <BtnYes>예</BtnYes>}
+            {msgType === 1 ? (
+              <>
+                <BtnNo onClick={handleClose}>아니오</BtnNo>
+                <BtnYes>예</BtnYes>
+              </>
+            ) : (
+              <BtnNo onClick={handleClose}>닫기</BtnNo>
+            )}
           </Btn>
         </Contents>
       </Wrapper>
-    </>
+    </ModalWrapper>
   );
 };
 
 export default Modal;
 
+const ModalWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+`;
+
+const Background = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99997;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 286px;
-  height: 186px;
-  border-radius: 10px;
+  width: 17.875rem;
+  border-radius: 0.625rem;
   background: var(--wh);
-  z-index: 101;
+  z-index: 99998;
 `;
 
 const Title = styled.div`
-  width: 286px;
-  height: 52px;
+  width: 17.875rem;
+  height: 3.25rem;
   flex-shrink: 0;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 0.625rem 0.625rem 0rem 0rem;
   background: var(--green04);
 
   color: var(--wh);
   text-align: center;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 18px */
-  letter-spacing: -0.5px;
-  padding: 17px 0;
-  margin-bottom: 27px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: -0.03125rem;
+  padding: 1.06rem 0;
 `;
 
 const Contents = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Msg1 = styled.div`
-  color: #000;
-  text-align: center;
-  font-size: 14px;
-  font-style: normal;
+  color: var(--bk01);
+  font-size: 0.875rem;
   font-weight: 500;
-  line-height: normal;
+  margin-top: ${props =>
+    props.msgType === 1 ? (props.msg2 ? '1.69rem' : '1.87rem') : '1rem'};
+  margin-bottom: ${props => props.msgType === 1 && props.msg2 && '0.37rem'};
 
   ${props =>
     props.msgType === 2 &&
     css`
       color: #928d8d;
-      font-size: 10px;
+      font-size: 0.625rem;
       font-weight: 400;
     `}
 `;
@@ -78,19 +108,18 @@ const Msg1 = styled.div`
 const Msg2 = styled.div`
   color: #928d8d;
   text-align: center;
-  font-size: 10px;
-  font-style: normal;
+  font-size: 0.625rem;
   font-weight: 400;
-  line-height: normal;
-  margin-top: 6px;
 
   ${props =>
     props.msgType === 2 &&
     css`
-      color: #000;
-      font-size: 14px;
+      margin-top: 0.875rem;
+      color: var(--bk01);
+      font-size: 0.875rem;
       font-weight: 500;
-      margin-top: 16px;
+      line-height: 1.5rem;
+      white-space: pre-line;
     `}
 `;
 
@@ -98,24 +127,22 @@ const Btn = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 20px;
-  gap: 9px;
+  gap: 0.56rem;
+  margin: 1.25rem auto 1.38rem;
 `;
 
 const ButtonBase = styled.div`
   display: flex;
-  width: 87px;
-  height: 30px;
+  width: 5.4375rem;
+  height: 1.875rem;
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
+  border-radius: 0.3125rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  line-height: 20px; /* 166.667% */
-  letter-spacing: -0.5px;
+  line-height: 1.25rem;
+  letter-spacing: -0.03125rem;
 `;
 
 const BtnNo = styled(ButtonBase)`

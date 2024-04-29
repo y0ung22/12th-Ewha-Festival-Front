@@ -1,12 +1,19 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const ListBox = () => {
+const ListBox = ({ d }) => {
+  const navigate = useNavigate();
+
   return (
-    <Container>
-      <div>[공지] 공지사항</div>
+    <Container
+      onClick={() => {
+        navigate(`/notice/${d.id}`);
+      }}
+    >
+      <div>{d.title}</div>
       <div>
-        <span>TF팀</span>
-        <span>2024-02-15</span>
+        <span>(준)축제준비위원회</span>
+        <span>{d.updated_at.split(' ')[0] || d.created_at.split(' ')[0]}</span>
       </div>
     </Container>
   );
@@ -15,22 +22,22 @@ const ListBox = () => {
 export default ListBox;
 
 const Container = styled.div`
-  padding: 20px;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
   width: 100%;
-
-  border-radius: 15px;
+  height: 87px;
+  border-radius: 0.9375rem;
   border: 1px solid var(--gray04);
   background: var(--wh);
 
   div:nth-child(1) {
     color: var(--bk01);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
-    line-height: 22px;
-    letter-spacing: -0.5px;
+    line-height: 1.375rem;
+    letter-spacing: -0.03125rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -39,22 +46,21 @@ const Container = styled.div`
   div:nth-child(2) {
     display: flex;
     align-items: center;
-    gap: 10px;
+    height: 15px;
+    gap: 0.625rem;
+
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: -0.03125rem;
 
     span:nth-child(1) {
       color: var(--green01);
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 12px;
-      letter-spacing: -0.5px;
+      line-height: 0.75rem;
     }
 
     span:nth-child(2) {
       color: var(--gray05);
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 22px;
-      letter-spacing: -0.5px;
+      line-height: 1.375rem;
     }
   }
 `;

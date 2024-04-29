@@ -1,52 +1,63 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import Modal from '../../../_common/Modal';
+
 const Comment = ({ c }) => {
+  const [deleteModal, setDeleteModal] = useState(false);
+
   return (
-    <Box>
-      <Writer>
-        <div
-          style={{
-            color: c.manager ? 'var(--purple)' : 'var(--green02)'
-          }}
-        >
-          {c.nickname}
-        </div>
-        {c.mine && (
-          <div>
-            <span>삭제</span>
-            <Bar />
-            <span>수정</span>
+    <>
+      <Box>
+        <Writer>
+          <div
+            style={{
+              color: c.manager ? 'var(--purple)' : 'var(--green02)'
+            }}
+          >
+            {c.nickname}
           </div>
-        )}
-      </Writer>
-      <div>{c.content}</div>
-      <span>작성시간 {c.created_at}</span>
-    </Box>
+          {c.mine && <span onClick={() => setDeleteModal(true)}>삭제</span>}
+        </Writer>
+        <div>{c.content}</div>
+        <span>작성시간 {c.created_at}</span>
+      </Box>
+
+      {deleteModal && (
+        <Modal
+          msgType={1}
+          title='방명록 삭제'
+          msg1='해당 방명록을 삭제하시겠습니까?'
+          msg2='삭제된 방명록은 다시 불러올 수 없습니다.'
+          option={2}
+          setIsModalOpen={setDeleteModal}
+        />
+      )}
+    </>
   );
 };
 
-export default Comment;
+export default React.memo(Comment);
 
 const Box = styled.div`
   display: flex;
   width: 100%;
-  padding: 11px 14px;
+  padding: 0.6875rem 0.875rem;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   justify-content: space-between;
   align-items: flex-start;
   flex-shrink: 0;
-  border-radius: 15px;
+  border-radius: 0.9375rem;
   border: 1px solid var(--gray02);
   background: var(--wh);
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   color: var(--bk01);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.5px;
+  line-height: 1.25rem;
+  letter-spacing: -0.03125rem;
 
   div {
     display: flex;
@@ -58,10 +69,8 @@ const Box = styled.div`
     margin-left: auto;
     color: var(--gray01);
     text-align: right;
-    font-size: 10px;
+    font-size: 0.625rem;
     font-weight: 400;
-    line-height: 20px;
-    letter-spacing: -0.5px;
   }
 `;
 
@@ -71,18 +80,11 @@ const Writer = styled.div`
   align-items: center;
   width: 100%;
 
-  div:nth-child(1) {
+  div {
     font-weight: 800;
   }
+
   span {
     font-weight: 600;
   }
-`;
-
-const Bar = styled.svg`
-  margin: auto 4px;
-  width: 1px;
-  height: 12px;
-  background: var(--gray01);
-  flex-shrink: 0;
 `;

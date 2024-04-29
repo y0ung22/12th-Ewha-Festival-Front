@@ -68,27 +68,27 @@ const Banner = styled.div`
 
   div {
     position: absolute;
-    left: 18px;
-    bottom: 16px;
+    left: 1.12rem;
+    bottom: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
 
     color: var(--wh);
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
-    line-height: 20px;
-    letter-spacing: -0.3px;
+    line-height: 1.25rem;
+    letter-spacing: -0.01875rem;
 
     span:nth-child(2) {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 4px;
+      gap: 0.25rem;
 
-      font-size: 15px;
+      font-size: 0.9375rem;
       font-weight: 500;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.03125rem;
     }
   }
 `;
@@ -102,7 +102,7 @@ const Circle = styled.svg`
 `;
 
 const Container = styled.div`
-  margin: 23px auto 19px;
+  margin: 1.44rem auto 1.19rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -112,53 +112,53 @@ const Container = styled.div`
 
 const Contact = styled.div`
   display: flex;
-  padding: 6px 17px;
+  padding: 0.375rem 1.0625rem;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  border-radius: 30px;
+  gap: 0.375rem;
+  border-radius: 1.875rem;
   border: 1px solid var(--green02);
   background: var(--green01);
 
   color: var(--wh);
   text-align: center;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
-  line-height: 20px;
-  letter-spacing: -0.5px;
+  line-height: 1.25rem;
+  letter-spacing: -0.03125rem;
 `;
 
 const Scrap = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 
   color: var(--mint01);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
-  line-height: 20px;
-  letter-spacing: -0.5px;
+  line-height: 1.25rem;
+  letter-spacing: -0.03125rem;
 `;
 
 const Notice = styled.div`
   display: flex;
   width: 100%;
-  height: 96px;
-  padding: 11px 14px;
+  height: 6rem;
+  padding: 0.6875rem 0.875rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   flex-shrink: 0;
-  border-radius: 15px;
+  border-radius: 0.9375rem;
   border: 1px solid var(--gray02);
   background: var(--wh);
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   color: var(--bk01);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.5px;
+  line-height: 1.25rem;
+  letter-spacing: -0.03125rem;
 
   div {
     display: flex;
@@ -170,9 +170,7 @@ const Notice = styled.div`
     margin-left: auto;
     color: var(--gray05);
     text-align: right;
-    font-size: 10px;
+    font-size: 0.625rem;
     font-weight: 400;
-    line-height: 20px;
-    letter-spacing: -0.5px;
   }
 `;
