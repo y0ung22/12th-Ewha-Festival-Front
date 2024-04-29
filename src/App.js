@@ -5,9 +5,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
-import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
 
-import DetailPage from './pages/DetailPage/DetailPage';
+import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
+import PerfEditPage from './pages/AdminEditPage/PerfEditPage';
+import TfEditPage from './pages/AdminEditPage/TfEditPage';
 import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';
@@ -39,6 +40,8 @@ function App() {
           <Route path={'/about'} element={<AboutPage />} />
 
           <Route path={'/boothedit'} element={<BoothEditPage />} />
+          <Route path={'/perfedit'} element={<PerfEditPage />} />
+          <Route path={'/tfedit'} element={<TfEditPage />} />
           <Route path={'/menuedit'} element={<MenuEditPage />} />
           <Route path={'/menuedit/:id'} element={<MenuEditDetailPage />} />
           <Route path={'/menuadd'} element={<MenuAddPage />} />
