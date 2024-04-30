@@ -13,6 +13,7 @@ import PerfMainPage from './pages/MainPage/PerfMainPage';
 import TFMainPage from './pages/MainPage/TFMainPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import BoothListPage from './pages/ListPage/BoothListPage';
+import PerfListPage from './pages/ListPage/PerfListPage';
 
 import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
@@ -49,6 +50,7 @@ function App() {
           <Route path={'/perf-main'} element={<PerfMainPage />} />
           <Route path={'/admin-main'} element={<TFMainPage />} />
           <Route path={'/boothlist'} element={<BoothListPage />} />
+          <Route path={'/perflist'} element={<PerfListPage />} />
           <Route path={'/search'} element={<SearchPage />} />
 
           <Route path={'/boothedit'} element={<BoothEditPage />} />

@@ -25,7 +25,7 @@ const BoxList = [
     title: '공연 목록\n보러가기',
     guide: '멋진 공연을\n놓치지 마세요',
     image: num2,
-    path: '/peflist'
+    path: '/perflist'
   },
   {
     id: 3,
