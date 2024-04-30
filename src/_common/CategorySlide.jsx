@@ -41,7 +41,7 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 
   align-self: flex-start;
-  margin-bottom: 1.25rem;
+  /* margin-bottom: 1.25rem; */
 `;
 
 const CategoryBtn = styled.div`

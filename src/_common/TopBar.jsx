@@ -27,8 +27,9 @@ const TopBar = ({
     <>
       <Wrapper
         style={{
-          background: !isMain && 'var(--wh)',
-          backgroundColor: isAbout && 'rgba(255, 255, 255, 0.4)',
+          backgroundColor: isAbout
+            ? 'rgba(255, 255, 255, 0.4)'
+            : !isMain && 'var(--wh)',
           backdropFilter: isAbout && 'blur(2px)'
         }}
       >

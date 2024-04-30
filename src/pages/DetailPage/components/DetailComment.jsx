@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { S } from '../Detail.style';
+import { S } from './Detail.style';
 
 import Comment from './Comment';
 import { ReactComponent as Summit } from '../images/arrow-circle-up.svg';

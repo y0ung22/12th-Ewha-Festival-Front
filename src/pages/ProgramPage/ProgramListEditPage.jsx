@@ -6,23 +6,24 @@ import Footer from '../../_common/Footer';
 import ProgramCard from './components/ProgramCard';
 
 import { programData } from './components/mock';
+import TFBoothCard from './components/TFBoothCard';
 
 const ProgramListEditPage = () => {
   return (
     <>
-      <TopBar />
       <S.Wrapper>
-        <S.Title num='2.31rem'>부스 수정하기</S.Title>
-        <S.List>
-          {programData.map((item, index) => (
-            <ProgramCard
-              key={index}
-              title={item.title}
-              detail={item.detail}
-              img={item.img}
-            />
-          ))}
-        </S.List>
+        <TopBar isMenu={true} />
+        <S.Container>
+          <S.Title>
+            <h2>부스 수정하기</h2>
+            {/* <CategorySlide options={options} /> */}
+          </S.Title>
+          <S.BoothList>
+            {programData.map((d, index) => (
+              <TFBoothCard key={index} d={d} />
+            ))}
+          </S.BoothList>
+        </S.Container>
         <Footer />
       </S.Wrapper>
     </>
