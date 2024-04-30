@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { S } from './Detail.style';
+import { S } from './components/Detail.style';
 
 import TopBar from '../../_common/TopBar';
 import DetailBanner from './components/DetailBanner';
