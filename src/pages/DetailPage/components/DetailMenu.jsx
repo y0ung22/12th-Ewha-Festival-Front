@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { S } from '../Detail.style';
+import { S } from './Detail.style';
 
 import MenuCard from './MenuCard';
 import MenuPagenation from './MenuPagenation';

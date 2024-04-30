@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import TopBar from '../../_common/TopBar';
-import { programData } from './components/mock';
-import ProgramBanner from './components/ProgramBanner';
-import ProgramInfo from './components/ProgramInfo';
+import DetailBanner from '../DetailPage/components/DetailBanner';
+import DetailInfo from '../DetailPage/components/DetailInfo';
 
 const ProgramDetailPage = () => {
+  const [boothData, setBoothData] = useState({
+    days: [
+      {
+        date: 8,
+        start_time: '10:00',
+        end_time: '10:00'
+      },
+      {
+        date: 9,
+        start_time: '10:00',
+        end_time: '10:00'
+      },
+      {
+        date: 10,
+        start_time: '10:00',
+        end_time: '10:00'
+      }
+    ]
+  });
+
   return (
     <>
       <Wrapper>
         <TopBar />
         <Container>
-          <ProgramBanner b={programData} />
-          <ProgramInfo b={programData} />
+          <DetailBanner b={boothData} program={true} />
+          <DetailInfo b={boothData} program={true} />
         </Container>
       </Wrapper>
     </>

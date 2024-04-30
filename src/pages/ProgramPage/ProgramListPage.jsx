@@ -5,6 +5,7 @@ import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
 import CategorySlide from '../../_common/CategorySlide';
 import ProgramCard from './components/ProgramCard';
+import TFBoothCard from './components/TFBoothCard';
 
 import { programData } from './components/mock';
 
@@ -12,24 +13,31 @@ const ProgramListPage = () => {
   const options = ['수', '목', '금'];
 
   return (
-    <>
-      <TopBar />
-      <S.Wrapper>
-        <S.Title>축제 일정</S.Title>
-        <S.List>
+    <S.Wrapper>
+      <TopBar isMenu={true} />
+      <S.Container>
+        <S.Title>
+          <h2>메인행사</h2>
           <CategorySlide options={options} />
-          {programData.map((item, index) => (
-            <ProgramCard
-              key={index}
-              title={item.title}
-              detail={item.detail}
-              img={item.img}
-            />
+        </S.Title>
+        <S.MainList>
+          {programData.map((d, index) => (
+            <ProgramCard key={index} d={d} />
           ))}
-        </S.List>
-        <Footer />
-      </S.Wrapper>
-    </>
+        </S.MainList>
+
+        <S.Title>
+          <h2>상설 부스</h2>
+          {/* <CategorySlide options={options} /> */}
+        </S.Title>
+        <S.BoothList>
+          {programData.map((d, index) => (
+            <TFBoothCard key={index} d={d} />
+          ))}
+        </S.BoothList>
+      </S.Container>
+      <Footer />
+    </S.Wrapper>
   );
 };
 

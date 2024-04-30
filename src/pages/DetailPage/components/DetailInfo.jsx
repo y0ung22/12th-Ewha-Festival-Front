@@ -3,35 +3,49 @@ import styled from 'styled-components';
 
 import { ReactComponent as VectorIcon } from '../../../assets/icons/vector.svg';
 
-const DetailInfo = ({ b }) => {
+const DetailInfo = ({ b, program = false }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <>
       <Container>
         <div>
           <span>위치</span>
-          <span>
-            {b.college} {b.number}
-          </span>
+          {program ? (
+            <span>{b.place}</span>
+          ) : (
+            <span>
+              {b.college} {b.number}
+            </span>
+          )}
         </div>
         <div>
           <span>운영시간</span>
           <span>
-            {b.day.map((day, index) => (
-              <p key={index}>{day}</p>
-            ))}
+            {program
+              ? b.days.map((day, index) => (
+                  <p key={index}>
+                    {day.date}일 - {day.start_time} ~ {day.end_time}
+                  </p>
+                ))
+              : b.day.map((day, index) => <p key={index}>{day}</p>)}
           </span>
         </div>
         <div>
           <span>소개글</span>
-          <span className={!isExpanded && 'hidden'}>{b.description}</span>
-          <Vector
-            onClick={() => setIsExpanded(!isExpanded)}
-            isExpanded={isExpanded}
-          />
+          <span className={isExpanded ? undefined : 'hidden'}>
+            {b.description}
+          </span>
+          {program || (
+            <Vector
+              onClick={() => setIsExpanded(!isExpanded)}
+              style={{
+                transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'
+              }}
+            />
+          )}
         </div>
       </Container>
-      <GreenLine />
+      {!program && <GreenLine />}
     </>
   );
 };
@@ -77,8 +91,6 @@ const Vector = styled(VectorIcon)`
   width: 1.1875rem;
   height: 1.1875rem;
   flex-shrink: 0;
-  transform: ${({ isExpanded }) =>
-    isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'};
   transition: transform 0.3s ease;
 `;
 
