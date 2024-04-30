@@ -9,7 +9,7 @@ import ScrapCard from '../../_common/ScrapCard';
 import DaySlider from './components/DaySlider';
 import SelectBtn from './components/SelectBtn';
 
-const BoothListPage = () => {
+const PerfListPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
   const [totalPage, setTotalPage] = useState(5); // 전체 페이지
@@ -22,7 +22,7 @@ const BoothListPage = () => {
         <TopDiv>
           <div className='box'>
             <DaySlider />
-            <SelectBtn category={'booth'} />
+            <SelectBtn category={'performance'} />
           </div>
           <TotalBooth>총 {array.length}개의 부스</TotalBooth>
         </TopDiv>
@@ -43,7 +43,7 @@ const BoothListPage = () => {
   );
 };
 
-export default BoothListPage;
+export default PerfListPage;
 
 const Wrapper = styled.div`
   position: relative;

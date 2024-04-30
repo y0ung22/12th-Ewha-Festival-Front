@@ -7,6 +7,14 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
 import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
 
+import MainPage from './pages/MainPage/MainPage';
+import BoothMainPage from './pages/MainPage/BoothMainPage';
+import PerfMainPage from './pages/MainPage/PerfMainPage';
+import TFMainPage from './pages/MainPage/TFMainPage';
+import SearchPage from './pages/SearchPage/SearchPage';
+import BoothListPage from './pages/ListPage/BoothListPage';
+import PerfListPage from './pages/ListPage/PerfListPage';
+
 import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';
@@ -36,6 +44,14 @@ function App() {
           <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
           <Route path={'/detail/:id'} element={<DetailPage />} />
           <Route path={'/about'} element={<AboutPage />} />
+
+          <Route path={'/'} element={<MainPage />} />
+          <Route path={'/booth-main'} element={<BoothMainPage />} />
+          <Route path={'/perf-main'} element={<PerfMainPage />} />
+          <Route path={'/admin-main'} element={<TFMainPage />} />
+          <Route path={'/boothlist'} element={<BoothListPage />} />
+          <Route path={'/perflist'} element={<PerfListPage />} />
+          <Route path={'/search'} element={<SearchPage />} />
 
           <Route path={'/boothedit'} element={<BoothEditPage />} />
           <Route path={'/menuedit'} element={<MenuEditPage />} />

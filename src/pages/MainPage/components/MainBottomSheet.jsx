@@ -10,6 +10,7 @@ import num4 from '../images/main-4.png';
 import num5 from '../images/main-5.png';
 import num6 from '../images/main-6.png';
 import num7 from '../images/main-7.png';
+import num8 from '../images/main-8.png';
 
 const BoxList = [
   {
@@ -17,14 +18,14 @@ const BoxList = [
     title: '부스 목록\n보러가기',
     guide: '올해 꼭 가야하는\n부스를 찾아봐요',
     image: num1,
-    path: '/'
+    path: '/boothlist'
   },
   {
     id: 2,
     title: '공연 목록\n보러가기',
     guide: '멋진 공연을\n놓치지 마세요',
     image: num2,
-    path: '/'
+    path: '/perflist'
   },
   {
     id: 3,
@@ -42,23 +43,30 @@ const BoxList = [
   },
   {
     id: 5,
-    title: '우리 학교\n대동제 소개',
-    guide: '올해 꼭 가야하는\n부스를 찾아봐요',
-    image: num5,
+    title: '쓰레기통\n위치찾기',
+    guide: '쓰레기통은\n어디에?!',
+    image: num7,
     path: '/'
   },
   {
     id: 6,
-    title: '만든이들',
-    guide: '대동제 사이트를\n만든이들',
-    image: num6,
+    title: '배리어프리\n확인하기',
+    guide: '배리어프리 정보를\n확인해 보세요',
+    image: num8,
     path: '/'
   },
   {
     id: 7,
-    title: '쓰레기통\n위치찾기',
-    guide: '쓰레기통은\n어디에?!',
-    image: num7,
+    title: '우리 학교\n대동제 소개',
+    guide: '우리 학교의\n대동제를 알아봐요',
+    image: num5,
+    path: '/'
+  },
+  {
+    id: 8,
+    title: '만든이들',
+    guide: '대동제 운영에\n참여한 사람들이에요',
+    image: num6,
     path: '/'
   }
 ];

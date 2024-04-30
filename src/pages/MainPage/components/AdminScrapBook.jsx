@@ -1,51 +1,145 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import CategorySlide from '../../../_common/CategorySlide';
 import ScrapCard from '../../../_common/ScrapCard';
+import MainBox from './MainBox';
 
-const ScrapBook = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [isScrap, setIsScrap] = useState(true);
-  const [boothList, setBoothList] = useState([0, 1, 2, 3]);
+//img
+import pin from '../images/black-pin.png';
+import setting from '../images/black-setting.png';
+import gift from '../images/black-gift.png';
+import key from '../images/black-key.png';
 
-  useEffect(() => {
-    if (boothList === null) {
-      setIsScrap(false);
-    } else {
-      setIsScrap(true);
+const BoxList = {
+  booth: [
+    {
+      id: 1,
+      title: '내 부스\n바로가기',
+      guide: '내 부스를 바로\n확인할 수 있어요',
+      image: pin,
+      path: '/'
+    },
+    {
+      id: 2,
+      title: '내 부스\n정보 수정하기',
+      guide: '올해 꼭 가야하는\n부스를 찾아봐요',
+      image: setting,
+      path: '/'
+    },
+    {
+      id: 3,
+      title: '내 메뉴\n관리하기',
+      guide: '메뉴와 관련된 정보를\n관리할 수 있어요',
+      image: gift,
+      path: '/'
+    },
+    {
+      id: 4,
+      title: '계정\n로그아웃하기',
+      guide: '다른 계정으로\n로그인할 수 있어요',
+      image: key,
+      path: '/'
     }
-  }, [boothList]);
+  ],
+  performance: [
+    {
+      id: 5,
+      title: '내 공연\n바로가기',
+      guide: '내 공연을 바로\n확인할 수 있어요',
+      image: pin,
+      path: '/'
+    },
+    {
+      id: 6,
+      title: '내 공연\n정보 수정하기',
+      guide: '공연과 관련된 정보를\n바로 수정해요',
+      image: setting,
+      path: '/'
+    },
+    {
+      id: 7,
+      title: '계정\n로그아웃하기',
+      guide: '다른 계정으로\n로그인할 수 있어요',
+      image: key,
+      path: '/'
+    }
+  ],
+  TF: [
+    {
+      id: 8,
+      title: '공지사항\n바로가기',
+      guide: '그동안 올라온\n공지사항을 확인해요',
+      image: pin,
+      path: '/'
+    },
+    {
+      id: 9,
+      title: '축운위 부스\n관리하기',
+      guide: '상설 부스 페이지를\n관리해요',
+      image: key,
+      path: '/'
+    },
+    {
+      id: 8,
+      title: '새로운 공지\n작성하기',
+      guide: '새로운 글을\n작성할 수 있어요',
+      image: gift,
+      path: '/'
+    },
+    {
+      id: 7,
+      title: '계정\n로그아웃하기',
+      guide: '다른 계정으로\n로그인할 수 있어요',
+      image: key,
+      path: '/'
+    }
+  ]
+};
+
+const AdminScrapBook = ({ category }) => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [isScrap, setIsScrap] = useState(true);
+  let titleText = '';
+
+  switch (category) {
+    case 'booth':
+      titleText = '이화연님의\n관리 부스';
+      break;
+    case 'performance':
+      titleText = '이화연님의\n관리 공연';
+      break;
+    case 'TF':
+      titleText = '이화연님의\n공지사항';
+      break;
+    default:
+      titleText = '2024 \n 이화여대 대동제';
+  }
 
   return (
     <Wrapper>
-      {isScrap ? <WholeScrap>스크랩북 전체보기</WholeScrap> : <></>}
-      <Title>
-        {isScrap ? '이화연님의\n스크랩북' : '2024 \n 이화여대 대동제'}
+      <Title isScrap={isScrap}>
+        {isScrap ? titleText : '2024 \n 이화여대 대동제'}
       </Title>
       <ScrapBox>
-        {isScrap ? (
-          <ScrapSlider>
-            <CategorySlide options={['부스', '메뉴', '공연']} />
-          </ScrapSlider>
+        {isLogin ? (
+          <></>
         ) : (
           <ScrapTitle isLogin={isLogin} onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? '나의 스크랩북 열기' : '로그인 하러가기'}
+            {'로그인 하러가기'}
           </ScrapTitle>
         )}
         <BlurBox>
           {isScrap ? (
             <ScrapDiv>
-              {boothList &&
-                boothList.map((item, index) => (
-                  <ScrapCard key={index} item={item} size='small'></ScrapCard>
-                ))}
+              {BoxList[category].map(item => (
+                <MainBox key={item.id} item={item} isAdmin={true}></MainBox>
+              ))}
             </ScrapDiv>
           ) : (
             <>
               <Guide>
                 {isLogin
-                  ? '이화연님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀'
+                  ? '이화연 관리자님\n2024 대동제를\n잘 운영해주세요🍀'
                   : '로그인하면\n사이트를 더 편하게\n즐길 수 있어요🍀'}
               </Guide>
               <TagBox>
@@ -61,7 +155,7 @@ const ScrapBook = () => {
   );
 };
 
-export default ScrapBook;
+export default AdminScrapBook;
 
 const Wrapper = styled.section`
   display: flex;
@@ -95,7 +189,7 @@ const Title = styled.div`
   line-height: 1.625rem;
   letter-spacing: -0.03125rem;
 
-  margin-bottom: 1rem;
+  margin-bottom: ${({ isScrap }) => (isScrap ? '2.19rem' : '1rem')};
 `;
 
 const ScrapBox = styled.div`
@@ -106,12 +200,6 @@ const ScrapBox = styled.div`
   align-items: center;
 
   width: 100%;
-`;
-
-const ScrapSlider = styled.div`
-  position: relative;
-  z-index: 5;
-  margin-bottom: -38px;
 `;
 
 const ScrapTitle = styled.div`
@@ -139,9 +227,9 @@ const BlurBox = styled.div`
   justify-content: space-between;
 
   min-width: 20.625rem;
-  height: 26.8125rem;
+  min-height: 26.8125rem;
   flex-shrink: 0;
-  padding: 1.75rem 1.2rem 1.25rem;
+  padding: 1.6875rem 0.9375rem;
 
   border-radius: 5%;
   background: linear-gradient(
