@@ -2,55 +2,31 @@ import ex from '../images/programEx.svg';
 
 export const programData = [
   {
-    id: 1,
-    title: '영화제',
-    detail: '잔디광장에서 벗들과 영화를!',
-    img: ex,
-    location: '포스코관 01',
-    day: [
-      '10일 수요일 - 10:00~15:00',
-      '11일 목요일 - 10:00~15:00',
-      '12일 금요일 - 10:00~15:00'
-    ],
-    description: '부스소개글부스소개글부스소개글부스소개글'
+    user: 2,
+    name: '비빔밥만들기',
+    place: '이끼에서',
+    summary: '맛있는비빔밥',
+    thumnail: ex
   },
   {
-    id: 2,
-    title: '영화제2',
-    detail: '잔디광장에서 벗들과 영화를!',
-    img: ex,
-    location: '포스코관 01',
-    day: [
-      '10일 수요일 - 10:00~15:00',
-      '11일 목요일 - 10:00~15:00',
-      '12일 금요일 - 10:00~15:00'
-    ],
-    description: '부스소개글부스소개글부스소개글부스소개글'
+    user: 2,
+    name: '비빔밥만들기',
+    place: '이끼에서',
+    summary: '맛있는비빔밥',
+    thumnail: ex
   },
   {
-    id: 3,
-    title: '영화제3',
-    detail: '잔디광장에서 벗들과 영화를!',
-    img: ex,
-    location: '포스코관 01',
-    day: [
-      '10일 수요일 - 10:00~15:00',
-      '11일 목요일 - 10:00~15:00',
-      '12일 금요일 - 10:00~15:00'
-    ],
-    description: '부스소개글부스소개글부스소개글부스소개글'
+    user: 3,
+    name: '비빔밥만들기',
+    place: '이끼에서',
+    summary: '맛있는비빔밥',
+    thumnail: ex
   },
   {
-    id: 4,
-    title: '영화제4',
-    detail: '잔디광장에서 벗들과 영화를!',
-    img: ex,
-    location: '포스코관 01',
-    day: [
-      '10일 수요일 - 10:00~15:00',
-      '11일 목요일 - 10:00~15:00',
-      '12일 금요일 - 10:00~15:00'
-    ],
-    description: '부스소개글부스소개글부스소개글부스소개글'
+    user: 4,
+    name: '비빔밥만들기',
+    place: '이끼에서',
+    summary: '맛있는비빔밥',
+    thumnail: ex
   }
 ];

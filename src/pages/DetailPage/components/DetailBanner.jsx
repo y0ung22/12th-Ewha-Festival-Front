@@ -6,20 +6,25 @@ import { ReactComponent as Noti } from '../images/notification.svg';
 import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
 
-const DetailBanner = ({ b }) => {
+const DetailBanner = ({ b, program = false }) => {
   const [isScraped, setIsScraped] = useState(false);
   return (
     <>
       <Banner>
         <div>
           <span>{b.name}</span>
-          <span>
-            {b.college} {b.number}
-            <Circle />
-            {b.category}
-          </span>
+          {program ? (
+            <span>{b.place}</span>
+          ) : (
+            <span>
+              {b.college} {b.number}
+              <Circle />
+              {b.category}
+            </span>
+          )}
         </div>
       </Banner>
+
       <Container>
         <a href={b.contact} target='_blank' rel='noopener noreferrer'>
           <Contact>
@@ -28,15 +33,18 @@ const DetailBanner = ({ b }) => {
           </Contact>
         </a>
 
-        <Scrap>
-          <span>{b.like_num}명이 스크랩했어요</span>
-          {isScraped ? (
-            <ScrapOn onClick={() => setIsScraped(false)} />
-          ) : (
-            <ScrapOff onClick={() => setIsScraped(true)} />
-          )}
-        </Scrap>
+        {program || (
+          <Scrap>
+            <span>{b.like_num}명이 스크랩했어요</span>
+            {isScraped ? (
+              <ScrapOn onClick={() => setIsScraped(false)} />
+            ) : (
+              <ScrapOff onClick={() => setIsScraped(true)} />
+            )}
+          </Scrap>
+        )}
       </Container>
+
       <Notice>
         <div style={{ fontWeight: '800' }}>
           <Noti />
