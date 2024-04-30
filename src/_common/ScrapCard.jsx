@@ -28,8 +28,10 @@ export default ScrapCard;
 
 const Card = styled.div`
   position: relative;
-  width: ${props => (props.size === 'small' ? '9.125rem' : '170px')};
-  height: ${props => (props.size === 'small' ? '11.375rem' : '197px')};
+  aspect-ratio: ${props =>
+    props.size === 'small' ? '9.125 / 11.375' : '170 / 197'};
+  width: ${props => (props.size === 'small' ? '9.125rem' : '100%')};
+  height: ${props => (props.size === 'small' ? '11.375rem' : '100%')};
   flex-shrink: 0;
   border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
   background:
