@@ -1,8 +1,11 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const MainBox = ({ item, isAdmin = false }) => {
+  const navigate = useNavigate();
+
   return (
-    <Wrapper isAdmin={isAdmin}>
+    <Wrapper isAdmin={isAdmin} onClick={() => navigate(item.path)}>
       <Title isAdmin={isAdmin}>{item.title}</Title>
       <Guide isAdmin={isAdmin}>{item.guide}</Guide>
       <Background src={item.image} alt='' isAdmin={isAdmin} />
@@ -17,6 +20,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 
   width: ${props => (props.isAdmin ? '9.125rem' : '10.625rem')};
   height: ${props => (props.isAdmin ? '11.375rem' : '12.3125rem ')};

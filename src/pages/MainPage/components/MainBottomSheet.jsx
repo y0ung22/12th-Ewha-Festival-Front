@@ -18,14 +18,14 @@ const BoxList = [
     title: '부스 목록\n보러가기',
     guide: '올해 꼭 가야하는\n부스를 찾아봐요',
     image: num1,
-    path: '/'
+    path: '/boothlist'
   },
   {
     id: 2,
     title: '공연 목록\n보러가기',
     guide: '멋진 공연을\n놓치지 마세요',
     image: num2,
-    path: '/'
+    path: '/peflist'
   },
   {
     id: 3,
