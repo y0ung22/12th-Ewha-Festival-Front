@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const TFBoothCard = ({ d, edit = false }) => {
+const TFBoothCard = ({ d, isEdit }) => {
   const navigate = useNavigate();
 
   const nav = () => {
-    const path = edit ? `/programedit/${d.id}` : `/program/${d.id}`;
+    const path = isEdit ? `/programedit/${d.id}` : `/program/${d.id}`;
     navigate(path);
   };
 
