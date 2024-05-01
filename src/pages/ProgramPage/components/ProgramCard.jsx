@@ -3,12 +3,12 @@ import styled from 'styled-components';
 const ProgramCard = ({ d }) => {
   return (
     <Card>
-      <BackgroundImg src={d.thumnail} />
+      <BackgroundImg src={d.thumbnail} alt='thumbnail' />
       <Container>
         <div>{d.name}</div>
         <div style={{ fontSize: '0.75rem' }}>
           <span>{d.place}</span>
-          <span>{d.place}</span>
+          <span>{d.time}</span>
         </div>
       </Container>
     </Card>
@@ -23,7 +23,9 @@ const Card = styled.div`
   height: 5rem;
   display: flex;
   border-radius: 0.625rem;
-  background: var(--wh);
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+    lightgray 50% / cover no-repeat;
   overflow: hidden;
 `;
 

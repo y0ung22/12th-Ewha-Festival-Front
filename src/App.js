@@ -32,6 +32,7 @@ import MyPage from './pages/MyPage/MyPage';
 import FacilityPage from './pages/FacilityPage/FacilityPage';
 import ProgramListPage from './pages/ProgramPage/ProgramListPage';
 import ProgramDetailPage from './pages/ProgramPage/ProgramDetailPage';
+import ProgramListEditPage from './pages/ProgramPage/ProgramListEditPage';
 
 function App() {
   return (
@@ -63,6 +64,9 @@ function App() {
           <Route path={'/notice/write'} element={<NoticeWritePage />} />
           <Route path={'/notice/edit'} element={<NoticeEditPage />} />
 
+          <Route path={'/program'} element={<ProgramListPage />} />
+          <Route path={'/program/:id'} element={<ProgramDetailPage />} />
+          <Route path={'/programedit'} element={<ProgramListEditPage />} />
           <Route path={'/makers'} element={<MakersPage />} />
         </Routes>
       </BrowserRouter>

@@ -1,17 +1,25 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const TFBoothCard = ({ d }) => {
+const TFBoothCard = ({ d, edit = false }) => {
+  const navigate = useNavigate();
+
+  const nav = () => {
+    const path = edit ? `/programedit/${d.id}` : `/program/${d.id}`;
+    navigate(path);
+  };
+
   return (
-    <Card>
-      <BackgroundImg src={d.thumnail} />
+    <Card onClick={nav}>
+      <BackgroundImg src={d.thumnail} alt='thumbnail' />
       <Bottom>
         <h3>{d.name}</h3>
         <div>
           <span>{d.place}</span>
-          <span>{d.place}</span>
+          {/* <span>{d.place}</span> */}
         </div>
       </Bottom>
-      {false && <ClosedSign>운영종료</ClosedSign>}
+      {d.opened || <ClosedSign>운영종료</ClosedSign>}
     </Card>
   );
 };
