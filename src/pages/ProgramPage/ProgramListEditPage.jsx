@@ -3,12 +3,21 @@ import { S } from './components/Program.style';
 
 import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
-import ProgramCard from './components/ProgramCard';
-
-import { programData } from './components/mock';
 import TFBoothCard from './components/TFBoothCard';
 
 const ProgramListEditPage = () => {
+  const [boothData, setBoothData] = useState([
+    {
+      id: 1,
+      user: 1,
+      name: 'Stamp on EWHA',
+      place: '',
+      opened: true,
+      type: '기획부스',
+      thumnail: ''
+    }
+  ]);
+
   return (
     <>
       <S.Wrapper>
@@ -19,8 +28,8 @@ const ProgramListEditPage = () => {
             {/* <CategorySlide options={options} /> */}
           </S.Title>
           <S.BoothList>
-            {programData.map((d, index) => (
-              <TFBoothCard key={index} d={d} />
+            {boothData.map((d, index) => (
+              <TFBoothCard key={index} d={d} edit={true} />
             ))}
           </S.BoothList>
         </S.Container>
