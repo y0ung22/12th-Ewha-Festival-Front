@@ -111,7 +111,7 @@ const ScrapBox = styled.div`
 const ScrapSlider = styled.div`
   position: relative;
   z-index: 5;
-  margin-bottom: -38px;
+  margin-bottom: -18px;
 `;
 
 const ScrapTitle = styled.div`
