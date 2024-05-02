@@ -4,24 +4,33 @@ import styled from 'styled-components';
 import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
 
+import { PatchMenuScrap } from '../../../api/booth';
+
 const MenuCard = ({ item }) => {
   const [isScraped, setIsScraped] = useState(item.is_liked);
 
+  const handleScrap = () => {
+    PatchMenuScrap(item.id)
+      .then(res => setIsScraped(!isScraped))
+      .catch();
+  };
+
   return (
     <Card>
-      <Tag>{item.is_liked ? <span>페스트</span> : <span>비건</span>}</Tag>
+      {item.img && <BackgroundImg src={item.img} alt='menu img' />}
+      <Tag>{item.vegan !== '논비건' && <span>{item.vegan}</span>}</Tag>
       <Scrap>
         {isScraped ? (
-          <ScrapOn onClick={() => setIsScraped(false)} />
+          <ScrapOn onClick={handleScrap} />
         ) : (
-          <ScrapOff onClick={() => setIsScraped(true)} />
+          <ScrapOff onClick={handleScrap} />
         )}
       </Scrap>
-
       <Text>
-        <span>{item.name}</span>
-        <span>{item.price}원</span>
+        <span>{item.menu}</span>
+        <span>{item.price}</span>
       </Text>
+      {item.is_soldout && <ClosedSign>운영종료</ClosedSign>}
     </Card>
   );
 };
@@ -42,6 +51,15 @@ const Card = styled.div`
     ),
     url(<path-to-image>) lightgray 50% / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+`;
+
+const BackgroundImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Tag = styled.div`
@@ -94,4 +112,24 @@ const Text = styled.div`
     font-weight: 500;
     letter-spacing: -0.03125rem;
   }
+`;
+
+const ClosedSign = styled.div`
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.9375rem;
+  background: var(--green05, rgba(0, 241, 111, 0.4));
+
+  color: var(--wh);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.25rem;
+  letter-spacing: -0.01875rem;
 `;

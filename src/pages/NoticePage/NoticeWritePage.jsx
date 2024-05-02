@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { S } from './Notice.style';
 
 import TopBar from '../../_common/TopBar';
@@ -8,7 +9,11 @@ import TitleInput from './components/TitleInput';
 import ContentInput from './components/ContentInput';
 import Modal from '../../_common/Modal';
 
+import { PostNotice } from '../../api/tf';
+
 const NoticeWritePage = () => {
+  const navigate = useNavigate();
+
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
   const [textLimitModal, setTextLimitModal] = useState(false);
@@ -39,6 +44,10 @@ const NoticeWritePage = () => {
     }
   };
 
+  const OnSubmit = () => {
+    PostNotice(newTitle, newContent).then(navigate('/notice')).catch();
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -65,6 +74,7 @@ const NoticeWritePage = () => {
           msg2='작성된 내용은 저장되지 않습니다.'
           option={2}
           setIsModalOpen={setCancelModal}
+          onClickYes={() => navigate(-1)}
         />
       )}
 
@@ -75,6 +85,7 @@ const NoticeWritePage = () => {
           msg1='공지사항 작성을 완료하시겠습니까?'
           option={2}
           setIsModalOpen={setSubmitModal}
+          onClickYes={OnSubmit}
         />
       )}
 

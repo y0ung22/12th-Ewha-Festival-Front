@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen }) => {
+const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen, onClickYes }) => {
   // 모달 닫기
   const handleClose = () => {
     setIsModalOpen(false);
@@ -18,7 +18,7 @@ const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen }) => {
             {msgType === 1 ? (
               <>
                 <BtnNo onClick={handleClose}>아니오</BtnNo>
-                <BtnYes>예</BtnYes>
+                <BtnYes onClick={onClickYes}>예</BtnYes>
               </>
             ) : (
               <BtnNo onClick={handleClose}>닫기</BtnNo>

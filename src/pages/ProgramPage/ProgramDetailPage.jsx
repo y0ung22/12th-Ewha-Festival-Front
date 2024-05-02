@@ -1,38 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
 import DetailBanner from '../DetailPage/components/DetailBanner';
 import DetailInfo from '../DetailPage/components/DetailInfo';
 
+import { GetTFBoothDetail } from '../../api/tf';
+
 const ProgramDetailPage = () => {
-  const [boothData, setBoothData] = useState({
-    days: [
-      {
-        date: 8,
-        start_time: '10:00',
-        end_time: '10:00'
-      },
-      {
-        date: 9,
-        start_time: '10:00',
-        end_time: '10:00'
-      },
-      {
-        date: 10,
-        start_time: '10:00',
-        end_time: '10:00'
-      }
-    ]
-  });
+  const { id } = useParams();
+  const [boothData, setBoothData] = useState();
+
+  useEffect(() => {
+    GetTFBoothDetail(id)
+      .then(res => setBoothData(res))
+      .catch();
+  }, []);
 
   return (
     <>
       <Wrapper>
         <TopBar />
         <Container>
-          <DetailBanner b={boothData} program={true} />
-          <DetailInfo b={boothData} program={true} />
+          {boothData && (
+            <>
+              <DetailBanner b={boothData} program={true} />
+              <DetailInfo b={boothData} program={true} />
+            </>
+          )}
         </Container>
       </Wrapper>
     </>

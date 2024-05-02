@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { S } from './Notice.style';
 
 import TopBar from '../../_common/TopBar';
@@ -9,8 +10,11 @@ import TitleInput from './components/TitleInput';
 import ContentInput from './components/ContentInput';
 import Modal from '../../_common/Modal';
 
+import { PutNotice } from '../../api/tf';
+
 const NoticeEditPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [newTitle, setNewTitle] = useState(location.state?.title);
   const [newContent, setNewContent] = useState(location.state?.content);
@@ -41,6 +45,13 @@ const NoticeEditPage = () => {
       setSubmitModal(true);
     }
   };
+
+  const OnSubmit = () => {
+    PutNotice(location.state?.id, newTitle, newContent)
+      .then(navigate('/notice'))
+      .catch();
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -67,6 +78,7 @@ const NoticeEditPage = () => {
           msg2='수정된 내용은 저장되지 않습니다.'
           option={2}
           setIsModalOpen={setCancelModal}
+          onClickYes={() => navigate(-1)}
         />
       )}
 
@@ -77,6 +89,7 @@ const NoticeEditPage = () => {
           msg1='공지사항 수정을 완료하시겠습니까?'
           option={2}
           setIsModalOpen={setSubmitModal}
+          onClickYes={OnSubmit}
         />
       )}
 
