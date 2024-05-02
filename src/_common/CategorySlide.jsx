@@ -59,7 +59,6 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 
   align-self: flex-start;
-  margin-bottom: 1.25rem;
 `;
 
 const CategoryBtn = styled.div`
@@ -70,10 +69,6 @@ const CategoryBtn = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 1.875rem;
-
-  //border: 1px solid ${props => (props.selected ? '#03D664' : 'transparent')};
-  /*background: ${props =>
-    props.selected ? 'var(--green_01, #00F16F)' : 'transparent'};*/
 
   color: var(--wh);
   text-align: center;

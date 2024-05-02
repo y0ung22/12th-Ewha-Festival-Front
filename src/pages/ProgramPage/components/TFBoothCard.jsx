@@ -11,7 +11,7 @@ const TFBoothCard = ({ d, isEdit }) => {
 
   return (
     <Card onClick={nav}>
-      <BackgroundImg src={d.thumnail} alt='thumbnail' />
+      {d.thumnail && <BackgroundImg src={d.thumnail} alt='thumbnail' />}
       <Bottom>
         <h3>{d.name}</h3>
         <div>
@@ -32,8 +32,12 @@ const Card = styled.div`
   height: 17.75rem;
   flex-shrink: 0;
   border-radius: 0.9375rem;
-  border: 1px solid var(--gray04, #c1d9cc);
-  background: var(--wh);
+  border: 1px solid var(--gray04);
+  background: linear-gradient(
+    336deg,
+    rgba(0, 0, 0, 0.2) -23.55%,
+    rgba(0, 0, 0, 0) 129.38%
+  );
   overflow: hidden;
 `;
 

@@ -11,15 +11,16 @@ const PlaceSheet = props => {
           props.typeList.map((item, index) => (
             <PlaceBtn
               key={index}
-              onClick={() => props.setSelectedType(item)}
-              color={props.selectedType === item ? 'green' : ''}
+              onClick={() => props.setSelectedType(index)}
+              color={props.selectedType === index ? 'green' : ''}
             >
               {item}
             </PlaceBtn>
           ))}
       </SelectBox>
       <Guide>
-        {props.selectedType}에서 운영중인 부스에 대해 알 수 있어요🍀
+        {props.typeList[props.selectedType]}에서 참여할 수 있는 체험을
+        알아봐요🍀
       </Guide>
     </Wrapper>
   );

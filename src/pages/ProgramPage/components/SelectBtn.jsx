@@ -11,7 +11,7 @@ const SelectBtn = props => {
   return (
     <>
       <Wrapper onClick={() => setIsOpen(!isOpen)}>
-        {props.selectedType} <Vector />
+        {props.typeList[props.selectedType]} <Vector />
       </Wrapper>
       {isOpen && (
         <SheetWrapper>

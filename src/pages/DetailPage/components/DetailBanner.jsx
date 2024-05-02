@@ -74,13 +74,11 @@ const Banner = styled.div`
   width: 100%;
   height: 197px;
   border-radius: 15px;
-  background:
-    linear-gradient(
-      336deg,
-      rgba(0, 0, 0, 0.2) -23.55%,
-      rgba(0, 0, 0, 0) 129.38%
-    ),
-    url(url) lightgray 50% / cover no-repeat;
+  background: linear-gradient(
+    336deg,
+    rgba(0, 0, 0, 0.2) -23.55%,
+    rgba(0, 0, 0, 0) 129.38%
+  );
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   div {
