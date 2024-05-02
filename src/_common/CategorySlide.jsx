@@ -1,13 +1,6 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const CategorySlide = ({ options }) => {
-  const [select, setSelect] = useState(options[0]);
-
-  const handleOption = selectedOption => {
-    setSelect(selectedOption);
-  };
-
+const CategorySlide = ({ options, handleOption, select }) => {
   return (
     <>
       <Wrapper>
