@@ -8,12 +8,12 @@ import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
 
 import { PatchBoothScrap } from '../../../api/booth';
 
-const DetailBanner = ({ b, program = false }) => {
+const DetailBanner = ({ b, program = false, rendering }) => {
   const [isScraped, setIsScraped] = useState(b.is_liked);
 
   const handleScrap = () => {
     PatchBoothScrap(b.id)
-      .then(res => setIsScraped(!isScraped))
+      .then(res => setIsScraped(!isScraped), rendering())
       .catch();
   };
 

@@ -8,7 +8,7 @@ import DetailInfo from './components/DetailInfo';
 import DetailMenu from './components/DetailMenu';
 import DetailComment from './components/DetailComment';
 
-import { GetBooth } from '../../api/booth';
+import { GetBoothDetail } from '../../api/booth';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -17,10 +17,10 @@ const DetailPage = () => {
   const rendering = () => setRender(render + 1);
 
   useEffect(() => {
-    GetBooth(id)
+    GetBoothDetail(id)
       .then(res => setBoothData(res))
       .catch();
-  }, [render]);
+  }, [id, render]);
 
   return (
     <S.Wrapper>
@@ -28,14 +28,10 @@ const DetailPage = () => {
       <S.Container>
         {boothData && (
           <>
-            <DetailBanner b={boothData} />
+            <DetailBanner b={boothData} rendering={rendering} />
             <DetailInfo b={boothData} />
             {boothData.performance || <DetailMenu m={boothData.menus} />}
-            <DetailComment
-              c={boothData.comments}
-              bId={boothData.id}
-              rendering={rendering}
-            />
+            <DetailComment bId={boothData.id} />
           </>
         )}
       </S.Container>

@@ -16,7 +16,7 @@ const TFBoothCard = ({ d, isEdit }) => {
         <h3>{d.name}</h3>
         <div>
           <span>{d.place}</span>
-          {/* <span>{d.place}</span> */}
+          <span>{d.time}</span>
         </div>
       </Bottom>
       {d.opened || <ClosedSign>운영종료</ClosedSign>}
@@ -65,7 +65,7 @@ const Bottom = styled.div`
   background: var(--bk02);
 
   font-weight: 500;
-  line-height: 1rem;
+  line-height: 1.375rem;
   letter-spacing: -0.03125rem;
 
   h3 {

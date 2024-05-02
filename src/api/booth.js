@@ -1,13 +1,25 @@
 import { http } from './http';
 
 // GET : 부스 상세 조회
-export const GetBooth = async boothId => {
+export const GetBoothDetail = async boothId => {
   try {
     const response = await http.get(`/booths/${boothId}/`);
     console.log(response.data.data);
     return Promise.resolve(response.data.data);
   } catch (error) {
     console.error('부스 상세 조회 실패', error);
+    return Promise.reject(error);
+  }
+};
+
+// GET : 부스 댓글 조회
+export const GetBoothComment = async boothId => {
+  try {
+    const response = await http.get(`/booths/${boothId}/comments/`);
+    console.log(response.data.data);
+    return Promise.resolve(response.data.data);
+  } catch (error) {
+    console.error('부스 댓글 조회 실패', error);
     return Promise.reject(error);
   }
 };

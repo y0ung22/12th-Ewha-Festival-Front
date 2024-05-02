@@ -1,13 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { S } from './Detail.style';
 
 import Comment from './Comment';
 import { ReactComponent as Summit } from '../images/arrow-circle-up.svg';
 
-import { PostComment } from '../../../api/booth';
+import { GetBoothComment, PostComment } from '../../../api/booth';
 
-const DetailComment = ({ c, bId, rendering }) => {
+const DetailComment = ({ bId }) => {
+  const [comment, setCommentData] = useState();
+  const [render, setRender] = useState(1);
+  const rendering = () => setRender(render + 1);
+
+  useEffect(() => {
+    GetBoothComment(bId)
+      .then(res => setCommentData(res))
+      .catch();
+  }, [render]);
+
   // 방명록 입력창 자동 높이 조절
   const textarea = useRef();
   const handleChange = e => {
@@ -28,7 +38,7 @@ const DetailComment = ({ c, bId, rendering }) => {
     <>
       <S.SubTitle>방명록</S.SubTitle>
       <Container>
-        {c.map(comment => (
+        {comment?.map(comment => (
           <Comment key={comment.id} c={comment} rendering={rendering} />
         ))}
         <Input>
