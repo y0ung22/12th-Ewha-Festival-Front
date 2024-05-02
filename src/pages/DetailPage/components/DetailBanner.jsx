@@ -6,8 +6,17 @@ import { ReactComponent as Noti } from '../images/notification.svg';
 import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
 
+import { PatchBoothScrap } from '../../../api/booth';
+
 const DetailBanner = ({ b, program = false }) => {
-  const [isScraped, setIsScraped] = useState(false);
+  const [isScraped, setIsScraped] = useState(b.is_liked);
+
+  const handleScrap = () => {
+    PatchBoothScrap(b.id)
+      .then(res => setIsScraped(!isScraped))
+      .catch();
+  };
+
   return (
     <>
       <Banner>
@@ -37,9 +46,9 @@ const DetailBanner = ({ b, program = false }) => {
           <Scrap>
             <span>{b.like_num}명이 스크랩했어요</span>
             {isScraped ? (
-              <ScrapOn onClick={() => setIsScraped(false)} />
+              <ScrapOn onClick={handleScrap} />
             ) : (
-              <ScrapOff onClick={() => setIsScraped(true)} />
+              <ScrapOff onClick={handleScrap} />
             )}
           </Scrap>
         )}

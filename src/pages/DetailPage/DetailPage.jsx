@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { S } from './components/Detail.style';
 
 import TopBar from '../../_common/TopBar';
@@ -7,51 +8,36 @@ import DetailInfo from './components/DetailInfo';
 import DetailMenu from './components/DetailMenu';
 import DetailComment from './components/DetailComment';
 
+import { GetBooth } from '../../api/booth';
+
 const DetailPage = () => {
-  const [boothData, setBoothData] = useState({
-    day: [
-      '10일 수요일 - 10:00~15:00',
-      '11일 목요일 - 10:00~15:00',
-      '12일 금요일 - 10:00~15:00'
-    ],
-    menus: [
-      {
-        id: 1,
-        name: '일이',
-        img: '메뉴 이미지 url!!',
-        price: 2000,
-        is_soldout: true,
-        is_liked: true
-      }
-    ],
-    comments: [
-      {
-        id: 6,
-        nickname: '나는 관리자',
-        content: '내용',
-        created_at: '5월 10일 13시 14분',
-        mine: false,
-        manager: true
-      },
-      {
-        id: 7,
-        nickname: '나는 사용자',
-        content: '안녕하세요',
-        created_at: '5월 11일 10시 20분',
-        mine: true,
-        manager: false
-      }
-    ]
-  });
+  const { id } = useParams();
+  const [boothData, setBoothData] = useState();
+  const [render, setRender] = useState(1);
+  const rendering = () => setRender(render + 1);
+
+  useEffect(() => {
+    GetBooth(id)
+      .then(res => setBoothData(res))
+      .catch();
+  }, [render]);
 
   return (
     <S.Wrapper>
       <TopBar />
       <S.Container>
-        <DetailBanner b={boothData} />
-        <DetailInfo b={boothData} />
-        {boothData.performance || <DetailMenu m={boothData.menus} />}
-        <DetailComment c={boothData.comments} />
+        {boothData && (
+          <>
+            <DetailBanner b={boothData} />
+            <DetailInfo b={boothData} />
+            {boothData.performance || <DetailMenu m={boothData.menus} />}
+            <DetailComment
+              c={boothData.comments}
+              bId={boothData.id}
+              rendering={rendering}
+            />
+          </>
+        )}
       </S.Container>
     </S.Wrapper>
   );

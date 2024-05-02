@@ -22,12 +22,13 @@ const DetailInfo = ({ b, program = false }) => {
           <span>운영시간</span>
           <span>
             {program
-              ? b.days.map((day, index) => (
+              ? b.days &&
+                b.days.map((day, index) => (
                   <p key={index}>
                     {day.date}일 - {day.start_time} ~ {day.end_time}
                   </p>
                 ))
-              : b.day.map((day, index) => <p key={index}>{day}</p>)}
+              : b.day && b.day.map((day, index) => <p key={index}>{day}</p>)}
           </span>
         </div>
         <div>
