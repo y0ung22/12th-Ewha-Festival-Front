@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,8 +7,24 @@ import { ReactComponent as BackIcon } from '../../assets/icons/back.svg';
 import { ReactComponent as IdIcon } from '../SignupPage/images/id.svg';
 import { ReactComponent as PwIcon } from '../SignupPage/images/pw.svg';
 import { ReactComponent as KaKaoIcon } from '../SignupPage/images/kakao_login.svg';
+import { PostLogin } from '../../api/auth';
 
 const LoginPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  //로그인 함수
+  const handleLogin = async () => {
+    if (username.trim() === '') {
+      alert('아이디를 입력해주세요.');
+    } else if (password.trim() === '') {
+      alert('비밀번호를 입력해주세요.');
+    } else {
+      const goLogin = await PostLogin(username, password);
+      navigate('/');
+    }
+  };
+
   const navigate = useNavigate();
   const gotoSignup = () => {
     navigate('/signup');
@@ -21,13 +37,23 @@ const LoginPage = () => {
         <Title>로그인</Title>
         <Input>
           <IdIcon />
-          <input placeholder='아이디'></input>
+          <input
+            type='text'
+            placeholder='아이디'
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          ></input>
         </Input>
         <Input>
           <PwIcon />
-          <input placeholder='비밀번호'></input>
+          <input
+            type='password'
+            placeholder='비밀번호'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          ></input>
         </Input>
-        <LoginBtn>로그인</LoginBtn>
+        <LoginBtn onClick={handleLogin}>로그인</LoginBtn>
         <KakaoLogin>
           <ImgDiv>
             <KaKaoIcon />

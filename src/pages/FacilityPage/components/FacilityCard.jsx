@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as VectorThin } from '../../../assets/icons/vector_thin.svg';
 import { ReactComponent as CampusMap } from '../images/campus_map.svg';
 
-const TrashcanCard = ({ key, location, detail, img, isLastElement }) => {
+const FacilityCard = ({ key, location, detail, img, isLastElement }) => {
   const [isOpen, setIsOpen] = useState(false);
   const clickCard = () => {
     setIsOpen(!isOpen);
@@ -38,7 +38,7 @@ const TrashcanCard = ({ key, location, detail, img, isLastElement }) => {
   );
 };
 
-export default TrashcanCard;
+export default FacilityCard;
 
 const Wrapper = styled.div`
   width: 21.8125rem;

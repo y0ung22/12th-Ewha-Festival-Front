@@ -5,7 +5,7 @@ import { S } from '../components/Facility.style';
 import { CommonBtn } from '../../../_common/Button';
 import { ReactComponent as CampusMapImg } from '../images/campus_map.svg';
 
-import TrashcanCard from './TrashcanCard';
+import FacilityCard from './FacilityCard';
 import { trashcanData } from './TrashcanData';
 import { returngasData } from './ReturnGasData';
 
@@ -39,7 +39,7 @@ const CampusMap = () => {
       </FixedDiv>
       {select === '쓰레기통'
         ? trashcanData.map((item, index) => (
-            <TrashcanCard
+            <FacilityCard
               key={index}
               location={item.location}
               detail={item.detail}
@@ -48,7 +48,7 @@ const CampusMap = () => {
             />
           ))
         : returngasData.map((item, index) => (
-            <TrashcanCard
+            <FacilityCard
               key={index}
               location={item.location}
               detail={item.detail}
