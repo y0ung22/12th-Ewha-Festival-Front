@@ -105,7 +105,12 @@ const SignupPage = () => {
   return (
     <>
       <Wrapper>
-        <TopBar isMenu={false} isMain={false} isWhite={true} />
+        <TopBar
+          isMenu={false}
+          isMain={false}
+          isWhite={true}
+          backLink='/login'
+        />
         <Title>회원가입</Title>
 
         <RowBox>

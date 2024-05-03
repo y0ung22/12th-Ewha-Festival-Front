@@ -47,6 +47,8 @@ function App() {
             <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
             <Route path={'/detail/:id'} element={<DetailPage />} />
             <Route path={'/about'} element={<AboutPage />} />
+            <Route path={'/facility'} element={<FacilityPage />} />
+            <Route path={'/my'} element={<MyPage />} />
 
             <Route path={'/'} element={<MainPage />} />
             <Route path={'/booth-main'} element={<BoothMainPage />} />

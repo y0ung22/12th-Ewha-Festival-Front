@@ -13,13 +13,13 @@ const Sidebar = ({ setSidebarOpen }) => {
 
   //목록별 이동링크
   const menuItems = [
-    { menu: '부스 목록 보러가기', link: '/' },
-    { menu: '공연 목록 보러가기', link: '/' },
-    { menu: '축제 일정 보러가기', link: '/' },
+    { menu: '부스 목록 보러가기', link: '/boothlist' },
+    { menu: '공연 목록 보러가기', link: '/perflist' },
+    { menu: '축제 일정 보러가기', link: '/program' },
     { menu: '주요 시설 보러가기', link: '/' },
-    { menu: '대동제 공지 보러가기', link: '/' },
+    { menu: '대동제 공지 보러가기', link: '/notice' },
     { menu: '배리어프리 확인하기', link: '/' },
-    { menu: '마이페이지', link: '/' }
+    { menu: '마이페이지', link: '/my' }
   ];
 
   return (
@@ -54,6 +54,7 @@ const Wrapper = styled.div`
   position: fixed;
   background: var(--wh);
   padding: 0 21px;
+  z-index: 500;
 `;
 
 const IconDiv = styled.div`
