@@ -1,0 +1,125 @@
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+`;
+
+const Title = styled.div`
+  color: var(--bk01);
+  text-align: center;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.625rem; /* 108.333% */
+  letter-spacing: -0.03125rem;
+  margin-top: 2.3125rem;
+  margin-bottom: 6.0625rem;
+`;
+
+const RowBox = styled.div`
+  display: flex;
+  width: 15.625rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+`;
+
+const IdCheckBtn = styled.div`
+  display: flex;
+  width: 3.625rem;
+  height: 2.875rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: var(--green04);
+  justify-content: center;
+  align-items: center;
+
+  color: var(--wh);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 12px */
+  letter-spacing: -0.03125rem;
+`;
+
+const IdCheckMsg = styled.div`
+  width: 250px;
+  display: flex;
+  align-items: flex-start;
+  color: var(--purple);
+  font-size: 0.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 8px */
+  letter-spacing: -0.03125rem;
+  margin-top: 7px;
+  margin-left: 6px;
+`;
+
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: ${({ num }) => num};
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background-color: var(--gray02);
+  padding: 12px;
+
+  input {
+    background-color: var(--gray02);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 12px */
+    letter-spacing: -0.5px;
+    margin-left: 10px;
+  }
+  input::placeholder {
+    color: var(--gray01);
+  }
+`;
+
+const IconDiv = styled.div`
+  margin-right: 6px;
+`;
+
+const LoginBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background-color: ${props =>
+    props.isFieldSatisfied ? `var(--green04)` : `var(--green05)`};
+  margin-top: 46px;
+  margin-bottom: 15px;
+
+  color: var(--wh);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: -0.5px;
+`;
+
+export const S = {
+  Wrapper,
+  Title,
+  RowBox,
+  IdCheckBtn,
+  IdCheckMsg,
+  InputBox,
+  IconDiv,
+  LoginBtn
+};
