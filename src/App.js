@@ -1,6 +1,7 @@
 import React from 'react';
 import GlobalStyles from './statics/styles/GlobalStyle';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
@@ -37,39 +38,41 @@ import ProgramListEditPage from './pages/ProgramPage/ProgramListEditPage';
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <BrowserRouter>
-        <Routes>
-          <Route path={'/login'} element={<LoginPage />}></Route>
-          <Route path={'/signup'} element={<SignupPage />}></Route>
-          <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
-          <Route path={'/detail/:id'} element={<DetailPage />} />
-          <Route path={'/about'} element={<AboutPage />} />
+      <RecoilRoot>
+        <GlobalStyles />
+        <BrowserRouter>
+          <Routes>
+            <Route path={'/login'} element={<LoginPage />}></Route>
+            <Route path={'/signup'} element={<SignupPage />}></Route>
+            <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
+            <Route path={'/detail/:id'} element={<DetailPage />} />
+            <Route path={'/about'} element={<AboutPage />} />
 
-          <Route path={'/'} element={<MainPage />} />
-          <Route path={'/booth-main'} element={<BoothMainPage />} />
-          <Route path={'/perf-main'} element={<PerfMainPage />} />
-          <Route path={'/admin-main'} element={<TFMainPage />} />
-          <Route path={'/boothlist'} element={<BoothListPage />} />
-          <Route path={'/perflist'} element={<PerfListPage />} />
-          <Route path={'/search'} element={<SearchPage />} />
+            <Route path={'/'} element={<MainPage />} />
+            <Route path={'/booth-main'} element={<BoothMainPage />} />
+            <Route path={'/perf-main'} element={<PerfMainPage />} />
+            <Route path={'/admin-main'} element={<TFMainPage />} />
+            <Route path={'/boothlist'} element={<BoothListPage />} />
+            <Route path={'/perflist'} element={<PerfListPage />} />
+            <Route path={'/search'} element={<SearchPage />} />
 
-          <Route path={'/boothedit'} element={<BoothEditPage />} />
-          <Route path={'/menuedit'} element={<MenuEditPage />} />
-          <Route path={'/menuedit/:id'} element={<MenuEditDetailPage />} />
-          <Route path={'/menuadd'} element={<MenuAddPage />} />
+            <Route path={'/boothedit'} element={<BoothEditPage />} />
+            <Route path={'/menuedit'} element={<MenuEditPage />} />
+            <Route path={'/menuedit/:id'} element={<MenuEditDetailPage />} />
+            <Route path={'/menuadd'} element={<MenuAddPage />} />
 
-          <Route path={'/notice'} element={<NoticeListPage />} />
-          <Route path={'/notice/:id'} element={<NoticeDetailPage />} />
-          <Route path={'/notice/write'} element={<NoticeWritePage />} />
-          <Route path={'/notice/edit'} element={<NoticeEditPage />} />
+            <Route path={'/notice'} element={<NoticeListPage />} />
+            <Route path={'/notice/:id'} element={<NoticeDetailPage />} />
+            <Route path={'/notice/write'} element={<NoticeWritePage />} />
+            <Route path={'/notice/edit'} element={<NoticeEditPage />} />
 
-          <Route path={'/program'} element={<ProgramListPage />} />
-          <Route path={'/program/:id'} element={<ProgramDetailPage />} />
-          <Route path={'/programedit'} element={<ProgramListEditPage />} />
-          <Route path={'/makers'} element={<MakersPage />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path={'/program'} element={<ProgramListPage />} />
+            <Route path={'/program/:id'} element={<ProgramDetailPage />} />
+            <Route path={'/programedit'} element={<ProgramListEditPage />} />
+            <Route path={'/makers'} element={<MakersPage />} />
+          </Routes>
+        </BrowserRouter>
+      </RecoilRoot>
     </>
   );
 }
