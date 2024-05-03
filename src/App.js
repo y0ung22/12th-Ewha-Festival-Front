@@ -7,11 +7,20 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
 
 import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
-import PerfEditPage from './pages/AdminEditPage/PerfEditPage';
-import TfEditPage from './pages/AdminEditPage/TfEditPage';
+
+import MainPage from './pages/MainPage/MainPage';
+import BoothMainPage from './pages/MainPage/BoothMainPage';
+import PerfMainPage from './pages/MainPage/PerfMainPage';
+import TFMainPage from './pages/MainPage/TFMainPage';
+import SearchPage from './pages/SearchPage/SearchPage';
+import BoothListPage from './pages/ListPage/BoothListPage';
+import PerfListPage from './pages/ListPage/PerfListPage';
+
 import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';
+import PerfEditPage from './pages/AdminEditPage/PerfEditPage';
+import TfEditPage from './pages/AdminEditPage/TfEditPage';
 import MakersPage from './pages/Makerspage/Makerspage';
 
 import AboutPage from './pages/AboutPage/AboutPage';
@@ -26,6 +35,7 @@ import MyPage from './pages/MyPage/MyPage';
 import FacilityPage from './pages/FacilityPage/FacilityPage';
 import ProgramListPage from './pages/ProgramPage/ProgramListPage';
 import ProgramDetailPage from './pages/ProgramPage/ProgramDetailPage';
+import ProgramListEditPage from './pages/ProgramPage/ProgramListEditPage';
 
 function App() {
   return (
@@ -39,6 +49,14 @@ function App() {
           <Route path={'/detail/:id'} element={<DetailPage />} />
           <Route path={'/about'} element={<AboutPage />} />
 
+          <Route path={'/'} element={<MainPage />} />
+          <Route path={'/booth-main'} element={<BoothMainPage />} />
+          <Route path={'/perf-main'} element={<PerfMainPage />} />
+          <Route path={'/admin-main'} element={<TFMainPage />} />
+          <Route path={'/boothlist'} element={<BoothListPage />} />
+          <Route path={'/perflist'} element={<PerfListPage />} />
+          <Route path={'/search'} element={<SearchPage />} />
+
           <Route path={'/boothedit'} element={<BoothEditPage />} />
           <Route path={'/perfedit'} element={<PerfEditPage />} />
           <Route path={'/tfedit'} element={<TfEditPage />} />
@@ -51,6 +69,9 @@ function App() {
           <Route path={'/notice/write'} element={<NoticeWritePage />} />
           <Route path={'/notice/edit'} element={<NoticeEditPage />} />
 
+          <Route path={'/program'} element={<ProgramListPage />} />
+          <Route path={'/program/:id'} element={<ProgramDetailPage />} />
+          <Route path={'/programedit'} element={<ProgramListEditPage />} />
           <Route path={'/makers'} element={<MakersPage />} />
         </Routes>
       </BrowserRouter>

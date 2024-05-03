@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
 import TopBar from '../../_common/TopBar';
-import { programData } from './components/mock';
-import ProgramBanner from './components/ProgramBanner';
-import ProgramInfo from './components/ProgramInfo';
+import DetailBanner from '../DetailPage/components/DetailBanner';
+import DetailInfo from '../DetailPage/components/DetailInfo';
+
+import { GetTFBoothDetail } from '../../api/tf';
 
 const ProgramDetailPage = () => {
+  const { id } = useParams();
+  const [boothData, setBoothData] = useState();
+
+  useEffect(() => {
+    GetTFBoothDetail(id)
+      .then(res => setBoothData(res))
+      .catch();
+  }, []);
+
   return (
     <>
       <Wrapper>
         <TopBar />
         <Container>
-          <ProgramBanner b={programData} />
-          <ProgramInfo b={programData} />
+          {boothData && (
+            <>
+              <DetailBanner b={boothData} program={true} />
+              <DetailInfo b={boothData} program={true} />
+            </>
+          )}
         </Container>
       </Wrapper>
     </>

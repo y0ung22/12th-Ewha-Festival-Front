@@ -3,8 +3,19 @@ import styled from 'styled-components';
 
 import Modal from '../../../_common/Modal';
 
-const Comment = ({ c }) => {
+import { DeleteComment } from '../../../api/booth';
+
+const Comment = ({ c, rendering }) => {
   const [deleteModal, setDeleteModal] = useState(false);
+
+  const OnDelete = () => {
+    DeleteComment(c.id)
+      .then(res => {
+        setDeleteModal(false);
+        rendering();
+      })
+      .catch();
+  };
 
   return (
     <>
@@ -31,6 +42,7 @@ const Comment = ({ c }) => {
           msg2='삭제된 방명록은 다시 불러올 수 없습니다.'
           option={2}
           setIsModalOpen={setDeleteModal}
+          onClickYes={OnDelete}
         />
       )}
     </>

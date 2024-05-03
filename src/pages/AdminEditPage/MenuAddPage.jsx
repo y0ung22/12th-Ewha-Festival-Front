@@ -5,12 +5,14 @@ import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
 
 import MenuThumAdd from './components/MenuThumAdd';
+import MenuVegan from './components/MenuVegan';
 import MenuOpened from './components/MenuOpened';
 
 const MenuAddPage = () => {
   const [img, setImg] = useState(null);
   const [menu, setMenu] = useState('');
   const [price, setPrice] = useState('');
+  const [vegan, setVegan] = useState('');
   const [opened, setOpened] = useState(true);
 
   const handleImgUpload = file => {
@@ -26,6 +28,7 @@ const MenuAddPage = () => {
       img,
       menu,
       price,
+      vegan,
       is_soldout // True가 운영 중
     };
 
@@ -38,7 +41,7 @@ const MenuAddPage = () => {
       <S.Wrapper>
         <form onSubmit={handleSubmit}>
           <MenuThumAdd onImgUpload={handleImgUpload} />
-          <S.Box>
+          <S.Box num={'25px'}>
             <S.Title text={'메뉴 이름'} />
             <S.InputContainer>
               <textarea
@@ -65,10 +68,14 @@ const MenuAddPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box num={'40px'}>
+            <S.Title text={'비건 여부'} />
+            <MenuVegan setVegan={setVegan} />
+          </S.Box>
+          <S.Box num={'40px'}>
             <S.Title text={'운영여부'} />
             <MenuOpened opened={opened} setOpened={setOpened} />
           </S.Box>
-          <S.SubmitBtn num1={'94px'} num2={'222px'} type='submit'>
+          <S.SubmitBtn num1={'48px'} type='submit'>
             작성 완료
           </S.SubmitBtn>
         </form>

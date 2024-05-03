@@ -70,7 +70,7 @@ const BoothEditPage = () => {
               </textarea>
             </S.InputContainer>
           </S.Box>
-          <S.Box num='35px'>
+          <S.Box>
             <S.Title text={'실시간 공지사항'} />
             <S.InputContainer num='80px'>
               <textarea
@@ -83,11 +83,11 @@ const BoothEditPage = () => {
               </textarea>
             </S.InputContainer>
           </S.Box>
-          <S.Box num='37px'>
+          <S.Box>
             <S.Title text={'부스 운영시간'} />
             <BoothTime onDayEdit={handleDayEdit} />
           </S.Box>
-          <S.Box num='69px'>
+          <S.Box>
             <S.Title text={'부스 소개글'} />
             <S.InputContainer num='80px'>
               <textarea
@@ -100,7 +100,7 @@ const BoothEditPage = () => {
               </textarea>
             </S.InputContainer>
           </S.Box>
-          <S.Box num='76px'>
+          <S.Box>
             <S.Title text={'부스 운영진 연락처'} />
             <S.InputContainer num='40px'>
               <textarea

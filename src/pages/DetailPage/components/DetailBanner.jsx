@@ -6,20 +6,34 @@ import { ReactComponent as Noti } from '../images/notification.svg';
 import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
 
-const DetailBanner = ({ b }) => {
-  const [isScraped, setIsScraped] = useState(false);
+import { PatchBoothScrap } from '../../../api/booth';
+
+const DetailBanner = ({ b, program = false, rendering }) => {
+  const [isScraped, setIsScraped] = useState(b.is_liked);
+
+  const handleScrap = () => {
+    PatchBoothScrap(b.id)
+      .then(res => setIsScraped(!isScraped), rendering())
+      .catch();
+  };
+
   return (
     <>
       <Banner>
         <div>
           <span>{b.name}</span>
-          <span>
-            {b.college} {b.number}
-            <Circle />
-            {b.category}
-          </span>
+          {program ? (
+            <span>{b.place}</span>
+          ) : (
+            <span>
+              {b.college} {b.number}
+              <Circle />
+              {b.category}
+            </span>
+          )}
         </div>
       </Banner>
+
       <Container>
         <a href={b.contact} target='_blank' rel='noopener noreferrer'>
           <Contact>
@@ -28,15 +42,18 @@ const DetailBanner = ({ b }) => {
           </Contact>
         </a>
 
-        <Scrap>
-          <span>{b.like_num}명이 스크랩했어요</span>
-          {isScraped ? (
-            <ScrapOn onClick={() => setIsScraped(false)} />
-          ) : (
-            <ScrapOff onClick={() => setIsScraped(true)} />
-          )}
-        </Scrap>
+        {program || (
+          <Scrap>
+            <span>{b.like_num}명이 스크랩했어요</span>
+            {isScraped ? (
+              <ScrapOn onClick={handleScrap} />
+            ) : (
+              <ScrapOff onClick={handleScrap} />
+            )}
+          </Scrap>
+        )}
       </Container>
+
       <Notice>
         <div style={{ fontWeight: '800' }}>
           <Noti />
@@ -57,13 +74,11 @@ const Banner = styled.div`
   width: 100%;
   height: 197px;
   border-radius: 15px;
-  background:
-    linear-gradient(
-      336deg,
-      rgba(0, 0, 0, 0.2) -23.55%,
-      rgba(0, 0, 0, 0) 129.38%
-    ),
-    url(url) lightgray 50% / cover no-repeat;
+  background: linear-gradient(
+    336deg,
+    rgba(0, 0, 0, 0.2) -23.55%,
+    rgba(0, 0, 0, 0) 129.38%
+  );
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   div {

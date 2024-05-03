@@ -1,86 +1,60 @@
 import styled from 'styled-components';
 
-import { ReactComponent as VectorThin } from '../../../assets/icons/vector_thin.svg';
-
-const ProgramCard = ({ title, detail, img }) => {
-  const clickCard = () => {
-    //navigate();
-  };
-
+const ProgramCard = ({ d }) => {
   return (
-    <>
-      <Wrapper>
-        <ImgDiv img={img} />
-        <Container>
-          <Contents>
-            <Place>{title}</Place>
-            <Detail>{detail}</Detail>
-          </Contents>
-          <VectorDiv onClick={clickCard}>
-            <VectorThin />
-          </VectorDiv>
-        </Container>
-      </Wrapper>
-    </>
+    <Card>
+      <BackgroundImg src={d.thumbnail} alt='thumbnail' />
+      <Container>
+        <div>{d.name}</div>
+        <div style={{ fontSize: '0.75rem' }}>
+          <span>{d.place}</span>
+          <span>{d.time}</span>
+        </div>
+      </Container>
+    </Card>
   );
 };
 
 export default ProgramCard;
 
-const Wrapper = styled.div`
-  width: 21.8125rem;
-  height: 17.75rem;
+const Card = styled.div`
+  position: relative;
+  width: 100%;
+  height: 5rem;
   display: flex;
-  flex-direction: column;
-  border-radius: 0.9375rem;
-  border: 1px solid var(--gray04);
-  background: var(--wh);
+  border-radius: 0.625rem;
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+    lightgray 50% / cover no-repeat;
+  overflow: hidden;
 `;
 
-const ImgDiv = styled.div`
-  width: auto;
-  height: 12.75rem;
-  border-radius: 0.9375rem 0.9375rem 0 0;
-  border-bottom: 1px solid var(--gray04);
+const BackgroundImg = styled.img`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const Contents = styled.div`
+  z-index: 1;
   width: 100%;
-  padding: 1.25rem;
-`;
-
-const VectorDiv = styled.div`
+  height: 100%;
+  padding: 0 1.19rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 1.28rem;
-`;
-
-const Place = styled.div`
-  height: 1.375rem;
-  flex-shrink: 0;
-  color: var(--bk01);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.375rem; /* 137.5% */
-  letter-spacing: -0.03125rem;
-`;
-
-const Detail = styled.div`
-  display: flex;
-  height: 0.9375rem;
   flex-direction: column;
   justify-content: center;
-  flex-shrink: 0;
+  gap: 0.13rem;
 
-  color: var(--gray05);
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1.375rem; /* 183.333% */
+  color: var(--wh);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.375rem;
   letter-spacing: -0.03125rem;
-  margin-top: 0.63rem;
+
+  div {
+    display: flex;
+    gap: 0.25rem;
+  }
 `;

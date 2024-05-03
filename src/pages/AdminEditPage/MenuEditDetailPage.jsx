@@ -41,7 +41,7 @@ const MenuEditDetailPage = () => {
       <S.Wrapper>
         <form onSubmit={handleSubmit}>
           <MenuThumEdit onImgUpload={handleImgUpload} />
-          <S.Box>
+          <S.Box num={'25px'}>
             <S.Title text={'메뉴 이름'} />
             <S.InputContainer>
               <textarea
@@ -75,7 +75,7 @@ const MenuEditDetailPage = () => {
             <S.Title text={'운영여부'} />
             <MenuOpened opened={opened} setOpened={setOpened} />
           </S.Box>
-          <S.SubmitBtn num1={'94px'} num2={'222px'} type='submit'>
+          <S.SubmitBtn num1={'48px'} type='submit'>
             작성 완료
           </S.SubmitBtn>
         </form>

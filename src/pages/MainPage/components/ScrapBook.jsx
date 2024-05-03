@@ -1,29 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+
+import CategorySlide from '../../../_common/CategorySlide';
+import ScrapCard from '../../../_common/ScrapCard';
 
 const ScrapBook = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const [isScrap, setIsScrap] = useState(true);
+  const [boothList, setBoothList] = useState([0, 1, 2, 3]);
+
+  useEffect(() => {
+    if (boothList === null) {
+      setIsScrap(false);
+    } else {
+      setIsScrap(true);
+    }
+  }, [boothList]);
 
   return (
     <Wrapper>
-      <Title>{'2024 \n 이화여대 대동제'}</Title>
+      {isScrap ? <WholeScrap>스크랩북 전체보기</WholeScrap> : <></>}
+      <Title>
+        {isScrap ? '이화연님의\n스크랩북' : '2024 \n 이화여대 대동제'}
+      </Title>
       <ScrapBox>
-        <ScrapTitle isLogin={isLogin} onClick={() => setIsLogin(!isLogin)}>
-          {isLogin ? '나의 스크랩북 열기' : '로그인 하러가기'}
-        </ScrapTitle>
+        {isScrap ? (
+          <ScrapSlider>
+            <CategorySlide options={['부스', '메뉴', '공연']} />
+          </ScrapSlider>
+        ) : (
+          <ScrapTitle isLogin={isLogin} onClick={() => setIsLogin(!isLogin)}>
+            {isLogin ? '나의 스크랩북 열기' : '로그인 하러가기'}
+          </ScrapTitle>
+        )}
         <BlurBox>
-          <>
-            <Guide>
-              {isLogin
-                ? '이화연님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀'
-                : '로그인하면\n사이트를 더 편하게\n즐길 수 있어요🍀'}
-            </Guide>
-            <TagBox>
-              <Tag>#2024_대동제</Tag>
-              <Tag>우리과_부스는_어디</Tag>
-              <Tag>#모든_정보가_내손안에</Tag>
-            </TagBox>
-          </>
+          {isScrap ? (
+            <ScrapDiv>
+              {boothList &&
+                boothList.map((item, index) => (
+                  <ScrapCard key={index} item={item} size='small'></ScrapCard>
+                ))}
+            </ScrapDiv>
+          ) : (
+            <>
+              <Guide>
+                {isLogin
+                  ? '이화연님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀'
+                  : '로그인하면\n사이트를 더 편하게\n즐길 수 있어요🍀'}
+              </Guide>
+              <TagBox>
+                <Tag>#2024_대동제</Tag>
+                <Tag>우리과_부스는_어디</Tag>
+                <Tag>#모든_정보가_내손안에</Tag>
+              </TagBox>
+            </>
+          )}
         </BlurBox>
       </ScrapBox>
     </Wrapper>
@@ -38,8 +69,21 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
 
-  gap: 1rem;
   width: 100%;
+`;
+
+const WholeScrap = styled.div`
+  color: var(--gray02);
+  text-align: center;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25rem; /* 200% */
+  letter-spacing: -0.03125rem;
+  text-decoration-line: underline;
+
+  margin-bottom: 0.38rem;
+  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -50,6 +94,8 @@ const Title = styled.div`
   text-align: center;
   line-height: 1.625rem;
   letter-spacing: -0.03125rem;
+
+  margin-bottom: 1rem;
 `;
 
 const ScrapBox = styled.div`
@@ -60,6 +106,12 @@ const ScrapBox = styled.div`
   align-items: center;
 
   width: 100%;
+`;
+
+const ScrapSlider = styled.div`
+  position: relative;
+  z-index: 5;
+  margin-bottom: -38px;
 `;
 
 const ScrapTitle = styled.div`
@@ -86,7 +138,7 @@ const BlurBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  width: 20.625rem;
+  min-width: 20.625rem;
   height: 26.8125rem;
   flex-shrink: 0;
   padding: 1.75rem 1.2rem 1.25rem;
@@ -135,4 +187,13 @@ const Tag = styled.div`
   color: var(--wh);
   font-size: 0.8125rem;
   font-weight: 700;
+`;
+
+const ScrapDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+
+  gap: 0.6875rem 0.4375rem;
 `;

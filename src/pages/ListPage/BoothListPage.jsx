@@ -6,6 +6,8 @@ import Footer from '../../_common/Footer';
 import Pagination from '../../_common/Pagination';
 
 import ScrapCard from '../../_common/ScrapCard';
+import DaySlider from './components/DaySlider';
+import SelectBtn from './components/SelectBtn';
 
 const BoothListPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
@@ -18,7 +20,11 @@ const BoothListPage = () => {
       <Wrapper>
         <TopBar isMenu={true} />
         <TopDiv>
-          <TotalBooth>총 {totalItems}개의 부스</TotalBooth>
+          <div className='box'>
+            <DaySlider />
+            <SelectBtn category={'booth'} />
+          </div>
+          <TotalBooth>총 {array.length}개의 부스</TotalBooth>
         </TopDiv>
         <ResultDiv>
           {array.map((item, index) => (
@@ -54,6 +60,11 @@ const Wrapper = styled.div`
 
 const TopDiv = styled.div`
   width: 100%;
+
+  .box {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 const TotalBooth = styled.div`

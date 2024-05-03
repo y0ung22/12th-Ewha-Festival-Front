@@ -1,36 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const CategorySlide = ({ options }) => {
-  const [select, setSelect] = useState(options[0]);
+const CategorySlide = ({ options, handleOption, select }) => {
+  const [highlightStyle, setHighlightStyle] = useState({});
+  const optionRefs = useRef(new Array());
 
-  const handleOption = selectedOption => {
-    setSelect(selectedOption);
-  };
+  useEffect(() => {
+    const current = optionRefs.current[options.indexOf(select)];
+    if (current) {
+      const { offsetLeft: left, clientWidth: width } = current;
+      setHighlightStyle({ left, width });
+    }
+  }, [select]);
 
   return (
-    <>
-      <Wrapper>
-        {options.map(opt => (
-          <CategoryBtn
-            key={opt}
-            onClick={() => handleOption(opt)}
-            selected={select === opt}
-          >
-            {opt}
-          </CategoryBtn>
-        ))}
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Highlighter style={highlightStyle} />
+      {options.map((opt, index) => (
+        <CategoryBtn
+          key={opt}
+          ref={el => (optionRefs.current[index] = el)}
+          onClick={() => handleOption(opt)}
+          selected={select === opt}
+        >
+          {opt}
+        </CategoryBtn>
+      ))}
+    </Wrapper>
   );
 };
 
 export default CategorySlide;
 
+const Highlighter = styled.div`
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  background-color: var(--highlight-color, #00f16f);
+  border-radius: 1.875rem;
+  transition:
+    left 0.3s ease,
+    width 0.3s ease;
+  z-index: 0;
+`;
+
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
-  width: auto;
+  width: max-content;
   height: 2.25rem;
 
   justify-content: center;
@@ -41,7 +59,6 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 
   align-self: flex-start;
-  margin-bottom: 1.25rem;
 `;
 
 const CategoryBtn = styled.div`
@@ -53,10 +70,6 @@ const CategoryBtn = styled.div`
   align-items: center;
   border-radius: 1.875rem;
 
-  border: 1px solid ${props => (props.selected ? '#03D664' : 'transparent')};
-  background: ${props =>
-    props.selected ? 'var(--green_01, #00F16F)' : 'transparent'};
-
   color: var(--wh);
   text-align: center;
   font-size: 0.8125rem;
@@ -64,4 +77,9 @@ const CategoryBtn = styled.div`
   font-weight: 700;
   line-height: 1.25rem; /* 153.846% */
   letter-spacing: -0.03125rem;
+
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  z-index: 1;
 `;

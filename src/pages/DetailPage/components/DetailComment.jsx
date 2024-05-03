@@ -1,11 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { S } from '../Detail.style';
+import { S } from './Detail.style';
 
 import Comment from './Comment';
 import { ReactComponent as Summit } from '../images/arrow-circle-up.svg';
 
-const DetailComment = ({ c }) => {
+import { GetBoothComment, PostComment } from '../../../api/booth';
+
+const DetailComment = ({ bId }) => {
+  const [comment, setCommentData] = useState();
+  const [render, setRender] = useState(1);
+  const rendering = () => setRender(render + 1);
+
+  useEffect(() => {
+    GetBoothComment(bId)
+      .then(res => setCommentData(res))
+      .catch();
+  }, [render]);
+
   // 방명록 입력창 자동 높이 조절
   const textarea = useRef();
   const handleChange = e => {
@@ -14,11 +26,11 @@ const DetailComment = ({ c }) => {
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
   };
 
+  // 방명록 작성
   const [newComment, setNewComment] = useState('');
-  const OnSubmit = e => {
+  const OnSubmit = () => {
     if (newComment.trim() !== null) {
-      e.preventDefault();
-      setNewComment('');
+      PostComment(bId, newComment).then(setNewComment(''), rendering()).catch();
     }
   };
 
@@ -26,8 +38,8 @@ const DetailComment = ({ c }) => {
     <>
       <S.SubTitle>방명록</S.SubTitle>
       <Container>
-        {c.map(comment => (
-          <Comment key={comment.id} c={comment} />
+        {comment?.map(comment => (
+          <Comment key={comment.id} c={comment} rendering={rendering} />
         ))}
         <Input>
           <textarea
@@ -37,7 +49,7 @@ const DetailComment = ({ c }) => {
             value={newComment}
             onChange={e => handleChange(e)}
           />
-          <Summit onClick={e => OnSubmit(e)} />
+          <Summit onClick={OnSubmit} />
         </Input>
       </Container>
     </>

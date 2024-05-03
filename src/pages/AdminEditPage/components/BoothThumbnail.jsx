@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { S } from './AdminEdit.style';
 
-const BoothThumbnail = ({ onImgUpload }) => {
+const BoothThumbnail = ({ onImgUpload, type1, type2 }) => {
   const [prevUrl, setPrevUrl] = useState('');
   const fileInputRef = useRef(null);
 
@@ -26,9 +26,11 @@ const BoothThumbnail = ({ onImgUpload }) => {
   return (
     <Wrapper>
       <S.Title text={'대표 사진'} />
-      <S.BImgContainer>
+      <S.BImgContainer type={type1}>
         {prevUrl && <img src={prevUrl} alt='Thumbnail Preview' />}
-        <S.BImgEditBtn onClick={handleBtnClick}>사진 교체하기</S.BImgEditBtn>
+        <S.BImgEditBtn onClick={handleBtnClick} type={type2}>
+          사진 교체하기
+        </S.BImgEditBtn>
         <input
           type='file'
           onChange={handleImgChange}
