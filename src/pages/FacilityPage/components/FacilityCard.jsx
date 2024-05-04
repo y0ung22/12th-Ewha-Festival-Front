@@ -4,18 +4,22 @@ import styled from 'styled-components';
 import { ReactComponent as VectorThin } from '../../../assets/icons/vector_thin.svg';
 import { ReactComponent as CampusMap } from '../images/campus_map.svg';
 
-const TrashcanCard = () => {
+const FacilityCard = ({ key, location, detail, img, isLastElement }) => {
   const [isOpen, setIsOpen] = useState(false);
   const clickCard = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <>
-      <Wrapper isOpen={isOpen}>
+      <Wrapper
+        isOpen={isOpen}
+        style={{ marginBottom: isLastElement ? '5.19rem' : '0.94rem' }}
+      >
         <Container>
           <Contents>
-            <Place>정문</Place>
-            <Detail>잔디광장 24번 부스 옆</Detail>
+            <Place>{location}</Place>
+            <Detail>{detail}</Detail>
           </Contents>
           <VectorDiv isOpen={isOpen} onClick={clickCard}>
             <VectorThin />
@@ -25,7 +29,7 @@ const TrashcanCard = () => {
           <>
             <Line />
             <MapDiv>
-              <CampusMap height='auto' />
+              <img src={img} />
             </MapDiv>
           </>
         )}
@@ -34,7 +38,7 @@ const TrashcanCard = () => {
   );
 };
 
-export default TrashcanCard;
+export default FacilityCard;
 
 const Wrapper = styled.div`
   width: 21.8125rem;
@@ -94,7 +98,6 @@ const MapDiv = styled.div`
   width: 19.575rem;
   height: 12.59244rem;
   flex-shrink: 0;
-  background-color: var(--gray04);
   align-self: center;
   margin: 0.69rem 0;
 `;
