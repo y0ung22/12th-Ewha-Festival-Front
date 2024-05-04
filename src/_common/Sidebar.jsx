@@ -16,9 +16,9 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
     { menu: '부스 목록 보러가기', link: '/boothlist' },
     { menu: '공연 목록 보러가기', link: '/perflist' },
     { menu: '축제 일정 보러가기', link: '/program' },
-    { menu: '주요 시설 보러가기', link: '/' },
+    { menu: '주요 시설 보러가기', link: '/facility' },
     { menu: '대동제 공지 보러가기', link: '/notice' },
-    { menu: '배리어프리 확인하기', link: '/' },
+    { menu: '배리어프리 확인하기', link: '/barrierfee' },
     { menu: '마이페이지', link: '/my' }
   ];
 

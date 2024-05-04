@@ -31,7 +31,7 @@ export default UserInfo;
 
 const User = styled.div`
   display: flex;
-  width: 20.625rem;
+  width: 23.125rem;
   height: 5.4375rem;
   padding: 1.6875rem 1.31rem 1.6875rem 1.75rem;
   align-items: center;

@@ -107,9 +107,24 @@ export const Logout = async () => {
   document.cookie = 'token=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
   window.localStorage.clear(); // 로컬 스토리지 초기화
   window.location.replace('/');
+};
 
 export const getCookie = name => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
+// GET : 스크랩한 부스 목록 조회, 필터링
+export const GetScrapBooth = async (type, page) => {
+  try {
+    const response = await http.get(
+      `/accounts/likes/?type=${type}&page=${page}`
+    );
+    console.log(response.data);
+    return Promise.resolve(response.data);
+  } catch (error) {
+    console.error('스크랩한 부스 목록 조회 실패', error);
+    return Promise.reject(error);
+  }
 };
