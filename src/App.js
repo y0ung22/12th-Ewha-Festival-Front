@@ -68,7 +68,7 @@ function App() {
 
             <Route path={'/boothedit/:id'} element={<BoothEditPage />} />
             <Route path={'/perfedit'} element={<PerfEditPage />} />
-            <Route path={'/tfedit'} element={<TfEditPage />} />
+            <Route path={'/tfedit/:id'} element={<TfEditPage />} />
             <Route path={'/menuedit/:id'} element={<MenuEditPage />} />
             <Route
               path={'/menuedit/:id/:id'}

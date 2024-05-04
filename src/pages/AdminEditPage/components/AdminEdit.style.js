@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 const Box = styled.div`
   margin-top: ${({ num }) => num || '35px'};
 
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
@@ -184,6 +184,15 @@ const MImgContainer = styled.div`
   border-radius: 20px;
   background: var(--green05);
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 const MImgAddBtn = styled(ImgBtn)`

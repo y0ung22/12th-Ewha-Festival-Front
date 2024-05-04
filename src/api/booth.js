@@ -128,32 +128,24 @@ export const GetBoothInfo = async boothId => {
 };
 
 // PATCH : 부스 관리자 수정
-export const PatchBooth = async ({
-  boothId,
-  formData,
-  name,
-  realtime,
-  days,
-  description,
-  contact,
-  opened
-}) => {
+{
+  /*
+export const PatchBooth = async ({ boothId, formData, otherData }) => {
   // JSON으로 변환
   const jsonPayload = {
-    name,
-    realtime,
-    days,
-    description,
-    contact,
-    opened
+    otherData
   };
 
-  formData.append('jsonPayload', JSON.stringify(jsonPayload));
+  formData.append(
+    'jsonPayload',
+    new Blob([JSON.stringify(jsonPayload)], {
+      type: 'application/json'
+    })
+  );
 
   try {
-    const response = await fetch(`/manages/${boothId}/`, {
-      method: 'PATCH',
-      body: formData
+    const response = await http.patch(`/manages/${boothId}/`, {
+      formData: formData
     });
 
     if (response.ok) {
@@ -162,6 +154,24 @@ export const PatchBooth = async ({
     } else {
       throw new Error('부스 정보 수정에 실패했습니다.');
     }
+  } catch (error) {
+    console.error('오류:', error);
+    throw error;
+  }
+};
+ */
+}
+
+export const PatchBooth = async (boothId, formData) => {
+  try {
+    const response = await http.patch(`/manages/${boothId}/`, formData);
+
+    if (!response.ok) {
+      throw new Error('이미지 업로드 실패');
+    }
+
+    const result = await response.data;
+    return result;
   } catch (error) {
     console.error('오류:', error);
     throw error;
@@ -202,7 +212,7 @@ export const DeleteMenu = async (boothId, menuId) => {
     return Promise.resolve(response);
   } catch (error) {
     console.error('메뉴 삭제 실패', error.response);
-    confirmLogin(error);
+    //confirmLogin(error);
     return Promise.reject(error);
   }
 };

@@ -15,27 +15,19 @@ const BoothTime = ({ onDayEdit, initialTime }) => {
 
   console.log(initialTime);
   const [rows, setRows] = useState(
-    defaultDays
-      .map(day => {
-        const initialData = initialTime.find(
-          time => time.date === day.date
-        ) || {
-          start_time: '',
-          end_time: ''
-        };
-        return {
-          ...day,
-          ...initialData,
-          selected: !!initialData.start_time && !!initialData.end_time
-        };
-      })
-      .map(day => ({
+    defaultDays.map(day => {
+      const initialData = initialTime.find(time => time.date === day.date) || {
+        start_time: '',
+        end_time: ''
+      };
+      return {
         ...day,
-        start_time: day.start_time || '',
-        end_time: day.end_time || ''
-      }))
+        ...initialData,
+        selected: !!initialData.start_time && !!initialData.end_time
+      };
+    })
   );
-  console.log(rows);
+  console.log('rows: ', rows);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

@@ -11,6 +11,7 @@ import BoothOpened from './components/BoothOpened';
 
 // api
 import { GetBoothInfo } from '../../api/booth';
+// import { PatchBooth } from '../../api/booth';
 import { PatchBooth } from '../../api/booth';
 
 const BoothEditPage = () => {
@@ -53,21 +54,22 @@ const BoothEditPage = () => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
-    if (boothData.thumnail) {
+
+    // 이미지 파일이 변경되었을 경우에만 추가
+    if (thumnail) {
       formData.append('thumnail', thumnail);
     }
 
+    // 나머지 데이터 추가
+    formData.append('name', name);
+    formData.append('realtime', realtime);
+    formData.append('days', JSON.stringify(days)); // Array는 JSON 형태로 변환
+    formData.append('description', description);
+    formData.append('contact', contact);
+    formData.append('opened', opened);
+
     try {
-      await PatchBooth({
-        boothId: id,
-        formData,
-        name: boothData.name,
-        realtime: boothData.realtime,
-        days: boothData.days,
-        description: boothData.description,
-        contact: boothData.contact,
-        opened: boothData.opened
-      });
+      await PatchBooth({ id, formData }); // 수정된 API 호출
       //alert('부스 정보가 성공적으로 수정되었습니다.');
       //navigate(`/detail/${id}`);
     } catch (error) {

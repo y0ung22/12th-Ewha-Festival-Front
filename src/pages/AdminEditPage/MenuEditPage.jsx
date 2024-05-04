@@ -28,7 +28,7 @@ const MenuEditPage = () => {
 
   // GoMenuAdd 클릭 핸들러
   const handleAddClick = () => {
-    navigate('/menuadd');
+    navigate(`/menuadd/${id}`);
   };
 
   return (
