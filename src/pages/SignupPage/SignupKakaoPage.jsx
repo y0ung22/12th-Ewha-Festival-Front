@@ -7,7 +7,7 @@ import TopBar from '../../_common/TopBar';
 import Modal from '../../_common/Modal';
 
 //recoil
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { PostNickname } from '../../api/auth';
 import { SignupState } from '../../assets/recoil/apiRecoil';
 

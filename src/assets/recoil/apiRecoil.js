@@ -1,5 +1,5 @@
-import { atom } from 'recoil';
-import { recoilPersist } from 'recoil-persist';
+import { useEffect } from 'react';
+import { atom, useRecoilState } from 'recoil';
 
 // 로컬스토리지에서 키값을 읽어오거나(카카오로그인 된 경우) 없으면 기본값 반환(자체 회원가입)
 const getLocalStorageValue = key => {
@@ -19,8 +19,3 @@ export const SignupState = atom({
     nickname: getLocalStorageValue('nickname')
   })
 });
-
-// export const NicknameState = atom({
-//   key: 'NicknameState',
-//   default: null
-// });
