@@ -149,10 +149,12 @@ const BtnNo = styled(ButtonBase)`
   border: 1px solid var(--gray02);
   background-color: var(--gray03);
   color: var(--gray01);
+  cursor: pointer;
 `;
 
 const BtnYes = styled(ButtonBase)`
   border: 1px solid var(--green02);
   background-color: var(--green01);
   color: var(--wh);
+  cursor: pointer;
 `;
