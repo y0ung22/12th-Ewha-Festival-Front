@@ -33,6 +33,7 @@ const Title = styled.div`
   font-weight: 700;
   line-height: 1.625rem; /* 108.333% */
   letter-spacing: -0.03125rem;
+  margin-top: 2.31rem;
 `;
 
 export const S = {
