@@ -103,4 +103,8 @@ export const PostNickname = async (nickname, username) => {
   }
 };
 
-export const Logout = async () => {};
+export const Logout = async () => {
+  document.cookie = 'token=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+  window.localStorage.clear(); // 로컬 스토리지 초기화
+  window.location.replace('/');
+};
