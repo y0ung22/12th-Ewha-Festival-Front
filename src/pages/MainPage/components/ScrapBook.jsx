@@ -4,28 +4,50 @@ import { useNavigate } from 'react-router-dom';
 
 import CategorySlide from '../../../_common/CategorySlide';
 import ScrapCard from '../../../_common/ScrapCard';
+import MoreScapBox from './MoreScrapBox';
 
 import { getCookie } from '../../../api/auth';
 import { GetBoothHome } from '../../../api/booth';
+
+import { ReactComponent as Scrap } from '../../../assets/icons/save-add.svg';
 
 const ScrapBook = () => {
   const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(false);
   const [isScrap, setIsScrap] = useState(false);
+  const [nickname, setNickname] = useState('');
   const [boothList, setBoothList] = useState([]);
+
+  const options = ['부스', '메뉴', '공연'];
+  const [select, setSelect] = useState('부스');
+  const handleOption = option => {
+    setSelect(option);
+  };
 
   useEffect(() => {
     const token = getCookie('token');
     const handleStart = async () => {
       const homeResult = await GetBoothHome();
       console.log(homeResult.data);
-      setBoothList(homeResult.data);
+      setNickname(homeResult.data.nickname);
 
-      if (homeResult.data.length === 0) {
-        setIsScrap(false);
-      } else {
+      if (homeResult.data.scrap) {
         setIsScrap(true);
+        switch (select) {
+          case '부스':
+            setBoothList(homeResult.data.boothList);
+            break;
+          case '메뉴':
+            setBoothList(homeResult.data.menuList);
+            break;
+
+          case '공연':
+            setBoothList(homeResult.data.performList);
+            break;
+        }
+      } else {
+        setIsScrap(false);
       }
     };
 
@@ -35,7 +57,7 @@ const ScrapBook = () => {
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [select]);
 
   const clickTitle = () => {
     if (isLogin) {
@@ -48,12 +70,12 @@ const ScrapBook = () => {
     <Wrapper>
       {isScrap ? <WholeScrap>스크랩북 전체보기</WholeScrap> : <></>}
       <Title>
-        {isScrap ? '이화연님의\n스크랩북' : '2024 \n 이화여대 대동제'}
+        {isScrap ? `${nickname}님의\n스크랩북` : '2024 \n 이화여대 대동제'}
       </Title>
       <ScrapBox>
         {isScrap ? (
           <ScrapSlider>
-            <CategorySlide options={['부스', '메뉴', '공연']} />
+            <CategorySlide {...{ options, handleOption, select }} />
           </ScrapSlider>
         ) : (
           <ScrapTitle isLogin={isLogin} onClick={clickTitle}>
@@ -62,17 +84,27 @@ const ScrapBook = () => {
         )}
         <BlurBox>
           {isScrap ? (
-            <ScrapDiv>
-              {boothList &&
-                boothList.map((item, index) => (
+            boothList.length === 0 ? (
+              <EmptyBox>
+                <Scrap />
+                <span>스크랩한 내용이 아직 없어요🥺</span>
+              </EmptyBox>
+            ) : (
+              <ScrapDiv>
+                {boothList.map((item, index) => (
                   <ScrapCard key={index} item={item} size='small'></ScrapCard>
                 ))}
-            </ScrapDiv>
+                {boothList.length < 4 &&
+                  Array.from({ length: 4 - boothList.length }).map(
+                    (_, index) => <MoreScapBox key={`more-${index}`} />
+                  )}
+              </ScrapDiv>
+            )
           ) : (
             <>
               <Guide>
                 {isLogin
-                  ? '이화연님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀'
+                  ? `${nickname}님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀`
                   : '로그인하면\n사이트를 더 편하게\n즐길 수 있어요🍀'}
               </Guide>
               <TagBox>
@@ -225,4 +257,23 @@ const ScrapDiv = styled.div`
   align-items: center;
 
   gap: 0.6875rem 0.4375rem;
+`;
+
+const EmptyBox = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    color: var(--gray02, #f2f2f2);
+    text-align: center;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0.9375rem; /* 100% */
+    letter-spacing: -0.03125rem;
+  }
 `;
