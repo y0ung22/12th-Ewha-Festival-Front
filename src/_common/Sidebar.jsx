@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { ReactComponent as SearchIcon } from '../assets/icons/search.svg';
 import { ReactComponent as CloseBtn } from '../assets/icons/close.svg';
@@ -10,6 +10,7 @@ import { getCookie } from '../api/auth';
 const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
   const token = getCookie('token');
   const [clicked, setClicked] = useState(false);
+  const location = useLocation();
 
   const closeSidebar = () => {
     setClicked(true);
@@ -50,6 +51,14 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
     navigate('/search');
   };
 
+  const handleMenuItemClick = link => {
+    if (location.pathname === link) {
+      closeSidebar();
+    } else {
+      navigate(link);
+    }
+  };
+
   return (
     <>
       <Wrapper clicked={clicked}>
@@ -64,7 +73,7 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
         </SearchBar>
         <List>
           {menuItems.map((item, index) => (
-            <Goto key={index} onClick={() => navigate(item.link)}>
+            <Goto key={index} onClick={() => handleMenuItemClick(item.link)}>
               {item.menu}
             </Goto>
           ))}
