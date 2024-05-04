@@ -67,7 +67,7 @@ export const GetDuplicateId = async username => {
 };
 
 // GET : 카카오 로그인
-export const KakaoLogin = async (code, setUsername) => {
+export const KakaoLogin = async code => {
   try {
     const response = await http.get(`/accounts/kakao/callback/?code=${code}`);
     console.log(response.data);
@@ -88,7 +88,7 @@ export const KakaoLogin = async (code, setUsername) => {
       const expirationDate = new Date();
       expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
       //아이디(username) 저장
-      document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
+      localStorage.setItem('username', response.data.data.username);
       window.location.replace('/signupkakao');
     }
     return Promise.resolve(response.data);

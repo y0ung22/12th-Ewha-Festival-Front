@@ -32,7 +32,7 @@ export default UserInfo;
 
 const User = styled.div`
   display: flex;
-  width: 23.125rem;
+  width: 20.625rem;
   height: 5.4375rem;
   padding: 1.6875rem 1.31rem 1.6875rem 1.75rem;
   align-items: center;
@@ -60,4 +60,5 @@ const LogoutBtn = styled.div`
   line-height: 1.25rem; /* 200% */
   letter-spacing: -0.03125rem;
   text-decoration-line: underline;
+  cursor: pointer;
 `;

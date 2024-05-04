@@ -46,6 +46,7 @@ const IdCheckBtn = styled.div`
   font-weight: 400;
   line-height: 100%; /* 12px */
   letter-spacing: -0.03125rem;
+  cursor: pointer;
 `;
 
 const IdCheckMsg = styled.div`
