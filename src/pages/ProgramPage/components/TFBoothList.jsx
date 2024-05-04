@@ -7,7 +7,7 @@ import TFBoothCard from './TFBoothCard';
 import { GetTFBoothList } from '../../../api/tf';
 
 const TFBoothList = () => {
-  const isEdit = window.location.pathname === '/programedit';
+  const isEdit = window.location.pathname === '/tfedit';
 
   const typeList = ['기획 부스', '권리팀 부스', '대외협력팀 부스'];
   const [selectedType, setSelectedType] = useState(0);

@@ -21,7 +21,7 @@ const NoticeListPage = () => {
   return (
     <>
       <S.Wrapper>
-        <TopBar />
+        <TopBar backLink={'/'} />
         <S.MainText>공지사항</S.MainText>
         {data && (
           <>

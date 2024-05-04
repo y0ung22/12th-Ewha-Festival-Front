@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as MenuIcon } from '../assets/icons/menu.svg';
 import { ReactComponent as BackIcon } from '../assets/icons/back.svg';
@@ -15,12 +16,12 @@ const TopBar = ({
   isWhite = false,
   backLink
 }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const handleBackClick = () => {
-    // backLink ? navigate(backLink) : navigate(-1);
+    backLink ? navigate(backLink) : navigate(-1);
   };
 
   return (
