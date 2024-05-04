@@ -44,7 +44,7 @@ const BoxList = [
   {
     id: 5,
     title: '쓰레기통\n위치찾기',
-    guide: '쓰레기통은\n어디에?!',
+    guide: '쓰레기통 위치를\n확인해 보세요',
     image: num7,
     path: '/'
   },
