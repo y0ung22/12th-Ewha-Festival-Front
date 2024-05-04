@@ -20,10 +20,14 @@ const PlaceList = {
   performance: ['전체', '학문관광장', '스포츠트랙']
 };
 
-const SelectBtn = ({ category }) => {
+const SelectBtn = ({ category, setChoice }) => {
   const placeList = PlaceList[category];
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(placeList[0]);
+
+  useEffect(() => {
+    setChoice(selectedPlace);
+  }, [selectedPlace]);
 
   return (
     <>
@@ -51,6 +55,7 @@ const Wrapper = styled.div`
   padding: 0.5rem 1.0625rem;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
 
   width: max-content;
   height: max-content;

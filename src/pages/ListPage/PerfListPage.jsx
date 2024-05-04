@@ -9,26 +9,49 @@ import ScrapCard from '../../_common/ScrapCard';
 import DaySlider from './components/DaySlider';
 import SelectBtn from './components/SelectBtn';
 
+import { GetBoothList } from '../../api/booth';
+
 const PerfListPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
   const [totalPage, setTotalPage] = useState(5); // 전체 페이지
 
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [selectDay, setSelectDay] = useState(8); //선택 요일
+  const [selectPlace, setSelectPlace] = useState(null); //선택 장소
+
+  const [perfList, setPerfList] = useState([]);
+
+  useEffect(() => {
+    const handleStart = async () => {
+      const perfListResult = await GetBoothList(
+        '공연',
+        selectDay,
+        selectPlace,
+        currentPage
+      );
+      console.log(perfListResult.data, selectDay, selectPlace);
+      setPerfList(perfListResult.data);
+      setCurrentPage(perfListResult.page);
+      setTotalPage(perfListResult.total_page);
+      setTotalItems(perfListResult.total);
+    };
+
+    handleStart();
+  }, [selectDay, selectPlace, currentPage]);
   return (
     <>
       <Wrapper>
         <TopBar isMenu={true} />
         <TopDiv>
           <div className='box'>
-            <DaySlider />
-            <SelectBtn category={'performance'} />
+            <DaySlider setChoice={setSelectDay} />
+            <SelectBtn category={'performance'} setChoice={setSelectPlace} />
           </div>
-          <TotalBooth>총 {array.length}개의 부스</TotalBooth>
+          <TotalBooth>총 {totalItems}개의 공연</TotalBooth>
         </TopDiv>
         <ResultDiv>
-          {array.map((item, index) => (
-            <ScrapCard key={index} />
+          {perfList?.map((item, index) => (
+            <ScrapCard key={index} item={item} />
           ))}
         </ResultDiv>
 

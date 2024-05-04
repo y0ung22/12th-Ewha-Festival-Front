@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { S } from './components/AdminEdit.style';
 
 import TopBar from '../../_common/TopBar';
@@ -8,7 +9,12 @@ import MenuThumAdd from './components/MenuThumAdd';
 import MenuVegan from './components/MenuVegan';
 import MenuOpened from './components/MenuOpened';
 
+import { PostMenu } from '../../api/booth';
+
 const MenuAddPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [img, setImg] = useState(null);
   const [menu, setMenu] = useState('');
   const [price, setPrice] = useState('');
@@ -29,10 +35,16 @@ const MenuAddPage = () => {
       menu,
       price,
       vegan,
-      is_soldout // True가 운영 중
+      is_soldout // True = 운영 중
     };
 
-    // POST 로직 -> 추후 별도 API 파일에 작성 예정
+    try {
+      await PostMenu(id, data);
+      alert('메뉴가 성공적으로 추가되었습니다.');
+      navigate(`/menuedit/${id}`);
+    } catch (error) {
+      alert('메뉴 추가에 실패하였습니다.');
+    }
   };
 
   return (

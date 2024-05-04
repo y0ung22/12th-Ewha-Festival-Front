@@ -1,25 +1,25 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as ScrapOff } from '../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../assets/icons/scrap-on.svg';
 
 const ScrapCard = ({ item, size }) => {
+  const navigate = useNavigate();
   return (
-    // <Card>
-    //   {item.is_liked ? <ScrapOn /> : <ScrapOff />}
-    //   <div>
-    //     <span>{item.name}</span>
-    //     <span>{item.info}</span>
-    //   </div>
-    //   {item.opened  && <ClosedSign>운영종료</ClosedSign>}
-    // </Card>
-    <Card size={size}>
-      {true ? <ScrapOn /> : <ScrapOff />}
+    <Card
+      size={size}
+      src={item.thumnail}
+      alt='menu img'
+      onClick={() => navigate(`/detail/${item.id}`)}
+    >
+      {item.is_liked ? <ScrapOn /> : <ScrapOff />}
+      {/* {item.thumnail && <BackgroundImg src={item.thumnail} alt='menu img' />} */}
       <SpanDiv size={size}>
-        <span>부스명입니다부스명입니다</span>
-        <span>생활관 . 음식</span>
+        <span>{item.name}</span>
+        <span>{item.info}</span>
       </SpanDiv>
-      {true && <ClosedSign>운영종료</ClosedSign>}
+      {!item.opened && <ClosedSign>운영종료</ClosedSign>}
     </Card>
   );
 };
@@ -37,10 +37,10 @@ const Card = styled.div`
   background:
     linear-gradient(
       336deg,
-      rgba(0, 0, 0, 0.2) -23.55%,
+      rgba(0, 0, 0, 0.4) -23.55%,
       rgba(0, 0, 0, 0) 129.38%
     ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
+    url(${props => props.src}) center / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
   overflow: hidden;
 
@@ -49,6 +49,15 @@ const Card = styled.div`
     top: 17px;
     right: 14px;
   }
+`;
+
+const BackgroundImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const SpanDiv = styled.div`

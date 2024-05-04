@@ -15,8 +15,8 @@ import { PatchBooth } from '../../api/booth';
 
 const BoothEditPage = () => {
   const { id } = useParams();
-  const formRef = useRef();
   const navigate = useNavigate();
+  const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
   const [name, setName] = useState('');
   const [realtime, setRealtime] = useState('');
