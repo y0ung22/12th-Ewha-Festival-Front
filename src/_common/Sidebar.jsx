@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Search } from '../assets/icons/search.svg';
 import { ReactComponent as CloseBtn } from '../assets/icons/close.svg';
 
-const Sidebar = ({ setSidebarOpen }) => {
+const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
   const closeSidebar = () => {
     setSidebarOpen(false);
   };
@@ -24,7 +24,7 @@ const Sidebar = ({ setSidebarOpen }) => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper isSidebarOpen={isSidebarOpen}>
         <IconDiv onClick={closeSidebar}>
           <CloseBtn />
         </IconDiv>
@@ -47,14 +47,24 @@ const Sidebar = ({ setSidebarOpen }) => {
 export default Sidebar;
 
 const Wrapper = styled.div`
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  position: fixed;
+  align-self: center;
+  justify-self: center;
   background: var(--wh);
   padding: 0 21px;
   z-index: 500;
+
+  left: ${({ isSidebarOpen }) => (isSidebarOpen ? '0' : '-100%')};
+  transform: translate(
+    ${({ isSidebarOpen }) => (isSidebarOpen ? '0, 0' : '-100%, 0')}
+  );
+
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 const IconDiv = styled.div`

@@ -43,7 +43,7 @@ const TopBar = ({
         )}
         <div>{isWhite ? <LogoWhite /> : <LogoGreen />}</div>
       </Wrapper>
-      {isSidebarOpen && <Sidebar setSidebarOpen={setSidebarOpen} />}
+      {isSidebarOpen && <Sidebar {...{ isSidebarOpen, setSidebarOpen }} />}
     </>
   );
 };
