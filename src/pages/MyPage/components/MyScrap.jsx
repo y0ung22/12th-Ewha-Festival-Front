@@ -71,4 +71,5 @@ const NoneDiv = styled.div`
   line-height: 0.9375rem; /* 100% */
   letter-spacing: -0.03125rem;
   margin-top: 1rem;
+  margin-bottom: 20rem;
 `;

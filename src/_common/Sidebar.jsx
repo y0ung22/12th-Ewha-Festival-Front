@@ -59,12 +59,37 @@ const Wrapper = styled.div`
   padding: 0 21px;
   z-index: 500;
 
-  left: ${({ isSidebarOpen }) => (isSidebarOpen ? '0' : '-100%')};
+  /* left: ${({ isSidebarOpen }) => (isSidebarOpen ? '0' : '-100%')};
   transform: translate(
     ${({ isSidebarOpen }) => (isSidebarOpen ? '0, 0' : '-100%, 0')}
   );
 
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); */
+
+  ${props => styled`
+    animation: 0.7s ${({ isSidebarOpen }) => (isSidebarOpen ? 'showUp' : 'showOut')} forwards;
+  `}
+
+  @keyframes showUp {
+    0% {
+      transform: translate(-100%, 0);
+    }
+
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes showOut {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    100% {
+      transform: translate(-100%, 0);
+      display: none;
+    }
+  }
 `;
 
 const IconDiv = styled.div`
