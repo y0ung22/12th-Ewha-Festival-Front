@@ -19,3 +19,13 @@ export const SignupState = atom({
     nickname: getLocalStorageValue('nickname')
   })
 });
+
+export const PlaceState = atom({
+  key: 'PlaceState',
+  default: { booth: '정문', performance: '전체' }
+});
+
+export const DayState = atom({
+  key: 'DayState',
+  default: 8
+});

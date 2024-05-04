@@ -13,18 +13,24 @@ const ScrapBook = () => {
 
   const [isLogin, setIsLogin] = useState(false);
   const [isScrap, setIsScrap] = useState(false);
-  const [boothList, setBoothList] = useState([0, 1, 2, 3]);
+  const [boothList, setBoothList] = useState([]);
 
   useEffect(() => {
     const token = getCookie('token');
+    const handleStart = async () => {
+      const homeResult = await GetBoothHome();
+      console.log(homeResult.data);
+      setBoothList(homeResult.data);
+
+      if (homeResult.data.length === 0) {
+        setIsScrap(false);
+      } else {
+        setIsScrap(true);
+      }
+    };
+
     if (token) {
       setIsLogin(true);
-      const handleStart = async () => {
-        const homeResult = await GetBoothHome();
-        console.log(homeResult.data);
-        setBoothList(homeResult.data);
-      };
-
       handleStart();
     } else {
       setIsLogin(false);

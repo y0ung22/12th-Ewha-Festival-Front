@@ -5,11 +5,14 @@ import { ReactComponent as Vector } from '../../../assets/icons/vector-white.svg
 
 import PlaceSheet from './PlaceSheet';
 
+import { useRecoilState } from 'recoil';
+import { PlaceState } from '../../../assets/recoil/apiRecoil';
+
 const PlaceList = {
   booth: [
     '정문',
     '교육관',
-    '대강당',
+    '대강 당',
     '휴웃길',
     '신세계관',
     '포스코관',
@@ -20,14 +23,15 @@ const PlaceList = {
   performance: ['전체', '학문관광장', '스포츠트랙']
 };
 
-const SelectBtn = ({ category, setChoice }) => {
+const SelectBtn = ({ category }) => {
   const placeList = PlaceList[category];
+  const [place, setPlace] = useRecoilState(PlaceState);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState(placeList[0]);
+  const [selectedPlace, setSelectedPlace] = useState(place[category]);
 
   useEffect(() => {
-    setChoice(selectedPlace);
-  }, [selectedPlace]);
+    setPlace(prev => ({ ...prev, [category]: selectedPlace }));
+  }, [selectedPlace, category, setPlace]);
 
   return (
     <>

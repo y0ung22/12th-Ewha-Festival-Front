@@ -11,13 +11,16 @@ import SelectBtn from './components/SelectBtn';
 
 import { GetBoothList } from '../../api/booth';
 
+import { useRecoilState } from 'recoil';
+import { PlaceState, DayState } from '../../assets/recoil/apiRecoil';
+
 const BoothListPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
   const [totalPage, setTotalPage] = useState(5); // 전체 페이지
 
   const [selectDay, setSelectDay] = useState(8); //선택 요일
-  const [selectPlace, setSelectPlace] = useState(null); //선택 장소
+  const [selectPlace, setSelectPlace] = useRecoilState(PlaceState); //선택 장소
 
   const [boothList, setBoothList] = useState([]);
 
@@ -26,7 +29,7 @@ const BoothListPage = () => {
       const boothListResult = await GetBoothList(
         '부스',
         selectDay,
-        selectPlace,
+        selectPlace['booth'],
         currentPage
       );
       console.log(boothListResult.data, selectDay, selectPlace);
@@ -46,7 +49,7 @@ const BoothListPage = () => {
         <TopDiv>
           <div className='box'>
             <DaySlider setChoice={setSelectDay} />
-            <SelectBtn category={'booth'} setChoice={setSelectPlace} />
+            <SelectBtn category={'booth'} />
           </div>
           <TotalBooth>총 {totalItems}개의 부스</TotalBooth>
         </TopDiv>

@@ -15,7 +15,6 @@ import { GetBoothSearch } from '../../api/booth';
 
 const SearchPage = () => {
   const navigate = useNavigate();
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const categoryList = ['전체', '부스', '공연'];
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
@@ -30,7 +29,7 @@ const SearchPage = () => {
   useEffect(() => {
     const handleSearch = async () => {
       const searchResult = await GetBoothSearch(place, keyword, currentPage);
-      console.log(searchResult.data);
+      console.log(searchResult);
       setBoothList(searchResult.data);
       setCurrentPage(searchResult.page);
       setTotalPage(searchResult.total_page);
