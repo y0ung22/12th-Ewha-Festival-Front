@@ -36,6 +36,7 @@ export const PostLogin = async (user_id, password) => {
   } catch (error) {
     if (error.response && error.response.status === 400) {
       alert(error.response.data.error.non_field_errors);
+      window.location.replace('/login');
     }
     console.error('로그인 실패', error.response);
   }
