@@ -25,9 +25,9 @@ const SelectBtn = ({ category, setChoice }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(placeList[0]);
 
-  // useEffect(() => {
-  //   setChoice(selectedPlace);
-  // }, [selectedPlace]);
+  useEffect(() => {
+    setChoice(selectedPlace);
+  }, [selectedPlace]);
 
   return (
     <>
@@ -55,6 +55,7 @@ const Wrapper = styled.div`
   padding: 0.5rem 1.0625rem;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
 
   width: max-content;
   height: max-content;

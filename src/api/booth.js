@@ -1,5 +1,19 @@
 import { http } from './http';
 
+// GET : 부스 목록 조회
+export const GetBoothList = async (type, day, college, page) => {
+  try {
+    const response = await http.get(
+      `/booths/?type=${'부스'}&day=${day}&college=${college}&page=${page}`
+    );
+    console.log(response.data);
+    return Promise.resolve(response.data);
+  } catch (error) {
+    console.error('부스 목록 조회 실패', error);
+    return Promise.reject(error);
+  }
+};
+
 // GET : 부스 상세 조회
 export const GetBoothDetail = async boothId => {
   try {
@@ -71,6 +85,32 @@ export const DeleteComment = async id => {
   } catch (error) {
     console.error('부스 댓글 삭제 실패', error.response);
     confirmLogin(error);
+    return Promise.reject(error);
+  }
+};
+
+// GET : 부스 검색
+export const GetBoothSearch = async (type, keyword, page) => {
+  try {
+    const response = await http.get(
+      `/booths/search/?keyword=${keyword}&type=${type}&page=${page}`
+    );
+    console.log(response.data);
+    return Promise.resolve(response.data);
+  } catch (error) {
+    console.error('부스 검색 조회 실패', error);
+    return Promise.reject(error);
+  }
+};
+
+// GET : 홈화면 부스 조회
+export const GetBoothHome = async () => {
+  try {
+    const response = await http.get(`/booths/home`);
+    console.log(response.data);
+    return Promise.resolve(response.data);
+  } catch (error) {
+    console.error('부스 홈 조회 실패', error);
     return Promise.reject(error);
   }
 };

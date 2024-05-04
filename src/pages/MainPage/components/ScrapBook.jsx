@@ -1,21 +1,42 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import CategorySlide from '../../../_common/CategorySlide';
 import ScrapCard from '../../../_common/ScrapCard';
 
+import { getCookie } from '../../../api/auth';
+import { GetBoothHome } from '../../../api/booth';
+
 const ScrapBook = () => {
+  const navigate = useNavigate();
+
   const [isLogin, setIsLogin] = useState(false);
-  const [isScrap, setIsScrap] = useState(true);
+  const [isScrap, setIsScrap] = useState(false);
   const [boothList, setBoothList] = useState([0, 1, 2, 3]);
 
   useEffect(() => {
-    if (boothList === null) {
-      setIsScrap(false);
+    const token = getCookie('token');
+    if (token) {
+      setIsLogin(true);
+      const handleStart = async () => {
+        const homeResult = await GetBoothHome();
+        console.log(homeResult.data);
+        setBoothList(homeResult.data);
+      };
+
+      handleStart();
     } else {
-      setIsScrap(true);
+      setIsLogin(false);
     }
-  }, [boothList]);
+  }, []);
+
+  const clickTitle = () => {
+    if (isLogin) {
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <Wrapper>
@@ -29,7 +50,7 @@ const ScrapBook = () => {
             <CategorySlide options={['부스', '메뉴', '공연']} />
           </ScrapSlider>
         ) : (
-          <ScrapTitle isLogin={isLogin} onClick={() => setIsLogin(!isLogin)}>
+          <ScrapTitle isLogin={isLogin} onClick={clickTitle}>
             {isLogin ? '나의 스크랩북 열기' : '로그인 하러가기'}
           </ScrapTitle>
         )}
@@ -131,6 +152,8 @@ const ScrapTitle = styled.div`
   background: ${({ isLogin }) =>
     isLogin ? 'var(--green01)' : 'var(--purple)'};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
 `;
 
 const BlurBox = styled.div`

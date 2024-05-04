@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as BackIcon } from '../../assets/icons/back.svg';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 
-import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
 import Pagination from '../../_common/Pagination';
 
 import ScrapCard from '../../_common/ScrapCard';
 import { CommonBtn } from '../../_common/Button';
+
+import { GetBoothSearch } from '../../api/booth';
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -19,16 +20,40 @@ const SearchPage = () => {
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
-  const [totalPage, setTotalPage] = useState(5); // 전체 페이지
+  const [totalPage, setTotalPage] = useState(1); // 전체 페이지
 
   const [place, setPlace] = useState(categoryList[0]); // 현재 페이지
+
+  const [boothList, setBoothList] = useState([]); //띄울 데이터
+  const [keyword, setKeyword] = useState('');
+
+  useEffect(() => {
+    const handleSearch = async () => {
+      const searchResult = await GetBoothSearch(place, keyword, currentPage);
+      console.log(searchResult.data);
+      setBoothList(searchResult.data);
+      setCurrentPage(searchResult.page);
+      setTotalPage(searchResult.total_page);
+      setTotalItems(searchResult.total);
+    };
+
+    const timer = setTimeout(() => {
+      handleSearch();
+    }, 300); // 사용자 입력이 멈춘 후 0.3초 뒤에 실행
+
+    return () => clearTimeout(timer);
+  }, [place, keyword, currentPage]);
 
   return (
     <>
       <TopWrapper>
         <Back onClick={() => navigate(-1)} />
         <InputBox>
-          <Input placeholder='검색어를 입력해주세요' />
+          <Input
+            placeholder='검색어를 입력해주세요'
+            value={keyword}
+            onChange={e => setKeyword(e.target.value)}
+          />
           <Search />
         </InputBox>
       </TopWrapper>
@@ -45,11 +70,11 @@ const SearchPage = () => {
               </PlaceBtn>
             ))}
           </div>
-          <TotalBooth>총 {array.length}개의 부스</TotalBooth>
+          <TotalBooth>총 {totalItems}개의 부스</TotalBooth>
         </InfoDiv>
         <ResultDiv>
-          {array.map((item, index) => (
-            <ScrapCard key={index} />
+          {boothList.map((item, index) => (
+            <ScrapCard key={index} item={item} />
           ))}
         </ResultDiv>
         <Pagination
