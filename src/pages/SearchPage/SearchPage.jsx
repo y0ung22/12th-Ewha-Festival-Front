@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, startTransition } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 
 import { ReactComponent as BackIcon } from '../../assets/icons/back.svg';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
@@ -11,37 +12,50 @@ import Pagination from '../../_common/Pagination';
 import ScrapCard from '../../_common/ScrapCard';
 import { CommonBtn } from '../../_common/Button';
 
-import { GetBoothSearch } from '../../api/booth';
+import useSearchInfiniteQuery from '../../assets/hooks/useSearchInfiniteQuery';
 
 const SearchPage = () => {
   const navigate = useNavigate();
   const categoryList = ['전체', '부스', '공연'];
 
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
-  const [totalPage, setTotalPage] = useState(1); // 전체 페이지
-
   const [place, setPlace] = useState(categoryList[0]); // 현재 페이지
 
-  const [boothList, setBoothList] = useState([]); //띄울 데이터
   const [keyword, setKeyword] = useState('');
+  const [reKeyword, setReKeyword] = useState(keyword);
 
   useEffect(() => {
-    const handleSearch = async () => {
-      const searchResult = await GetBoothSearch(place, keyword, currentPage);
-      console.log(searchResult);
-      setBoothList(searchResult.data);
-      setCurrentPage(searchResult.page);
-      setTotalPage(searchResult.total_page);
-      setTotalItems(searchResult.total);
+    const handler = setTimeout(() => {
+      setReKeyword(keyword);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
     };
+  }, [keyword]);
 
-    const timer = setTimeout(() => {
-      handleSearch();
-    }, 300); // 사용자 입력이 멈춘 후 0.3초 뒤에 실행
+  //무한 스크롤 관련 데이터
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    rootMargin: '100px'
+  });
 
-    return () => clearTimeout(timer);
-  }, [place, keyword, currentPage]);
+  const {
+    booths,
+    totalItem,
+    isLoading,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage
+  } = useSearchInfiniteQuery(place, reKeyword);
+
+  useEffect(() => {
+    if (inView) {
+      startTransition(() => {
+        fetchNextPage();
+      });
+    }
+  }, [inView]);
 
   return (
     <>
@@ -69,18 +83,18 @@ const SearchPage = () => {
               </PlaceBtn>
             ))}
           </div>
-          <TotalBooth>총 {totalItems}개의 부스</TotalBooth>
+          <TotalBooth>총 {totalItem}개의 부스</TotalBooth>
         </InfoDiv>
         <ResultDiv>
-          {boothList.map((item, index) => (
-            <ScrapCard key={index} item={item} />
-          ))}
+          <div className='infiniteBox'>
+            {booths.length > 0 &&
+              booths.map((item, index) => (
+                <ScrapCard key={index} item={item} />
+              ))}
+          </div>
+          {hasNextPage &&
+            (isFetchingNextPage ? <p>로딩중...</p> : <Observer ref={ref} />)}
         </ResultDiv>
-        <Pagination
-          total={totalPage}
-          page={currentPage}
-          setPage={setCurrentPage}
-        />
       </Wrapper>
       <Footer />
     </>
@@ -176,10 +190,16 @@ const TotalBooth = styled.div`
 `;
 
 const ResultDiv = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* justify-items: center;
-  align-items: center; */
-  gap: 0.875rem 0.625rem;
+  .infiniteBox {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem 0.625rem;
+  }
+`;
+
+const Observer = styled.div`
+  width: 80vw;
+  height: 40px;
+  background-color: var(--darkGray);
 `;
