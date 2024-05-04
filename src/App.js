@@ -57,11 +57,11 @@ function App() {
           <Route path={'/perflist'} element={<PerfListPage />} />
           <Route path={'/search'} element={<SearchPage />} />
 
-          <Route path={'/boothedit'} element={<BoothEditPage />} />
+          <Route path={'/boothedit/:id'} element={<BoothEditPage />} />
           <Route path={'/perfedit'} element={<PerfEditPage />} />
           <Route path={'/tfedit'} element={<TfEditPage />} />
-          <Route path={'/menuedit'} element={<MenuEditPage />} />
-          <Route path={'/menuedit/:id'} element={<MenuEditDetailPage />} />
+          <Route path={'/menuedit/:id'} element={<MenuEditPage />} />
+          <Route path={'/menuedit/:id/:id'} element={<MenuEditDetailPage />} />
           <Route path={'/menuadd'} element={<MenuAddPage />} />
 
           <Route path={'/notice'} element={<NoticeListPage />} />

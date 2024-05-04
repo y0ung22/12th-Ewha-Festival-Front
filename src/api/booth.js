@@ -75,6 +75,84 @@ export const DeleteComment = async id => {
   }
 };
 
+// GET : 부스 상세 조회
+export const GetBoothInfo = async boothId => {
+  try {
+    const response = await http.get(`/manages/${boothId}/`);
+    console.log(response.data.data);
+    return Promise.resolve(response.data.data);
+  } catch (error) {
+    console.error('부스 상세 조회 실패', error);
+    return Promise.reject(error);
+  }
+};
+
+// PATCH : 부스 관리자 수정
+export const PatchBooth = async ({
+  boothId,
+  formData,
+  name,
+  realtime,
+  days,
+  description,
+  contact,
+  opened
+}) => {
+  // JSON으로 변환
+  const jsonPayload = {
+    name,
+    realtime,
+    days,
+    description,
+    contact,
+    opened
+  };
+
+  formData.append('jsonPayload', JSON.stringify(jsonPayload));
+
+  try {
+    const response = await fetch(`/manages/${boothId}/`, {
+      method: 'PATCH',
+      body: formData
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      return result;
+    } else {
+      throw new Error('부스 정보 수정에 실패했습니다.');
+    }
+  } catch (error) {
+    console.error('오류:', error);
+    throw error;
+  }
+};
+
+// GET : 메뉴 목록 조회
+export const GetMenuList = async boothId => {
+  try {
+    const response = await http.get(`/manages/${boothId}/menus/`);
+    console.log(response.data.data);
+    return Promise.resolve(response.data.data);
+  } catch (error) {
+    console.error('메뉴 목록 조회 실패', error);
+    confirmLogin(error);
+    return Promise.reject(error);
+  }
+};
+
+// DELETE : 메뉴 삭제
+export const DeleteMenu = async (boothId, menuId) => {
+  try {
+    const response = await http.delete(`/manages/${boothId}/menus/${menuId}/`);
+    return Promise.resolve(response);
+  } catch (error) {
+    console.error('메뉴 삭제 실패', error.response);
+    confirmLogin(error);
+    return Promise.reject(error);
+  }
+};
+
 // 로그인이 필수적인 기능 처리 함수
 const confirmLogin = error => {
   if (error.response && error.response.status === 401) {

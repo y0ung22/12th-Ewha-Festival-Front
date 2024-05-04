@@ -1,10 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { S } from './AdminEdit.style';
 
-const BoothThumbnail = ({ onImgUpload, type1, type2 }) => {
+const BoothThumbnail = ({ onImgUpload, type1, type2, initialThum }) => {
   const [prevUrl, setPrevUrl] = useState('');
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (initialThum) {
+      setPrevUrl(initialThum);
+    }
+  }, [initialThum]);
 
   const handleImgChange = e => {
     const file = e.target.files[0];
@@ -26,8 +32,7 @@ const BoothThumbnail = ({ onImgUpload, type1, type2 }) => {
   return (
     <Wrapper>
       <S.Title text={'대표 사진'} />
-      <S.BImgContainer type={type1}>
-        {prevUrl && <img src={prevUrl} alt='Thumbnail Preview' />}
+      <S.BImgContainer type={type1} prevUrl={prevUrl}>
         <S.BImgEditBtn onClick={handleBtnClick} type={type2}>
           사진 교체하기
         </S.BImgEditBtn>

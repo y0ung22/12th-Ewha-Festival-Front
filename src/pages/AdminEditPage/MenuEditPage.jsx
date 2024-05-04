@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
@@ -7,19 +7,23 @@ import Footer from '../../_common/Footer';
 import GoMenuEdit from './components/GoMenuEdit';
 import GoMenuAdd from './components/GoMenuAdd';
 
-import { menuData } from './components/mock'; // 임시 목데이터
+// import { menuData } from './components/mock'; // 임시 목데이터
+import { GetMenuList } from '../../api/booth';
 
 const MenuEditPage = () => {
+  const { id } = useParams();
   const [menuList, setMenuList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // GET 로직 -> 추후 별도 API 파일에 작성 예정
-  });
+    GetMenuList(id)
+      .then(res => setMenuList(res))
+      .catch();
+  }, [id]);
 
   // GoMenuEdit 클릭 핸들러
-  const handleEditClick = id => {
-    navigate(`/menuedit/${id}`);
+  const handleEditClick = menuId => {
+    navigate(`/menuedit/${id}/${menuId}`);
   };
 
   // GoMenuAdd 클릭 핸들러
@@ -33,8 +37,8 @@ const MenuEditPage = () => {
       <Wrapper>
         <Container>
           <Title>수정할 메뉴를 선택해주세요</Title>
-          <List dataLength={menuData.length}>
-            {menuData.map((item, index) => (
+          <List dataLength={menuList.length}>
+            {menuList.map((item, index) => (
               <div onClick={() => handleEditClick(item.id)} key={index}>
                 <GoMenuEdit
                   key={index}
@@ -42,6 +46,8 @@ const MenuEditPage = () => {
                   price={item.price}
                   img={item.img}
                   is_soldout={item.is_soldout}
+                  boothId={id}
+                  menuId={item.id}
                 />
               </div>
             ))}

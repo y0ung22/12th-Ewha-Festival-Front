@@ -5,10 +5,21 @@ import Modal from '../../../_common/Modal';
 
 import trash from '../images/trash.svg';
 
-const GoMenuEdit = ({ menu, price, img, is_soldout }) => {
+import { DeleteMenu } from '../../../api/booth';
+
+const GoMenuEdit = ({ menu, price, img, is_soldout, boothId, menuId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  const handleDelete = async () => {
+    try {
+      await DeleteMenu(boothId, menuId);
+      toggleModal();
+    } catch (error) {
+      console.error('메뉴 삭제 중 오류 발생', error);
+    }
+  };
 
   return (
     <>
@@ -24,6 +35,7 @@ const GoMenuEdit = ({ menu, price, img, is_soldout }) => {
           msg1='메뉴를 삭제하시겠습니까?'
           msg2='삭제된 내용은 되돌릴 수 없습니다'
           msgType={1}
+          onClickYes={handleDelete}
         />
       )}
     </>
