@@ -1,15 +1,21 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen, onClickYes }) => {
+  const [clicked, setClicked] = useState(false);
   // 모달 닫기
   const handleClose = () => {
-    setIsModalOpen(false);
+    setClicked(true);
+    setTimeout(() => {
+      setIsModalOpen(false);
+      setClicked(false);
+    }, 390);
   };
 
   return (
     <ModalWrapper>
       <Background />
-      <Wrapper>
+      <Wrapper clicked={clicked}>
         <Title>{title}</Title>
         <Contents>
           <Msg1 {...{ msgType, msg2 }}>{msg1}</Msg1>
@@ -55,6 +61,27 @@ const Background = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   z-index: 99997;
+
+  animation: ${({ clicked }) =>
+    clicked ? 'modalClose 0.4s' : 'modalOpen 0.4s'};
+
+  @keyframes modalClose {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes modalOpen {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const Wrapper = styled.div`
@@ -64,6 +91,32 @@ const Wrapper = styled.div`
   border-radius: 0.625rem;
   background: var(--wh);
   z-index: 99998;
+
+  animation: ${({ clicked }) =>
+    clicked ? 'modalClose 0.4s' : 'modalOpen 0.4s'};
+
+  @keyframes modalClose {
+    from {
+      opacity: 1;
+      transform: ease-in-out;
+    }
+
+    to {
+      opacity: 0;
+      transform: ease-in-outl;
+    }
+  }
+
+  @keyframes modalOpen {
+    from {
+      opacity: 0;
+      transform: ease-out-in;
+    }
+    to {
+      opacity: 1;
+      transform: ease-out-in;
+    }
+  }
 `;
 
 const Title = styled.div`

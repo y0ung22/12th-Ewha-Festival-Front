@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import { ReactComponent as Search } from '../assets/icons/search.svg';
+import { ReactComponent as SearchIcon } from '../assets/icons/search.svg';
 import { ReactComponent as CloseBtn } from '../assets/icons/close.svg';
 
+import { getCookie } from '../api/auth';
+
 const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
+  const token = getCookie('token');
   const [clicked, setClicked] = useState(false);
+  const location = useLocation();
 
   const closeSidebar = () => {
     setClicked(true);
@@ -40,8 +44,20 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
     { menu: '주요 시설 보러가기', link: '/facility' },
     { menu: '대동제 공지 보러가기', link: '/notice' },
     { menu: '배리어프리 확인하기', link: '/barrierfree' },
-    { menu: '마이페이지', link: '/my' }
+    { menu: '마이페이지', link: token ? '/my' : '/login' }
   ];
+
+  const handleSearch = () => {
+    navigate('/search');
+  };
+
+  const handleMenuItemClick = link => {
+    if (location.pathname === link) {
+      closeSidebar();
+    } else {
+      navigate(link);
+    }
+  };
 
   return (
     <>
@@ -49,13 +65,15 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
         <IconDiv onClick={closeSidebar}>
           <CloseBtn />
         </IconDiv>
-        <SearchBar>
+        <SearchBar onClick={handleSearch}>
           <input placeholder='검색어를 입력해주세요'></input>
-          <Search />
+          <SearchIconDiv>
+            <SearchIcon />
+          </SearchIconDiv>
         </SearchBar>
         <List>
           {menuItems.map((item, index) => (
-            <Goto key={index} onClick={() => navigate(item.link)}>
+            <Goto key={index} onClick={() => handleMenuItemClick(item.link)}>
               {item.menu}
             </Goto>
           ))}
@@ -107,6 +125,7 @@ const IconDiv = styled.div`
   justify-content: flex-start;
   padding-top: 58px;
   margin-bottom: 29px;
+  cursor: pointer;
 `;
 const SearchBar = styled.div`
   width: 100%;
@@ -120,6 +139,9 @@ const SearchBar = styled.div`
   margin-top: 8px;
   border-bottom: solid 1px var(--bk01);
 
+  input {
+    width: 100%;
+  }
   input::placeholder {
     color: var(--gray04);
     font-size: 15px;
@@ -128,6 +150,9 @@ const SearchBar = styled.div`
     line-height: 20px; /* 133.333% */
     letter-spacing: -0.5px;
   }
+`;
+const SearchIconDiv = styled.div`
+  cursor: pointer;
 `;
 
 const List = styled.div`
@@ -145,4 +170,5 @@ const Goto = styled.div`
   font-weight: 600;
   line-height: 20px; /* 100% */
   letter-spacing: -0.5px;
+  cursor: pointer;
 `;
