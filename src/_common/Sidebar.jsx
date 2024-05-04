@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,25 +6,46 @@ import { ReactComponent as Search } from '../assets/icons/search.svg';
 import { ReactComponent as CloseBtn } from '../assets/icons/close.svg';
 
 const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
+  const [clicked, setClicked] = useState(false);
+
   const closeSidebar = () => {
-    setSidebarOpen(false);
+    setClicked(true);
+    setTimeout(() => {
+      setSidebarOpen(false);
+      setClicked(false);
+    }, 450);
   };
   const navigate = useNavigate();
+
+  //배경 스크롤 방지
+  useEffect(() => {
+    document.body.style.cssText = `
+      position:fixed;
+      top: 0;
+      overflow-y: scroll;
+      width:100%;
+    `;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = '';
+      window.scrollTo(0, parseInt(scrollY || '0'));
+    };
+  }, []);
 
   //목록별 이동링크
   const menuItems = [
     { menu: '부스 목록 보러가기', link: '/boothlist' },
     { menu: '공연 목록 보러가기', link: '/perflist' },
     { menu: '축제 일정 보러가기', link: '/program' },
-    { menu: '주요 시설 보러가기', link: '/' },
+    { menu: '주요 시설 보러가기', link: '/facility' },
     { menu: '대동제 공지 보러가기', link: '/notice' },
-    { menu: '배리어프리 확인하기', link: '/' },
+    { menu: '배리어프리 확인하기', link: '/barrierfree' },
     { menu: '마이페이지', link: '/my' }
   ];
 
   return (
     <>
-      <Wrapper isSidebarOpen={isSidebarOpen}>
+      <Wrapper clicked={clicked}>
         <IconDiv onClick={closeSidebar}>
           <CloseBtn />
         </IconDiv>
@@ -59,35 +80,24 @@ const Wrapper = styled.div`
   padding: 0 21px;
   z-index: 500;
 
-  /* left: ${({ isSidebarOpen }) => (isSidebarOpen ? '0' : '-100%')};
-  transform: translate(
-    ${({ isSidebarOpen }) => (isSidebarOpen ? '0, 0' : '-100%, 0')}
-  );
+  animation: ${({ clicked }) =>
+    clicked ? ' RightToLeft 0.5s' : 'LeftToRight 0.5s'};
 
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); */
-
-  ${props => styled`
-    animation: 0.7s ${({ isSidebarOpen }) => (isSidebarOpen ? 'showUp' : 'showOut')} forwards;
-  `}
-
-  @keyframes showUp {
+  @keyframes LeftToRight {
     0% {
-      transform: translate(-100%, 0);
+      transform: translate3d(-100%, 0, 0);
     }
-
-    100% {
-      transform: translate(0, 0);
+    to {
+      transform: translateZ(0);
     }
   }
 
-  @keyframes showOut {
+  @keyframes RightToLeft {
     0% {
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
-
-    100% {
-      transform: translate(-100%, 0);
-      display: none;
+    to {
+      transform: translate3d(-100%, 0, 0);
     }
   }
 `;

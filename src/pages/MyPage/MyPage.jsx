@@ -22,7 +22,7 @@ const MyPage = () => {
         <Container>
           <UserInfo />
           <CategorySlide {...{ options, handleOption, select }} />
-          <MyScrap />
+          <MyScrap select={select} />
         </Container>
         <Footer />
       </Wrapper>

@@ -66,6 +66,7 @@ const LoginBtn = styled.div`
   font-weight: 700;
   line-height: 1.625rem; /* 162.5% */
   letter-spacing: -0.031rem;
+  cursor: pointer;
 `;
 
 const KakaoLogin = styled.div`
@@ -86,6 +87,7 @@ const KakaoLogin = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  cursor: pointer;
 `;
 
 const ImgDiv = styled.div`
@@ -103,6 +105,7 @@ const GotoSignUp = styled.div`
   letter-spacing: -0.031rem;
   text-decoration-line: underline;
   margin-top: 1.25rem;
+  cursor: pointer;
 `;
 
 export const S = {

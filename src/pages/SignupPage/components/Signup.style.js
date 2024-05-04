@@ -103,6 +103,7 @@ const LoginBtn = styled.div`
     props.fieldSatisfied ? `var(--green04)` : `var(--green05)`};
   margin-top: 2.875rem;
   margin-bottom: 0.938rem;
+  cursor: pointer;
 
   color: var(--wh);
   text-align: center;
