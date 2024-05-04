@@ -37,50 +37,66 @@ const CampusMap = () => {
           ))}
         </BtnContainer>
       </FixedDiv>
-      {select === '쓰레기통'
-        ? trashcanData.map((item, index) => (
-            <FacilityCard
-              key={index}
-              location={item.location}
-              detail={item.detail}
-              img={item.img}
-              isLastElement={index === trashcanData.length - 1}
-            />
-          ))
-        : returngasData.map((item, index) => (
-            <FacilityCard
-              key={index}
-              location={item.location}
-              detail={item.detail}
-              img={item.img}
-              isLastElement={index === returngasData.length - 1}
-            />
-          ))}
+      <CardContainer>
+        {select === '쓰레기통'
+          ? trashcanData.map((item, index) => (
+              <FacilityCard
+                key={index}
+                location={item.location}
+                detail={item.detail}
+                img={item.img}
+                isLastElement={index === trashcanData.length - 1}
+              />
+            ))
+          : returngasData.map((item, index) => (
+              <FacilityCard
+                key={index}
+                location={item.location}
+                detail={item.detail}
+                img={item.img}
+                isLastElement={index === returngasData.length - 1}
+              />
+            ))}
+      </CardContainer>
     </>
   );
 };
 
 export default CampusMap;
 
-const FixedDiv = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  padding-right: 1.25rem; */
-`;
-
 const ImgBox = styled.div`
   width: 19.5rem;
   height: 18.59788rem;
   flex-shrink: 0;
-  margin-top: 1.06rem;
+  margin: 1.06rem 0 1.78rem 0;
 `;
 
 const BtnContainer = styled.div`
+  width: 19.5rem;
   display: flex;
   align-self: flex-start;
   gap: 0.625rem;
   margin-bottom: 0.88rem;
+`;
+
+const FixedDiv = styled.div`
+  position: fixed;
+  top: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  width: 22rem;
+
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  z-index: 30;
+  background-color: white;
+`;
+
+const CardContainer = styled.div`
+  position: relative;
+  top: 27.5rem;
 `;

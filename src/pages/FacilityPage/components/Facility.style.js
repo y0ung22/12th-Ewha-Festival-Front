@@ -11,20 +11,21 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 1.13rem;
+  height: 100%;
+  padding-top: 1.13rem;
   padding: 0 1.25rem;
   display: flex;
   flex-direction: column;
 `;
 
 const Title = styled.div`
-  margin-bottom: 1rem;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
+  margin-bottom: 1rem;
   color: var(--bk01);
   text-align: center;
   font-size: 1.5rem;

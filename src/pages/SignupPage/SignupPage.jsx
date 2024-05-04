@@ -14,7 +14,7 @@ import TopBar from '../../_common/TopBar';
 import Modal from '../../_common/Modal';
 
 //api & recoil
-import { PostSignup, PostCheckId } from '../../api/auth';
+import { PostSignup, GetDuplicateId } from '../../api/auth';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { SignupState } from '../../assets/recoil/apiRecoil';
 
@@ -35,10 +35,11 @@ const SignupPage = () => {
       alert('아이디를 입력해주세요.');
       return;
     }
-    const isIdChecked = PostCheckId(username);
-    setDuplicate(isIdChecked['duplicate']);
-    console.log(isIdChecked);
-    console.log('duplicate:' + duplicate);
+    GetDuplicateId(username)
+      .then(res => {
+        setDuplicate(res.data.duplicate);
+      })
+      .catch();
   };
 
   //아이디 재설정 확인
@@ -53,7 +54,7 @@ const SignupPage = () => {
   const [fieldSatisfied, setFieldSatisfied] = useState(false);
 
   useEffect(() => {
-    const isFieldSatisfied =
+    const isSatisfied =
       username &&
       duplicate !== null &&
       !duplicate &&
@@ -62,15 +63,17 @@ const SignupPage = () => {
       isPwSame &&
       nickname;
 
-    if (isFieldSatisfied) {
+    if (isSatisfied) {
       setSignupForm({
         username: username,
         password: password,
         nickname: nickname
       });
     }
-    setFieldSatisfied(isFieldSatisfied);
-  }, [username, duplicate]);
+    setFieldSatisfied(isSatisfied);
+    // console.log('duplicate: ' + duplicate);
+    // console.log('isSatisfied: ' + isSatisfied);
+  }, [username, duplicate, password, passwordCheck, isPwSame, nickname]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const clickComplete = () => {
@@ -115,7 +118,7 @@ const SignupPage = () => {
 
         <S.RowBox>
           <S.InputBox num='187px'>
-            <S.IdIcon />
+            <IdIcon />
             <input
               placeholder='아이디'
               type='text'

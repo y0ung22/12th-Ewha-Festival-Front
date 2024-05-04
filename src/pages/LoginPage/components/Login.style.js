@@ -12,35 +12,35 @@ const Wrapper = styled.div`
 const Title = styled.div`
   color: var(--bk01);
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 26px; /* 108.333% */
-  letter-spacing: -0.5px;
-  margin-top: 37px;
-  margin-bottom: 97px;
+  line-height: 1.625rem; /* 108.333% */
+  letter-spacing: -0.031rem;
+  margin-top: 2.313rem;
+  margin-bottom: 6.063rem;
 `;
 
 const Input = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 250px;
-  height: 46px;
+  width: 15.625rem;
+  height: 2.875rem;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: var(--gray02);
-  padding: 12px;
-  margin-bottom: 15px;
+  padding: 0.75rem;
+  margin-bottom: 0.938rem;
 
   input {
     background-color: var(--gray02);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
     line-height: 100%; /* 12px */
-    letter-spacing: -0.5px;
-    margin-left: 10px;
+    letter-spacing: -0.031rem;
+    margin-left: 0.625rem;
   }
   input::placeholder {
     color: var(--gray01);
@@ -51,58 +51,58 @@ const LoginBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: 46px;
+  width: 15.625rem;
+  height: 2.875rem;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: var(--green04);
-  margin-top: 46px;
-  margin-bottom: 15px;
+  margin-top: 2.875rem;
+  margin-bottom: 0.938rem;
 
   color: var(--wh);
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 26px; /* 162.5% */
-  letter-spacing: -0.5px;
+  line-height: 1.625rem; /* 162.5% */
+  letter-spacing: -0.031rem;
 `;
 
 const KakaoLogin = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 250px;
-  height: 46px;
+  width: 15.625rem;
+  height: 2.875rem;
   flex-shrink: 0;
 
-  border-radius: 12px;
+  border-radius: 0.75rem;
   background: var(--yellow);
   box-shadow: 0px 0px 6.978px 0.997px rgba(0, 0, 0, 0.03);
 
   color: var(--bk01);
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 `;
 
 const ImgDiv = styled.div`
-  margin-left: 66.78px;
-  margin-right: 13px;
+  margin-left: 4.174rem;
+  margin-right: 0.813rem;
 `;
 
 const GotoSignUp = styled.div`
   color: var(--gray05);
   text-align: center;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 26px; /* 216.667% */
-  letter-spacing: -0.5px;
+  line-height: 1.625rem; /* 216.667% */
+  letter-spacing: -0.031rem;
   text-decoration-line: underline;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 export const S = {

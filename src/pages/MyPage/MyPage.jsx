@@ -11,13 +11,16 @@ import CategorySlide from '../../_common/CategorySlide';
 
 const MyPage = () => {
   const options = ['부스', '메뉴', '공연'];
-
+  const [select, setSelect] = useState('부스');
+  const handleOption = option => {
+    setSelect(option);
+  };
   return (
     <>
       <TopBar isMenu={true} />
       <Wrapper>
         <UserInfo />
-        <CategorySlide options={options} />
+        <CategorySlide {...{ options, handleOption, select }} />
         <MyScrap />
       </Wrapper>
       <Footer />

@@ -49,7 +49,7 @@ const IdCheckBtn = styled.div`
 `;
 
 const IdCheckMsg = styled.div`
-  width: 250px;
+  width: 15.625rem;
   display: flex;
   align-items: flex-start;
   color: var(--purple);
@@ -58,8 +58,8 @@ const IdCheckMsg = styled.div`
   font-weight: 400;
   line-height: 100%; /* 8px */
   letter-spacing: -0.03125rem;
-  margin-top: 7px;
-  margin-left: 6px;
+  margin-top: 0.438rem;
+  margin-left: 0.375rem;
 `;
 
 const InputBox = styled.div`
@@ -67,20 +67,20 @@ const InputBox = styled.div`
   flex-direction: row;
   align-items: center;
   width: ${({ num }) => num};
-  height: 46px;
+  height: 2.875rem;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: var(--gray02);
-  padding: 12px;
+  padding: 0.75rem;
 
   input {
     background-color: var(--gray02);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
     line-height: 100%; /* 12px */
-    letter-spacing: -0.5px;
-    margin-left: 10px;
+    letter-spacing: -0.031rem;
+    margin-left: 0.625rem;
   }
   input::placeholder {
     color: var(--gray01);
@@ -88,29 +88,29 @@ const InputBox = styled.div`
 `;
 
 const IconDiv = styled.div`
-  margin-right: 6px;
+  margin-right: 0.375rem;
 `;
 
 const LoginBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: 46px;
+  width: 15.625rem;
+  height: 2.875rem;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: ${props =>
-    props.isFieldSatisfied ? `var(--green04)` : `var(--green05)`};
-  margin-top: 46px;
-  margin-bottom: 15px;
+    props.fieldSatisfied ? `var(--green04)` : `var(--green05)`};
+  margin-top: 2.875rem;
+  margin-bottom: 0.938rem;
 
   color: var(--wh);
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 26px; /* 162.5% */
-  letter-spacing: -0.5px;
+  line-height: 1.625rem; /* 162.5% */
+  letter-spacing: -0.031rem;
 `;
 
 export const S = {

@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import LoginKakaoPage from './pages/LoginPage/LoginKakaoPage';
 import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
 import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
 
@@ -44,6 +45,10 @@ function App() {
           <Routes>
             <Route path={'/login'} element={<LoginPage />}></Route>
             <Route path={'/signup'} element={<SignupPage />}></Route>
+            <Route
+              path={'/accounts/kakao/callback'}
+              element={<LoginKakaoPage />}
+            ></Route>
             <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
             <Route path={'/detail/:id'} element={<DetailPage />} />
             <Route path={'/about'} element={<AboutPage />} />

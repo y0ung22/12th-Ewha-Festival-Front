@@ -41,15 +41,63 @@ export const PostLogin = async (user_id, password) => {
   }
 };
 
-// POST : 아이디 중복 확인
-export const PostCheckId = async user_id => {
+// GET : 아이디 중복 확인
+export const GetDuplicateId = async username => {
   try {
-    const response = await http.post('/accounts/duplicate', {
-      username: user_id
+    const response = await http.post('/accounts/duplicate/', {
+      username: username
     });
     console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('중복확인 실패', error.response);
+  }
+};
+
+// GET : 카카오 로그인
+export const KakaoLogin = async code => {
+  try {
+    const response = await http.get(`/accounts/kakao/callback/?code=${code}`);
+    console.log(response.data);
+
+    if (response.data.data.exist) {
+      localStorage.setItem('id', response.data.data.id);
+      localStorage.setItem('nickname', response.data.data.nickname);
+      localStorage.setItem('token', response.data.data.access_token);
+      window.location.replace('/');
+    } else {
+      //   setUsername(prevState => ({
+      //     ...prevState,
+      //     username: response.data.data.username
+      //   }));
+      localStorage.setItem('username', response.data.data.username);
+      window.location.replace('/signupkakao');
+    }
+
+    return Promise.resolve(response.data);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+// POST : 카카오 닉네임 입력
+export const PostNickname = async (nickname, username) => {
+  try {
+    const response = await http.post('/accounts/kakao/nickname/', {
+      nickname: nickname,
+      username: username
+    });
+    console.log(response.data);
+    localStorage.setItem('id', response.data.data.id);
+    localStorage.setItem('nickname', response.data.data.nickname);
+    localStorage.setItem('token', response.data.data.access_token);
+    window.location.replace('/');
+    return Promise.resolve(response.data);
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      alert(error.response.data.error.non_field_errors);
+    }
+    console.error(error.response);
+    return Promise.reject(error);
   }
 };

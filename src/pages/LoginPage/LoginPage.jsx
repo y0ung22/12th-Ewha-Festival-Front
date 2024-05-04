@@ -29,6 +29,10 @@ const LoginPage = () => {
     navigate('/signup');
   };
 
+  const loginKakao = () => {
+    window.location.href = process.env.REACT_APP_KAKAO_AUTH_URL;
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -53,7 +57,7 @@ const LoginPage = () => {
           ></input>
         </S.Input>
         <S.LoginBtn onClick={handleLogin}>로그인</S.LoginBtn>
-        <S.KakaoLogin>
+        <S.KakaoLogin onClick={loginKakao}>
           <S.ImgDiv>
             <KaKaoIcon />
           </S.ImgDiv>
