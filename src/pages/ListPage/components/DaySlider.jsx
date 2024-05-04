@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const DaySlider = () => {
+const DaySlider = ({ setChoice }) => {
   const options = ['수', '목', '금'];
   const [select, setSelect] = useState(options[0]);
   const [highlightStyle, setHighlightStyle] = useState({});
@@ -9,6 +9,7 @@ const DaySlider = () => {
 
   useEffect(() => {
     const current = optionRefs.current[options.indexOf(select)];
+    setChoice(options.indexOf(select) + 8);
     if (current) {
       const { offsetLeft: left, clientWidth: width } = current;
       setHighlightStyle({ left, width });
