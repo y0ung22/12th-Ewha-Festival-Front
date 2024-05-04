@@ -1,17 +1,23 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
+import DefaultCard from '../../../assets/images/default-card.png';
+
 const TFBoothCard = ({ d, isEdit }) => {
   const navigate = useNavigate();
 
   const nav = () => {
-    const path = isEdit ? `/programedit/${d.id}` : `/program/${d.id}`;
+    const path = isEdit ? `/tfedit/${d.id}` : `/program/${d.id}`;
     navigate(path);
   };
 
   return (
     <Card onClick={nav}>
-      {d.thumnail && <BackgroundImg src={d.thumnail} alt='thumbnail' />}
+      {d.thumnail ? (
+        <BackgroundImg src={d.thumnail} alt='' />
+      ) : (
+        <BackgroundImg src={DefaultCard} alt='' />
+      )}
       <Bottom>
         <h3>{d.name}</h3>
         <div>
@@ -78,6 +84,7 @@ const Bottom = styled.div`
     flex-direction: column;
     color: var(--gray01);
     font-size: 0.75rem;
+    line-height: 1rem;
   }
 `;
 

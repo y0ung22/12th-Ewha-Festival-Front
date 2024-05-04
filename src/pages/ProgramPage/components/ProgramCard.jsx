@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const ProgramCard = ({ d }) => {
   return (
     <Card>
-      <BackgroundImg src={d.thumbnail} alt='thumbnail' />
+      <div className='overlay' />
+      <img src={d.thumbnail} alt='thumbnail' />
       <Container>
         <div>{d.name}</div>
         <div style={{ fontSize: '0.75rem' }}>
@@ -23,18 +24,31 @@ const Card = styled.div`
   height: 5rem;
   display: flex;
   border-radius: 0.625rem;
-  background:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
-    lightgray 50% / cover no-repeat;
   overflow: hidden;
-`;
 
-const BackgroundImg = styled.img`
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.625rem;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+    z-index: 1;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const Container = styled.div`
