@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { SignupState } from '../../../assets/recoil/apiRecoil';
 import { Logout } from '../../../api/auth.js';
 
 const UserInfo = () => {
+  const setLSnickname = useSetRecoilState(SignupState);
   const nickname = useRecoilValue(SignupState).nickname;
+
+  useEffect(() => {
+    const storedNickname = localStorage.getItem('nickname');
+    setLSnickname(prev => ({
+      ...prev,
+      nickname: storedNickname
+    }));
+  }, [setLSnickname]);
+
   return (
     <>
       <User>
