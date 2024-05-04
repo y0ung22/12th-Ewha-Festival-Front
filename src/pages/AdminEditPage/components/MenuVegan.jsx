@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { CommonBtn } from '../../../_common/Button';
-import { useSearchParams } from 'react-router-dom';
 
 const MenuVegan = ({ setVegan }) => {
   const [selected, setSelected] = useState('논비건');

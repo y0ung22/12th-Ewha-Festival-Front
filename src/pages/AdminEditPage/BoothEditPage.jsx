@@ -58,20 +58,25 @@ const BoothEditPage = () => {
     // 이미지 파일이 변경되었을 경우에만 추가
     if (thumnail) {
       formData.append('thumnail', thumnail);
+    } else {
     }
 
     // 나머지 데이터 추가
-    formData.append('name', name);
-    formData.append('realtime', realtime);
-    formData.append('days', JSON.stringify(days)); // Array는 JSON 형태로 변환
-    formData.append('description', description);
-    formData.append('contact', contact);
-    formData.append('opened', opened);
+    formData.append('name', boothData.name);
+    formData.append('realtime', boothData.realtime);
+    formData.append('days', JSON.stringify(boothData.days)); // Array는 JSON 형태로 변환
+    formData.append('description', boothData.description);
+    formData.append('contact', boothData.contact);
+    formData.append('opened', boothData.opened);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
 
     try {
-      await PatchBooth({ id, formData }); // 수정된 API 호출
-      //alert('부스 정보가 성공적으로 수정되었습니다.');
-      //navigate(`/detail/${id}`);
+      await PatchBooth(id, formData); // 수정된 API 호출
+      alert('부스 정보가 성공적으로 수정되었습니다.');
+      navigate(`/detail/${id}`);
     } catch (error) {
       alert('부스 정보 수정에 실패했습니다.');
     }
@@ -160,7 +165,12 @@ const BoothEditPage = () => {
           </S.Box>
           <S.Box>
             <S.Title text={'운영여부'} />
-            <BoothOpened opened={opened} setOpened={setOpened} />
+            <BoothOpened
+              opened={boothData.opened}
+              setOpened={newOpened =>
+                setBoothData({ ...boothData, opened: newOpened })
+              }
+            />
           </S.Box>
           <S.SubmitBtn type='submit'>작성 완료</S.SubmitBtn>
         </form>

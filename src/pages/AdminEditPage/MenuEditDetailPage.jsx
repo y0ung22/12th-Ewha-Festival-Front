@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { S } from './components/AdminEdit.style';
 
 import TopBar from '../../_common/TopBar';
@@ -8,31 +9,64 @@ import MenuThumEdit from './components/MenuThumEdit';
 import MenuVegan from './components/MenuVegan';
 import MenuOpened from './components/MenuOpened';
 
+import { GetMenuDetail } from '../../api/booth';
+import { PatchMenu } from '../../api/booth';
+
 const MenuEditDetailPage = () => {
-  const [img, setImg] = useState(null);
-  const [menu, setMenu] = useState('');
-  const [price, setPrice] = useState('');
-  const [vegan, setVegan] = useState('');
-  const [opened, setOpened] = useState(true);
+  const { boothId, menuId } = useParams();
+  const navigate = useNavigate();
+
+  const [menuData, setMenuData] = useState({
+    img: null,
+    menu: '',
+    price: '',
+    vegan: '',
+    opened: true
+  });
+
+  useEffect(() => {
+    GetMenuDetail(boothId, menuId)
+      .then(res => {
+        setMenuData({
+          ...menuData,
+          img: res.img,
+          menu: res.menu,
+          price: res.price,
+          vegan: res.vegan,
+          opened: res.opened
+        });
+      })
+      .catch();
+  }, [boothId, menuId]);
 
   const handleImgUpload = file => {
-    setImg(file);
+    setMenuData({ ...menuData, img: file });
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const is_soldout = opened;
+    const formData = new FormData();
 
-    const data = {
-      img,
-      menu,
-      price,
-      vegan,
-      is_soldout // True가 운영 중
-    };
+    if (menuData.img) {
+      formData.append('img', menuData.img);
+    }
+    formData.append('menu', menuData.menu);
+    formData.append('price', menuData.price);
+    formData.append('vegan', menuData.vegan);
+    formData.append('is_soldout', menuData.opened);
 
-    // PATCH 로직 -> 추후 별도 API 파일에 작성 예정
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    try {
+      await PatchMenu(boothId, menuId, formData);
+      alert('메뉴가 성공적으로 수정되었습니다.');
+      navigate(`/menuedit/${boothId}`);
+    } catch (error) {
+      alert('메뉴 수정에 실패하였습니다.');
+    }
   };
 
   return (
@@ -46,12 +80,13 @@ const MenuEditDetailPage = () => {
             <S.InputContainer>
               <textarea
                 id='menu'
-                onChange={e => setMenu(e.target.value)}
+                value={menuData.menu}
+                onChange={e =>
+                  setMenuData({ ...menuData, menu: e.target.value })
+                }
                 placeholder='메뉴명을 입력해주세요(최대 14자)'
                 maxLength='14'
-              >
-                {menu}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box num={'17px'}>
@@ -59,21 +94,31 @@ const MenuEditDetailPage = () => {
             <S.InputContainer>
               <textarea
                 id='price'
-                onChange={e => setPrice(e.target.value)}
+                value={menuData.price}
+                onChange={e =>
+                  setMenuData({ ...menuData, price: e.target.value })
+                }
                 placeholder='가격을 입력해주세요 예) 4000'
                 maxLength='14'
-              >
-                {price}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box num={'40px'}>
             <S.Title text={'비건 여부'} />
-            <MenuVegan setVegan={setVegan} />
+            <MenuVegan
+              setVegan={newVegan =>
+                setMenuData({ ...menuData, vegan: newVegan })
+              }
+            />
           </S.Box>
           <S.Box num={'40px'}>
             <S.Title text={'운영여부'} />
-            <MenuOpened opened={opened} setOpened={setOpened} />
+            <MenuOpened
+              opened={menuData.opened}
+              setOpened={newOpened =>
+                setMenuData({ ...menuData, opened: newOpened })
+              }
+            />
           </S.Box>
           <S.SubmitBtn num1={'48px'} type='submit'>
             작성 완료

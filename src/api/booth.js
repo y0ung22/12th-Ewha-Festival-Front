@@ -128,50 +128,11 @@ export const GetBoothInfo = async boothId => {
 };
 
 // PATCH : 부스 관리자 수정
-{
-  /*
-export const PatchBooth = async ({ boothId, formData, otherData }) => {
-  // JSON으로 변환
-  const jsonPayload = {
-    otherData
-  };
-
-  formData.append(
-    'jsonPayload',
-    new Blob([JSON.stringify(jsonPayload)], {
-      type: 'application/json'
-    })
-  );
-
-  try {
-    const response = await http.patch(`/manages/${boothId}/`, {
-      formData: formData
-    });
-
-    if (response.ok) {
-      const result = await response.json();
-      return result;
-    } else {
-      throw new Error('부스 정보 수정에 실패했습니다.');
-    }
-  } catch (error) {
-    console.error('오류:', error);
-    throw error;
-  }
-};
- */
-}
-
 export const PatchBooth = async (boothId, formData) => {
   try {
     const response = await http.patch(`/manages/${boothId}/`, formData);
 
-    if (!response.ok) {
-      throw new Error('이미지 업로드 실패');
-    }
-
-    const result = await response.data;
-    return result;
+    return response.data;
   } catch (error) {
     console.error('오류:', error);
     throw error;
@@ -191,12 +152,41 @@ export const GetMenuList = async boothId => {
   }
 };
 
-// POST : 메뉴 추가
-export const PostMenu = async (boothId, data) => {
+// GET : 메뉴 상세 조회
+export const GetMenuDetail = async (boothId, menuId) => {
   try {
-    const response = await http.post(`/manages/${boothId}/menus/`, {
-      data: data
-    });
+    const response = await http.get(`/manages/${boothId}/menus/${menuId}/`);
+    const menuDetail = {
+      ...response.data.data,
+      opened: response.data.data.is_soldout
+    };
+    console.log(menuDetail);
+    return Promise.resolve(menuDetail);
+  } catch (error) {
+    console.error('메뉴 상세 조회 실패', error);
+    confirmLogin(error);
+    return Promise.reject(error);
+  }
+};
+
+// PATCH : 메뉴 상세 수정
+export const PatchMenu = async (boothId, menuId, formData) => {
+  try {
+    const response = await http.patch(
+      `/manages/${boothId}/menus/${menuId}/`,
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    console.error('오류:', error);
+    throw error;
+  }
+};
+
+// POST : 메뉴 추가
+export const PostMenu = async (boothId, formData) => {
+  try {
+    const response = await http.post(`/manages/${boothId}/menus/`, formData);
     return Promise.resolve(response);
   } catch (error) {
     console.error('메뉴 추가 실패', error.response);

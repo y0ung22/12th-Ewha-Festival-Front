@@ -28,18 +28,21 @@ const MenuAddPage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const is_soldout = opened;
+    const formData = new FormData();
 
-    const data = {
-      img,
-      menu,
-      price,
-      vegan,
-      is_soldout // True = 운영 중
-    };
+    // 이미지가 있을 경우만 formData에 추가
+    if (img) {
+      formData.append('img', img);
+    }
+
+    // 나머지 데이터는 직접적으로 formData에 추가
+    formData.append('menu', menu);
+    formData.append('price', price);
+    formData.append('vegan', vegan);
+    formData.append('is_soldout', opened); // True = 운영 중
 
     try {
-      await PostMenu(id, data);
+      await PostMenu(id, formData);
       alert('메뉴가 성공적으로 추가되었습니다.');
       navigate(`/menuedit/${id}`);
     } catch (error) {

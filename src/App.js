@@ -73,7 +73,7 @@ function App() {
             <Route path={'/tfedit/:id'} element={<TfEditPage />} />
             <Route path={'/menuedit/:id'} element={<MenuEditPage />} />
             <Route
-              path={'/menuedit/:id/:id'}
+              path={'/menuedit/:boothId/:menuId'}
               element={<MenuEditDetailPage />}
             />
             <Route path={'/menuadd/:id'} element={<MenuAddPage />} />
