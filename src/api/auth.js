@@ -11,8 +11,12 @@ export const PostSignup = async (user_id, password, nickname, navigate) => {
     console.log(response.data);
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
+    //아이디(id) 저장
+    document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
+    //닉네임(nickname) 저장
+    document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
+    //토큰 저장
     document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
-
     navigate('/');
     alert('가입이 완료되었습니다.');
     return Promise.resolve(response.data);
@@ -31,7 +35,14 @@ export const PostLogin = async (user_id, password) => {
     console.log(response.data);
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
+
+    //아이디(id) 저장
+    document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
+    //닉네임(nickname) 저장
+    document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
+    //토큰 저장
     document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
+
     return Promise.resolve(response);
   } catch (error) {
     if (error.response && error.response.status === 400) {
@@ -62,19 +73,24 @@ export const KakaoLogin = async (code, setUsername) => {
     console.log(response.data);
 
     if (response.data.data.exist) {
-      localStorage.setItem('id', response.data.data.id);
-      localStorage.setItem('nickname', response.data.data.nickname);
-      localStorage.setItem('token', response.data.data.access_token);
+      //이미 접속한 적 있는 경우
+      const expirationDate = new Date();
+      expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
+      //아이디(id) 저장
+      document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
+      //닉네임(nickname) 저장
+      document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
+      //토큰 저장
+      document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
       window.location.replace('/');
     } else {
-      // setUsername(prevState => ({
-      //   ...prevState,
-      //   username: response.data.data.username
-      // }));
-      localStorage.setItem('username', response.data.data.username);
+      //처음 접속한 경우
+      const expirationDate = new Date();
+      expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
+      //아이디(username) 저장
+      document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
       window.location.replace('/signupkakao');
     }
-
     return Promise.resolve(response.data);
   } catch (error) {
     return Promise.reject(error);
@@ -89,9 +105,15 @@ export const PostNickname = async (nickname, username) => {
       username: username
     });
     console.log(response.data);
-    localStorage.setItem('id', response.data.data.id);
-    localStorage.setItem('nickname', response.data.data.nickname);
-    localStorage.setItem('token', response.data.data.access_token);
+
+    const expirationDate = new Date();
+    expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
+    //아이디(id) 저장
+    document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
+    //닉네임(nickname) 저장
+    document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
+    //토큰 저장
+    document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
 
     window.location.replace('/');
     return Promise.resolve(response.data);
@@ -105,8 +127,11 @@ export const PostNickname = async (nickname, username) => {
 };
 
 export const Logout = async () => {
+  document.cookie = 'id=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+  document.cookie =
+    'nickname=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
   document.cookie = 'token=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
-  window.localStorage.clear(); // 로컬 스토리지 초기화
+  // window.localStorage.clear(); // 로컬 스토리지 초기화
   window.location.replace('/');
 };
 

@@ -5,6 +5,7 @@ import { ReactComponent as NameIcon } from './images/namelogo.svg';
 
 import TopBar from '../../_common/TopBar';
 import Modal from '../../_common/Modal';
+import { getCookie } from '../../api/auth';
 
 //recoil
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -13,7 +14,7 @@ import { SignupState } from '../../assets/recoil/apiRecoil';
 
 const SignupKakaoPage = () => {
   const [nickname, setNickname] = useState('');
-  const kakaoUsername = localStorage.getItem('username');
+  const kakaoUsername = getCookie('username');
 
   const isFieldSatisfied = nickname;
   const [isModalOpen, setIsModalOpen] = useState(false);

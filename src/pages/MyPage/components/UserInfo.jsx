@@ -3,19 +3,20 @@ import styled from 'styled-components';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { SignupState } from '../../../assets/recoil/apiRecoil';
+import { getCookie } from '../../../api/auth.js';
 import { Logout } from '../../../api/auth.js';
 
 const UserInfo = () => {
-  const setLSnickname = useSetRecoilState(SignupState);
+  const setCookieNickname = useSetRecoilState(SignupState);
   const nickname = useRecoilValue(SignupState).nickname;
 
   useEffect(() => {
-    const storedNickname = localStorage.getItem('nickname');
-    setLSnickname(prev => ({
+    const storedNickname = getCookie('nickname');
+    setCookieNickname(prev => ({
       ...prev,
       nickname: storedNickname
     }));
-  }, [setLSnickname]);
+  }, [setCookieNickname]);
 
   return (
     <>
