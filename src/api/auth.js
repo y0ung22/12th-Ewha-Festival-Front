@@ -38,3 +38,10 @@ export const PostLogin = async (user_id, password) => {
     console.error('로그인 실패', error.response);
   }
 };
+
+//로그인 여부 확인
+export const getCookie = name => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+};
