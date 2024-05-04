@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { S } from './components/Login.style';
 
 import TopBar from '../../_common/TopBar';
+
+//icons
 import { ReactComponent as IdIcon } from '../SignupPage/images/id.svg';
 import { ReactComponent as PwIcon } from '../SignupPage/images/pw.svg';
 import { ReactComponent as KaKaoIcon } from '../SignupPage/images/kakao_login.svg';
+
+//api & recoil
 import { PostLogin } from '../../api/auth';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { SignupState } from '../../assets/recoil/apiRecoil';

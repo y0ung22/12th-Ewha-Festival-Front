@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as VectorThin } from '../../../assets/icons/vector_thin.svg';
-import { ReactComponent as CampusMap } from '../images/campus_map.svg';
 
 const FacilityCard = ({ key, location, detail, img, isLastElement }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +64,7 @@ const VectorDiv = styled.div`
   align-items: center;
   margin-right: 1.28rem;
   transform: ${props => (props.isOpen ? 'rotate(270deg)' : 'rotate(90deg)')};
+  cursor: pointer;
 `;
 
 const Place = styled.div`
