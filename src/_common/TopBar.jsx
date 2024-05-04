@@ -73,8 +73,10 @@ const Wrapper = styled.div`
 
 const Menu = styled(MenuIcon)`
   margin: 3.75rem auto 1.63rem 1.25rem;
+  cursor: pointer;
 `;
 
 const Back = styled(BackIcon)`
   margin: 3.56rem auto 1.44rem 1.25rem;
+  cursor: pointer;
 `;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { S } from './components/Detail.style';
 
 import TopBar from '../../_common/TopBar';
@@ -12,6 +12,7 @@ import { GetBoothDetail } from '../../api/booth';
 
 const DetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [boothData, setBoothData] = useState();
   const [render, setRender] = useState(1);
   const rendering = () => setRender(render + 1);
@@ -19,7 +20,11 @@ const DetailPage = () => {
   useEffect(() => {
     GetBoothDetail(id)
       .then(res => setBoothData(res))
-      .catch();
+      .catch(error => {
+        if (error.response && error.response.status === 404) {
+          navigate(-1);
+        }
+      });
   }, [id, render]);
 
   return (

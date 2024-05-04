@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
@@ -10,12 +10,17 @@ import { GetTFBoothDetail } from '../../api/tf';
 
 const ProgramDetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [boothData, setBoothData] = useState();
 
   useEffect(() => {
     GetTFBoothDetail(id)
       .then(res => setBoothData(res))
-      .catch();
+      .catch(error => {
+        if (error.response && error.response.status === 404) {
+          navigate(-1);
+        }
+      });
   }, []);
 
   return (

@@ -13,7 +13,7 @@ const List = styled.div`
   align-items: center;
   gap: 0.9375rem;
   width: 100%;
-  min-height: 30.9rem;
+  min-height: 26.9rem;
   padding: 0 1.25rem;
 `;
 

@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 import vector from '../assets/icons/page-vector.svg';
 
-const Pagination = ({ total, page, setPage }) => {
+const Pagination = ({ total, page, setPage, bottom }) => {
   const [phase, setPhase] = useState(1);
 
   const limit = 5; // 한 페이지에 보여줄 개수
@@ -14,10 +14,11 @@ const Pagination = ({ total, page, setPage }) => {
 
   useEffect(() => {
     setPhase(Math.ceil(page / limit));
+    window.scrollTo(0, 0);
   }, [page]);
 
   return (
-    <Wrapper>
+    <Wrapper style={{ marginBottom: bottom && bottom }}>
       <div>
         <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
           <img src={vector} alt='' style={{ transform: 'scaleX(-1)' }} />
