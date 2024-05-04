@@ -110,6 +110,10 @@ const Scrap = styled.div`
   position: absolute;
   top: 1.06rem;
   right: 0.88rem;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 const Text = styled.div`

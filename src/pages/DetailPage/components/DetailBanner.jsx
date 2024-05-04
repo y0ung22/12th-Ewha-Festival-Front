@@ -174,6 +174,7 @@ const Contact = styled.div`
   font-weight: 700;
   line-height: 1.25rem;
   letter-spacing: -0.03125rem;
+  cursor: pointer;
 `;
 
 const Scrap = styled.div`
@@ -186,6 +187,10 @@ const Scrap = styled.div`
   font-weight: 600;
   line-height: 1.25rem;
   letter-spacing: -0.03125rem;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 const Notice = styled.div`

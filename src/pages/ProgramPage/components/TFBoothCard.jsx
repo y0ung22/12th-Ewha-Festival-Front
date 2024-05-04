@@ -45,6 +45,7 @@ const Card = styled.div`
     rgba(0, 0, 0, 0) 129.38%
   );
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const BackgroundImg = styled.img`
