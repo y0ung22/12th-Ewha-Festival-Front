@@ -161,4 +161,5 @@ const Goto = styled.div`
   font-weight: 600;
   line-height: 20px; /* 100% */
   letter-spacing: -0.5px;
+  cursor: pointer;
 `;
