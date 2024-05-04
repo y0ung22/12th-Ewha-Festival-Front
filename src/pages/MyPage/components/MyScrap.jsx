@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as AddIcon } from '../images/save_add.svg';
 import Pagination from '../../../_common/Pagination';
 import ScrapCard from '../../../_common/ScrapCard';
+import { GetScrapBooth } from '../../../api/auth';
 
-const MyScrap = () => {
-  const isScrapped = false; // 스크랩 개수 0 or not으로 변경
+const MyScrap = ({ select }) => {
+  const [scrapBoothList, setScrapBoothList] = useState();
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
@@ -14,13 +15,29 @@ const MyScrap = () => {
 
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+  const [render, setRender] = useState(1);
+  // const rendering = () => setRender(render + 1);
+
+  useEffect(() => {
+    const handleScrap = async () => {
+      const scrapData = await GetScrapBooth(select, 1);
+
+      setScrapBoothList(scrapData.data);
+      setTotalPage(scrapData.total_page);
+      setCurrentPage(scrapData.page);
+      setTotalItems(scrapData.total);
+    };
+
+    handleScrap();
+  }, [render, select]);
+
   return (
     <>
-      {isScrapped ? (
+      {scrapBoothList ? (
         <>
           <ScrapDiv>
-            {array.map((item, index) => (
-              <ScrapCard key={index} />
+            {scrapBoothList.map((item, index) => (
+              <ScrapCard key={index} item={item} />
             ))}
           </ScrapDiv>
 
@@ -51,6 +68,8 @@ const ScrapDiv = styled.div`
   justify-items: center;
   align-items: center;
   gap: 0.875rem 0.625rem;
+
+  margin-top: 1.25rem;
 `;
 
 const NoneWrapper = styled.div`

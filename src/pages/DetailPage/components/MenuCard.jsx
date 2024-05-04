@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
+import DefaultCard from '../../../assets/images/default-card.png';
 
 import { PatchMenuScrap } from '../../../api/booth';
 
@@ -17,7 +18,12 @@ const MenuCard = ({ item }) => {
 
   return (
     <Card>
-      {item.img && <BackgroundImg src={item.img} alt='menu img' />}
+      <div className='overlay' />
+      {item.img ? (
+        <BackgroundImg src={item.img} alt='menu img' />
+      ) : (
+        <BackgroundImg src={DefaultCard} alt='menu img' />
+      )}
       <Tag>{item.vegan !== '논비건' && <span>{item.vegan}</span>}</Tag>
       <Scrap>
         {isScraped ? (
@@ -43,14 +49,26 @@ const Card = styled.div`
   height: 12.3125rem;
   flex-shrink: 0;
   border-radius: 1.25rem;
-  background:
-    linear-gradient(
-      336deg,
-      rgba(0, 0, 0, 0.2) -23.55%,
-      rgba(0, 0, 0, 0) 129.38%
-    ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+  overflow: hidden;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.7) 129.38%
+    );
+    z-index: 1;
+  }
+
+  @media (max-width: 370px) {
+    width: 100%;
+  }
 `;
 
 const BackgroundImg = styled.img`
@@ -63,6 +81,7 @@ const BackgroundImg = styled.img`
 `;
 
 const Tag = styled.div`
+  z-index: 2;
   position: absolute;
   top: 1.06rem;
   left: 1.06rem;
@@ -87,12 +106,18 @@ const Tag = styled.div`
 `;
 
 const Scrap = styled.div`
+  z-index: 5;
   position: absolute;
   top: 1.06rem;
   right: 0.88rem;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 const Text = styled.div`
+  z-index: 2;
   position: absolute;
   left: 1.06rem;
   right: 1.06rem;

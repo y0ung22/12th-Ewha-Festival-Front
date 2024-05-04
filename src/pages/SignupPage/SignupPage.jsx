@@ -132,8 +132,8 @@ const SignupPage = () => {
         {duplicate !== null && (
           <S.IdCheckMsg>
             {duplicate
-              ? '*사용 가능한 아이디입니다.'
-              : '*다른 사람이 사용 중인 아이디입니다.'}
+              ? '*다른 사람이 사용 중인 아이디입니다.'
+              : '*사용 가능한 아이디입니다.'}
           </S.IdCheckMsg>
         )}
         <S.RowBox>

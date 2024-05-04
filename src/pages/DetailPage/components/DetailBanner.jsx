@@ -5,6 +5,7 @@ import { ReactComponent as Message } from '../images/messages.svg';
 import { ReactComponent as Noti } from '../images/notification.svg';
 import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
+import DefaultBanner from '../../../assets/images/default-banner.png';
 
 import { PatchBoothScrap } from '../../../api/booth';
 
@@ -20,6 +21,12 @@ const DetailBanner = ({ b, program = false, rendering }) => {
   return (
     <>
       <Banner>
+        <div className='overlay' />
+        {b.thumnail ? (
+          <img src={b.thumnail} alt='' />
+        ) : (
+          <img src={DefaultBanner} alt='' />
+        )}
         <div>
           <span>{b.name}</span>
           {program ? (
@@ -35,12 +42,16 @@ const DetailBanner = ({ b, program = false, rendering }) => {
       </Banner>
 
       <Container>
-        <a href={b.contact} target='_blank' rel='noopener noreferrer'>
-          <Contact>
-            <span>운영진 연락처</span>
-            <Message />
-          </Contact>
-        </a>
+        {!b.contact ? (
+          <div />
+        ) : (
+          <a href={b.contact} target='_blank' rel='noopener noreferrer'>
+            <Contact>
+              <span>운영진 연락처</span>
+              <Message />
+            </Contact>
+          </a>
+        )}
 
         {program || (
           <Scrap>
@@ -54,14 +65,16 @@ const DetailBanner = ({ b, program = false, rendering }) => {
         )}
       </Container>
 
-      <Notice>
-        <div style={{ fontWeight: '800' }}>
-          <Noti />
-          실시간 공지사항
-        </div>
-        <div>{b.realtime}</div>
-        <span>수정시간 {b.updated_at}</span>
-      </Notice>
+      {b.realtime && (
+        <Notice>
+          <div style={{ fontWeight: '800' }}>
+            <Noti />
+            실시간 공지사항
+          </div>
+          <div>{b.realtime}</div>
+          <span>수정시간 {b.updated_at}</span>
+        </Notice>
+      )}
     </>
   );
 };
@@ -74,14 +87,34 @@ const Banner = styled.div`
   width: 100%;
   height: 197px;
   border-radius: 15px;
-  background: linear-gradient(
-    336deg,
-    rgba(0, 0, 0, 0.2) -23.55%,
-    rgba(0, 0, 0, 0) 129.38%
-  );
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+  overflow: hidden;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.7) 129.38%
+    );
+    z-index: 1;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   div {
+    z-index: 2;
     position: absolute;
     left: 1.12rem;
     bottom: 1rem;
@@ -141,6 +174,7 @@ const Contact = styled.div`
   font-weight: 700;
   line-height: 1.25rem;
   letter-spacing: -0.03125rem;
+  cursor: pointer;
 `;
 
 const Scrap = styled.div`
@@ -153,6 +187,10 @@ const Scrap = styled.div`
   font-weight: 600;
   line-height: 1.25rem;
   letter-spacing: -0.03125rem;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 const Notice = styled.div`

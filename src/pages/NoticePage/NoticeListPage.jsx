@@ -21,7 +21,7 @@ const NoticeListPage = () => {
   return (
     <>
       <S.Wrapper>
-        <TopBar />
+        <TopBar backLink={'/'} />
         <S.MainText>공지사항</S.MainText>
         {data && (
           <>
@@ -34,6 +34,7 @@ const NoticeListPage = () => {
               total={data.total_page}
               page={currentPage}
               setPage={setCurrentPage}
+              bottom={'4.69rem'}
             />
           </>
         )}
