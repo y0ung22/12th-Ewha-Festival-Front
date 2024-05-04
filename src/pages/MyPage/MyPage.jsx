@@ -5,7 +5,6 @@ import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
 
 import UserInfo from './components/UserInfo';
-
 import MyScrap from './components/MyScrap';
 import CategorySlide from '../../_common/CategorySlide';
 
@@ -15,15 +14,18 @@ const MyPage = () => {
   const handleOption = option => {
     setSelect(option);
   };
+
   return (
     <>
-      <TopBar isMenu={true} />
       <Wrapper>
-        <UserInfo />
-        <CategorySlide {...{ options, handleOption, select }} />
-        <MyScrap />
+        <TopBar isMenu={true} />
+        <Container>
+          <UserInfo />
+          <CategorySlide {...{ options, handleOption, select }} />
+          <MyScrap />
+        </Container>
+        <Footer />
       </Wrapper>
-      <Footer />
     </>
   );
 };
@@ -35,9 +37,16 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
   min-height: 100vh;
   background-color: var(--wh);
+`;
 
-  padding: 0 1.25rem 0 1.31rem;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 1.13rem;
+  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

@@ -7,10 +7,14 @@ import { ReactComponent as IdIcon } from '../SignupPage/images/id.svg';
 import { ReactComponent as PwIcon } from '../SignupPage/images/pw.svg';
 import { ReactComponent as KaKaoIcon } from '../SignupPage/images/kakao_login.svg';
 import { PostLogin } from '../../api/auth';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { SignupState } from '../../assets/recoil/apiRecoil';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const setLoginInfo = useSetRecoilState(SignupState);
+  const loginInfo = useRecoilValue(SignupState);
 
   //로그인 함수
   const handleLogin = async () => {
@@ -19,7 +23,13 @@ const LoginPage = () => {
     } else if (password.trim() === '') {
       alert('비밀번호를 입력해주세요.');
     } else {
-      const goLogin = await PostLogin(username, password);
+      //닉네임 값 recoil에 저장
+      const loginData = await PostLogin(username, password);
+      setLoginInfo(prevState => ({
+        ...prevState,
+        nickname: loginData.data.data.nickname
+      }));
+
       navigate('/');
     }
   };

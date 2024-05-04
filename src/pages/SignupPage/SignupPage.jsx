@@ -103,6 +103,7 @@ const SignupPage = () => {
       signupForm.nickname,
       navigate
     );
+    console.log(signupForm.username);
   };
 
   return (

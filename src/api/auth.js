@@ -55,7 +55,7 @@ export const GetDuplicateId = async username => {
 };
 
 // GET : 카카오 로그인
-export const KakaoLogin = async code => {
+export const KakaoLogin = async (code, setUsername) => {
   try {
     const response = await http.get(`/accounts/kakao/callback/?code=${code}`);
     console.log(response.data);
@@ -66,10 +66,10 @@ export const KakaoLogin = async code => {
       localStorage.setItem('token', response.data.data.access_token);
       window.location.replace('/');
     } else {
-      //   setUsername(prevState => ({
-      //     ...prevState,
-      //     username: response.data.data.username
-      //   }));
+      // setUsername(prevState => ({
+      //   ...prevState,
+      //   username: response.data.data.username
+      // }));
       localStorage.setItem('username', response.data.data.username);
       window.location.replace('/signupkakao');
     }
@@ -91,6 +91,7 @@ export const PostNickname = async (nickname, username) => {
     localStorage.setItem('id', response.data.data.id);
     localStorage.setItem('nickname', response.data.data.nickname);
     localStorage.setItem('token', response.data.data.access_token);
+
     window.location.replace('/');
     return Promise.resolve(response.data);
   } catch (error) {
@@ -101,3 +102,5 @@ export const PostNickname = async (nickname, username) => {
     return Promise.reject(error);
   }
 };
+
+export const Logout = async () => {};

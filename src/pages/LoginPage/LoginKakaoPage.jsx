@@ -8,7 +8,6 @@ import { KakaoLogin } from '../../api/auth';
 const LoginKakaoPage = () => {
   const urlParams = new URL(window.location.toString()).searchParams;
   const AUTHORIZATION_CODE = urlParams.get('code');
-
   const setUsername = useSetRecoilState(SignupState);
 
   const getData = async () => {
