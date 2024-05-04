@@ -89,4 +89,8 @@ const Input = styled.form`
       color: var(--gray05);
     }
   }
+
+  svg {
+    cursor: pointer;
+  }
 `;

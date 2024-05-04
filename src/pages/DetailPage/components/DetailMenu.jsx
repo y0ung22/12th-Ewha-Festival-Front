@@ -49,5 +49,8 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.875rem 0.625rem;
-  width: fit-content;
+
+  @media (max-width: 370px) {
+    width: 100%;
+  }
 `;

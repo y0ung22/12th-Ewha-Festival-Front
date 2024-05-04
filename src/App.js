@@ -35,6 +35,7 @@ import FacilityPage from './pages/FacilityPage/FacilityPage';
 import ProgramListPage from './pages/ProgramPage/ProgramListPage';
 import ProgramDetailPage from './pages/ProgramPage/ProgramDetailPage';
 import ProgramListEditPage from './pages/ProgramPage/ProgramListEditPage';
+import BarrierFreePage from './pages/BarrierFreePage/BarrierFreePage';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path={'/signupkakao'} element={<SignupKakaoPage />}></Route>
             <Route path={'/detail/:id'} element={<DetailPage />} />
             <Route path={'/about'} element={<AboutPage />} />
+            <Route path={'/barrierfree'} element={<BarrierFreePage />} />
             <Route path={'/facility'} element={<FacilityPage />} />
             <Route path={'/my'} element={<MyPage />} />
 
@@ -75,7 +77,7 @@ function App() {
 
             <Route path={'/program'} element={<ProgramListPage />} />
             <Route path={'/program/:id'} element={<ProgramDetailPage />} />
-            <Route path={'/programedit'} element={<ProgramListEditPage />} />
+            <Route path={'/tfedit'} element={<ProgramListEditPage />} />
             <Route path={'/makers'} element={<MakersPage />} />
           </Routes>
         </BrowserRouter>

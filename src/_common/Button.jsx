@@ -18,4 +18,5 @@ export const CommonBtn = styled.div`
   font-weight: 700;
   line-height: 20px;
   letter-spacing: -0.5px;
+  cursor: pointer;
 `;

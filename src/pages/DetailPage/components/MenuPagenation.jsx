@@ -44,5 +44,6 @@ const PageNum = styled.ul`
     height: 9px;
     border-radius: 50%;
     border: none;
+    cursor: pointer;
   }
 `;

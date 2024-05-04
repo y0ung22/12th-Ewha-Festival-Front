@@ -28,7 +28,7 @@ const DetailInfo = ({ b, program = false }) => {
                     {day.date}일 - {day.start_time} ~ {day.end_time}
                   </p>
                 ))
-              : b.day && b.day.map((day, index) => <p key={index}>{day}</p>)}
+              : b.days && b.days.map((day, index) => <p key={index}>{day}</p>)}
           </span>
         </div>
         <div>

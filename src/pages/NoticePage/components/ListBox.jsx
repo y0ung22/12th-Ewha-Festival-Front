@@ -31,6 +31,7 @@ const Container = styled.div`
   border-radius: 0.9375rem;
   border: 1px solid var(--gray04);
   background: var(--wh);
+  cursor: pointer;
 
   div:nth-child(1) {
     color: var(--bk01);
