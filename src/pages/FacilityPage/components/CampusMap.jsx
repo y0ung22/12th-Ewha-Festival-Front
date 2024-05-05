@@ -98,5 +98,5 @@ const FixedDiv = styled.div`
 
 const CardContainer = styled.div`
   position: relative;
-  top: 29.81rem;
+  margin-top: 29.81rem;
 `;

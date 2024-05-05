@@ -123,9 +123,11 @@ const Wrapper = styled.div`
 `;
 
 const IconDiv = styled.div`
+  width: 2rem;
+  height: 2rem;
   display: flex;
   justify-content: flex-start;
-  padding-top: 3.625rem;
+  margin-top: 3.625rem;
   margin-bottom: 1.813rem;
   cursor: pointer;
 `;
