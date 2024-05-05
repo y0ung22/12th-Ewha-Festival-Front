@@ -13,8 +13,8 @@ const FacilityPage = () => {
 
   return (
     <>
+      <TopBar isMenu={true} />
       <S.Wrapper>
-        <TopBar isMenu={true} />
         <S.Container>
           <CampusMap />
         </S.Container>

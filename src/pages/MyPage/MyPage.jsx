@@ -21,8 +21,8 @@ const MyPage = () => {
 
   return (
     <>
+      <TopBar isMenu={true} />
       <Wrapper>
-        <TopBar isMenu={true} />
         <Container>
           <UserInfo />
           <CategorySlide {...{ options, handleOption, select }} />
@@ -41,14 +41,17 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: auto;
+  min-width: 24.375rem;
   min-height: 100vh;
+
   background-color: var(--wh);
+  overflow: hidden;
 `;
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  padding-top: 1.13rem;
+  top: 1.13rem;
   padding: 0 1.25rem;
   display: flex;
   flex-direction: column;

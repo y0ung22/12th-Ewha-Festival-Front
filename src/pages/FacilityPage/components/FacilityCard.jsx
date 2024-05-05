@@ -40,7 +40,7 @@ const FacilityCard = ({ key, location, detail, img, isLastElement }) => {
 export default FacilityCard;
 
 const Wrapper = styled.div`
-  width: 21.8125rem;
+  width: 100%;
   height: ${props => (props.isOpen ? '19.4375rem' : '5.4375rem')};
   display: flex;
   flex-direction: column;
