@@ -82,6 +82,7 @@ const MainBottomSheet = () => {
   const toggleBottomSheet = () => {
     setIsOpen(!isOpen);
     controls.start(isOpen ? 'closed' : 'opened');
+    window.scrollTo(0, 0);
   };
 
   const handleDragEnd = (event, info) => {

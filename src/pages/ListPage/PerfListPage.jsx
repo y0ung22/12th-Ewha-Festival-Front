@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
-import Footer from '../../_common/Footer';
 import Pagination from '../../_common/Pagination';
 
 import ScrapCard from '../../_common/ScrapCard';
@@ -24,47 +23,47 @@ const PerfListPage = () => {
 
   const [perfList, setPerfList] = useState([]);
 
-  useEffect(() => {
-    const handleStart = async () => {
-      const perfListResult = await GetBoothList(
-        '공연',
-        selectDay,
-        selectPlace['performance'],
-        currentPage
-      );
-      console.log(perfListResult.data, selectDay, selectPlace['performance']);
-      setPerfList(perfListResult.data);
-      setCurrentPage(perfListResult.page);
-      setTotalPage(perfListResult.total_page);
-      setTotalItems(perfListResult.total);
-    };
+  const handleStart = async (day, place, page) => {
+    const placeValue = place === '전체' ? null : place;
+    const perfListResult = await GetBoothList('공연', day, placeValue, page);
+    setPerfList(perfListResult.data);
+    setCurrentPage(perfListResult.page);
+    setTotalPage(perfListResult.total_page);
+    setTotalItems(perfListResult.total);
+  };
 
-    handleStart();
-  }, [selectDay, selectPlace, currentPage]);
+  useEffect(() => {
+    setCurrentPage(1);
+    handleStart(selectDay, selectPlace['performance'], 1);
+  }, [selectDay, selectPlace]);
+
+  useEffect(() => {
+    handleStart(selectDay, selectPlace['performance'], currentPage);
+  }, [currentPage]);
+
   return (
     <>
       <TopBar isMenu={true} />
       <Wrapper>
         <TopDiv>
-          <div className='box'>
-            <DaySlider setChoice={setSelectDay} />
-            <SelectBtn category={'performance'} />
-          </div>
-          <TotalBooth>총 {totalItems}개의 공연</TotalBooth>
+          <DaySlider setChoice={setSelectDay} />
+          <SelectBtn category={'performance'} />
         </TopDiv>
+        <TotalBooth>총 {totalItems}개의 공연</TotalBooth>
         <ResultDiv>
           {perfList?.map((item, index) => (
             <ScrapCard key={index} item={item} />
           ))}
         </ResultDiv>
 
-        <Pagination
-          total={totalPage}
-          page={currentPage}
-          setPage={setCurrentPage}
-        />
+        {totalItems > 10 && (
+          <Pagination
+            total={totalPage}
+            page={currentPage}
+            setPage={setCurrentPage}
+          />
+        )}
       </Wrapper>
-      <Footer />
     </>
   );
 };
@@ -79,29 +78,36 @@ const Wrapper = styled.div`
   width: 100%;
   height: auto;
   min-height: 100%;
-  padding: 0 1.06rem 158.08px;
+  padding: 0 1.06rem 3.75rem;
+  min-height: 100vh;
 
   background-color: #fff;
 `;
 
 const TopDiv = styled.div`
-  width: 100%;
+  position: sticky;
+  top: 104px;
+  z-index: 99;
 
-  .box {
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  background-color: #fff;
+  width: 100%;
 `;
 
 const TotalBooth = styled.div`
   display: flex;
   justify-content: flex-start;
   text-align: left;
+  width: 100%;
   color: var(--gray05, #8e8e8e);
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 1.25rem; /* 166.667% */
   letter-spacing: -0.03125rem;
+
+  margin-bottom: 0.81rem;
 `;
 
 const ResultDiv = styled.div`

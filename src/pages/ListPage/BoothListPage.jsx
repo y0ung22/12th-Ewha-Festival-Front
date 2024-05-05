@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, startTransition } from 'react';
 import styled from 'styled-components';
+import { useInView } from 'react-intersection-observer';
 
 import TopBar from '../../_common/TopBar';
-import Footer from '../../_common/Footer';
 import Pagination from '../../_common/Pagination';
 
 import ScrapCard from '../../_common/ScrapCard';
@@ -24,48 +24,45 @@ const BoothListPage = () => {
 
   const [boothList, setBoothList] = useState([]);
 
-  useEffect(() => {
-    const handleStart = async () => {
-      const boothListResult = await GetBoothList(
-        '부스',
-        selectDay,
-        selectPlace['booth'],
-        currentPage
-      );
-      console.log(boothListResult.data, selectDay, selectPlace);
-      setBoothList(boothListResult.data);
-      setCurrentPage(boothListResult.page);
-      setTotalPage(boothListResult.total_page);
-      setTotalItems(boothListResult.total);
-    };
+  const handleStart = async (day, place, page) => {
+    const boothListResult = await GetBoothList('부스', day, place, page);
+    setBoothList(boothListResult.data);
+    setCurrentPage(boothListResult.page);
+    setTotalPage(boothListResult.total_page);
+    setTotalItems(boothListResult.total);
+  };
 
-    handleStart();
-  }, [selectDay, selectPlace, currentPage]);
+  useEffect(() => {
+    setCurrentPage(1);
+    handleStart(selectDay, selectPlace['booth'], 1);
+  }, [selectDay, selectPlace]);
+
+  useEffect(() => {
+    handleStart(selectDay, selectPlace['booth'], currentPage);
+  }, [currentPage]);
 
   return (
     <>
       <TopBar isMenu={true} />
       <Wrapper>
         <TopDiv>
-          <div className='box'>
-            <DaySlider setChoice={setSelectDay} />
-            <SelectBtn category={'booth'} />
-          </div>
-          <TotalBooth>총 {totalItems}개의 부스</TotalBooth>
+          <DaySlider setChoice={setSelectDay} />
+          <SelectBtn category={'booth'} />
         </TopDiv>
+        <TotalBooth>총 {totalItems}개의 부스</TotalBooth>
         <ResultDiv>
           {boothList?.map((item, index) => (
             <ScrapCard key={index} item={item} />
           ))}
         </ResultDiv>
-
-        <Pagination
-          total={totalPage}
-          page={currentPage}
-          setPage={setCurrentPage}
-        />
+        {totalItems > 10 && (
+          <Pagination
+            total={totalPage}
+            page={currentPage}
+            setPage={setCurrentPage}
+          />
+        )}
       </Wrapper>
-      <Footer />
     </>
   );
 };
@@ -80,36 +77,45 @@ const Wrapper = styled.div`
   width: 100%;
   height: auto;
   min-height: 100%;
-  padding: 0 1.06rem 158.08px;
+  padding: 0 1.06rem 3.75rem;
 
   background-color: #fff;
 `;
 
 const TopDiv = styled.div`
-  width: 100%;
+  position: sticky;
+  top: 104px;
+  z-index: 99;
 
-  .box {
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  background-color: #fff;
+  width: 100%;
 `;
 
 const TotalBooth = styled.div`
   display: flex;
   justify-content: flex-start;
   text-align: left;
+  width: 100%;
   color: var(--gray05, #8e8e8e);
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 1.25rem; /* 166.667% */
   letter-spacing: -0.03125rem;
+
+  margin-bottom: 0.81rem;
 `;
 
 const ResultDiv = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
   gap: 0.875rem 0.625rem;
+`;
+
+const Observer = styled.div`
+  width: 80vw;
+  height: 10px;
 `;

@@ -5,10 +5,10 @@ import { useInView } from 'react-intersection-observer';
 
 import { ReactComponent as BackIcon } from '../../assets/icons/back.svg';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
+import { ReactComponent as Info } from '../../assets/icons/info-circle.svg';
 
 import Footer from '../../_common/Footer';
-import Pagination from '../../_common/Pagination';
-
+import ScrapSkeleton from '../../_common/ScrapSkeleton';
 import ScrapCard from '../../_common/ScrapCard';
 import { CommonBtn } from '../../_common/Button';
 
@@ -26,7 +26,7 @@ const SearchPage = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setReKeyword(keyword);
-    }, 300);
+    }, 200);
 
     return () => {
       clearTimeout(handler);
@@ -83,20 +83,37 @@ const SearchPage = () => {
               </PlaceBtn>
             ))}
           </div>
-          <TotalBooth>총 {totalItem}개의 부스</TotalBooth>
+          {totalItem !== 0 ? (
+            <TotalBooth>총 {totalItem}개의 부스</TotalBooth>
+          ) : (
+            <div className='no-result' />
+          )}
         </InfoDiv>
         <ResultDiv>
-          <div className='infiniteBox'>
-            {booths.length > 0 &&
-              booths.map((item, index) => (
-                <ScrapCard key={index} item={item} />
-              ))}
-          </div>
-          {hasNextPage &&
-            (isFetchingNextPage ? <p>로딩중...</p> : <Observer ref={ref} />)}
+          {totalItem !== 0 ? (
+            <>
+              <div className='infiniteBox'>
+                {booths.map((item, index) => (
+                  <ScrapCard key={index} item={item} />
+                ))}
+              </div>
+              {hasNextPage &&
+                (isFetchingNextPage ? (
+                  <ScrapSkeleton />
+                ) : (
+                  <Observer ref={ref} />
+                ))}
+            </>
+          ) : (
+            <>
+              <Info />
+              <span className='resultspan'>
+                {'검색결과를\n찾을 수 없어요😱'}
+              </span>
+            </>
+          )}
         </ResultDiv>
       </Wrapper>
-      <Footer />
     </>
   );
 };
@@ -170,6 +187,10 @@ const InfoDiv = styled.div`
     gap: 0.62rem;
     margin: 0 0 0.81rem;
   }
+
+  .no-result {
+    margin-top: 20vh;
+  }
 `;
 
 const PlaceBtn = styled(CommonBtn)`
@@ -190,6 +211,23 @@ const TotalBooth = styled.div`
 `;
 
 const ResultDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0 3rem;
+
+  .resultspan {
+    white-space: pre-line;
+    color: var(--green02, #03d664);
+    text-align: center;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
   .infiniteBox {
     width: 100%;
     display: grid;
@@ -201,5 +239,4 @@ const ResultDiv = styled.div`
 const Observer = styled.div`
   width: 80vw;
   height: 40px;
-  background-color: var(--darkGray);
 `;

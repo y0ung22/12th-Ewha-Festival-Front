@@ -40,7 +40,6 @@ const ScrapBook = () => {
     const token = getCookie('token');
     const handleStart = async () => {
       const homeResult = await GetBoothHome();
-      console.log(homeResult.data);
       setNickname(homeResult.data.nickname);
 
       if (homeResult.data.scrap) {

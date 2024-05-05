@@ -42,7 +42,9 @@ const TopBar = ({
         ) : (
           <Back onClick={handleBackClick} />
         )}
-        <div>{isWhite ? <LogoWhite /> : <LogoGreen />}</div>
+        <div onClick={() => navigate('/')}>
+          {isWhite ? <LogoWhite /> : <LogoGreen />}
+        </div>
       </Wrapper>
       {isSidebarOpen && <Sidebar {...{ isSidebarOpen, setSidebarOpen }} />}
     </>

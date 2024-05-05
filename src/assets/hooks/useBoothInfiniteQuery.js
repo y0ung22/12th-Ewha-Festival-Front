@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 //api
-import { GetBoothSearch } from '../../api/booth';
+import { GetBoothList } from '../../api/booth';
 
-const useSearchInfiniteQuery = (place, keyword) => {
+const useBoothInfiniteQuery = (type, day, place) => {
   const {
     data,
     isLoading,
@@ -13,12 +13,13 @@ const useSearchInfiniteQuery = (place, keyword) => {
     hasNextPage,
     fetchNextPage
   } = useInfiniteQuery({
-    queryKey: ['getNewBooth', place, keyword],
+    queryKey: ['getNewBoothList', day, place],
     queryFn: ({ pageParam = 1 }) => {
-      return GetBoothSearch(place, keyword, pageParam);
+      console.log(type, day, place);
+      return GetBoothList(type, day, place, pageParam);
     },
     getNextPageParam: lastPage =>
-      lastPage.page < lastPage.total_page ? lastPage.page + 1 : undefined
+      lastPage.page !== lastPage.total_page ? lastPage.page + 1 : undefined
   });
 
   const totalItem = useMemo(() => {
@@ -44,4 +45,4 @@ const useSearchInfiniteQuery = (place, keyword) => {
   };
 };
 
-export default useSearchInfiniteQuery;
+export default useBoothInfiniteQuery;

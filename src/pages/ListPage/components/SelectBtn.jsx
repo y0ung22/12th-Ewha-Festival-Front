@@ -12,7 +12,7 @@ const PlaceList = {
   booth: [
     '정문',
     '교육관',
-    '대강 당',
+    '대강당',
     '휴웃길',
     '신세계관',
     '포스코관',
@@ -27,7 +27,7 @@ const SelectBtn = ({ category }) => {
   const placeList = PlaceList[category];
   const [place, setPlace] = useRecoilState(PlaceState);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState(place[category]);
+  const [selectedPlace, setSelectedPlace] = useState(placeList[0]);
 
   useEffect(() => {
     const placeValue = selectedPlace === '전체' ? null : selectedPlace;
