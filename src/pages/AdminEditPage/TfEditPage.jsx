@@ -9,15 +9,17 @@ import BoothThumbnail from './components/BoothThumbnail';
 import BoothTime from './components/BoothTime';
 import BoothOpened from './components/BoothOpened';
 
-// api
-import { GetBoothInfo } from '../../api/booth';
-import { PatchBooth } from '../../api/booth';
+// API
+import { GetTFBoothInfo } from '../../api/tf';
+import { PatchTFBooth } from '../../api/tf';
 
-const BoothEditPage = () => {
+const TfEditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
+  const [days, setDays] = useState([]);
+  const [thumEdited, setThumEdited] = useState(false); // 이미지 수정 여부
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -29,53 +31,44 @@ const BoothEditPage = () => {
     opened: true
   });
 
+  // 페이지 상단으로 스크롤 이동
   useEffect(() => {
-    GetBoothInfo(id)
-      .then(res => setBoothData(res))
+    window.scrollTo(0, 0);
+  }, []);
+
+  // 부스 상세 GET
+  useEffect(() => {
+    GetTFBoothInfo(id)
+      .then(res => {
+        setBoothData(res);
+        console.log('BoothData: ', res);
+      })
       .catch();
   }, [id]);
 
   const handleImgUpload = file => {
     setThumnail(file);
+    setThumEdited(true);
   };
 
-  const handleDaysEdit = updatedRows => {
-    setBoothData(prevState => ({
-      ...prevState,
-      days: updatedRows
-        .filter(row => row.selected)
-        .map(({ date, start_time, end_time }) => ({
-          date,
-          start_time,
-          end_time
-        }))
-    }));
+  const handleDaysEdit = days => {
+    setDays(days);
   };
 
+  // 수정 완료
   const handleSubmit = async e => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
 
-    console.log('boothdata.days: ', boothData.days);
-
-    const filteredDays = boothData.days
-      .filter(({ selected }) => selected)
-      .map(({ date, start_time, end_time }) => ({
-        date,
-        start_time,
-        end_time
-      }));
-
-    console.log('filteredDays: ', filteredDays);
-
-    if (thumnail) {
+    if (thumEdited && thumnail && typeof thumnail === 'object') {
       formData.append('thumnail', thumnail);
+    } else {
     }
 
     formData.append('name', boothData.name);
     formData.append('realtime', boothData.realtime);
-    formData.append('days', JSON.stringify(filteredDays));
+    formData.append('days', JSON.stringify(boothData.days));
     formData.append('description', boothData.description);
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
@@ -85,13 +78,15 @@ const BoothEditPage = () => {
     }
 
     try {
-      await PatchBooth(id, formData);
+      await PatchTFBooth(id, formData);
       alert('부스 정보가 성공적으로 수정되었습니다.');
-      navigate(`/detail/${id}`);
+      navigate(`/tfedit`);
     } catch (error) {
       alert('부스 정보 수정에 실패했습니다.');
     }
   };
+
+  console.log('!!initialTime:', boothData.days);
 
   return (
     <>
@@ -101,6 +96,8 @@ const BoothEditPage = () => {
           <BoothThumbnail
             onImgUpload={handleImgUpload}
             initialThum={boothData.thumnail}
+            type1='2'
+            type2='2'
           />
           <S.Box>
             <S.Title>{'부스 이름'}</S.Title>
@@ -139,15 +136,15 @@ const BoothEditPage = () => {
           </S.Box>
           <S.Box>
             <S.Title>{'부스 소개글'}</S.Title>
-            <S.InputContainer num='80px'>
+            <S.InputContainer num='200px'>
               <textarea
                 id='description'
                 value={boothData.description}
                 onChange={e =>
                   setBoothData({ ...boothData, description: e.target.value })
                 }
-                placeholder='부스에 대해 알리는 소개글을 작성해주세요(최대 100자)'
-                maxLength='100'
+                placeholder='부스에 대해 알리는 소개글을 작성해주세요(최대 300자)'
+                maxLength='300'
               />
             </S.InputContainer>
           </S.Box>
@@ -173,7 +170,9 @@ const BoothEditPage = () => {
               }
             />
           </S.Box>
-          <S.SubmitBtn type='submit'>작성 완료</S.SubmitBtn>
+          <S.SubmitBtn type='submit' num1='35px'>
+            작성 완료
+          </S.SubmitBtn>
         </form>
         <Footer />
       </S.Wrapper>
@@ -181,4 +180,4 @@ const BoothEditPage = () => {
   );
 };
 
-export default BoothEditPage;
+export default TfEditPage;

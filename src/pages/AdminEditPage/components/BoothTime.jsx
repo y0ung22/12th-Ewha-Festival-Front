@@ -6,13 +6,52 @@ import Modal from '../../../_common/Modal';
 import check_gray from '../images/check_gray.svg';
 import check_green from '../images/check_green.svg';
 
-const BoothTime = ({ onDayEdit }) => {
-  const [rows, setRows] = useState([
-    { date: '8일 수요일', start_time: '', end_time: '', selected: false },
-    { date: '9일 목요일', start_time: '', end_time: '', selected: false },
-    { date: '10일 금요일', start_time: '', end_time: '', selected: false }
-  ]);
+const BoothTime = ({ onDayEdit, initialTime }) => {
+  const defaultDays = [
+    { date: 8, day: '수요일' },
+    { date: 9, day: '목요일' },
+    { date: 10, day: '금요일' }
+  ];
+
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    const updatedRows = defaultDays.map(day => {
+      const initialData = initialTime.find(time => time.date === day.date) || {
+        start_time: '',
+        end_time: ''
+      };
+      return {
+        ...day,
+        ...initialData,
+        selected: !!initialData.start_time && !!initialData.end_time
+      };
+    });
+    setRows(updatedRows);
+  }, [initialTime]);
+  console.log('rows: ', rows);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleRowClick = index => {
+    const updatedRows = rows.map((row, i) => {
+      if (i === index) {
+        return {
+          ...row,
+          selected: !row.selected
+        };
+      }
+      return row;
+    });
+    setRows(updatedRows);
+  };
+
+  const handleInputChange = (index, type, value) => {
+    const updatedRows = rows.map((row, i) =>
+      i === index ? { ...row, [type]: value } : row
+    );
+    setRows(updatedRows);
+  };
 
   // 유효한 입력 형식인지 검증
   const isValidFormat = time => {
@@ -20,25 +59,8 @@ const BoothTime = ({ onDayEdit }) => {
     return regex.test(time);
   };
 
-  useEffect(() => {
-    onDayEdit(rows.filter(row => row.selected));
-  }, [rows, onDayEdit]);
-
-  const handleRowClick = index => {
-    const updatedRows = rows.map((row, i) =>
-      i === index ? { ...row, selected: !row.selected } : row
-    );
-    setRows(updatedRows);
-  };
-
-  const handleInputChange = (index, type, value) => {
-    // 입력 값 업데이트
-    const updatedRows = rows.map((row, i) =>
-      i === index ? { ...row, [type]: value } : row
-    );
-    setRows(updatedRows);
-
-    // 입력 형식 검증
+  const handleInputBlur = (index, type, value) => {
+    // 입력 형식 검증 -> 경고 모달
     if (type === 'start_time' || type === 'end_time') {
       if (!isValidFormat(value)) {
         setIsModalOpen(true);
@@ -57,13 +79,18 @@ const BoothTime = ({ onDayEdit }) => {
               src={row.selected ? check_green : check_gray}
               onClick={() => handleRowClick(index)}
             />
-            <Text style={{ width: '62px' }}>{row.date}</Text>
+            <Text style={{ width: '62px' }}>
+              {row.date}일 {row.day}
+            </Text>
             <InputContainer>
               <input
                 type='text'
                 value={row.start_time}
                 onChange={e =>
                   handleInputChange(index, 'start_time', e.target.value)
+                }
+                onBlur={e =>
+                  handleInputBlur(index, 'start_time', e.target.value)
                 }
                 placeholder='예)9:00'
                 disabled={!row.selected}
@@ -77,6 +104,7 @@ const BoothTime = ({ onDayEdit }) => {
                 onChange={e =>
                   handleInputChange(index, 'end_time', e.target.value)
                 }
+                onBlur={e => handleInputBlur(index, 'end_time', e.target.value)}
                 placeholder='예)13:00'
                 disabled={!row.selected}
               />

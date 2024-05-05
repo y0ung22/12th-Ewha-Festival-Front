@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
@@ -6,14 +7,36 @@ import Footer from '../../_common/Footer';
 import GoMenuEdit from './components/GoMenuEdit';
 import GoMenuAdd from './components/GoMenuAdd';
 
-import { menuData } from './components/mock'; // 임시 목데이터
+// import { menuData } from './components/mock'; // 임시 목데이터
+import { GetMenuList } from '../../api/booth';
 
 const MenuEditPage = () => {
+  const { id } = useParams();
   const [menuList, setMenuList] = useState([]);
+  const navigate = useNavigate();
 
+  // MenuEditPage 컴포넌트 내부
   useEffect(() => {
-    // GET 로직 -> 추후 별도 API 파일에 작성 예정
-  });
+    fetchMenuList();
+  }, [id]);
+
+  const fetchMenuList = () => {
+    GetMenuList(id)
+      .then(res => setMenuList(res))
+      .catch(error =>
+        console.error('메뉴 목록을 불러오는데 실패했습니다.', error)
+      );
+  };
+
+  // GoMenuEdit 클릭 핸들러
+  const handleEditClick = menuId => {
+    navigate(`/menuedit/${id}/${menuId}`);
+  };
+
+  // GoMenuAdd 클릭 핸들러
+  const handleAddClick = () => {
+    navigate(`/menuadd/${id}`);
+  };
 
   return (
     <>
@@ -21,17 +44,25 @@ const MenuEditPage = () => {
       <Wrapper>
         <Container>
           <Title>수정할 메뉴를 선택해주세요</Title>
-          <List dataLength={menuData.length}>
-            {menuData.map((item, index) => (
-              <GoMenuEdit
-                key={index}
-                menu={item.menu}
-                price={item.price}
-                img={item.img}
-                is_soldout={item.is_soldout}
-              />
+          <List dataLength={menuList.length}>
+            {menuList.map((item, index) => (
+              <div key={index}>
+                <GoMenuEdit
+                  key={index}
+                  menu={item.menu}
+                  price={item.price}
+                  img={item.img}
+                  is_soldout={item.is_soldout}
+                  boothId={id}
+                  menuId={item.id}
+                  onEditClick={() => handleEditClick(item.id)}
+                  onMenuDeleted={fetchMenuList}
+                />
+              </div>
             ))}
-            <GoMenuAdd />
+            <div onClick={handleAddClick}>
+              <GoMenuAdd />
+            </div>
           </List>
         </Container>
         <Footer />

@@ -20,23 +20,21 @@ const CampusMap = () => {
 
   return (
     <>
-      <FixedDiv>
-        <S.Title>주요 시설 위치</S.Title>
-        <ImgBox>
-          <CampusMapImg />
-        </ImgBox>
-        <BtnContainer>
-          {options.map(opt => (
-            <CommonBtn
-              key={opt}
-              onClick={() => handleOption(opt)}
-              color={select === opt ? 'green' : undefined}
-            >
-              {opt}
-            </CommonBtn>
-          ))}
-        </BtnContainer>
-      </FixedDiv>
+      <S.Title>주요 시설 위치</S.Title>
+      <ImgBox>
+        <CampusMapImg />
+      </ImgBox>
+      <BtnContainer>
+        {options.map(opt => (
+          <CommonBtn
+            key={opt}
+            onClick={() => handleOption(opt)}
+            color={select === opt ? 'green' : undefined}
+          >
+            {opt}
+          </CommonBtn>
+        ))}
+      </BtnContainer>
       <CardContainer>
         {select === '쓰레기통'
           ? trashcanData.map((item, index) => (
@@ -69,6 +67,8 @@ const ImgBox = styled.div`
   height: 18.59788rem;
   flex-shrink: 0;
   margin: 1.06rem 0 1.78rem 0;
+  display: flex;
+  align-self: center;
 `;
 
 const BtnContainer = styled.div`
@@ -79,24 +79,6 @@ const BtnContainer = styled.div`
   margin-bottom: 0.88rem;
 `;
 
-const FixedDiv = styled.div`
-  position: fixed;
-  top: 6.5rem;
-  display: flex;
-  flex-direction: column;
-  /* width: 100%; */
-  width: 22rem;
-
-  background-color: white;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  align-self: center;
-  z-index: 30;
-  background-color: white;
-`;
-
 const CardContainer = styled.div`
   position: relative;
-  top: 29.81rem;
 `;

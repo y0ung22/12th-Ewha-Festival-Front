@@ -9,15 +9,16 @@ import BoothThumbnail from './components/BoothThumbnail';
 import BoothTime from './components/BoothTime';
 import BoothOpened from './components/BoothOpened';
 
-// api
+// api - 내 부스 정보 수정과 동일
 import { GetBoothInfo } from '../../api/booth';
 import { PatchBooth } from '../../api/booth';
 
-const BoothEditPage = () => {
+const PerfEditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
+  const [days, setDays] = useState([]);
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -34,22 +35,12 @@ const BoothEditPage = () => {
       .then(res => setBoothData(res))
       .catch();
   }, [id]);
-
   const handleImgUpload = file => {
     setThumnail(file);
   };
 
-  const handleDaysEdit = updatedRows => {
-    setBoothData(prevState => ({
-      ...prevState,
-      days: updatedRows
-        .filter(row => row.selected)
-        .map(({ date, start_time, end_time }) => ({
-          date,
-          start_time,
-          end_time
-        }))
-    }));
+  const handleDaysEdit = days => {
+    setDays(days);
   };
 
   const handleSubmit = async e => {
@@ -57,25 +48,13 @@ const BoothEditPage = () => {
 
     const formData = new FormData(formRef.current);
 
-    console.log('boothdata.days: ', boothData.days);
-
-    const filteredDays = boothData.days
-      .filter(({ selected }) => selected)
-      .map(({ date, start_time, end_time }) => ({
-        date,
-        start_time,
-        end_time
-      }));
-
-    console.log('filteredDays: ', filteredDays);
-
     if (thumnail) {
       formData.append('thumnail', thumnail);
     }
 
     formData.append('name', boothData.name);
     formData.append('realtime', boothData.realtime);
-    formData.append('days', JSON.stringify(filteredDays));
+    formData.append('days', JSON.stringify(boothData.days)); // Array는 JSON 형태로 변환
     formData.append('description', boothData.description);
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
@@ -85,7 +64,7 @@ const BoothEditPage = () => {
     }
 
     try {
-      await PatchBooth(id, formData);
+      await PatchBooth(id, formData); // 수정된 API 호출
       alert('부스 정보가 성공적으로 수정되었습니다.');
       navigate(`/detail/${id}`);
     } catch (error) {
@@ -103,7 +82,7 @@ const BoothEditPage = () => {
             initialThum={boothData.thumnail}
           />
           <S.Box>
-            <S.Title>{'부스 이름'}</S.Title>
+            <S.Title>{'공연 이름'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='name'
@@ -111,7 +90,7 @@ const BoothEditPage = () => {
                 onChange={e =>
                   setBoothData({ ...boothData, name: e.target.value })
                 }
-                placeholder='부스명을 입력해주세요(최대 14자)'
+                placeholder='공연명을 입력해주세요(최대 14자)'
                 maxLength='14'
               />
             </S.InputContainer>
@@ -131,14 +110,14 @@ const BoothEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 운영시간'}</S.Title>
+            <S.Title>{'공연 운영시간'}</S.Title>
             <BoothTime
               onDayEdit={handleDaysEdit}
               initialTime={boothData.days}
             />
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 소개글'}</S.Title>
+            <S.Title>{'공연 소개글'}</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='description'
@@ -146,13 +125,13 @@ const BoothEditPage = () => {
                 onChange={e =>
                   setBoothData({ ...boothData, description: e.target.value })
                 }
-                placeholder='부스에 대해 알리는 소개글을 작성해주세요(최대 100자)'
+                placeholder='공연에 대해 알리는 소개글을 작성해주세요(최대 100자)'
                 maxLength='100'
               />
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 운영진 연락처'}</S.Title>
+            <S.Title>{'공연 운영진 연락처'}</S.Title>
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
@@ -160,7 +139,7 @@ const BoothEditPage = () => {
                 onChange={e =>
                   setBoothData({ ...boothData, contact: e.target.value })
                 }
-                placeholder='문의를 위한 부스 운영진 연락처를 남겨주세요&#13;&#10;예) 카카오톡 오픈채팅 링크'
+                placeholder='문의를 위한 공연 운영진 연락처를 남겨주세요&#13;&#10;예) 카카오톡 오픈채팅 링크'
               />
             </S.InputContainer>
           </S.Box>
@@ -181,4 +160,4 @@ const BoothEditPage = () => {
   );
 };
 
-export default BoothEditPage;
+export default PerfEditPage;

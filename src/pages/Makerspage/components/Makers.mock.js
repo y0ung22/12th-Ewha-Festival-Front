@@ -1,4 +1,14 @@
 import example from '../images/example.webp';
+// lions 이미지
+// tf 이미지
+import tf1 from '../images/tf1.jpg';
+import tf2 from '../images/tf2.jpg';
+import tf3 from '../images/tf3.png';
+import tf4 from '../images/tf4.jpg';
+import tf5 from '../images/tf5.jpg';
+import tf6 from '../images/tf6.jpg';
+import tf7 from '../images/tf7.jpg';
+import tf8 from '../images/tf8.png';
 
 export const LionsData = [
   {
@@ -54,7 +64,7 @@ export const LionsData = [
     info: '컴공 21',
     name: '허채린',
     part: '백엔드',
-    work: '메인 페이지\n검색 페이지',
+    work: '로그인/회원가입\n카카오 로그인\n마이페이지\n부스 수정 페이지\n데이터 수합 페이지',
     img: example
   },
   {
@@ -62,7 +72,7 @@ export const LionsData = [
     info: '독문 22',
     name: '심예원',
     part: '백엔드',
-    work: '메인 페이지\n검색 페이지',
+    work: '부스 수정 페이지\n메뉴 수정 페이지\n공지 조회 페이지\n공지 등록/수정/삭제\n상설 부스 페이지',
     img: example
   },
   {
@@ -70,7 +80,7 @@ export const LionsData = [
     info: '컴공 20',
     name: '이다빈',
     part: '백엔드',
-    work: '메인 페이지\n검색 페이지',
+    work: '메인 페이지\n검색 페이지\n부스 상세 페이지\n부스 스크랩 구현\n방명록 작성/수정/삭제',
     img: example
   }
 ];
@@ -82,7 +92,7 @@ export const TfData = [
     name: '반지민',
     part: '위원장',
     work: '전체 총괄',
-    img: example
+    img: tf1
   },
   {
     id: 2,
@@ -90,7 +100,7 @@ export const TfData = [
     name: '이진',
     part: '권리',
     work: '권리부스 운영\n배리어프리존 관리\n비거니즘 가이드라인 배포',
-    img: example
+    img: tf2
   },
   {
     id: 3,
@@ -98,7 +108,7 @@ export const TfData = [
     name: '최현서',
     part: '기획',
     work: '(준) 축제준비위원회\n기획 프로그램,\n개막식 및 폐막식,\n영화제 기획 및 운영',
-    img: example
+    img: tf3
   },
   {
     id: 4,
@@ -106,7 +116,7 @@ export const TfData = [
     name: '송수진',
     part: '무대',
     work: '공연 프로그램\n기획 및 운영',
-    img: example
+    img: tf4
   },
   {
     id: 5,
@@ -114,7 +124,7 @@ export const TfData = [
     name: '이지원',
     part: '홍보',
     work: '전체 축제 홍보 및\n홍보물 제작, 배포',
-    img: example
+    img: tf5
   },
   {
     id: 6,
@@ -122,7 +132,7 @@ export const TfData = [
     name: '신지원',
     part: '대외협력',
     work: '아티스트, 프로모션 업체\n컨택 및 관리\n야시장 기획 및 관리',
-    img: example
+    img: tf6
   },
   {
     id: 7,
@@ -130,7 +140,7 @@ export const TfData = [
     name: '김선영',
     part: '사무',
     work: '예결산안 관리\n예산 관리',
-    img: example
+    img: tf7
   },
   {
     id: 8,
@@ -138,6 +148,6 @@ export const TfData = [
     name: '박서림',
     part: '추천위원',
     work: '총학생회 및 중운위 소통',
-    img: example
+    img: tf8
   }
 ];

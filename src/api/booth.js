@@ -1,4 +1,4 @@
-import { http } from './http';
+import { http, getCookie } from './http';
 
 // GET : 부스 목록 조회
 export const GetBoothList = async (type, day, college, page) => {
@@ -105,12 +105,109 @@ export const GetBoothSearch = async (type, keyword, page) => {
 
 // GET : 홈화면 부스 조회
 export const GetBoothHome = async () => {
+  const token = getCookie('token');
   try {
-    const response = await http.get(`/booths/home`);
+    const response = await http.get(`/booths/home`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('부스 홈 조회 실패', error);
+    return Promise.reject(error);
+  }
+};
+
+// GET : 부스 상세 조회
+export const GetBoothInfo = async boothId => {
+  try {
+    const response = await http.get(`/manages/${boothId}/`);
+    console.log(response.data.data);
+    return Promise.resolve(response.data.data);
+  } catch (error) {
+    console.error('부스 상세 조회 실패', error);
+    return Promise.reject(error);
+  }
+};
+
+// PATCH : 부스 관리자 수정
+export const PatchBooth = async (boothId, formData) => {
+  try {
+    const response = await http.patch(`/manages/${boothId}/`, formData);
+
+    return response.data;
+  } catch (error) {
+    console.error('오류:', error);
+    throw error;
+  }
+};
+
+// GET : 메뉴 목록 조회
+export const GetMenuList = async boothId => {
+  try {
+    const response = await http.get(`/manages/${boothId}/menus/`);
+    console.log(response.data.data);
+    return Promise.resolve(response.data.data);
+  } catch (error) {
+    console.error('메뉴 목록 조회 실패', error);
+    confirmLogin(error);
+    return Promise.reject(error);
+  }
+};
+
+// GET : 메뉴 상세 조회
+export const GetMenuDetail = async (boothId, menuId) => {
+  try {
+    const response = await http.get(`/manages/${boothId}/menus/${menuId}/`);
+    const menuDetail = {
+      ...response.data.data,
+      opened: response.data.data.is_soldout
+    };
+    console.log(menuDetail);
+    return Promise.resolve(menuDetail);
+  } catch (error) {
+    console.error('메뉴 상세 조회 실패', error);
+    confirmLogin(error);
+    return Promise.reject(error);
+  }
+};
+
+// PATCH : 메뉴 상세 수정
+export const PatchMenu = async (boothId, menuId, formData) => {
+  try {
+    const response = await http.patch(
+      `/manages/${boothId}/menus/${menuId}/`,
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    console.error('오류:', error);
+    throw error;
+  }
+};
+
+// POST : 메뉴 추가
+export const PostMenu = async (boothId, formData) => {
+  try {
+    const response = await http.post(`/manages/${boothId}/menus/`, formData);
+    return Promise.resolve(response);
+  } catch (error) {
+    console.error('메뉴 추가 실패', error.response);
+    confirmLogin(error);
+    return Promise.reject(error);
+  }
+};
+
+// DELETE : 메뉴 삭제
+export const DeleteMenu = async (boothId, menuId) => {
+  try {
+    const response = await http.delete(`/manages/${boothId}/menus/${menuId}/`);
+    return Promise.resolve(response);
+  } catch (error) {
+    console.error('메뉴 삭제 실패', error.response);
+    confirmLogin(error);
     return Promise.reject(error);
   }
 };

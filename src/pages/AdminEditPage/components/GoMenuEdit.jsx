@@ -1,19 +1,49 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Modal from '../../../_common/Modal';
 
 import trash from '../images/trash.svg';
 
-const GoMenuEdit = ({ menu, price, img, is_soldout }) => {
+import { DeleteMenu } from '../../../api/booth';
+
+const GoMenuEdit = ({
+  menu,
+  price,
+  img,
+  is_soldout,
+  boothId,
+  menuId,
+  onEditClick,
+  onMenuDeleted
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
+  const executeDelete = async () => {
+    try {
+      await DeleteMenu(boothId, menuId);
+      alert('메뉴가 성공적으로 삭제되었습니다.');
+      toggleModal();
+      navigate(`/menuedit/${boothId}`);
+      onMenuDeleted();
+    } catch (error) {
+      alert('메뉴 삭제에 실패했습니다.');
+    }
+  };
+
+  const handleDelete = e => {
+    e.stopPropagation();
+    toggleModal();
+  };
+
   return (
     <>
-      <Box img={img}>
-        <img src={trash} alt='삭제' onClick={toggleModal} />
+      <Box img={img} onClick={onEditClick}>
+        <img src={trash} alt='삭제' onClick={handleDelete} />
         <Name>{menu}</Name>
         <Price>{price}원</Price>
         {is_soldout || <Overlay>운영 종료</Overlay>}
@@ -24,6 +54,7 @@ const GoMenuEdit = ({ menu, price, img, is_soldout }) => {
           msg1='메뉴를 삭제하시겠습니까?'
           msg2='삭제된 내용은 되돌릴 수 없습니다'
           msgType={1}
+          onClickYes={executeDelete}
         />
       )}
     </>

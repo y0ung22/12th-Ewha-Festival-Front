@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 // (공통) 중앙 정렬 Wrapper
 const Wrapper = styled.div`
@@ -7,27 +7,22 @@ const Wrapper = styled.div`
   background-color: white;
 
   display: flex;
-  padding: 0px 20px;
+  //padding: 0px 20px;
   flex-direction: column;
   align-items: center;
 `;
 
 // (공통) Title+요소 묶는 박스
 const Box = styled.div`
-  margin-top: ${({ num }) => num || '25px'};
+  margin-top: ${({ num }) => num || '35px'};
 
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
 `;
 
-// (공통) 두꺼운 제목 텍스트
-const Title = ({ text }) => {
-  return <TitleText>{text}</TitleText>;
-};
-
-const TitleText = styled.div`
+const Title = styled.div`
   color: var(--bk01);
   font-family: Pretendard;
   font-size: 15px;
@@ -77,8 +72,8 @@ const InputContainer = styled.div`
 
 // (공통) 작성 완료 버튼
 const SubmitBtn = styled.button`
-  margin-top: ${({ num1 }) => num1 || '121px;'};
-  margin-bottom: ${({ num2 }) => num2 || '178px;'};
+  margin-top: ${({ num1 }) => num1 || '35px;'};
+  margin-bottom: ${({ num2 }) => num2 || '150px;'};
 
   display: inline-flex;
   padding: 10px 145px;
@@ -106,7 +101,6 @@ const SubmitBtn = styled.button`
 const ImgBtn = styled.div`
   position: absolute;
   display: flex;
-  height: 54px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -117,19 +111,46 @@ const ImgBtn = styled.div`
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
-  line-height: 20px; /* 125% */
   letter-spacing: -0.5px;
 
   cursor: pointer;
 `;
 
 // (BoothEditPage) 부스 썸네일 수정
+const boxType = {
+  1: css`
+    padding-top: 143px;
+    width: 350px;
+    height: 197px;
+  `,
+  2: css`
+    padding-top: 162px;
+    width: 170px;
+    height: 284px;
+  `
+};
+
+const btnType = {
+  1: css`
+    padding: 10px 133px;
+    width: 350px;
+    height: 54px;
+    font-weight: 700;
+    line-height: 20px; /* 125% */
+  `,
+  2: css`
+    padding: 49px 43px;
+    width: 170px;
+    height: 122px;
+    font-weight: 500;
+    line-height: 22px; /* 137.5% */
+  `
+};
+
 const BImgContainer = styled.div`
+  ${({ type }) => boxType[type] || boxType[1]}
+
   display: flex;
-  width: 350px;
-  height: 197px;
-  padding-top: 143px;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
@@ -139,13 +160,13 @@ const BImgContainer = styled.div`
       rgba(0, 0, 0, 0.2) -23.55%,
       rgba(0, 0, 0, 0) 129.38%
     ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
+    url(${({ prevUrl }) => prevUrl}) 50% / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 `;
 
 const BImgEditBtn = styled(ImgBtn)`
-  width: 350px;
-  padding: 10px 133px;
+  ${({ type }) => btnType[type] || btnType[1]}
+
   background: rgba(0, 0, 0, 0.34);
   border-radius: 0px 0px 15px 15px;
 `;
@@ -156,12 +177,24 @@ const MImgContainer = styled.div`
   height: 197px;
 
   border-radius: 20px;
-  background: var(--green05);
+  background:
+    linear-gradient(
+      336deg,
+      rgba(0, 0, 0, 0.2) -23.55%,
+      rgba(0, 0, 0, 0) 129.38%
+    ),
+    url(${({ prevUrl }) => prevUrl}) 50% / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 `;
 
 const MImgAddBtn = styled(ImgBtn)`
   width: 170px;
+  height: 54px;
   padding: 10px;
   margin-top: 143px;
   background: rgba(0, 0, 0, 0.35);
