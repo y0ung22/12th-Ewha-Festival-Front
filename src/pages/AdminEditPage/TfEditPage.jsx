@@ -18,8 +18,6 @@ const TfEditPage = () => {
   const navigate = useNavigate();
   const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
-  const [days, setDays] = useState([]);
-  const [thumEdited, setThumEdited] = useState(false); // 이미지 수정 여부
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -39,36 +37,37 @@ const TfEditPage = () => {
   // 부스 상세 GET
   useEffect(() => {
     GetTFBoothInfo(id)
-      .then(res => {
-        setBoothData(res);
-        console.log('BoothData: ', res);
-      })
+      .then(res => setBoothData(res))
       .catch();
   }, [id]);
 
   const handleImgUpload = file => {
     setThumnail(file);
-    setThumEdited(true);
   };
 
-  const handleDaysEdit = days => {
-    setDays(days);
-  };
+  const [rows, setRows] = useState([]);
 
   // 수정 완료
   const handleSubmit = async e => {
     e.preventDefault();
 
+    const selectedRows = rows.filter(row => row.selected);
+
+    const updatedRows = selectedRows.map(({ date, start_time, end_time }) => ({
+      date,
+      start_time,
+      end_time
+    }));
+
     const formData = new FormData(formRef.current);
 
-    if (thumEdited && thumnail && typeof thumnail === 'object') {
+    if (thumnail) {
       formData.append('thumnail', thumnail);
-    } else {
     }
 
     formData.append('name', boothData.name);
     formData.append('realtime', boothData.realtime);
-    formData.append('days', JSON.stringify(boothData.days));
+    formData.append('days', JSON.stringify(updatedRows));
     formData.append('description', boothData.description);
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
@@ -100,7 +99,7 @@ const TfEditPage = () => {
             type2='2'
           />
           <S.Box>
-            <S.Title>{'부스 이름'}</S.Title>
+            <S.Title>부스 이름</S.Title>
             <S.InputContainer>
               <textarea
                 id='name'
@@ -114,7 +113,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'실시간 공지사항'}</S.Title>
+            <S.Title>실시간 공지사항</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='realtime'
@@ -128,14 +127,15 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 운영시간'}</S.Title>
+            <S.Title>부스 운영시간</S.Title>
             <BoothTime
-              onDayEdit={handleDaysEdit}
+              rows={rows}
+              setRows={setRows}
               initialTime={boothData.days}
             />
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 소개글'}</S.Title>
+            <S.Title>부스 소개글</S.Title>
             <S.InputContainer num='200px'>
               <textarea
                 id='description'
@@ -149,7 +149,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 운영진 연락처'}</S.Title>
+            <S.Title>부스 운영진 연락처</S.Title>
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
@@ -162,7 +162,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'운영 여부'}</S.Title>
+            <S.Title>운영 여부</S.Title>
             <BoothOpened
               opened={boothData.opened}
               setOpened={newOpened =>

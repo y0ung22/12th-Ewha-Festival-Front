@@ -1,7 +1,6 @@
 // 메뉴 상세 수정 대표 사진 컴포넌트
 
 import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
 import { S } from './AdminEdit.style';
 import default_card from '../../../assets/images/default-card.png';
 
@@ -35,8 +34,8 @@ const MenuThumEdit = ({ onImgUpload, initialThum }) => {
   };
 
   return (
-    <Wrapper>
-      <S.Title text={'대표 사진'} />
+    <S.Wrapper2>
+      <S.Title>대표 사진</S.Title>
       <S.MImgContainer prevUrl={prevUrl}>
         <S.MImgAddBtn onClick={handleBtnClick}>사진 교체하기</S.MImgAddBtn>
         <input
@@ -46,17 +45,8 @@ const MenuThumEdit = ({ onImgUpload, initialThum }) => {
           style={{ display: 'none' }}
         />
       </S.MImgContainer>
-    </Wrapper>
+    </S.Wrapper2>
   );
 };
 
 export default MenuThumEdit;
-
-const Wrapper = styled.div`
-  margin-top: 16px;
-
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-`;

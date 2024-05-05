@@ -201,6 +201,16 @@ const MImgAddBtn = styled(ImgBtn)`
   border-radius: 0px 0px 20px 20px;
 `;
 
+// boothThumbnail, MenuThumEdit의 Wrapper
+const Wrapper2 = styled.div`
+  margin-top: 16px;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+`;
+
 export const S = {
   Wrapper,
   Box,
@@ -210,5 +220,6 @@ export const S = {
   BImgContainer,
   BImgEditBtn,
   MImgContainer,
-  MImgAddBtn
+  MImgAddBtn,
+  Wrapper2
 };
