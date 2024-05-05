@@ -8,7 +8,7 @@ const ProgramListEditPage = () => {
   return (
     <>
       <S.Wrapper>
-        <TopBar isMenu={true} />
+        <TopBar />
         <S.Container>
           <TFBoothList />
         </S.Container>

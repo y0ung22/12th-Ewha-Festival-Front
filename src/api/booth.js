@@ -18,7 +18,6 @@ export const GetBoothList = async (type, day, college, page) => {
 export const GetBoothDetail = async boothId => {
   try {
     const response = await http.get(`/booths/${boothId}/`);
-    console.log(response.data.data);
     return Promise.resolve(response.data.data);
   } catch (error) {
     console.error('부스 상세 조회 실패', error);
@@ -30,7 +29,6 @@ export const GetBoothDetail = async boothId => {
 export const GetBoothComment = async boothId => {
   try {
     const response = await http.get(`/booths/${boothId}/comments/`);
-    console.log(response.data.data);
     return Promise.resolve(response.data.data);
   } catch (error) {
     console.error('부스 댓글 조회 실패', error);
@@ -42,7 +40,6 @@ export const GetBoothComment = async boothId => {
 export const PatchBoothScrap = async boothId => {
   try {
     const response = await http.patch(`/booths/${boothId}/likes/`);
-    console.log(response);
     return Promise.resolve(response);
   } catch (error) {
     console.error('부스 스크랩 여부 변경 실패', error.response);
@@ -55,10 +52,10 @@ export const PatchBoothScrap = async boothId => {
 export const PatchMenuScrap = async menuId => {
   try {
     const response = await http.patch(`/booths/${menuId}/menu/`);
-    console.log(response);
     return Promise.resolve(response);
   } catch (error) {
     console.error('메뉴 스크랩 여부 변경 실패', error.response);
+    confirmLogin(error);
     return Promise.reject(error);
   }
 };
