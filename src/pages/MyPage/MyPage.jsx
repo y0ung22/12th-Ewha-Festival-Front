@@ -40,8 +40,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
-  min-width: 24.375rem;
   min-height: 100vh;
 
   background-color: var(--wh);
