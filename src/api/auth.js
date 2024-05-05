@@ -73,7 +73,7 @@ export const GetDuplicateId = async username => {
 };
 
 // GET : 카카오 로그인
-export const KakaoLogin = async code => {
+export const KakaoLogin = async (code, navigate) => {
   try {
     const response = await http.get(`/accounts/kakao/callback/?code=${code}`);
     console.log(response.data);
@@ -83,18 +83,20 @@ export const KakaoLogin = async code => {
       const expirationDate = new Date();
       expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
       //아이디(id) 저장
-      document.cookie = `id=${response.data.data.user_info.id}; expires=${expirationDate.toUTCString()};`;
+      document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
       //닉네임(nickname) 저장
-      document.cookie = `nickname=${response.data.data.user_info.nickname}; expires=${expirationDate.toUTCString()};`;
+      document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
       //토큰 저장
       document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
-      window.location.replace('/');
+
+      console.log(response.data);
+      // window.location.replace('/');
+      navigate('/');
     } else {
       //처음 접속한 경우
-      const expirationDate = new Date();
-      expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
       //아이디(username) 저장
       localStorage.setItem('username', response.data.data.username);
+      console.log(response.data);
       window.location.replace('/signupkakao');
     }
     return Promise.resolve(response.data);
