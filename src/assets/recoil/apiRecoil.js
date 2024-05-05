@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { atom, useRecoilState } from 'recoil';
-import { getCookie } from '../../api/auth';
+import { getCookie } from '../../api/http';
 
 const getCookieValue = key => {
   return getCookie(key) || null;

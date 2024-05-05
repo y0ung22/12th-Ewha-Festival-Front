@@ -4,7 +4,7 @@ import { S } from './components/Signup.style';
 import TopBar from '../../_common/TopBar';
 import Modal from '../../_common/Modal';
 import { ReactComponent as NameIcon } from './images/namelogo.svg';
-import { getCookie } from '../../api/auth';
+import {} from '../../api/auth';
 
 //recoil
 import { PostNickname } from '../../api/auth';

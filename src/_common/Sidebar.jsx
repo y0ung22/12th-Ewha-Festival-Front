@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ReactComponent as SearchIcon } from '../assets/icons/search.svg';
 import { ReactComponent as CloseBtn } from '../assets/icons/close.svg';
 
-import { getCookie } from '../api/auth';
+import { getCookie } from '../api/http';
 
 const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
   const token = getCookie('token');
@@ -17,17 +17,19 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
     setTimeout(() => {
       setSidebarOpen(false);
       setClicked(false);
-    }, 450);
+    }, 420);
   };
   const navigate = useNavigate();
 
   //배경 스크롤 방지
   useEffect(() => {
     document.body.style.cssText = `
-      position:fixed;
+      position:absolute;
       top: 0;
       overflow-y: scroll;
       width:100%;
+      display: flex;
+      justify-content: center;
     `;
     return () => {
       const scrollY = document.body.style.top;
@@ -123,32 +125,32 @@ const Wrapper = styled.div`
 const IconDiv = styled.div`
   display: flex;
   justify-content: flex-start;
-  padding-top: 58px;
-  margin-bottom: 29px;
+  padding-top: 3.625rem;
+  margin-bottom: 1.813rem;
   cursor: pointer;
 `;
 const SearchBar = styled.div`
   width: 100%;
-  height: 30px;
+  height: 1.875rem;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
 
-  padding-bottom: 9px;
-  margin-top: 8px;
-  border-bottom: solid 1px var(--bk01);
+  padding-bottom: 0.563rem;
+  margin-top: 0.5rem;
+  border-bottom: solid 0.063rem var(--bk01);
 
   input {
     width: 100%;
   }
   input::placeholder {
     color: var(--gray04);
-    font-size: 15px;
+    font-size: 0.938rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 20px; /* 133.333% */
-    letter-spacing: -0.5px;
+    line-height: 1.25rem; /* 133.333% */
+    letter-spacing: -0.031rem;
   }
 `;
 const SearchIconDiv = styled.div`
@@ -159,16 +161,16 @@ const List = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 21px;
-  margin-top: 23px;
+  gap: 1.313rem;
+  margin-top: 1.438rem;
 `;
 
 const Goto = styled.div`
   color: var(--bk01);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px; /* 100% */
-  letter-spacing: -0.5px;
+  line-height: 1.25rem; /* 100% */
+  letter-spacing: -0.031rem;
   cursor: pointer;
 `;
