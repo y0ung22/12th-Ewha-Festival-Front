@@ -20,23 +20,22 @@ const MyPage = () => {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <TopBar isMenu={true} />
-      <Wrapper>
-        <Container>
-          <UserInfo />
-          <CategorySlide {...{ options, handleOption, select }} />
-          <MyScrap select={select} />
-        </Container>
-        <Footer />
-      </Wrapper>
-    </>
+      <Container>
+        <UserInfo />
+        <CategorySlide {...{ options, handleOption, select }} />
+        <MyScrap select={select} />
+      </Container>
+      <Footer />
+    </Wrapper>
   );
 };
 
 export default MyPage;
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

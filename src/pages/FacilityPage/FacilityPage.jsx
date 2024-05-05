@@ -12,15 +12,13 @@ const FacilityPage = () => {
   }, []);
 
   return (
-    <>
+    <S.Wrapper>
       <TopBar isMenu={true} />
-      <S.Wrapper>
-        <S.Container>
-          <CampusMap />
-        </S.Container>
-        <Footer />
-      </S.Wrapper>
-    </>
+      <S.Container>
+        <CampusMap />
+      </S.Container>
+      <Footer />
+    </S.Wrapper>
   );
 };
 
