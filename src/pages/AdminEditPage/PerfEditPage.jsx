@@ -18,7 +18,6 @@ const PerfEditPage = () => {
   const navigate = useNavigate();
   const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
-  const [days, setDays] = useState([]);
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -35,16 +34,23 @@ const PerfEditPage = () => {
       .then(res => setBoothData(res))
       .catch();
   }, [id]);
+
   const handleImgUpload = file => {
     setThumnail(file);
   };
 
-  const handleDaysEdit = days => {
-    setDays(days);
-  };
+  const [rows, setRows] = useState([]);
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    const selectedRows = rows.filter(row => row.selected);
+
+    const updatedRows = selectedRows.map(({ date, start_time, end_time }) => ({
+      date,
+      start_time,
+      end_time
+    }));
 
     const formData = new FormData(formRef.current);
 
@@ -54,7 +60,7 @@ const PerfEditPage = () => {
 
     formData.append('name', boothData.name);
     formData.append('realtime', boothData.realtime);
-    formData.append('days', JSON.stringify(boothData.days)); // Array는 JSON 형태로 변환
+    formData.append('days', JSON.stringify(updatedRows)); // Array는 JSON 형태로 변환
     formData.append('description', boothData.description);
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
@@ -112,7 +118,8 @@ const PerfEditPage = () => {
           <S.Box>
             <S.Title>{'공연 운영시간'}</S.Title>
             <BoothTime
-              onDayEdit={handleDaysEdit}
+              rows={rows}
+              setRows={setRows}
               initialTime={boothData.days}
             />
           </S.Box>
