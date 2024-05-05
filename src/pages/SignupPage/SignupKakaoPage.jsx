@@ -4,20 +4,20 @@ import { S } from './components/Signup.style';
 import TopBar from '../../_common/TopBar';
 import Modal from '../../_common/Modal';
 import { ReactComponent as NameIcon } from './images/namelogo.svg';
-import { getCookie } from '../../api/auth';
+import {} from '../../api/auth';
 
 //recoil
 import { PostNickname } from '../../api/auth';
 
 const SignupKakaoPage = () => {
   const [nickname, setNickname] = useState('');
-  const kakaoUsername = getCookie('username');
+  const kakaoUsername = localStorage.getItem('username');
 
-  const isFieldSatisfied = nickname;
+  const fieldSatisfied = nickname;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const clickComplete = () => {
-    if (isFieldSatisfied) {
+    if (fieldSatisfied) {
       setIsModalOpen(true);
     }
   };
@@ -27,6 +27,7 @@ const SignupKakaoPage = () => {
     console.log('nickname ' + nickname);
     console.log('kakaoUsername ' + kakaoUsername);
     PostNickname(nickname, kakaoUsername);
+    localStorage.removeItem('username');
   };
 
   useEffect(() => {
@@ -55,7 +56,7 @@ const SignupKakaoPage = () => {
             ></input>
           </S.InputBox>
         </S.RowBox>
-        <S.LoginBtn isFieldSatisfied={isFieldSatisfied} onClick={clickComplete}>
+        <S.LoginBtn fieldSatisfied={fieldSatisfied} onClick={clickComplete}>
           회원가입
         </S.LoginBtn>
       </S.Wrapper>

@@ -6,7 +6,7 @@ import CategorySlide from '../../../_common/CategorySlide';
 import ScrapCard from '../../../_common/ScrapCard';
 import MoreScapBox from './MoreScrapBox';
 
-import { getCookie } from '../../../api/auth';
+import { getCookie } from '../../../api/http';
 import { GetBoothHome } from '../../../api/booth';
 
 import { ReactComponent as Scrap } from '../../../assets/icons/save-add.svg';
