@@ -9,10 +9,12 @@ import Footer from '../../_common/Footer';
 import Modal from '../../_common/Modal';
 
 import { GetNoticeDetail, DeleteNotice } from '../../api/tf';
+import { getCookie } from '../../api/http.js';
 
 const NoticeDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const isTF = getCookie('tf') === 'true';
 
   const [data, setData] = useState();
 
@@ -61,20 +63,21 @@ const NoticeDetailPage = () => {
           )}
           <S.GreenLine />
 
-          {/* 사용자 ID에 따라 가시 여부 조정 */}
-          <S.BtnContainer>
-            <CommonBtn onClick={() => setDeleteModal(true)}>삭제</CommonBtn>
-            <CommonBtn
-              color='green'
-              onClick={() =>
-                navigate(`/notice/edit`, {
-                  state: data
-                })
-              }
-            >
-              수정
-            </CommonBtn>
-          </S.BtnContainer>
+          {isTF && (
+            <S.BtnContainer>
+              <CommonBtn onClick={() => setDeleteModal(true)}>삭제</CommonBtn>
+              <CommonBtn
+                color='green'
+                onClick={() =>
+                  navigate(`/notice/edit`, {
+                    state: data
+                  })
+                }
+              >
+                수정
+              </CommonBtn>
+            </S.BtnContainer>
+          )}
         </S.Container>
         <Footer />
       </S.Wrapper>
