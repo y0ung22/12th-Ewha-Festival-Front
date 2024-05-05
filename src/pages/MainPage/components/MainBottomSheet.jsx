@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { motion, useAnimation, useDragControls } from 'framer-motion';
 
 import MainBox from './MainBox';
+import Footer from '../../../_common/Footer';
 
 //images
 import num1 from '../images/main-1.png';
@@ -84,9 +85,9 @@ const MainBottomSheet = () => {
   };
 
   const handleDragEnd = (event, info) => {
-    // 드래그 끝났을 때의 상태를 처리
     if (info.offset.y < 0) {
       setIsOpen(true);
+      window.scrollTo(0, 0);
       controls.start('opened');
     } else {
       setIsOpen(false);
@@ -105,7 +106,7 @@ const MainBottomSheet = () => {
         initial='closed'
         animate={controls}
         variants={{
-          opened: { y: '-64%' },
+          opened: { y: '-35.5rem' },
           closed: { y: '0%' }
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
@@ -113,12 +114,14 @@ const MainBottomSheet = () => {
         dragControls={dragControls}
         dragConstraints={{ top: -300, bottom: 0 }}
         onDragEnd={handleDragEnd}
+        style={{ zIndex: 10, width: '100%' }}
       >
         <Wrapper>
           {BoxList.map(item => (
             <MainBox key={item.id} item={item}></MainBox>
           ))}
         </Wrapper>
+        <Footer />
       </motion.div>
     </>
   );
@@ -145,6 +148,7 @@ const Wrapper = styled.div`
 const ToggleButton = styled.button`
   position: fixed;
   top: 5.5rem;
+  z-index: 20;
 
   display: inline-flex;
   padding: 0.625rem 2.0625rem;
@@ -164,4 +168,6 @@ const ToggleButton = styled.button`
   font-weight: 600;
   line-height: 1.25rem; /* 117.647% */
   letter-spacing: -0.03125rem;
+
+  cursor: pointer;
 `;

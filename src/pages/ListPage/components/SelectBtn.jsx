@@ -30,8 +30,9 @@ const SelectBtn = ({ category }) => {
   const [selectedPlace, setSelectedPlace] = useState(place[category]);
 
   useEffect(() => {
-    setPlace(prev => ({ ...prev, [category]: selectedPlace }));
-  }, [selectedPlace, category, setPlace]);
+    const placeValue = selectedPlace === '전체' ? null : selectedPlace;
+    setPlace(prev => ({ ...prev, [category]: placeValue }));
+  }, [selectedPlace, category]);
 
   return (
     <>

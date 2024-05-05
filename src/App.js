@@ -10,10 +10,7 @@ import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
 
 import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
 
-import MainPage from './pages/MainPage/MainPage';
-import BoothMainPage from './pages/MainPage/BoothMainPage';
-import PerfMainPage from './pages/MainPage/PerfMainPage';
-import TFMainPage from './pages/MainPage/TFMainPage';
+import NavigateMainPage from './pages/MainPage/NavigateMainPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import BoothListPage from './pages/ListPage/BoothListPage';
 import PerfListPage from './pages/ListPage/PerfListPage';
@@ -60,10 +57,7 @@ function App() {
             <Route path={'/facility'} element={<FacilityPage />} />
             <Route path={'/my'} element={<MyPage />} />
 
-            <Route path={'/'} element={<MainPage />} />
-            <Route path={'/booth-main'} element={<BoothMainPage />} />
-            <Route path={'/perf-main'} element={<PerfMainPage />} />
-            <Route path={'/admin-main'} element={<TFMainPage />} />
+            <Route path={'/'} element={<NavigateMainPage />} />
             <Route path={'/boothlist'} element={<BoothListPage />} />
             <Route path={'/perflist'} element={<PerfListPage />} />
             <Route path={'/search'} element={<SearchPage />} />

@@ -33,6 +33,7 @@ const LoginPage = () => {
         ...prevState,
         nickname: loginData.data.data.nickname
       }));
+      console.log(loginData.data.data);
 
       navigate('/');
     }

@@ -101,7 +101,13 @@ const ScrapBook = () => {
 
   return (
     <Wrapper>
-      {isScrap ? <WholeScrap>스크랩북 전체보기</WholeScrap> : <></>}
+      {isScrap ? (
+        <WholeScrap onClick={() => navigate('/my')}>
+          스크랩북 전체보기
+        </WholeScrap>
+      ) : (
+        <></>
+      )}
       <Title>
         {isScrap ? `${nickname}님의\n스크랩북` : '2024 \n 이화여대 대동제'}
       </Title>
