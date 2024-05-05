@@ -4,32 +4,29 @@ import { useNavigate } from 'react-router-dom';
 
 import CategorySlide from '../../../_common/CategorySlide';
 import ScrapCard from '../../../_common/ScrapCard';
+import MainMenuCard from './MainMenuCard';
+import MoreScapBox from './MoreScrapBox';
 
 import { getCookie } from '../../../api/http';
 import { GetBoothHome } from '../../../api/booth';
+
+import { ReactComponent as Scrap } from '../../../assets/icons/save-add.svg';
 
 const ScrapBook = () => {
   const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(false);
   const [isScrap, setIsScrap] = useState(false);
-  const [boothList, setBoothList] = useState([0, 1, 2, 3]);
+  const [nickname, setNickname] = useState('');
+  const [boothList, setBoothList] = useState([]);
+  const [menuList, setMenuList] = useState([]);
+  const [perfList, setPerfList] = useState([]);
 
-  useEffect(() => {
-    const token = getCookie('token');
-    if (token) {
-      setIsLogin(true);
-      const handleStart = async () => {
-        const homeResult = await GetBoothHome();
-        console.log(homeResult.data);
-        setBoothList(homeResult.data);
-      };
-
-      handleStart();
-    } else {
-      setIsLogin(false);
-    }
-  }, []);
+  const options = ['부스', '메뉴', '공연'];
+  const [select, setSelect] = useState('부스');
+  const handleOption = option => {
+    setSelect(option);
+  };
 
   const clickTitle = () => {
     if (isLogin) {
@@ -38,16 +35,85 @@ const ScrapBook = () => {
     }
   };
 
+  //api 가져오는 로직
+  useEffect(() => {
+    const token = getCookie('token');
+    const handleStart = async () => {
+      const homeResult = await GetBoothHome();
+      setNickname(homeResult.data.nickname);
+
+      if (homeResult.data.scrap) {
+        setIsScrap(true);
+        setBoothList(homeResult.data.boothList);
+        setMenuList(homeResult.data.menuList);
+        setPerfList(homeResult.data.performList);
+      } else {
+        setIsScrap(false);
+      }
+    };
+
+    if (token) {
+      setIsLogin(true);
+      handleStart();
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
+
+  //select 따라서 해당 리스트로 세팅
+  const getCurrentList = () => {
+    switch (select) {
+      case '부스':
+        return { list: boothList, Component: ScrapCard };
+      case '메뉴':
+        return { list: menuList, Component: MainMenuCard };
+      case '공연':
+        return { list: perfList, Component: ScrapCard };
+      default:
+        return { list: [], Component: null };
+    }
+  };
+
+  const renderList = () => {
+    const { list, Component } = getCurrentList();
+
+    if (list.length === 0) {
+      return (
+        <EmptyBox>
+          <Scrap />
+          <span>스크랩한 내용이 아직 없어요🥺</span>
+        </EmptyBox>
+      );
+    }
+
+    const itemsList = list.map((item, index) => (
+      <Component key={index} item={item} size='small' />
+    ));
+
+    //부족한 개수만큼 MoreScapBox 컴포넌트 추가
+    for (let i = list.length; i < 4; i++) {
+      itemsList.push(<MoreScapBox key={`more-${i}`} />);
+    }
+
+    return <ScrapDiv>{itemsList}</ScrapDiv>;
+  };
+
   return (
     <Wrapper>
-      {isScrap ? <WholeScrap>스크랩북 전체보기</WholeScrap> : <></>}
+      {isScrap ? (
+        <WholeScrap onClick={() => navigate('/my')}>
+          스크랩북 전체보기
+        </WholeScrap>
+      ) : (
+        <></>
+      )}
       <Title>
-        {isScrap ? '이화연님의\n스크랩북' : '2024 \n 이화여대 대동제'}
+        {isScrap ? `${nickname}님의\n스크랩북` : '2024 \n 이화여대 대동제'}
       </Title>
       <ScrapBox>
         {isScrap ? (
           <ScrapSlider>
-            <CategorySlide options={['부스', '메뉴', '공연']} />
+            <CategorySlide {...{ options, handleOption, select }} />
           </ScrapSlider>
         ) : (
           <ScrapTitle isLogin={isLogin} onClick={clickTitle}>
@@ -56,17 +122,12 @@ const ScrapBook = () => {
         )}
         <BlurBox>
           {isScrap ? (
-            <ScrapDiv>
-              {boothList &&
-                boothList.map((item, index) => (
-                  <ScrapCard key={index} item={item} size='small'></ScrapCard>
-                ))}
-            </ScrapDiv>
+            renderList()
           ) : (
             <>
               <Guide>
                 {isLogin
-                  ? '이화연님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀'
+                  ? `${nickname}님\n대동제에서 잊지 못할\n추억을 만들어봐요🍀`
                   : '로그인하면\n사이트를 더 편하게\n즐길 수 있어요🍀'}
               </Guide>
               <TagBox>
@@ -219,4 +280,23 @@ const ScrapDiv = styled.div`
   align-items: center;
 
   gap: 0.6875rem 0.4375rem;
+`;
+
+const EmptyBox = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    color: var(--gray02, #f2f2f2);
+    text-align: center;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0.9375rem; /* 100% */
+    letter-spacing: -0.03125rem;
+  }
 `;

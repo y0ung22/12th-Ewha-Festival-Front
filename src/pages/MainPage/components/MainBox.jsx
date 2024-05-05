@@ -1,11 +1,21 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
+import { Logout } from '../../../api/auth';
+
 const MainBox = ({ item, isAdmin = false }) => {
   const navigate = useNavigate();
 
+  const handleClick = path => {
+    if (path === 'setLogout') {
+      Logout();
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
-    <Wrapper isAdmin={isAdmin} onClick={() => navigate(item.path)}>
+    <Wrapper isAdmin={isAdmin} onClick={() => handleClick(item.path)}>
       <Title isAdmin={isAdmin}>{item.title}</Title>
       <Guide isAdmin={isAdmin}>{item.guide}</Guide>
       <Background src={item.image} alt='' isAdmin={isAdmin} />
@@ -22,8 +32,12 @@ const Wrapper = styled.div`
   justify-content: space-between;
   cursor: pointer;
 
-  width: ${props => (props.isAdmin ? '9.125rem' : '10.625rem')};
-  height: ${props => (props.isAdmin ? '11.375rem' : '12.3125rem ')};
+  aspect-ratio: ${props =>
+    props.isAdmin ? '9.125 / 11.375' : '10.625 / 12.3125'};
+
+  width: 100%;
+  height: 100%;
+  max-width: ${props => (props.isAdmin ? '11rem' : '12.5rem')};
   flex-shrink: 0;
 
   padding: ${props =>

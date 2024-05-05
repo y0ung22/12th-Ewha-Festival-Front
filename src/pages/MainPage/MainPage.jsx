@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
-import Footer from '../../_common/Footer';
 import ScrapBook from './components/ScrapBook';
 import MainBottomSheet from './components/MainBottomSheet';
 
@@ -9,15 +8,14 @@ import background from '../../assets/images/background.png';
 
 const MainPage = () => {
   return (
-    <>
-      <Wrapper>
+    <Wrapper>
+      <Background src={background} alt='배경 이미지' />
+      <ContentWrapper>
         <TopBar isWhite={true} isMenu={true} isMain={true} />
         <ScrapBook />
         <MainBottomSheet />
-        <Background src={background} alt='배경 이미지' />
-      </Wrapper>
-      <Footer />
-    </>
+      </ContentWrapper>
+    </Wrapper>
   );
 };
 
@@ -25,21 +23,27 @@ export default MainPage;
 
 const Wrapper = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  height: auto;
-  min-height: 100%;
-  padding-bottom: 158.08px;
-
-  gap: 2rem;
+  height: 100%;
+  overflow: hidden;
 `;
 
 const Background = styled.img`
   position: absolute;
   top: 0;
   z-index: -10;
-
   width: 100%;
+`;
+
+const ContentWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  gap: 2rem;
+  overflow: hidden;
+  z-index: 1;
 `;

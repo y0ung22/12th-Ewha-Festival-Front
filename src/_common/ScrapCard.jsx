@@ -1,20 +1,35 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+
+import { PatchBoothScrap } from '../api/booth';
 
 import { ReactComponent as ScrapOff } from '../assets/icons/scrap-off.svg';
 import { ReactComponent as ScrapOn } from '../assets/icons/scrap-on.svg';
 
+import defaultCard from '../assets/images/default-card.png';
+
 const ScrapCard = ({ item, size }) => {
   const navigate = useNavigate();
+  const [isScraped, setIsScraped] = useState(item.is_liked);
+
+  const handleScrap = () => {
+    PatchBoothScrap(item.id)
+      .then(res => setIsScraped(!isScraped))
+      .catch();
+  };
   return (
     <Card
       size={size}
-      src={item.thumnail}
+      src={item.thumnail ? item.thumnail : defaultCard}
       alt='menu img'
       onClick={() => navigate(`/detail/${item.id}`)}
     >
-      {item.is_liked ? <ScrapOn /> : <ScrapOff />}
-      {/* {item.thumnail && <BackgroundImg src={item.thumnail} alt='menu img' />} */}
+      {isScraped ? (
+        <ScrapOn onClick={handleScrap} />
+      ) : (
+        <ScrapOff onClick={handleScrap} />
+      )}
       <SpanDiv size={size}>
         <span>{item.name}</span>
         <span>{item.info}</span>
@@ -48,16 +63,8 @@ const Card = styled.div`
     position: absolute;
     top: 17px;
     right: 14px;
+    z-index: 5;
   }
-`;
-
-const BackgroundImg = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const SpanDiv = styled.div`

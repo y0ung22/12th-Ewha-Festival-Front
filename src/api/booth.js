@@ -4,7 +4,7 @@ import { http, getCookie } from './http';
 export const GetBoothList = async (type, day, college, page) => {
   try {
     const response = await http.get(
-      `/booths/?type=${'부스'}&day=${day}&college=${college}&page=${page}`
+      `/booths/?type=${type}&day=${day}&college=${college}&page=${page}`
     );
     console.log(response.data);
     return Promise.resolve(response.data);

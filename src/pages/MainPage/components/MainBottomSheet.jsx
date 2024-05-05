@@ -1,6 +1,9 @@
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { motion, useAnimation, useDragControls } from 'framer-motion';
 
 import MainBox from './MainBox';
+import Footer from '../../../_common/Footer';
 
 //images
 import num1 from '../images/main-1.png';
@@ -72,12 +75,56 @@ const BoxList = [
 ];
 
 const MainBottomSheet = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const controls = useAnimation();
+  const dragControls = useDragControls();
+
+  const toggleBottomSheet = () => {
+    setIsOpen(!isOpen);
+    controls.start(isOpen ? 'closed' : 'opened');
+    window.scrollTo(0, 0);
+  };
+
+  const handleDragEnd = (event, info) => {
+    if (info.offset.y < 0) {
+      setIsOpen(true);
+      window.scrollTo(0, 0);
+      controls.start('opened');
+    } else {
+      setIsOpen(false);
+      controls.start('closed');
+    }
+  };
+
   return (
-    <Wrapper>
-      {BoxList.map(item => (
-        <MainBox key={item.id} item={item}></MainBox>
-      ))}
-    </Wrapper>
+    <>
+      {isOpen && (
+        <ToggleButton onClick={toggleBottomSheet}>
+          나의 스크랩북 열기
+        </ToggleButton>
+      )}
+      <motion.div
+        initial='closed'
+        animate={controls}
+        variants={{
+          opened: { y: '-35.5rem' },
+          closed: { y: '0%' }
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        drag='y'
+        dragControls={dragControls}
+        dragConstraints={{ top: -300, bottom: 0 }}
+        onDragEnd={handleDragEnd}
+        style={{ zIndex: 10, width: '100%' }}
+      >
+        <Wrapper>
+          {BoxList.map(item => (
+            <MainBox key={item.id} item={item}></MainBox>
+          ))}
+        </Wrapper>
+        <Footer />
+      </motion.div>
+    </>
   );
 };
 
@@ -85,17 +132,43 @@ export default MainBottomSheet;
 
 const Wrapper = styled.div`
   position: relative;
+  z-index: 10;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
-
   width: 100%;
   padding: 1.875rem 1.0625rem;
   gap: 0.875rem 0.625rem;
-
   border-radius: 1.875rem 1.875rem 0rem 0rem;
   border: 1px solid var(--gray04, #c1d9cc);
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+`;
+
+const ToggleButton = styled.button`
+  position: fixed;
+  top: 5.5rem;
+  z-index: 20;
+
+  display: inline-flex;
+  padding: 0.625rem 2.0625rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+
+  border-radius: 1.875rem;
+  border: 1px solid var(--gray02, #f2f2f2);
+  background: var(--wh, #fff);
+
+  color: var(--green02, #03d664);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25rem; /* 117.647% */
+  letter-spacing: -0.03125rem;
+
+  cursor: pointer;
 `;
