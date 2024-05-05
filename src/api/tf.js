@@ -16,7 +16,6 @@ export const GetTFBoothList = async type => {
 export const GetTFBoothDetail = async boothId => {
   try {
     const response = await http.get(`/notices/event/${boothId}/`);
-    console.log(response.data.data);
     return Promise.resolve(response.data.data);
   } catch (error) {
     console.error('TF 부스 상세 조회 실패', error);
@@ -28,7 +27,6 @@ export const GetTFBoothDetail = async boothId => {
 export const GetNoticeList = async page => {
   try {
     const response = await http.get(`/notices/?page=${page}`);
-    console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('TF 공지 목록 조회 실패', error);
@@ -40,7 +38,6 @@ export const GetNoticeList = async page => {
 export const GetNoticeDetail = async id => {
   try {
     const response = await http.get(`/notices/${id}/`);
-    console.log(response.data.data);
     return Promise.resolve(response.data.data);
   } catch (error) {
     console.error('TF 공지 상세 조회 실패', error);

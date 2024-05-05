@@ -33,7 +33,7 @@ const DetailInfo = ({ b, program = false }) => {
         </div>
         <div>
           <span>소개글</span>
-          <span className={program || isExpanded || 'hidden'}>
+          <span className={`${program || isExpanded || 'hidden'}`}>
             {b.description}
           </span>
           {program || (
