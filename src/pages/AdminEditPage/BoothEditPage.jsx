@@ -39,35 +39,20 @@ const BoothEditPage = () => {
     setThumnail(file);
   };
 
-  const handleDaysEdit = updatedRows => {
-    setBoothData(prevState => ({
-      ...prevState,
-      days: updatedRows
-        .filter(row => row.selected)
-        .map(({ date, start_time, end_time }) => ({
-          date,
-          start_time,
-          end_time
-        }))
-    }));
-  };
+  const [rows, setRows] = useState([]);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
+    const selectedRows = rows.filter(row => row.selected);
+
+    const updatedRows = selectedRows.map(({ date, start_time, end_time }) => ({
+      date,
+      start_time,
+      end_time
+    }));
+
     const formData = new FormData(formRef.current);
-
-    console.log('boothdata.days: ', boothData.days);
-
-    const filteredDays = boothData.days
-      .filter(({ selected }) => selected)
-      .map(({ date, start_time, end_time }) => ({
-        date,
-        start_time,
-        end_time
-      }));
-
-    console.log('filteredDays: ', filteredDays);
 
     if (thumnail) {
       formData.append('thumnail', thumnail);
@@ -75,10 +60,12 @@ const BoothEditPage = () => {
 
     formData.append('name', boothData.name);
     formData.append('realtime', boothData.realtime);
-    formData.append('days', JSON.stringify(filteredDays));
+    formData.append('days', JSON.stringify(updatedRows));
     formData.append('description', boothData.description);
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
+
+    console.log(JSON.stringify('boothData.days: ', boothData.days));
 
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
@@ -133,7 +120,8 @@ const BoothEditPage = () => {
           <S.Box>
             <S.Title>{'부스 운영시간'}</S.Title>
             <BoothTime
-              onDayEdit={handleDaysEdit}
+              rows={rows}
+              setRows={setRows}
               initialTime={boothData.days}
             />
           </S.Box>

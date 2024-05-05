@@ -6,14 +6,12 @@ import Modal from '../../../_common/Modal';
 import check_gray from '../images/check_gray.svg';
 import check_green from '../images/check_green.svg';
 
-const BoothTime = ({ onDayEdit, initialTime }) => {
+const BoothTime = ({ rows, setRows, initialTime }) => {
   const defaultDays = [
     { date: 8, day: '수요일' },
     { date: 9, day: '목요일' },
     { date: 10, day: '금요일' }
   ];
-
-  const [rows, setRows] = useState([]);
 
   useEffect(() => {
     const updatedRows = defaultDays.map(day => {
@@ -29,7 +27,6 @@ const BoothTime = ({ onDayEdit, initialTime }) => {
     });
     setRows(updatedRows);
   }, [initialTime]);
-  console.log('rows: ', rows);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
