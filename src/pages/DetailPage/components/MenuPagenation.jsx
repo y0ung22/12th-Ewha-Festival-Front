@@ -1,29 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const MenuPagenation = ({ itemsPerPage, totalItems, paginate }) => {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleClick = pageNumber => {
-    setCurrentPage(pageNumber);
-    paginate(pageNumber);
-  };
-
+const MenuPagenation = ({ totalSlides, currentPage, onPageChange }) => {
   return (
     <PageNum>
-      {pageNumbers.map(number => (
-        <li key={number} onClick={() => handleClick(number)}>
+      {Array.from({ length: totalSlides }, (_, index) => (
+        <li key={index} onClick={() => onPageChange(index)}>
           <button
-            onClick={() => paginate}
             style={{
               backgroundColor:
-                currentPage === number ? 'var(--green02)' : 'var(--gray04)'
+                currentPage === index ? 'var(--green02)' : 'var(--gray04)'
             }}
           />
         </li>
@@ -35,8 +21,11 @@ const MenuPagenation = ({ itemsPerPage, totalItems, paginate }) => {
 export default MenuPagenation;
 
 const PageNum = styled.ul`
+  margin-top: 1.25rem;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 10px;
 
   button {

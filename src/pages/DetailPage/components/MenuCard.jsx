@@ -24,7 +24,11 @@ const MenuCard = ({ item }) => {
       ) : (
         <BackgroundImg src={DefaultCard} alt='menu img' />
       )}
-      <Tag>{item.vegan !== '논비건' && <span>{item.vegan}</span>}</Tag>
+      <Tag>
+        {item.vegan !== '논비건' && item.vegan !== null && (
+          <span>{item.vegan}</span>
+        )}
+      </Tag>
       <Scrap>
         {isScraped ? (
           <ScrapOn onClick={handleScrap} />
