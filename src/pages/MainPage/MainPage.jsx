@@ -15,8 +15,8 @@ const MainPage = () => {
         <ScrapBook />
         <MainBottomSheet />
         <Background src={background} alt='배경 이미지' />
+        <Footer />
       </Wrapper>
-      <Footer />
     </>
   );
 };
@@ -31,7 +31,6 @@ const Wrapper = styled.div`
   width: 100%;
   height: auto;
   min-height: 100%;
-  padding-bottom: 158.08px;
 
   gap: 2rem;
 `;

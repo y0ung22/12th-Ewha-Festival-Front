@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import CategorySlide from '../../../_common/CategorySlide';
 import ScrapCard from '../../../_common/ScrapCard';
+import MainMenuCard from './MainMenuCard';
 import MoreScapBox from './MoreScrapBox';
 
 import { getCookie } from '../../../api/http';
@@ -18,6 +19,8 @@ const ScrapBook = () => {
   const [isScrap, setIsScrap] = useState(false);
   const [nickname, setNickname] = useState('');
   const [boothList, setBoothList] = useState([]);
+  const [menuList, setMenuList] = useState([]);
+  const [perfList, setPerfList] = useState([]);
 
   const options = ['부스', '메뉴', '공연'];
   const [select, setSelect] = useState('부스');
@@ -25,6 +28,14 @@ const ScrapBook = () => {
     setSelect(option);
   };
 
+  const clickTitle = () => {
+    if (isLogin) {
+    } else {
+      navigate('/login');
+    }
+  };
+
+  //api 가져오는 로직
   useEffect(() => {
     const token = getCookie('token');
     const handleStart = async () => {
@@ -34,18 +45,9 @@ const ScrapBook = () => {
 
       if (homeResult.data.scrap) {
         setIsScrap(true);
-        switch (select) {
-          case '부스':
-            setBoothList(homeResult.data.boothList);
-            break;
-          case '메뉴':
-            setBoothList(homeResult.data.menuList);
-            break;
-
-          case '공연':
-            setBoothList(homeResult.data.performList);
-            break;
-        }
+        setBoothList(homeResult.data.boothList);
+        setMenuList(homeResult.data.menuList);
+        setPerfList(homeResult.data.performList);
       } else {
         setIsScrap(false);
       }
@@ -57,13 +59,44 @@ const ScrapBook = () => {
     } else {
       setIsLogin(false);
     }
-  }, [select]);
+  }, []);
 
-  const clickTitle = () => {
-    if (isLogin) {
-    } else {
-      navigate('/login');
+  //select 따라서 해당 리스트로 세팅
+  const getCurrentList = () => {
+    switch (select) {
+      case '부스':
+        return { list: boothList, Component: ScrapCard };
+      case '메뉴':
+        return { list: menuList, Component: MainMenuCard };
+      case '공연':
+        return { list: perfList, Component: ScrapCard };
+      default:
+        return { list: [], Component: null };
     }
+  };
+
+  const renderList = () => {
+    const { list, Component } = getCurrentList();
+
+    if (list.length === 0) {
+      return (
+        <EmptyBox>
+          <Scrap />
+          <span>스크랩한 내용이 아직 없어요🥺</span>
+        </EmptyBox>
+      );
+    }
+
+    const itemsList = list.map((item, index) => (
+      <Component key={index} item={item} size='small' />
+    ));
+
+    //부족한 개수만큼 MoreScapBox 컴포넌트 추가
+    for (let i = list.length; i < 4; i++) {
+      itemsList.push(<MoreScapBox key={`more-${i}`} />);
+    }
+
+    return <ScrapDiv>{itemsList}</ScrapDiv>;
   };
 
   return (
@@ -84,22 +117,7 @@ const ScrapBook = () => {
         )}
         <BlurBox>
           {isScrap ? (
-            boothList.length === 0 ? (
-              <EmptyBox>
-                <Scrap />
-                <span>스크랩한 내용이 아직 없어요🥺</span>
-              </EmptyBox>
-            ) : (
-              <ScrapDiv>
-                {boothList.map((item, index) => (
-                  <ScrapCard key={index} item={item} size='small'></ScrapCard>
-                ))}
-                {boothList.length < 4 &&
-                  Array.from({ length: 4 - boothList.length }).map(
-                    (_, index) => <MoreScapBox key={`more-${index}`} />
-                  )}
-              </ScrapDiv>
-            )
+            renderList()
           ) : (
             <>
               <Guide>

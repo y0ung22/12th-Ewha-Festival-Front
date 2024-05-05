@@ -20,7 +20,7 @@ const PlaceList = {
     '학관',
     '생활관'
   ],
-  performance: ['전체', '학문관광장', '스포츠트랙']
+  performance: ['전체', '학문관무대', '스포츠트랙']
 };
 
 const SelectBtn = ({ category }) => {

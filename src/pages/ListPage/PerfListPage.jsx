@@ -43,8 +43,8 @@ const PerfListPage = () => {
   }, [selectDay, selectPlace, currentPage]);
   return (
     <>
+      <TopBar isMenu={true} />
       <Wrapper>
-        <TopBar isMenu={true} />
         <TopDiv>
           <div className='box'>
             <DaySlider setChoice={setSelectDay} />
