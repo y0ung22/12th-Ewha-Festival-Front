@@ -9,11 +9,11 @@ import BoothThumbnail from './components/BoothThumbnail';
 import BoothTime from './components/BoothTime';
 import BoothOpened from './components/BoothOpened';
 
-// api
-import { GetBoothInfo } from '../../api/booth';
-import { PatchBooth } from '../../api/booth';
+// API
+import { GetTFBoothInfo } from '../../api/tf';
+import { PatchTFBooth } from '../../api/tf';
 
-const BoothEditPage = () => {
+const TfEditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const formRef = useRef();
@@ -24,6 +24,7 @@ const BoothEditPage = () => {
   const [description, setDescription] = useState('');
   const [contact, setContact] = useState('');
   const [opened, setOpened] = useState(true);
+  const [thumEdited, setThumEdited] = useState(false); // 이미지 수정 여부
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -36,13 +37,17 @@ const BoothEditPage = () => {
   });
 
   useEffect(() => {
-    GetBoothInfo(id)
-      .then(res => setBoothData(res))
+    GetTFBoothInfo(id)
+      .then(res => {
+        setBoothData(res);
+        console.log('BoothData: ', res);
+      })
       .catch();
   }, [id]);
 
   const handleImgUpload = file => {
     setThumnail(file);
+    setThumEdited(true);
   };
 
   const handleDaysEdit = days => {
@@ -54,8 +59,9 @@ const BoothEditPage = () => {
 
     const formData = new FormData(formRef.current);
 
-    if (thumnail) {
+    if (thumEdited && thumnail && typeof thumnail === 'object') {
       formData.append('thumnail', thumnail);
+    } else {
     }
 
     formData.append('name', boothData.name);
@@ -70,13 +76,15 @@ const BoothEditPage = () => {
     }
 
     try {
-      await PatchBooth(id, formData);
+      await PatchTFBooth(id, formData);
       alert('부스 정보가 성공적으로 수정되었습니다.');
-      navigate(`/detail/${id}`);
+      navigate(`/tfedit`);
     } catch (error) {
       alert('부스 정보 수정에 실패했습니다.');
     }
   };
+
+  console.log('!!initialTime:', boothData.days);
 
   return (
     <>
@@ -86,6 +94,8 @@ const BoothEditPage = () => {
           <BoothThumbnail
             onImgUpload={handleImgUpload}
             initialThum={boothData.thumnail}
+            type1='2'
+            type2='2'
           />
           <S.Box>
             <S.Title text={'부스 이름'} />
@@ -124,15 +134,15 @@ const BoothEditPage = () => {
           </S.Box>
           <S.Box>
             <S.Title text={'부스 소개글'} />
-            <S.InputContainer num='80px'>
+            <S.InputContainer num='200px'>
               <textarea
                 id='description'
                 value={boothData.description}
                 onChange={e =>
                   setBoothData({ ...boothData, description: e.target.value })
                 }
-                placeholder='부스에 대해 알리는 소개글을 작성해주세요(최대 100자)'
-                maxLength='100'
+                placeholder='부스에 대해 알리는 소개글을 작성해주세요(최대 300자)'
+                maxLength='300'
               />
             </S.InputContainer>
           </S.Box>
@@ -141,7 +151,6 @@ const BoothEditPage = () => {
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
-                value={boothData.contact}
                 onChange={e =>
                   setBoothData({ ...boothData, contact: e.target.value })
                 }
@@ -158,7 +167,9 @@ const BoothEditPage = () => {
               }
             />
           </S.Box>
-          <S.SubmitBtn type='submit'>작성 완료</S.SubmitBtn>
+          <S.SubmitBtn type='submit' num1='35px'>
+            작성 완료
+          </S.SubmitBtn>
         </form>
         <Footer />
       </S.Wrapper>
@@ -166,4 +177,4 @@ const BoothEditPage = () => {
   );
 };
 
-export default BoothEditPage;
+export default TfEditPage;

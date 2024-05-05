@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { S } from './components/AdminEdit.style';
 
 import TopBar from '../../_common/TopBar';
 import Footer from '../../_common/Footer';
 
 import MenuThumAdd from './components/MenuThumAdd';
+import MenuVegan from './components/MenuVegan';
 import MenuOpened from './components/MenuOpened';
 
+import { PostMenu } from '../../api/booth';
+
 const MenuAddPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [img, setImg] = useState(null);
   const [menu, setMenu] = useState('');
   const [price, setPrice] = useState('');
+  const [vegan, setVegan] = useState('');
   const [opened, setOpened] = useState(true);
 
   const handleImgUpload = file => {
@@ -20,16 +28,30 @@ const MenuAddPage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const is_soldout = opened;
+    const formData = new FormData();
 
-    const data = {
-      img,
-      menu,
-      price,
-      is_soldout // True가 운영 중
-    };
+    // 이미지가 있을 경우만 formData에 추가
+    if (img) {
+      formData.append('img', img);
+    }
 
-    // POST 로직 -> 추후 별도 API 파일에 작성 예정
+    // 나머지 데이터는 직접적으로 formData에 추가
+    formData.append('menu', menu);
+    formData.append('price', price);
+    formData.append('vegan', vegan);
+    formData.append('is_soldout', opened); // True = 운영 중
+
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    try {
+      await PostMenu(id, formData);
+      alert('메뉴가 성공적으로 추가되었습니다.');
+      navigate(`/menuedit/${id}`);
+    } catch (error) {
+      alert('메뉴 추가에 실패하였습니다.');
+    }
   };
 
   return (
@@ -38,7 +60,7 @@ const MenuAddPage = () => {
       <S.Wrapper>
         <form onSubmit={handleSubmit}>
           <MenuThumAdd onImgUpload={handleImgUpload} />
-          <S.Box>
+          <S.Box num={'25px'}>
             <S.Title text={'메뉴 이름'} />
             <S.InputContainer>
               <textarea
@@ -65,10 +87,14 @@ const MenuAddPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box num={'40px'}>
+            <S.Title text={'비건 여부'} />
+            <MenuVegan setVegan={setVegan} />
+          </S.Box>
+          <S.Box num={'40px'}>
             <S.Title text={'운영여부'} />
             <MenuOpened opened={opened} setOpened={setOpened} />
           </S.Box>
-          <S.SubmitBtn num1={'94px'} num2={'222px'} type='submit'>
+          <S.SubmitBtn num1={'48px'} type='submit'>
             작성 완료
           </S.SubmitBtn>
         </form>

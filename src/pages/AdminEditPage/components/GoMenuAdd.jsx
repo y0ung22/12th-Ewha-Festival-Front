@@ -35,6 +35,8 @@ const Box = styled.div`
     height: 44px;
     flex-shrink: 0;
   }
+
+  cursor: pointer;
 `;
 
 const Text = styled.div`

@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginKakaoPage from './pages/LoginPage/LoginKakaoPage';
 import SignupKakaoPage from './pages/SignupPage/SignupKakaoPage';
+
 import BoothEditPage from './pages/AdminEditPage/BoothEditPage';
 
 import MainPage from './pages/MainPage/MainPage';
@@ -20,6 +21,8 @@ import PerfListPage from './pages/ListPage/PerfListPage';
 import MenuEditPage from './pages/AdminEditPage/MenuEditPage';
 import MenuEditDetailPage from './pages/AdminEditPage/MenuEditDetailPage';
 import MenuAddPage from './pages/AdminEditPage/MenuAddPage';
+import PerfEditPage from './pages/AdminEditPage/PerfEditPage';
+import TfEditPage from './pages/AdminEditPage/TfEditPage';
 import MakersPage from './pages/Makerspage/Makerspage';
 
 import AboutPage from './pages/AboutPage/AboutPage';
@@ -65,10 +68,15 @@ function App() {
             <Route path={'/perflist'} element={<PerfListPage />} />
             <Route path={'/search'} element={<SearchPage />} />
 
-            <Route path={'/boothedit'} element={<BoothEditPage />} />
-            <Route path={'/menuedit'} element={<MenuEditPage />} />
-            <Route path={'/menuedit/:id'} element={<MenuEditDetailPage />} />
-            <Route path={'/menuadd'} element={<MenuAddPage />} />
+            <Route path={'/boothedit/:id'} element={<BoothEditPage />} />
+            <Route path={'/perfedit/:id'} element={<PerfEditPage />} />
+            <Route path={'/tfedit/:id'} element={<TfEditPage />} />
+            <Route path={'/menuedit/:id'} element={<MenuEditPage />} />
+            <Route
+              path={'/menuedit/:boothId/:menuId'}
+              element={<MenuEditDetailPage />}
+            />
+            <Route path={'/menuadd/:id'} element={<MenuAddPage />} />
 
             <Route path={'/notice'} element={<NoticeListPage />} />
             <Route path={'/notice/:id'} element={<NoticeDetailPage />} />

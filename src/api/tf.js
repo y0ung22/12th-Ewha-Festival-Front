@@ -86,3 +86,27 @@ export const DeleteNotice = async id => {
     return Promise.reject(error);
   }
 };
+
+// GET : TF 부스 수정용 조회
+export const GetTFBoothInfo = async boothId => {
+  try {
+    const response = await http.get(`/notices/event/${boothId}/`);
+    console.log(response.data.data);
+    return Promise.resolve(response.data.data);
+  } catch (error) {
+    console.error('TF 부스 상세 조회 실패', error);
+    return Promise.reject(error);
+  }
+};
+
+// PATCH : TF 부스 수정
+export const PatchTFBooth = async (boothId, formData) => {
+  try {
+    const response = await http.patch(`/notices/event/${boothId}/`, formData);
+
+    return response.data;
+  } catch (error) {
+    console.error('오류:', error);
+    throw error;
+  }
+};
