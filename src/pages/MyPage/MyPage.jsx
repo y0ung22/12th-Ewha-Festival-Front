@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
@@ -14,6 +14,10 @@ const MyPage = () => {
   const handleOption = option => {
     setSelect(option);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

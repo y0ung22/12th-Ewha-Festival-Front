@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CategorySlide from '../../../_common/CategorySlide';
 import ScrapCard from '../../../_common/ScrapCard';
 
-import { getCookie } from '../../../api/auth';
+import { getCookie } from '../../../api/http';
 import { GetBoothHome } from '../../../api/booth';
 
 const ScrapBook = () => {

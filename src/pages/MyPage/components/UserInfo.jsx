@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { SignupState } from '../../../assets/recoil/apiRecoil';
-import { getCookie } from '../../../api/auth.js';
+import { getCookie } from '../../../api/http.js';
 import { Logout } from '../../../api/auth.js';
 
 const UserInfo = () => {
