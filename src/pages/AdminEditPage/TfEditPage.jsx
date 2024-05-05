@@ -99,7 +99,7 @@ const TfEditPage = () => {
             type2='2'
           />
           <S.Box>
-            <S.Title>{'부스 이름'}</S.Title>
+            <S.Title>부스 이름</S.Title>
             <S.InputContainer>
               <textarea
                 id='name'
@@ -113,7 +113,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'실시간 공지사항'}</S.Title>
+            <S.Title>실시간 공지사항</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='realtime'
@@ -127,7 +127,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 운영시간'}</S.Title>
+            <S.Title>부스 운영시간</S.Title>
             <BoothTime
               rows={rows}
               setRows={setRows}
@@ -135,7 +135,7 @@ const TfEditPage = () => {
             />
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 소개글'}</S.Title>
+            <S.Title>부스 소개글</S.Title>
             <S.InputContainer num='200px'>
               <textarea
                 id='description'
@@ -149,7 +149,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'부스 운영진 연락처'}</S.Title>
+            <S.Title>부스 운영진 연락처</S.Title>
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
@@ -162,7 +162,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'운영 여부'}</S.Title>
+            <S.Title>운영 여부</S.Title>
             <BoothOpened
               opened={boothData.opened}
               setOpened={newOpened =>

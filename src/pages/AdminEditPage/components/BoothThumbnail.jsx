@@ -38,7 +38,7 @@ const BoothThumbnail = ({ onImgUpload, type1, type2, initialThum }) => {
   };
 
   return (
-    <Wrapper>
+    <S.Wrapper2>
       <S.Title text={'대표 사진'} />
       <S.BImgContainer type={type1} prevUrl={prevUrl || default_banner}>
         <S.BImgEditBtn onClick={handleBtnClick} type={type2}>
@@ -51,17 +51,8 @@ const BoothThumbnail = ({ onImgUpload, type1, type2, initialThum }) => {
           style={{ display: 'none' }}
         />
       </S.BImgContainer>
-    </Wrapper>
+    </S.Wrapper2>
   );
 };
 
 export default BoothThumbnail;
-
-const Wrapper = styled.div`
-  margin-top: 16px;
-
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-`;

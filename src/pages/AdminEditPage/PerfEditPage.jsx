@@ -88,7 +88,7 @@ const PerfEditPage = () => {
             initialThum={boothData.thumnail}
           />
           <S.Box>
-            <S.Title>{'공연 이름'}</S.Title>
+            <S.Title>공연 이름</S.Title>
             <S.InputContainer>
               <textarea
                 id='name'
@@ -102,7 +102,7 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'실시간 공지사항'}</S.Title>
+            <S.Title>실시간 공지사항</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='realtime'
@@ -116,7 +116,7 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'공연 운영시간'}</S.Title>
+            <S.Title>공연 운영시간</S.Title>
             <BoothTime
               rows={rows}
               setRows={setRows}
@@ -124,7 +124,7 @@ const PerfEditPage = () => {
             />
           </S.Box>
           <S.Box>
-            <S.Title>{'공연 소개글'}</S.Title>
+            <S.Title>공연 소개글</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='description'
@@ -138,7 +138,7 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'공연 운영진 연락처'}</S.Title>
+            <S.Title>공연 운영진 연락처</S.Title>
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
@@ -151,7 +151,7 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title>{'운영 여부'}</S.Title>
+            <S.Title>운영 여부</S.Title>
             <BoothOpened
               opened={boothData.opened}
               setOpened={newOpened =>
