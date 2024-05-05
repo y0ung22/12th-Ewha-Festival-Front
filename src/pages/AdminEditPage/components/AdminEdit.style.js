@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   background-color: white;
 
   display: flex;
-  padding: 0px 20px;
+  //padding: 0px 20px;
   flex-direction: column;
   align-items: center;
 `;
@@ -22,12 +22,7 @@ const Box = styled.div`
   gap: 8px;
 `;
 
-// (공통) 두꺼운 제목 텍스트
-const Title = ({ text }) => {
-  return <TitleText>{text}</TitleText>;
-};
-
-const TitleText = styled.div`
+const Title = styled.div`
   color: var(--bk01);
   font-family: Pretendard;
   font-size: 15px;
@@ -165,7 +160,7 @@ const BImgContainer = styled.div`
       rgba(0, 0, 0, 0.2) -23.55%,
       rgba(0, 0, 0, 0) 129.38%
     ),
-    url(${({ prevUrl }) => prevUrl || 'lightgray'}) 50% / cover no-repeat;
+    url(${({ prevUrl }) => prevUrl}) 50% / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 `;
 
@@ -182,17 +177,19 @@ const MImgContainer = styled.div`
   height: 197px;
 
   border-radius: 20px;
-  background: var(--green05);
+  background:
+    linear-gradient(
+      336deg,
+      rgba(0, 0, 0, 0.2) -23.55%,
+      rgba(0, 0, 0, 0) 129.38%
+    ),
+    url(${({ prevUrl }) => prevUrl}) 50% / cover no-repeat;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
-  img {
-    object-fit: cover;
-  }
 `;
 
 const MImgAddBtn = styled(ImgBtn)`

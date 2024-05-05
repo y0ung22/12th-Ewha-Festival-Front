@@ -18,12 +18,6 @@ const BoothEditPage = () => {
   const navigate = useNavigate();
   const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
-  const [name, setName] = useState('');
-  const [realtime, setRealtime] = useState('');
-  const [days, setDays] = useState([]);
-  const [description, setDescription] = useState('');
-  const [contact, setContact] = useState('');
-  const [opened, setOpened] = useState(true);
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -45,8 +39,17 @@ const BoothEditPage = () => {
     setThumnail(file);
   };
 
-  const handleDaysEdit = days => {
-    setDays(days);
+  const handleDaysEdit = updatedRows => {
+    setBoothData(prevState => ({
+      ...prevState,
+      days: updatedRows
+        .filter(row => row.selected)
+        .map(({ date, start_time, end_time }) => ({
+          date,
+          start_time,
+          end_time
+        }))
+    }));
   };
 
   const handleSubmit = async e => {
@@ -54,13 +57,25 @@ const BoothEditPage = () => {
 
     const formData = new FormData(formRef.current);
 
+    console.log('boothdata.days: ', boothData.days);
+
+    const filteredDays = boothData.days
+      .filter(({ selected }) => selected)
+      .map(({ date, start_time, end_time }) => ({
+        date,
+        start_time,
+        end_time
+      }));
+
+    console.log('filteredDays: ', filteredDays);
+
     if (thumnail) {
       formData.append('thumnail', thumnail);
     }
 
     formData.append('name', boothData.name);
     formData.append('realtime', boothData.realtime);
-    formData.append('days', JSON.stringify(boothData.days));
+    formData.append('days', JSON.stringify(filteredDays));
     formData.append('description', boothData.description);
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
@@ -88,7 +103,7 @@ const BoothEditPage = () => {
             initialThum={boothData.thumnail}
           />
           <S.Box>
-            <S.Title text={'부스 이름'} />
+            <S.Title>{'부스 이름'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='name'
@@ -102,7 +117,7 @@ const BoothEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'실시간 공지사항'} />
+            <S.Title>{'실시간 공지사항'}</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='realtime'
@@ -116,14 +131,14 @@ const BoothEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'부스 운영시간'} />
+            <S.Title>{'부스 운영시간'}</S.Title>
             <BoothTime
               onDayEdit={handleDaysEdit}
               initialTime={boothData.days}
             />
           </S.Box>
           <S.Box>
-            <S.Title text={'부스 소개글'} />
+            <S.Title>{'부스 소개글'}</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='description'
@@ -137,7 +152,7 @@ const BoothEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'부스 운영진 연락처'} />
+            <S.Title>{'부스 운영진 연락처'}</S.Title>
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
@@ -150,7 +165,7 @@ const BoothEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'운영여부'} />
+            <S.Title>{'운영 여부'}</S.Title>
             <BoothOpened
               opened={boothData.opened}
               setOpened={newOpened =>
