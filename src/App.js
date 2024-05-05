@@ -69,7 +69,7 @@ function App() {
             <Route path={'/search'} element={<SearchPage />} />
 
             <Route path={'/boothedit/:id'} element={<BoothEditPage />} />
-            <Route path={'/perfedit'} element={<PerfEditPage />} />
+            <Route path={'/perfedit/:id'} element={<PerfEditPage />} />
             <Route path={'/tfedit/:id'} element={<TfEditPage />} />
             <Route path={'/menuedit/:id'} element={<MenuEditPage />} />
             <Route

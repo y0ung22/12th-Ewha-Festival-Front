@@ -202,7 +202,7 @@ export const DeleteMenu = async (boothId, menuId) => {
     return Promise.resolve(response);
   } catch (error) {
     console.error('메뉴 삭제 실패', error.response);
-    //confirmLogin(error);
+    confirmLogin(error);
     return Promise.reject(error);
   }
 };

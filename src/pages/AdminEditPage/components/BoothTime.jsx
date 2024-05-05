@@ -38,7 +38,6 @@ const BoothTime = ({ onDayEdit, initialTime }) => {
   };
 
   useEffect(() => {
-    // initialTime 데이터가 변경될 때마다 rows 상태를 업데이트합니다.
     const updatedRows = defaultDays.map(day => {
       const initialData = initialTime.find(time => time.date === day.date) || {
         start_time: '',
@@ -59,8 +58,8 @@ const BoothTime = ({ onDayEdit, initialTime }) => {
         ? {
             ...row,
             selected: !row.selected,
-            start_time: row.selected ? row.start_time : '',
-            end_time: row.selected ? row.end_time : ''
+            start_time: row.selected ? '' : row.start_time,
+            end_time: row.selected ? '' : row.end_time
           }
         : row
     );

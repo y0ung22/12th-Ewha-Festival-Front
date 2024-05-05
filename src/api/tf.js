@@ -100,30 +100,11 @@ export const GetTFBoothInfo = async boothId => {
 };
 
 // PATCH : TF 부스 수정
-export const PatchTFBooth = async ({ boothId, formData, otherData }) => {
-  // JSON으로 변환
-  const jsonPayload = {
-    otherData
-  };
-
-  formData.append(
-    'jsonPayload',
-    new Blob([JSON.stringify(jsonPayload)], {
-      type: 'application/json'
-    })
-  );
-
+export const PatchTFBooth = async (boothId, formData) => {
   try {
-    const response = await http.patch(`/notices/event/${boothId}/`, {
-      formData: formData
-    });
+    const response = await http.patch(`/notices/event/${boothId}/`, formData);
 
-    if (response.ok) {
-      const result = await response.json();
-      return result;
-    } else {
-      throw new Error('부스 정보 수정에 실패했습니다.');
-    }
+    return response.data;
   } catch (error) {
     console.error('오류:', error);
     throw error;

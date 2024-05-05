@@ -11,7 +11,6 @@ import BoothOpened from './components/BoothOpened';
 
 // api
 import { GetBoothInfo } from '../../api/booth';
-// import { PatchBooth } from '../../api/booth';
 import { PatchBooth } from '../../api/booth';
 
 const BoothEditPage = () => {
@@ -55,16 +54,13 @@ const BoothEditPage = () => {
 
     const formData = new FormData(formRef.current);
 
-    // 이미지 파일이 변경되었을 경우에만 추가
     if (thumnail) {
       formData.append('thumnail', thumnail);
-    } else {
     }
 
-    // 나머지 데이터 추가
     formData.append('name', boothData.name);
     formData.append('realtime', boothData.realtime);
-    formData.append('days', JSON.stringify(boothData.days)); // Array는 JSON 형태로 변환
+    formData.append('days', JSON.stringify(boothData.days));
     formData.append('description', boothData.description);
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
@@ -74,15 +70,13 @@ const BoothEditPage = () => {
     }
 
     try {
-      await PatchBooth(id, formData); // 수정된 API 호출
+      await PatchBooth(id, formData);
       alert('부스 정보가 성공적으로 수정되었습니다.');
       navigate(`/detail/${id}`);
     } catch (error) {
       alert('부스 정보 수정에 실패했습니다.');
     }
   };
-
-  console.log('!!initialTime:', boothData.days);
 
   return (
     <>
@@ -104,9 +98,7 @@ const BoothEditPage = () => {
                 }
                 placeholder='부스명을 입력해주세요(최대 14자)'
                 maxLength='14'
-              >
-                {name}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>
@@ -120,9 +112,7 @@ const BoothEditPage = () => {
                 }
                 placeholder='실시간으로 알리고 싶은 정보를 작성해주세요(최대 100자)'
                 maxLength='100'
-              >
-                {realtime}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>
@@ -143,9 +133,7 @@ const BoothEditPage = () => {
                 }
                 placeholder='부스에 대해 알리는 소개글을 작성해주세요(최대 100자)'
                 maxLength='100'
-              >
-                {description}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>
@@ -158,9 +146,7 @@ const BoothEditPage = () => {
                   setBoothData({ ...boothData, contact: e.target.value })
                 }
                 placeholder='문의를 위한 부스 운영진 연락처를 남겨주세요&#13;&#10;예) 카카오톡 오픈채팅 링크'
-              >
-                {contact}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>

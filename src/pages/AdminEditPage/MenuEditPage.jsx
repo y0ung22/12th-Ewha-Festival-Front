@@ -15,11 +15,18 @@ const MenuEditPage = () => {
   const [menuList, setMenuList] = useState([]);
   const navigate = useNavigate();
 
+  // MenuEditPage 컴포넌트 내부
   useEffect(() => {
+    fetchMenuList();
+  }, [id]);
+
+  const fetchMenuList = () => {
     GetMenuList(id)
       .then(res => setMenuList(res))
-      .catch();
-  }, [id]);
+      .catch(error =>
+        console.error('메뉴 목록을 불러오는데 실패했습니다.', error)
+      );
+  };
 
   // GoMenuEdit 클릭 핸들러
   const handleEditClick = menuId => {
@@ -39,7 +46,7 @@ const MenuEditPage = () => {
           <Title>수정할 메뉴를 선택해주세요</Title>
           <List dataLength={menuList.length}>
             {menuList.map((item, index) => (
-              <div onClick={() => handleEditClick(item.id)} key={index}>
+              <div key={index}>
                 <GoMenuEdit
                   key={index}
                   menu={item.menu}
@@ -48,6 +55,8 @@ const MenuEditPage = () => {
                   is_soldout={item.is_soldout}
                   boothId={id}
                   menuId={item.id}
+                  onEditClick={() => handleEditClick(item.id)}
+                  onMenuDeleted={fetchMenuList}
                 />
               </div>
             ))}

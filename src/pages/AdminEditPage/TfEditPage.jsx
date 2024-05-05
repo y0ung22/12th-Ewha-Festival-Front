@@ -24,6 +24,7 @@ const TfEditPage = () => {
   const [description, setDescription] = useState('');
   const [contact, setContact] = useState('');
   const [opened, setOpened] = useState(true);
+  const [thumEdited, setThumEdited] = useState(false); // 이미지 수정 여부
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -37,12 +38,16 @@ const TfEditPage = () => {
 
   useEffect(() => {
     GetTFBoothInfo(id)
-      .then(res => setBoothData(res))
+      .then(res => {
+        setBoothData(res);
+        console.log('BoothData: ', res);
+      })
       .catch();
   }, [id]);
 
   const handleImgUpload = file => {
     setThumnail(file);
+    setThumEdited(true);
   };
 
   const handleDaysEdit = days => {
@@ -53,23 +58,27 @@ const TfEditPage = () => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
-    if (boothData.thumnail) {
+
+    if (thumEdited && thumnail && typeof thumnail === 'object') {
       formData.append('thumnail', thumnail);
+    } else {
     }
 
-    const otherData = {
-      name: boothData.name,
-      realtime: boothData.realtime,
-      days: boothData.days,
-      description: boothData.description,
-      contact: boothData.contact,
-      opened: boothData.opened
-    };
+    formData.append('name', boothData.name);
+    formData.append('realtime', boothData.realtime);
+    formData.append('days', JSON.stringify(boothData.days));
+    formData.append('description', boothData.description);
+    formData.append('contact', boothData.contact);
+    formData.append('opened', boothData.opened);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
 
     try {
-      await PatchTFBooth({ boothId: id, formData, otherData });
-      //alert('부스 정보가 성공적으로 수정되었습니다.');
-      //navigate(`/detail/${id}`);
+      await PatchTFBooth(id, formData);
+      alert('부스 정보가 성공적으로 수정되었습니다.');
+      navigate(`/tfedit`);
     } catch (error) {
       alert('부스 정보 수정에 실패했습니다.');
     }
@@ -99,9 +108,7 @@ const TfEditPage = () => {
                 }
                 placeholder='부스명을 입력해주세요(최대 14자)'
                 maxLength='14'
-              >
-                {name}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>
@@ -115,9 +122,7 @@ const TfEditPage = () => {
                 }
                 placeholder='실시간으로 알리고 싶은 정보를 작성해주세요(최대 100자)'
                 maxLength='100'
-              >
-                {realtime}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>
@@ -138,9 +143,7 @@ const TfEditPage = () => {
                 }
                 placeholder='부스에 대해 알리는 소개글을 작성해주세요(최대 300자)'
                 maxLength='300'
-              >
-                {description}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>
@@ -152,14 +155,17 @@ const TfEditPage = () => {
                   setBoothData({ ...boothData, contact: e.target.value })
                 }
                 placeholder='문의를 위한 부스 운영진 연락처를 남겨주세요&#13;&#10;예) 카카오톡 오픈채팅 링크'
-              >
-                {contact}
-              </textarea>
+              />
             </S.InputContainer>
           </S.Box>
           <S.Box>
             <S.Title text={'운영여부'} />
-            <BoothOpened opened={opened} setOpened={setOpened} />
+            <BoothOpened
+              opened={boothData.opened}
+              setOpened={newOpened =>
+                setBoothData({ ...boothData, opened: newOpened })
+              }
+            />
           </S.Box>
           <S.SubmitBtn type='submit' num1='35px'>
             작성 완료
