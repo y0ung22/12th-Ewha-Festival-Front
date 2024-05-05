@@ -17,17 +17,16 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
     setTimeout(() => {
       setSidebarOpen(false);
       setClicked(false);
-    }, 420);
+    }, 400);
   };
   const navigate = useNavigate();
 
-  //배경 스크롤 방지
+  // 배경 스크롤 방지
   useEffect(() => {
     document.body.style.cssText = `
-      position:absolute;
+      position:fixed;
       top: 0;
-      overflow-y: scroll;
-      width:100%;
+      width: 100%;
       display: flex;
       justify-content: center;
     `;
@@ -63,23 +62,25 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
 
   return (
     <>
-      <Wrapper clicked={clicked}>
-        <IconDiv onClick={closeSidebar}>
-          <CloseBtn />
-        </IconDiv>
-        <SearchBar onClick={handleSearch}>
-          <input placeholder='검색어를 입력해주세요'></input>
-          <SearchIconDiv>
-            <SearchIcon />
-          </SearchIconDiv>
-        </SearchBar>
-        <List>
-          {menuItems.map((item, index) => (
-            <Goto key={index} onClick={() => handleMenuItemClick(item.link)}>
-              {item.menu}
-            </Goto>
-          ))}
-        </List>
+      <Wrapper>
+        <Container clicked={clicked}>
+          <IconDiv onClick={closeSidebar}>
+            <CloseBtn />
+          </IconDiv>
+          <SearchBar onClick={handleSearch}>
+            <input placeholder='검색어를 입력해주세요'></input>
+            <SearchIconDiv>
+              <SearchIcon />
+            </SearchIconDiv>
+          </SearchBar>
+          <List>
+            {menuItems.map((item, index) => (
+              <Goto key={index} onClick={() => handleMenuItemClick(item.link)}>
+                {item.menu}
+              </Goto>
+            ))}
+          </List>
+        </Container>
       </Wrapper>
     </>
   );
@@ -88,10 +89,15 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
 export default Sidebar;
 
 const Wrapper = styled.div`
-  position: absolute;
+  @media (min-width: 576px) {
+    width: 24.375rem;
+  }
+
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
+
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -99,6 +105,12 @@ const Wrapper = styled.div`
   background: var(--wh);
   padding: 0 21px;
   z-index: 500;
+  overflow: hidden;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  position: relative;
 
   animation: ${({ clicked }) =>
     clicked ? ' RightToLeft 0.5s' : 'LeftToRight 0.5s'};
@@ -123,9 +135,11 @@ const Wrapper = styled.div`
 `;
 
 const IconDiv = styled.div`
+  width: 2rem;
+  height: 2rem;
   display: flex;
   justify-content: flex-start;
-  padding-top: 3.625rem;
+  margin-top: 3.625rem;
   margin-bottom: 1.813rem;
   cursor: pointer;
 `;

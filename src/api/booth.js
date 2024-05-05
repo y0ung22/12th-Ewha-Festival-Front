@@ -1,4 +1,4 @@
-import { http } from './http';
+import { http, getCookie } from './http';
 
 // GET : 부스 목록 조회
 export const GetBoothList = async (type, day, college, page) => {
@@ -105,8 +105,13 @@ export const GetBoothSearch = async (type, keyword, page) => {
 
 // GET : 홈화면 부스 조회
 export const GetBoothHome = async () => {
+  const token = getCookie('token');
   try {
-    const response = await http.get(`/booths/home`);
+    const response = await http.get(`/booths/home`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {

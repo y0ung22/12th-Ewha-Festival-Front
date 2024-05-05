@@ -1,4 +1,4 @@
-import { http } from './http';
+import { getCookie, http } from './http';
 
 // POST : 회원가입
 export const PostSignup = async (user_id, password, nickname, navigate) => {
@@ -148,9 +148,15 @@ export const Logout = async () => {
 
 // GET : 스크랩한 부스 목록 조회, 필터링
 export const GetScrapBooth = async (type, page) => {
+  const token = getCookie('token');
   try {
     const response = await http.get(
-      `/accounts/likes/?type=${type}&page=${page}`
+      `/accounts/likes/?type=${type}&page=${page}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     );
     console.log(response.data);
     return Promise.resolve(response.data);
