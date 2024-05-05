@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { S } from './components/AdminEdit.style';
 
@@ -20,6 +20,11 @@ const MenuAddPage = () => {
   const [price, setPrice] = useState('');
   const [vegan, setVegan] = useState('');
   const [opened, setOpened] = useState(true);
+
+  // 페이지 상단으로 스크롤 이동
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleImgUpload = file => {
     setImg(file);
@@ -61,7 +66,7 @@ const MenuAddPage = () => {
         <form onSubmit={handleSubmit}>
           <MenuThumAdd onImgUpload={handleImgUpload} />
           <S.Box num={'25px'}>
-            <S.Title text={'메뉴 이름'} />
+            <S.Title>{'메뉴 이름'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='menu'
@@ -74,7 +79,7 @@ const MenuAddPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box num={'17px'}>
-            <S.Title text={'가격'} />
+            <S.Title>{'가격'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='price'
@@ -87,11 +92,11 @@ const MenuAddPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box num={'40px'}>
-            <S.Title text={'비건 여부'} />
+            <S.Title>{'비건 여부'}</S.Title>
             <MenuVegan setVegan={setVegan} />
           </S.Box>
           <S.Box num={'40px'}>
-            <S.Title text={'운영여부'} />
+            <S.Title>{'운영 여부'}</S.Title>
             <MenuOpened opened={opened} setOpened={setOpened} />
           </S.Box>
           <S.SubmitBtn num1={'48px'} type='submit'>

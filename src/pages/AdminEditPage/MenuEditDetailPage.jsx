@@ -24,18 +24,14 @@ const MenuEditDetailPage = () => {
     opened: true
   });
 
+  // 페이지 상단으로 스크롤 이동
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     GetMenuDetail(boothId, menuId)
-      .then(res => {
-        setMenuData({
-          ...menuData,
-          img: res.img,
-          menu: res.menu,
-          price: res.price,
-          vegan: res.vegan,
-          opened: res.opened
-        });
-      })
+      .then(res => setMenuData(res))
       .catch();
   }, [boothId, menuId]);
 
@@ -74,9 +70,12 @@ const MenuEditDetailPage = () => {
       <TopBar />
       <S.Wrapper>
         <form onSubmit={handleSubmit}>
-          <MenuThumEdit onImgUpload={handleImgUpload} />
+          <MenuThumEdit
+            onImgUpload={handleImgUpload}
+            initialThum={menuData.img}
+          />
           <S.Box num={'25px'}>
-            <S.Title text={'메뉴 이름'} />
+            <S.Title>{'메뉴 이름'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='menu'
@@ -90,7 +89,7 @@ const MenuEditDetailPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box num={'17px'}>
-            <S.Title text={'가격'} />
+            <S.Title>{'가격'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='price'
@@ -104,7 +103,7 @@ const MenuEditDetailPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box num={'40px'}>
-            <S.Title text={'비건 여부'} />
+            <S.Title>{'비건 여부'}</S.Title>
             <MenuVegan
               setVegan={newVegan =>
                 setMenuData({ ...menuData, vegan: newVegan })
@@ -112,7 +111,7 @@ const MenuEditDetailPage = () => {
             />
           </S.Box>
           <S.Box num={'40px'}>
-            <S.Title text={'운영여부'} />
+            <S.Title>{'운영 여부'}</S.Title>
             <MenuOpened
               opened={menuData.opened}
               setOpened={newOpened =>

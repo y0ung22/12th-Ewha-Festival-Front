@@ -18,12 +18,7 @@ const TfEditPage = () => {
   const navigate = useNavigate();
   const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
-  const [name, setName] = useState('');
-  const [realtime, setRealtime] = useState('');
   const [days, setDays] = useState([]);
-  const [description, setDescription] = useState('');
-  const [contact, setContact] = useState('');
-  const [opened, setOpened] = useState(true);
   const [thumEdited, setThumEdited] = useState(false); // 이미지 수정 여부
 
   const [boothData, setBoothData] = useState({
@@ -36,6 +31,12 @@ const TfEditPage = () => {
     opened: true
   });
 
+  // 페이지 상단으로 스크롤 이동
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // 부스 상세 GET
   useEffect(() => {
     GetTFBoothInfo(id)
       .then(res => {
@@ -54,6 +55,7 @@ const TfEditPage = () => {
     setDays(days);
   };
 
+  // 수정 완료
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -98,7 +100,7 @@ const TfEditPage = () => {
             type2='2'
           />
           <S.Box>
-            <S.Title text={'부스 이름'} />
+            <S.Title>{'부스 이름'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='name'
@@ -112,7 +114,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'실시간 공지사항'} />
+            <S.Title>{'실시간 공지사항'}</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='realtime'
@@ -126,14 +128,14 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'부스 운영시간'} />
+            <S.Title>{'부스 운영시간'}</S.Title>
             <BoothTime
               onDayEdit={handleDaysEdit}
               initialTime={boothData.days}
             />
           </S.Box>
           <S.Box>
-            <S.Title text={'부스 소개글'} />
+            <S.Title>{'부스 소개글'}</S.Title>
             <S.InputContainer num='200px'>
               <textarea
                 id='description'
@@ -147,10 +149,11 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'부스 운영진 연락처'} />
+            <S.Title>{'부스 운영진 연락처'}</S.Title>
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
+                value={boothData.contact}
                 onChange={e =>
                   setBoothData({ ...boothData, contact: e.target.value })
                 }
@@ -159,7 +162,7 @@ const TfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'운영여부'} />
+            <S.Title>{'운영 여부'}</S.Title>
             <BoothOpened
               opened={boothData.opened}
               setOpened={newOpened =>

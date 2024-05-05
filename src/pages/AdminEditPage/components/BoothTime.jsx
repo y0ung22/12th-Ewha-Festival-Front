@@ -13,29 +13,7 @@ const BoothTime = ({ onDayEdit, initialTime }) => {
     { date: 10, day: '금요일' }
   ];
 
-  console.log(initialTime);
-  const [rows, setRows] = useState(
-    defaultDays.map(day => {
-      const initialData = initialTime.find(time => time.date === day.date) || {
-        start_time: '',
-        end_time: ''
-      };
-      return {
-        ...day,
-        ...initialData,
-        selected: !!initialData.start_time && !!initialData.end_time
-      };
-    })
-  );
-  console.log('rows: ', rows);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // 유효한 입력 형식인지 검증
-  const isValidFormat = time => {
-    const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
-    return regex.test(time);
-  };
+  const [rows, setRows] = useState([]);
 
   useEffect(() => {
     const updatedRows = defaultDays.map(day => {
@@ -51,27 +29,34 @@ const BoothTime = ({ onDayEdit, initialTime }) => {
     });
     setRows(updatedRows);
   }, [initialTime]);
+  console.log('rows: ', rows);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRowClick = index => {
-    const updatedRows = rows.map((row, i) =>
-      i === index
-        ? {
-            ...row,
-            selected: !row.selected,
-            start_time: row.selected ? '' : row.start_time,
-            end_time: row.selected ? '' : row.end_time
-          }
-        : row
-    );
+    const updatedRows = rows.map((row, i) => {
+      if (i === index) {
+        return {
+          ...row,
+          selected: !row.selected
+        };
+      }
+      return row;
+    });
     setRows(updatedRows);
   };
 
   const handleInputChange = (index, type, value) => {
-    // 입력 값 업데이트
     const updatedRows = rows.map((row, i) =>
       i === index ? { ...row, [type]: value } : row
     );
     setRows(updatedRows);
+  };
+
+  // 유효한 입력 형식인지 검증
+  const isValidFormat = time => {
+    const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+    return regex.test(time);
   };
 
   const handleInputBlur = (index, type, value) => {

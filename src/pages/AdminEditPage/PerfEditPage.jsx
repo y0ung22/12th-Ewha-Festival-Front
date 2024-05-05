@@ -18,12 +18,7 @@ const PerfEditPage = () => {
   const navigate = useNavigate();
   const formRef = useRef();
   const [thumnail, setThumnail] = useState(null);
-  const [name, setName] = useState('');
-  const [realtime, setRealtime] = useState('');
   const [days, setDays] = useState([]);
-  const [description, setDescription] = useState('');
-  const [contact, setContact] = useState('');
-  const [opened, setOpened] = useState(true);
 
   const [boothData, setBoothData] = useState({
     thumnail: null,
@@ -87,7 +82,7 @@ const PerfEditPage = () => {
             initialThum={boothData.thumnail}
           />
           <S.Box>
-            <S.Title text={'공연 이름'} />
+            <S.Title>{'공연 이름'}</S.Title>
             <S.InputContainer>
               <textarea
                 id='name'
@@ -101,7 +96,7 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'실시간 공지사항'} />
+            <S.Title>{'실시간 공지사항'}</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='realtime'
@@ -115,14 +110,14 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'공연 운영시간'} />
+            <S.Title>{'공연 운영시간'}</S.Title>
             <BoothTime
               onDayEdit={handleDaysEdit}
               initialTime={boothData.days}
             />
           </S.Box>
           <S.Box>
-            <S.Title text={'공연 소개글'} />
+            <S.Title>{'공연 소개글'}</S.Title>
             <S.InputContainer num='80px'>
               <textarea
                 id='description'
@@ -136,7 +131,7 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'공연 운영진 연락처'} />
+            <S.Title>{'공연 운영진 연락처'}</S.Title>
             <S.InputContainer num='40px'>
               <textarea
                 id='contact'
@@ -149,7 +144,7 @@ const PerfEditPage = () => {
             </S.InputContainer>
           </S.Box>
           <S.Box>
-            <S.Title text={'운영여부'} />
+            <S.Title>{'운영 여부'}</S.Title>
             <BoothOpened
               opened={boothData.opened}
               setOpened={newOpened =>

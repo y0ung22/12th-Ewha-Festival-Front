@@ -1,12 +1,21 @@
 // 메뉴 상세 수정 대표 사진 컴포넌트
 
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { S } from './AdminEdit.style';
+import default_card from '../../../assets/images/default-card.png';
 
-const MenuThumEdit = ({ onImgUpload }) => {
+const MenuThumEdit = ({ onImgUpload, initialThum }) => {
   const [prevUrl, setPrevUrl] = useState('');
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (!initialThum) {
+      setPrevUrl(default_card);
+    } else {
+      setPrevUrl(initialThum);
+    }
+  }, [initialThum]);
 
   const handleImgChange = e => {
     const file = e.target.files[0];
@@ -28,8 +37,7 @@ const MenuThumEdit = ({ onImgUpload }) => {
   return (
     <Wrapper>
       <S.Title text={'대표 사진'} />
-      <S.MImgContainer>
-        {prevUrl && <img src={prevUrl} alt='Thumbnail Preview' />}
+      <S.MImgContainer prevUrl={prevUrl}>
         <S.MImgAddBtn onClick={handleBtnClick}>사진 교체하기</S.MImgAddBtn>
         <input
           type='file'
