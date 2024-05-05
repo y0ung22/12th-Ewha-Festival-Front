@@ -3,13 +3,22 @@ import styled, { css } from 'styled-components';
 
 const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen, onClickYes }) => {
   const [clicked, setClicked] = useState(false);
+  // 모달 열기
+  const handleOnClickYes = () => {
+    setClicked(true);
+    setTimeout(() => {
+      onClickYes();
+      setClicked(false);
+    }, 380);
+  };
+
   // 모달 닫기
   const handleClose = () => {
     setClicked(true);
     setTimeout(() => {
       setIsModalOpen(false);
       setClicked(false);
-    }, 390);
+    }, 380);
   };
 
   return (
@@ -24,7 +33,7 @@ const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen, onClickYes }) => {
             {msgType === 1 ? (
               <>
                 <BtnNo onClick={handleClose}>아니오</BtnNo>
-                <BtnYes onClick={onClickYes}>예</BtnYes>
+                <BtnYes onClick={handleOnClickYes}>예</BtnYes>
               </>
             ) : (
               <BtnNo onClick={handleClose}>닫기</BtnNo>
@@ -103,7 +112,7 @@ const Wrapper = styled.div`
 
     to {
       opacity: 0;
-      transform: ease-in-outl;
+      transform: ease-in-out;
     }
   }
 
