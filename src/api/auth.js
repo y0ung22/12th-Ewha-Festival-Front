@@ -37,11 +37,17 @@ export const PostLogin = async (user_id, password) => {
     expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
 
     //아이디(id) 저장
-    document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
+    document.cookie = `id=${response.data.data.user_info.id}; expires=${expirationDate.toUTCString()};`;
     //닉네임(nickname) 저장
-    document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
+    document.cookie = `nickname=${response.data.data.user_info.nickname}; expires=${expirationDate.toUTCString()};`;
     //토큰 저장
     document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
+    //tf 불리언 저장
+    document.cookie = `tf=${response.data.data.user_info.tf}; expires=${expirationDate.toUTCString()};`;
+    //booth 불리언 저장
+    document.cookie = `booth=${response.data.data.user_info.booth}; expires=${expirationDate.toUTCString()};`;
+    //performance 불리언 저장
+    document.cookie = `performance=${response.data.data.user_info.performance}; expires=${expirationDate.toUTCString()};`;
 
     return Promise.resolve(response);
   } catch (error) {
@@ -77,9 +83,9 @@ export const KakaoLogin = async code => {
       const expirationDate = new Date();
       expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
       //아이디(id) 저장
-      document.cookie = `id=${response.data.data.id}; expires=${expirationDate.toUTCString()};`;
+      document.cookie = `id=${response.data.data.user_info.id}; expires=${expirationDate.toUTCString()};`;
       //닉네임(nickname) 저장
-      document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
+      document.cookie = `nickname=${response.data.data.user_info.nickname}; expires=${expirationDate.toUTCString()};`;
       //토큰 저장
       document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
       window.location.replace('/');
@@ -131,14 +137,13 @@ export const Logout = async () => {
   document.cookie =
     'nickname=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
   document.cookie = 'token=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+  document.cookie = 'tf=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+  document.cookie = 'booth=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+  document.cookie =
+    'performance=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+
   // window.localStorage.clear(); // 로컬 스토리지 초기화
   window.location.replace('/');
-};
-
-export const getCookie = name => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
 // GET : 스크랩한 부스 목록 조회, 필터링
