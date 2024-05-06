@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { S } from '../components/Facility.style';
+import campus_map from '../images/campus_map.png';
 
 import { CommonBtn } from '../../../_common/Button';
-import { ReactComponent as CampusMapImg } from '../images/campus_map.svg';
 
 import FacilityCard from './FacilityCard';
 import { trashcanData } from './TrashcanData';
@@ -22,7 +22,7 @@ const CampusMap = () => {
     <>
       <S.Title>주요 시설 위치</S.Title>
       <ImgBox>
-        <CampusMapImg />
+        <img src={campus_map} />
       </ImgBox>
       <BtnContainer>
         {options.map(opt => (
@@ -69,6 +69,17 @@ const ImgBox = styled.div`
   margin: 1.06rem 0 1.78rem 0;
   display: flex;
   align-self: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 340px) {
+    width: 95%;
+    height: auto;
+    margin-bottom: 0;
+  }
 `;
 
 const BtnContainer = styled.div`
@@ -77,6 +88,11 @@ const BtnContainer = styled.div`
   align-self: flex-start;
   gap: 0.625rem;
   margin-bottom: 0.88rem;
+
+  @media (max-width: 340px) {
+    width: 70%;
+    height: auto;
+  }
 `;
 
 const CardContainer = styled.div`

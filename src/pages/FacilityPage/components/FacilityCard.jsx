@@ -41,7 +41,7 @@ export default FacilityCard;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: ${props => (props.isOpen ? '18.7475rem' : '5.4375rem')};
+  height: auto;
   display: flex;
   flex-direction: column;
   border-radius: 0.9375rem;
@@ -56,6 +56,7 @@ const Container = styled.div`
 const Contents = styled.div`
   width: 100%;
   padding: 1.25rem;
+  gap: 0.63rem;
 `;
 
 const VectorDiv = styled.div`
@@ -76,11 +77,12 @@ const Place = styled.div`
   font-weight: 600;
   line-height: 1.375rem; /* 137.5% */
   letter-spacing: -0.03125rem;
+  margin-bottom: 0.63rem;
 `;
 
 const Detail = styled.div`
   display: flex;
-  height: 0.9375rem;
+  height: auto;
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
@@ -91,22 +93,18 @@ const Detail = styled.div`
   font-weight: 400;
   line-height: 1.375rem; /* 183.333% */
   letter-spacing: -0.03125rem;
-  margin-top: 0.63rem;
 `;
 
 const MapDiv = styled.div`
-  width: 19.8rem;
-  height: 11.75625rem;
   flex-shrink: 0;
   align-self: center;
-
-  margin: 0.69rem 0;
+  padding: 0.63rem 1rem;
   img {
-    height: 100%;
+    width: 100%;
   }
 
   @media (max-width: 380px) {
-    width: 90%;
+    width: 95%;
     height: auto;
 
     img {
