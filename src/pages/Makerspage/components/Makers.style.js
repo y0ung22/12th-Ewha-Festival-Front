@@ -77,9 +77,7 @@ const BoxContainer = styled.div`
     rgba(228, 228, 228, 0.4) 3.91%,
     rgba(247, 247, 247, 0.4) 102.63%
   );
-  box-shadow:
-    0px 0px 4px 0px rgba(0, 0, 0, 0.1),
-    0px 0px 4px 0px #fff inset;
+  box-shadow: 0px 0px 4px 0px rgba(210, 210, 210, 0.54) inset;
   backdrop-filter: blur(10px);
 `;
 
@@ -99,7 +97,7 @@ const Img = styled.div`
   border-radius: 15px;
   border: 1px solid var(--wh02, rgba(251, 251, 251, 0.3));
   background:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.5) -42.34%, rgba(0, 0, 0, 0) 87.59%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
     url(${({ img }) => img}) lightgray 50% / cover no-repeat;
 `;
 

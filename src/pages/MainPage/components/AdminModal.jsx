@@ -1,25 +1,39 @@
-import { useState } from 'react';
-import styled, { css } from 'styled-components';
+import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
+import styled from 'styled-components';
 
-const AdminModal = ({ setIsModal, onClickYes }) => {
+const AdminModal = ({ setIsModal }) => {
+  const [cookies, setCookie] = useCookies(['MODAL_EXPIRES']);
   const [clicked, setClicked] = useState(false);
-  // 모달 열기
-  const handleOnClickYes = () => {
-    setClicked(true);
-    setTimeout(() => {
-      onClickYes();
-      setClicked(false);
-    }, 380);
+
+  const getExpiredDate = days => {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date;
   };
 
-  // 모달 닫기
+  // 하루동안 보지않기
+  const handleOnClickYes = () => {
+    const expires = getExpiredDate(1);
+    setCookie('MODAL_EXPIRES', true, { path: '/', expires });
+    //setClicked(true);
+    setIsModal(false);
+  };
+
+  // 닫기
   const handleClose = () => {
     setClicked(true);
     setTimeout(() => {
       setIsModal(false);
-      setClicked(false);
+      //setClicked(false);
     }, 380);
   };
+
+  useEffect(() => {
+    if (cookies['MODAL_EXPIRES']) {
+      setIsModal(false);
+    }
+  }, [cookies, setIsModal]);
 
   return (
     <ModalWrapper>
@@ -33,22 +47,34 @@ const AdminModal = ({ setIsModal, onClickYes }) => {
               '축제 중 사용하신 다회용기는\n생활환경관에 있는 중앙환경동아리 이큐브와\n아임에코 부스에 반납해주세요.'
             }
           </BlackContent>
+          <Line />
           <PurTitle>본무대 입장 및 관람 안내</PurTitle>
+          <BoxContainer>
+            <MiniBox>
+              <BlockBox>입장대상</BlockBox>
+              <BlackContent>팔찌를 착용한 이화여자대학교 학부생</BlackContent>
+            </MiniBox>
+            <MiniBox>
+              <BlockBox>입장시간</BlockBox>
+              <BlackContent>14:00 ~ 18:20</BlackContent>
+              <Notice>
+                *안전한 무대 입장을 위해 무대 입장 마감인 6시 20분 전까지 입장
+                부탁드립니다.
+              </Notice>
+            </MiniBox>
+            <MiniBox>
+              <BlockBox>입장구역</BlockBox>
+              <div className='zoneBox'>
+                <Zone>A-D 구역 팔찌 착용</Zone>
 
-          <div className='miniBox'>
-            <BlockBox>입장대상</BlockBox>
-            <BlackContent>팔찌를 착용한 이화여자대학교 학부생</BlackContent>
-          </div>
-          <div className='miniBox'>
-            <BlockBox>입장시간</BlockBox>
-            <BlackContent>14:00 ~ 18:20</BlackContent>
-          </div>
-          <div className='miniBox'>
-            <BlockBox>입장구역</BlockBox>
-            <BlackContent>조형예술대학건물쪽 입구</BlackContent>
-            <BlackContent>이화동산쪽 입구</BlackContent>
-          </div>
-
+                <BlackContent>조형예술대학건물쪽 입구</BlackContent>
+              </div>
+              <div className='zoneBox'>
+                <Zone>E-H 구역 팔찌 착용</Zone>
+                <BlackContent>이화동산쪽 입구</BlackContent>
+              </div>
+            </MiniBox>
+          </BoxContainer>
           <Btn>
             <BtnNo onClick={handleClose}>닫기</BtnNo>
             <BtnYes onClick={handleOnClickYes}>하루동안 보지않기</BtnYes>
@@ -110,7 +136,8 @@ const Background = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 17.875rem;
+  width: 20rem;
+  height: 34.6875rem;
   border-radius: 0.625rem;
   background: var(--wh);
   z-index: 99998;
@@ -143,7 +170,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  width: 17.875rem;
+  width: 20rem;
   height: 3.25rem;
   flex-shrink: 0;
   border-radius: 0.625rem 0.625rem 0rem 0rem;
@@ -158,21 +185,46 @@ const Title = styled.div`
   padding: 1.06rem 0;
 `;
 
+const Line = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 0.81rem;
+
+  width: 18.78125rem;
+  height: 0rem;
+  flex-shrink: 0;
+  stroke-width: 1px;
+  stroke: var(--gray02);
+`;
+
 const Contents = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.38rem 1.78rem;
+`;
 
-  .miniBox {
+const BoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.12rem;
+`;
+
+const MiniBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.44rem;
+
+  .zoneBox {
     display: flex;
     flex-direction: column;
-    gap: 0.44rem;
+    align-items: center;
   }
 `;
 
 const PurTitle = styled.div`
-  color: var(--purple, #9747ff);
+  margin-bottom: 0.69rem;
+  color: var(--purple);
   text-align: center;
   font-family: Pretendard;
   font-size: 0.75rem;
@@ -182,7 +234,8 @@ const PurTitle = styled.div`
 `;
 
 const BlackContent = styled.div`
-  color: var(--bk01, #000);
+  width: 16.4375rem;
+  color: var(--bk01);
   text-align: center;
   font-family: Pretendard;
   font-size: 0.875rem;
@@ -193,16 +246,39 @@ const BlackContent = styled.div`
 `;
 
 const BlockBox = styled.div`
+  width: 3.1rem;
   display: flex;
   padding: 0.3125rem 0.375rem;
   justify-content: center;
   align-items: center;
 
   border-radius: 0.25rem;
-  border: 1px solid var(--gray05, #8e8e8e);
-  background: var(--wh, #fff);
+  border: 1px solid var(--gray05);
+  background: var(--wh);
 
-  color: var(--gray05, #8e8e8e);
+  color: var(--gray05);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
+const Notice = styled.div`
+  width: 10.4375rem;
+  color: var(--bk01);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const Zone = styled.div`
+  width: 10.4375rem;
+  color: var(--bk01);
   text-align: center;
   font-family: Pretendard;
   font-size: 0.625rem;
@@ -216,7 +292,7 @@ const Btn = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 0.56rem;
-  margin: 1.25rem auto 1.38rem;
+  margin: 1.25rem auto 1.81rem auto;
 `;
 
 const ButtonBase = styled.div`

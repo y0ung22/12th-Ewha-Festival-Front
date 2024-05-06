@@ -11,6 +11,9 @@ const Footer = () => {
     <Wrapper>
       <div>멋쟁이 사자처럼 12기 | Likelion Ewha - 12th</div>
       <div>
+        <a href='http://pf.kakao.com/_htxexfd'>http://pf.kakao.com/_htxexfd</a>
+      </div>
+      <div>
         <a href='https://linktr.ee/likelion.ewha'>
           <img src={likelion} alt='likelion logo' />
         </a>
@@ -48,20 +51,31 @@ const Wrapper = styled.div`
 
   div:nth-child(1) {
     margin-top: 1.3rem;
-    height: 2.125rem;
     font-size: 0.65rem;
     font-weight: 500;
     line-height: 1.04rem;
   }
-
   div:nth-child(2) {
+    font-size: 0.65rem;
+    font-weight: 500;
+    line-height: 1.04rem;
+    text-decoration: underline;
+    a:link {
+      color: #9b9b9b;
+    }
+    a:visited {
+      color: #9b9b9b;
+    }
+  }
+
+  div:nth-child(3) {
     margin-top: 1.2rem;
     margin-bottom: 1.21rem;
     display: flex;
     gap: 1rem;
   }
 
-  div:nth-child(3) {
+  div:nth-child(4) {
     font-size: 0.52rem;
     font-weight: 300;
     line-height: normal;
