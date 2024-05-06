@@ -7,8 +7,8 @@ const TitleInput = ({ newTitle = '', handleTitle }) => {
       <S.GreenLine />
       <S.TitleInput
         type='text'
-        placeholder='제목을 작성하세요(최대 20자)'
-        maxLength={20}
+        placeholder='제목을 작성하세요(최대 26자)'
+        maxLength={26}
         value={newTitle}
         onChange={handleTitle}
       />
