@@ -145,6 +145,7 @@ export default MainBottomSheet;
 const BottomSheetContainer = styled(motion.div)`
   position: fixed;
   bottom: 0;
+  left: 1;
   width: 390px;
   height: calc(100vh - 6rem);
   z-index: 10;
