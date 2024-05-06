@@ -81,7 +81,7 @@ const MainBottomSheet = () => {
 
   const controls = useAnimation();
   const dragControls = useDragControls();
-  const bottomSheetRef = useRef(null);
+  // const bottomSheetRef = useRef(null);
 
   const toggleBottomSheet = () => {
     setIsOpen(!isOpen);
@@ -99,18 +99,18 @@ const MainBottomSheet = () => {
     }
   };
 
-  const handleScroll = useThrottle(() => {
-    const bottomSheetThreshold = window.innerHeight / 4;
-    console.log('스크롤 이벤트');
-    if (window.scrollY > bottomSheetThreshold) {
-      toggleBottomSheet();
-    }
-  }, 200);
+  // const handleScroll = useThrottle(() => {
+  //   const bottomSheetThreshold = window.innerHeight / 4;
+  //   console.log('스크롤 이벤트');
+  //   if (window.scrollY > bottomSheetThreshold) {
+  //     toggleBottomSheet();
+  //   }
+  // }, 200);
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, [handleScroll]);
 
   useEffect(() => {
     if (isOpen) {
@@ -119,9 +119,9 @@ const MainBottomSheet = () => {
       document.body.style.overflow = 'visible';
     }
 
-    if (bottomSheetRef.current) {
-      bottomSheetRef.current.scrollTop = 0;
-    }
+    // if (bottomSheetRef.current) {
+    //   bottomSheetRef.current.scrollTop = 0;
+    // }
 
     return () => {
       document.body.style.overflow = 'visible';
@@ -136,11 +136,10 @@ const MainBottomSheet = () => {
         </ToggleButton>
       )}
       <BottomSheetContainer
-        ref={bottomSheetRef}
         initial='closed'
         animate={controls}
         variants={{
-          opened: { y: '-34rem' },
+          opened: { y: '-35.5rem' },
           closed: { y: '0%' }
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
@@ -155,7 +154,6 @@ const MainBottomSheet = () => {
             <MainBox key={item.id} item={item}></MainBox>
           ))}
         </Wrapper>
-        <Footer />
       </BottomSheetContainer>
     </>
   );
@@ -167,7 +165,8 @@ const BottomSheetContainer = styled(motion.div)`
   z-index: 10;
   width: 100%;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
-  max-height: ${props => (props.isOpen ? '85vh' : '85vh')};
+  /* max-height: ${props => (props.isOpen ? '85vh' : '85vh')}; */
+  max-height: max-content;
   overflow-y: auto;
   transition: max-height 0.3s ease-in-out;
 
@@ -191,7 +190,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 
-  /* max-height: 80vh; */
+  max-height: max-content;
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
