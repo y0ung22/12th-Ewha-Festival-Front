@@ -8,7 +8,7 @@ const ProgramListEditPage = () => {
   return (
     <>
       <S.Wrapper>
-        <TopBar />
+        <TopBar backLink={'/'} />
         <S.Container>
           <TFBoothList />
         </S.Container>
