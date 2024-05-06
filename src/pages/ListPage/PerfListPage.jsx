@@ -117,5 +117,4 @@ const ResultDiv = styled.div`
   align-items: center;
   gap: 0.875rem 0.625rem;
   height: max-content;
-  overflow-y: scroll;
 `;
