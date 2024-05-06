@@ -39,7 +39,7 @@ const MainMenuCard = ({ item }) => {
         <span>{item.name}</span>
         <span>{item.info}</span>
       </Text>
-      {!item.opened && <ClosedSign>운영종료</ClosedSign>}
+      {item.opened && <ClosedSign>판매종료</ClosedSign>}
     </Card>
   );
 };
