@@ -16,8 +16,8 @@ export default GoMenuAdd;
 
 const Box = styled.div`
   display: flex;
-  width: 170px;
-  height: 197px;
+  width: 10.625rem;
+  height: 12.3125rem;
   padding: 60px 41px 46px 41px;
   flex-direction: column;
   justify-content: flex-end;

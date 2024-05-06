@@ -34,7 +34,7 @@ const MenuThumEdit = ({ onImgUpload, initialThum }) => {
   };
 
   return (
-    <S.Wrapper2>
+    <S.MTWrapper>
       <S.Title>대표 사진</S.Title>
       <S.MImgContainer prevUrl={prevUrl}>
         <S.MImgAddBtn onClick={handleBtnClick}>사진 교체하기</S.MImgAddBtn>
@@ -45,7 +45,7 @@ const MenuThumEdit = ({ onImgUpload, initialThum }) => {
           style={{ display: 'none' }}
         />
       </S.MImgContainer>
-    </S.Wrapper2>
+    </S.MTWrapper>
   );
 };
 

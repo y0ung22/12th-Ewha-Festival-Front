@@ -71,8 +71,8 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
 
-  width: 170px;
-  height: 197px;
+  width: 10.625rem;
+  height: 12.3125rem;
   flex-shrink: 0;
 
   border-radius: 20px;
@@ -96,8 +96,8 @@ const Overlay = styled.div`
 
 const Box = styled.div`
   position: relative;
-  width: 170px;
-  height: 197px;
+  width: 10.625rem;
+  height: 12.3125rem;
   flex-shrink: 0;
   border-radius: 20px;
   background:
