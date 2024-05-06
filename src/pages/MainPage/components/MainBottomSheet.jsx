@@ -162,7 +162,7 @@ const BottomSheetContainer = styled(motion.div)`
 
 const Wrapper = styled.div`
   position: relative;
-  z-index: 10;
+  z-index: 150;
   display: flex;
   flex-direction: column;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
