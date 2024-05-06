@@ -144,6 +144,11 @@ const Wrapper = styled.div`
   border: 1px solid var(--gray04, #c1d9cc);
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ToggleButton = styled.button`
