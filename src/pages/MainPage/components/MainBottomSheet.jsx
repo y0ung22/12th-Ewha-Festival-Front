@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { motion, useDragControls } from 'framer-motion';
 
@@ -80,6 +80,15 @@ const MainBottomSheet = () => {
   const dragControls = useDragControls();
   const animateState = isOpen ? 'opened' : 'closed';
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.getElementById('bottomSheetContainer').style.overflowY = isOpen
+        ? 'scroll'
+        : 'none';
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
   const handleDragEnd = (event, info) => {
     const offsetThreshold = 150;
     const deltaThreshold = 5;
@@ -105,11 +114,12 @@ const MainBottomSheet = () => {
         </ToggleButton>
       )}
       <BottomSheetContainer
+        id='bottomSheetContainer'
         initial='closed'
         animate={animateState}
         variants={{
-          opened: { top: `17vh` },
-          closed: { top: '85vh' }
+          opened: { top: `10rem` },
+          closed: { top: '44rem' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
@@ -118,13 +128,12 @@ const MainBottomSheet = () => {
         dragConstraints={{ top: 0, bottom: 0 }}
         dragElastic={0.1}
         onDragEnd={handleDragEnd}
-        style={{ overflowY: isOpen ? 'scroll' : 'hidden' }}
       >
-        <Wrapper>
-          <HandlerContainer onPointerDown={e => dragControls.start(e)} />
+        <Wrapper onPointerDown={e => dragControls.start(e)}>
+          <HandlerContainer />
           <BoxContainer>
             {BoxList.map(item => (
-              <MainBox key={item.id} item={item}></MainBox>
+              <MainBox key={item.id} item={item} />
             ))}
           </BoxContainer>
         </Wrapper>
@@ -141,7 +150,6 @@ const BottomSheetContainer = styled(motion.div)`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 84vh;
   z-index: 10;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
 
@@ -160,7 +168,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   overflow-y: scroll;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -171,7 +179,6 @@ const HandlerContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 30px;
-  cursor: grab;
 `;
 
 const BoxContainer = styled.div`
