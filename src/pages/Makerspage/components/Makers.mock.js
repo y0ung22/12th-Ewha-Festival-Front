@@ -9,12 +9,16 @@ import lions2 from '../images/lions2.jpg';
 import lions5 from '../images/lions5.png';
 import lions6 from '../images/lions6.png';
 import lions7 from '../images/lions7.png';
+import lions8 from '../images/lions8.png';
+import lions9 from '../images/lions9.png';
 
 // tf 이미지
 import tf1 from '../images/tf1.jpg';
 import tf3 from '../images/tf3.jpg';
 import tf4 from '../images/tf4.jpg';
 import tf7 from '../images/tf7.jpg';
+import tf8 from '../images/tf8.jpg';
+import tf9 from '../images/tf9.png';
 
 export const LionsData = [
   {
@@ -38,7 +42,7 @@ export const LionsData = [
     info: '사보 23',
     name: '변지혜',
     part: '프론트엔드',
-    work: '메인 페이지\n검색 페이지',
+    work: '메인 페이지\n축준위 메인 페이지\n부스/공연 관리자 메인 페이지\n검색 페이지\n부스/공연 목록 페이지',
     img: def
   },
   {
@@ -54,7 +58,7 @@ export const LionsData = [
     info: '컴공 23',
     name: '진규빈',
     part: '프론트엔드',
-    work: '메인 페이지\n검색 페이지',
+    work: '만든이들 페이지\n축준위 부스 수정 페이지\n부스/공연 관리자 수정 페이지\n부스 메뉴 수정 목록/상세/\n추가 페이지',
     img: lions5
   },
   {
@@ -62,7 +66,7 @@ export const LionsData = [
     info: '컴공 22',
     name: '최지원',
     part: '프론트엔드',
-    work: '메인 페이지\n검색 페이지',
+    work: '로그인/회원가입 페이지\n유저 인증, 카카오 소셜 로그인\n마이페이지\n주요 시설 위치 페이지\n사이드바',
     img: lions6
   },
   {
@@ -79,7 +83,7 @@ export const LionsData = [
     name: '심예원',
     part: '백엔드',
     work: '부스 수정 페이지\n메뉴 수정 페이지\n공지 조회 페이지\n공지 등록/수정/삭제\n상설 부스 페이지',
-    img: def
+    img: lions8
   },
   {
     id: 9,
@@ -87,7 +91,7 @@ export const LionsData = [
     name: '이다빈',
     part: '백엔드',
     work: '메인 페이지\n검색 페이지\n부스 상세 페이지\n부스 스크랩 구현\n방명록 작성/수정/삭제',
-    img: def
+    img: lions9
   }
 ];
 
@@ -150,10 +154,18 @@ export const TfData = [
   },
   {
     id: 8,
+    info: '컴공 22',
+    name: '박서림',
+    part: '부스',
+    work: '부스 총괄 관리',
+    img: tf8
+  },
+  {
+    id: 9,
     info: '스포츠 20',
     name: '박서림',
     part: '추천위원',
     work: '총학생회 및 중운위 소통',
-    img: def
+    img: tf9
   }
 ];
