@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-import { PatchBoothScrap } from '../api/booth';
+import { PatchBoothScrap } from '../../../api/booth';
 
-import { ReactComponent as ScrapOff } from '../assets/icons/scrap-off.svg';
-import { ReactComponent as ScrapOn } from '../assets/icons/scrap-on.svg';
+import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
+import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
 
-import defaultCard from '../assets/images/default-card.png';
+import defaultCard from '../../../assets/images/default-card.png';
 
-const ScrapCard = ({ item, size }) => {
+const MainScrapCard = ({ item }) => {
   const navigate = useNavigate();
   const [isScraped, setIsScraped] = useState(item.is_liked);
 
@@ -21,7 +21,6 @@ const ScrapCard = ({ item, size }) => {
   };
   return (
     <Card
-      size={size}
       src={item.thumnail ? item.thumnail : defaultCard}
       alt='menu img'
       onClick={() => navigate(`/detail/${item.id}`)}
@@ -31,7 +30,7 @@ const ScrapCard = ({ item, size }) => {
       ) : (
         <ScrapOff onClick={e => handleScrap(e)} />
       )}
-      <SpanDiv size={size}>
+      <SpanDiv>
         <span>{item.name}</span>
         <span>{item.info}</span>
       </SpanDiv>
@@ -40,15 +39,18 @@ const ScrapCard = ({ item, size }) => {
   );
 };
 
-export default ScrapCard;
+export default MainScrapCard;
 
 const Card = styled.div`
   position: relative;
 
-  width: ${props => (props.size === 'small' ? '9.125rem' : '10.625rem')};
-  height: ${props => (props.size === 'small' ? '11.375rem' : '12.3125rem')};
+  aspect-ratio: 9.125 / 11.375;
+  width: 100%;
+  height: 100%;
+
+  max-height: 11.375rem;
   flex-shrink: 0;
-  border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
+  border-radius: 0.9375rem;
   background:
     linear-gradient(
       336deg,
@@ -69,9 +71,9 @@ const Card = styled.div`
 
 const SpanDiv = styled.div`
   position: absolute;
-  left: ${props => (props.size === 'small' ? '0.75rem' : '17px')};
+  left: 0.75rem;
   right: 17px;
-  bottom: ${props => (props.size === 'small' ? '0.62rem' : '14px')};
+  bottom: 0.62rem;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -83,7 +85,7 @@ const SpanDiv = styled.div`
   letter-spacing: -0.3px;
 
   span:nth-child(1) {
-    width: ${props => (props.size === 'small' ? '7.8rem' : '9rem')};
+    width: 7.8rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

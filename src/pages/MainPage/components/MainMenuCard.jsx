@@ -20,7 +20,7 @@ const MainMenuCard = ({ item, size }) => {
   };
 
   return (
-    <Card size={size} onClick={() => navigate(`/detail/${item.booth_id}`)}>
+    <Card onClick={() => navigate(`/detail/${item.booth_id}`)}>
       <div className='overlay' />
       {item.thumnail ? (
         <BackgroundImg src={item.thumnail} alt='menu img' />
@@ -48,18 +48,15 @@ export default MainMenuCard;
 
 const Card = styled.div`
   position: relative;
-  @media (max-width: 410px) {
-    aspect-ratio: ${props =>
-      props.size === 'small' ? '9.125 / 11.375' : '10.625 / 12.3125'};
-    width: 100%;
-    height: 100%;
-  }
 
-  width: 9.125rem;
-  height: 11.375rem;
+  aspect-ratio: 9.125 / 11.375;
+  width: 100%;
+  height: 100%;
+
+  max-height: 11.375rem;
 
   flex-shrink: 0;
-  border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
+  border-radius: 0.9375rem;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
   overflow: hidden;
 
