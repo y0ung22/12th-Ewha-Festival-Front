@@ -70,7 +70,7 @@ const Card = styled.div`
     z-index: 1;
   }
 
-  @media (max-width: 370px) {
+  @media (max-width: 390px) {
     width: 100%;
   }
 `;

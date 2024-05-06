@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { motion, useAnimation, useDragControls } from 'framer-motion';
+import { motion, useDragControls } from 'framer-motion';
 
 import MainBox from './MainBox';
 import Footer from '../../../_common/Footer';
-
-import useThrottle from '../../../assets/hooks/useThrottle';
 
 //images
 import num1 from '../images/main-1.png';
@@ -79,80 +77,56 @@ const BoxList = [
 const MainBottomSheet = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const controls = useAnimation();
   const dragControls = useDragControls();
-  // const bottomSheetRef = useRef(null);
-
-  const toggleBottomSheet = () => {
-    setIsOpen(!isOpen);
-    controls.start(isOpen ? 'closed' : 'opened');
-    window.scrollTo(0, 0);
-  };
+  const animateState = isOpen ? 'opened' : 'closed';
 
   const handleDragEnd = (event, info) => {
-    if (info.offset.y < 0) {
-      setIsOpen(true);
-      controls.start('opened');
-    } else {
-      setIsOpen(false);
-      controls.start('closed');
-    }
+    const offsetThreshold = 150;
+    const deltaThreshold = 5;
+    const isOverOffsetThreshold = Math.abs(info.offset.y) > offsetThreshold;
+    const isOverDeltaThreshold = Math.abs(info.delta.y) > deltaThreshold;
+    const isOverThreshold = isOverOffsetThreshold || isOverDeltaThreshold;
+
+    if (!isOverThreshold) return;
+
+    const newIsOpened = info.offset.y < 0;
+    setIsOpen(newIsOpened);
   };
 
-  // const handleScroll = useThrottle(() => {
-  //   const bottomSheetThreshold = window.innerHeight / 4;
-  //   console.log('스크롤 이벤트');
-  //   if (window.scrollY > bottomSheetThreshold) {
-  //     toggleBottomSheet();
-  //   }
-  // }, 200);
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, [handleScroll]);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'visible';
-    }
-
-    // if (bottomSheetRef.current) {
-    //   bottomSheetRef.current.scrollTop = 0;
-    // }
-
-    return () => {
-      document.body.style.overflow = 'visible';
-    };
-  }, [isOpen]);
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
       {isOpen && (
-        <ToggleButton onClick={toggleBottomSheet}>
+        <ToggleButton onClick={handleCloseModal}>
           나의 스크랩북 열기
         </ToggleButton>
       )}
       <BottomSheetContainer
         initial='closed'
-        animate={controls}
+        animate={animateState}
         variants={{
-          opened: { y: '-35.5rem' },
-          closed: { y: '0%' }
+          opened: { top: `17vh` },
+          closed: { top: '85vh' }
         }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
         dragControls={dragControls}
-        dragConstraints={{ top: -300, bottom: 0 }}
+        dragListener={false}
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={0.1}
         onDragEnd={handleDragEnd}
-        style={{ zIndex: 10, width: '100%' }}
+        style={{ overflowY: isOpen ? 'scroll' : 'hidden' }}
       >
         <Wrapper>
-          {BoxList.map(item => (
-            <MainBox key={item.id} item={item}></MainBox>
-          ))}
+          <HandlerContainer onPointerDown={e => dragControls.start(e)} />
+          <BoxContainer>
+            {BoxList.map(item => (
+              <MainBox key={item.id} item={item}></MainBox>
+            ))}
+          </BoxContainer>
         </Wrapper>
       </BottomSheetContainer>
     </>
@@ -162,13 +136,14 @@ const MainBottomSheet = () => {
 export default MainBottomSheet;
 
 const BottomSheetContainer = styled(motion.div)`
-  z-index: 10;
+  position: absolute;
+  z-index: 150;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  height: 84vh;
+  z-index: 10;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
-  /* max-height: ${props => (props.isOpen ? '85vh' : '85vh')}; */
-  max-height: max-content;
-  overflow-y: auto;
-  transition: max-height 0.3s ease-in-out;
 
   &::-webkit-scrollbar {
     display: none;
@@ -178,23 +153,35 @@ const BottomSheetContainer = styled(motion.div)`
 const Wrapper = styled.div`
   position: relative;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.875rem 1.875rem 0rem 0rem;
+  border: 1px solid var(--gray04, #c1d9cc);
+  background: var(--wh01, #fff);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const HandlerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  cursor: grab;
+`;
+
+const BoxContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
   width: 100%;
-  padding: 1.875rem 1.0625rem;
+  padding: 0 1.0625rem 1.875rem;
   gap: 0.875rem 0.625rem;
-  border-radius: 1.875rem 1.875rem 0rem 0rem;
-  border: 1px solid var(--gray04, #c1d9cc);
-  background: var(--wh01, #fff);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-
-  max-height: max-content;
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const ToggleButton = styled.button`
