@@ -15,7 +15,6 @@ const MainPage = () => {
         <TopBar isWhite={true} isMenu={true} isMain={true} />
         <ScrapBook />
         <MainBottomSheet />
-        <Footer />
       </ContentWrapper>
     </Wrapper>
   );
@@ -26,7 +25,7 @@ export default MainPage;
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 `;
 
