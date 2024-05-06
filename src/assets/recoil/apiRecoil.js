@@ -1,15 +1,9 @@
-import { useEffect } from 'react';
-import { atom, useRecoilState } from 'recoil';
+import { atom } from 'recoil';
 import { getCookie } from '../../api/http';
 
 const getCookieValue = key => {
   return getCookie(key) || null;
 };
-
-export const LoginState = atom({
-  key: 'LoginState',
-  default: !!getCookie('accessToken')
-});
 
 export const SignupState = atom({
   key: 'SignupState',
