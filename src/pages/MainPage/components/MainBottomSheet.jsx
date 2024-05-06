@@ -207,7 +207,7 @@ const BoxContainer = styled.div`
 const ToggleButton = styled.button`
   position: fixed;
   top: 5rem;
-  z-index: 20;
+  z-index: 151;
 
   display: inline-flex;
   padding: 0.625rem 2.0625rem;
