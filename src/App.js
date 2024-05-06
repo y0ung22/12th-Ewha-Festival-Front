@@ -2,6 +2,7 @@ import React from 'react';
 import GlobalStyles from './statics/styles/GlobalStyle';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import TFRoute from './api/auth';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
@@ -72,14 +73,37 @@ function App() {
             />
             <Route path={'/menuadd/:id'} element={<MenuAddPage />} />
 
+            {/* TF 공지사항 */}
             <Route path={'/notice'} element={<NoticeListPage />} />
             <Route path={'/notice/:id'} element={<NoticeDetailPage />} />
-            <Route path={'/notice/write'} element={<NoticeWritePage />} />
-            <Route path={'/notice/edit'} element={<NoticeEditPage />} />
+            <Route
+              path={'/notice/write'}
+              element={
+                <TFRoute>
+                  <NoticeWritePage />
+                </TFRoute>
+              }
+            />
+            <Route
+              path={'/notice/edit'}
+              element={
+                <TFRoute>
+                  <NoticeEditPage />
+                </TFRoute>
+              }
+            />
 
+            {/* 축제 일정 및 TF 부스 */}
             <Route path={'/program'} element={<ProgramListPage />} />
             <Route path={'/program/:id'} element={<ProgramDetailPage />} />
-            <Route path={'/tfedit'} element={<ProgramListEditPage />} />
+            <Route
+              path={'/tfedit'}
+              element={
+                <TFRoute>
+                  <ProgramListEditPage />
+                </TFRoute>
+              }
+            />
             <Route path={'/makers'} element={<MakersPage />} />
           </Routes>
         </BrowserRouter>
