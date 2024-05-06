@@ -117,7 +117,7 @@ const MainBottomSheet = () => {
         dragControls={dragControls}
         dragListener={false}
         dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={0.1}
+        dragElastic={0}
         onDragEnd={handleDragEnd}
       >
         <Wrapper
