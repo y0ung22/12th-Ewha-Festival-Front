@@ -86,6 +86,13 @@ const Bottom = styled.div`
     color: var(--gray01);
     font-size: 0.75rem;
     line-height: 1rem;
+
+    span {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
   }
 `;
 

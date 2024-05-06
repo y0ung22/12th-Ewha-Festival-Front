@@ -30,7 +30,7 @@ const DetailBanner = ({ b, program = false, rendering }) => {
         <div>
           <span>{b.name}</span>
           {program ? (
-            <span>{b.place}</span>
+            <span style={{ marginRight: '1.12rem' }}>{b.place}</span>
           ) : (
             <span>
               {b.college} {b.number}
