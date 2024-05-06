@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const AdminModal = ({ setIsModal }) => {
   const [cookies, setCookie] = useCookies(['MODAL_EXPIRES']);
   const [clicked, setClicked] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const getExpiredDate = days => {
     const date = new Date();
@@ -16,7 +17,6 @@ const AdminModal = ({ setIsModal }) => {
   const handleOnClickYes = () => {
     const expires = getExpiredDate(1);
     setCookie('MODAL_EXPIRES', true, { path: '/', expires });
-    //setClicked(true);
     setIsModal(false);
   };
 
@@ -25,15 +25,19 @@ const AdminModal = ({ setIsModal }) => {
     setClicked(true);
     setTimeout(() => {
       setIsModal(false);
-      //setClicked(false);
     }, 380);
   };
 
   useEffect(() => {
     if (cookies['MODAL_EXPIRES']) {
       setIsModal(false);
+    } else {
+      setIsModal(true);
     }
+    setIsLoaded(true);
   }, [cookies, setIsModal]);
+
+  if (!isLoaded) return null;
 
   return (
     <ModalWrapper>
@@ -66,7 +70,6 @@ const AdminModal = ({ setIsModal }) => {
               <BlockBox>입장구역</BlockBox>
               <div className='zoneBox'>
                 <Zone>A-D 구역 팔찌 착용</Zone>
-
                 <BlackContent>조형예술대학건물쪽 입구</BlackContent>
               </div>
               <div className='zoneBox'>
@@ -192,8 +195,8 @@ const Line = styled.div`
   width: 18.78125rem;
   height: 0rem;
   flex-shrink: 0;
-  stroke-width: 1px;
-  stroke: var(--gray02);
+
+  border-bottom: 1px solid var(--gray02);
 `;
 
 const Contents = styled.div`
@@ -219,6 +222,7 @@ const MiniBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.12rem;
   }
 `;
 
@@ -234,13 +238,12 @@ const PurTitle = styled.div`
 `;
 
 const BlackContent = styled.div`
-  width: 16.4375rem;
   color: var(--bk01);
   text-align: center;
   font-family: Pretendard;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   white-space: pre-line;
 `;
@@ -283,7 +286,7 @@ const Zone = styled.div`
   font-family: Pretendard;
   font-size: 0.625rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   line-height: normal;
 `;
 

@@ -109,7 +109,7 @@ const MainBottomSheet = () => {
         initial='closed'
         animate={animateState}
         variants={{
-          opened: { top: `10rem` },
+          opened: { top: `6rem` },
           closed: { top: '88vh' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
@@ -126,7 +126,9 @@ const MainBottomSheet = () => {
             overflowY: isOpen ? `scroll` : `unset`
           }}
         >
-          <HandlerContainer />
+          <HandlerContainer>
+            <div className='dragPoint' />
+          </HandlerContainer>
           <BoxContainer>
             {BoxList.map(item => (
               <MainBox key={item.id} item={item} />
@@ -142,13 +144,12 @@ export default MainBottomSheet;
 
 const BottomSheetContainer = styled(motion.div)`
   position: fixed;
-  z-index: 150;
   bottom: 0;
-  left: 1;
   width: 390px;
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 3rem);
   z-index: 10;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
+  margin-top: 2.06rem;
 
   &::-webkit-scrollbar {
     display: none;
@@ -169,7 +170,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 7rem);
 
   &::-webkit-scrollbar {
     display: none;
@@ -182,6 +183,15 @@ const HandlerContainer = styled.div`
   width: 100%;
   height: 30px;
   flex-shrink: 0;
+
+  .dragPoint {
+    width: 5rem;
+    height: 5px;
+    background-color: #dddddd;
+    z-index: 15;
+    margin-top: 13px;
+    border-radius: 1rem;
+  }
 `;
 
 const BoxContainer = styled.div`
@@ -196,7 +206,7 @@ const BoxContainer = styled.div`
 
 const ToggleButton = styled.button`
   position: fixed;
-  top: 5.5rem;
+  top: 5rem;
   z-index: 20;
 
   display: inline-flex;
@@ -219,4 +229,8 @@ const ToggleButton = styled.button`
   letter-spacing: -0.03125rem;
 
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;

@@ -33,6 +33,11 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 const Background = styled.img`
@@ -48,9 +53,9 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: max-content;
   min-height: 100%;
-  gap: 2rem;
+
   overflow: hidden;
   z-index: 1;
 `;

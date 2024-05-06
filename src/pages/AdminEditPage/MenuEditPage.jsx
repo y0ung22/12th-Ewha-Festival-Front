@@ -14,6 +14,11 @@ const MenuEditPage = () => {
   const [menuList, setMenuList] = useState([]);
   const navigate = useNavigate();
 
+  // 페이지 상단으로 스크롤 이동
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     fetchMenuList();
   }, [id]);

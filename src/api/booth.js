@@ -137,6 +137,7 @@ export const PatchBooth = async (boothId, formData) => {
     return response.data;
   } catch (error) {
     console.error('오류:', error);
+    confirmLogin(error);
     throw error;
   }
 };
@@ -166,7 +167,6 @@ export const GetMenuDetail = async (boothId, menuId) => {
     return Promise.resolve(menuDetail);
   } catch (error) {
     console.error('메뉴 상세 조회 실패', error);
-    confirmLogin(error);
     return Promise.reject(error);
   }
 };
@@ -180,6 +180,7 @@ export const PatchMenu = async (boothId, menuId, formData) => {
     );
     return response.data;
   } catch (error) {
+    confirmLogin(error);
     console.error('오류:', error);
     throw error;
   }

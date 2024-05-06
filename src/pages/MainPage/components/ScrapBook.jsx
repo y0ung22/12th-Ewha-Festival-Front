@@ -121,7 +121,7 @@ const ScrapBook = () => {
             {isLogin ? '나의 스크랩북 열기' : '로그인 하러가기'}
           </ScrapTitle>
         )}
-        <BlurBox>
+        <BlurBox isScrap={isScrap}>
           {isScrap ? (
             renderList()
           ) : (
@@ -221,10 +221,16 @@ const ScrapTitle = styled.div`
 const BlurBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: ${props => (props.isScrap ? 'center' : 'space-between')};
 
-  min-width: 20.625rem;
-  height: 26.8125rem;
+  aspect-ratio: 330/429;
+
+  /* max-width: 22rem;
+  min-height: 20rem; */
+
+  width: 80%;
+  max-height: 26.8125rem;
+
   flex-shrink: 0;
   padding: 1.75rem 1.2rem 1.25rem;
 

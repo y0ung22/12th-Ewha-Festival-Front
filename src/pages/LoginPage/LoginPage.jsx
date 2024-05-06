@@ -11,13 +11,10 @@ import { ReactComponent as KaKaoIcon } from '../SignupPage/images/kakao_login.sv
 
 //api & recoil
 import { PostLogin } from '../../api/auth';
-import { useSetRecoilState } from 'recoil';
-import { SignupState } from '../../assets/recoil/apiRecoil';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const setLoginInfo = useSetRecoilState(SignupState);
 
   //로그인 함수
   const handleLogin = async () => {
@@ -26,6 +23,7 @@ const LoginPage = () => {
     } else if (password.trim() === '') {
       alert('비밀번호를 입력해주세요.');
     } else {
+
       document.cookie = 'id=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
       document.cookie =
         'nickname=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
@@ -36,16 +34,9 @@ const LoginPage = () => {
         'booth=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
       document.cookie =
         'performance=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
-      //닉네임 값 recoil에 저장
-      const loginData = await PostLogin(username, password);
-      setLoginInfo(prevState => ({
-        ...prevState,
-        nickname: loginData.data.data.nickname
-      }));
-      console.log(loginData.data.data);
 
-      navigate('/');
-      window.location.reload();
+      PostLogin(username, password).then().catch();
+
     }
   };
 
