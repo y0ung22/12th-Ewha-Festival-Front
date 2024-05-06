@@ -165,13 +165,14 @@ const BottomSheetContainer = styled(motion.div)`
   z-index: 10;
   width: 100%;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
-  /* max-height: ${props => (props.isOpen ? '85vh' : '85vh')};
+  /* max-height: ${props => (props.isOpen ? '85vh' : '85vh')}; */
+  max-height: max-content;
   overflow-y: auto;
   transition: max-height 0.3s ease-in-out;
 
   &::-webkit-scrollbar {
     display: none;
-  } */
+  }
 `;
 
 const Wrapper = styled.div`
@@ -189,7 +190,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 
-  /* max-height: 80vh; */
+  max-height: max-content;
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
