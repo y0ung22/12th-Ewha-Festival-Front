@@ -72,26 +72,24 @@ const SearchPage = () => {
       </TopWrapper>
       <Wrapper>
         <InfoDiv>
-          <div className='btnBox'>
-            {categoryList.map((item, index) => (
-              <PlaceBtn
-                key={index}
-                onClick={() => setPlace(item)}
-                color={place === item ? 'green' : ''}
-              >
-                {item}
-              </PlaceBtn>
-            ))}
-          </div>
-          {totalItem !== 0 ? (
-            <TotalBooth>총 {totalItem}개의 부스</TotalBooth>
-          ) : (
-            <div className='no-result' />
+          {totalItem !== 0 && (
+            <div className='btnBox'>
+              {categoryList.map((item, index) => (
+                <PlaceBtn
+                  key={index}
+                  onClick={() => setPlace(item)}
+                  color={place === item ? 'green' : ''}
+                >
+                  {item}
+                </PlaceBtn>
+              ))}
+            </div>
           )}
         </InfoDiv>
         <ResultDiv>
           {totalItem !== 0 ? (
             <>
+              <TotalBooth>총 {totalItem}개의 부스</TotalBooth>
               <div className='infiniteBox'>
                 {booths.map((item, index) => (
                   <ScrapCard key={index} item={item} />
@@ -106,6 +104,7 @@ const SearchPage = () => {
             </>
           ) : (
             <>
+              <div className='no-result' />
               <Info />
               <span className='resultspan'>
                 {'검색결과를\n찾을 수 없어요😱'}
@@ -182,14 +181,23 @@ const Wrapper = styled.div`
 `;
 
 const InfoDiv = styled.div`
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  gap: 1.12rem;
+  top: 6.5rem;
+  z-index: 99;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0;
+  background-color: #fff;
+  width: calc(100% + 1.06rem * 2);
+
   .btnBox {
     display: flex;
     gap: 0.62rem;
-    margin: 0 0 0.81rem;
-  }
-
-  .no-result {
-    margin-top: 20vh;
+    padding: 0 0 0.6rem;
   }
 `;
 
@@ -198,6 +206,7 @@ const PlaceBtn = styled(CommonBtn)`
 `;
 
 const TotalBooth = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   text-align: left;
@@ -207,7 +216,7 @@ const TotalBooth = styled.div`
   line-height: 1.25rem; /* 166.667% */
   letter-spacing: -0.03125rem;
 
-  margin: 0.32rem 0 0.75rem;
+  margin: 0.33rem 0 0.75rem;
 `;
 
 const ResultDiv = styled.div`
@@ -215,7 +224,7 @@ const ResultDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+
   padding: 0 0 3rem;
 
   .resultspan {
@@ -233,6 +242,10 @@ const ResultDiv = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.875rem 0.625rem;
+  }
+
+  .no-result {
+    margin-top: 20vh;
   }
 `;
 

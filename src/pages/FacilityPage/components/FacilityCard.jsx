@@ -82,10 +82,12 @@ const Place = styled.div`
 
 const Detail = styled.div`
   display: flex;
+  width: 100%;
   height: auto;
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
+  white-space: pre-wrap;
 
   color: var(--gray05);
   font-size: 0.75rem;

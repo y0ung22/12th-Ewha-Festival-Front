@@ -196,7 +196,7 @@ const Scrap = styled.div`
 const Notice = styled.div`
   display: flex;
   width: 100%;
-  height: 6rem;
+  min-height: 6rem;
   padding: 0.6875rem 0.875rem;
   flex-direction: column;
   justify-content: space-between;

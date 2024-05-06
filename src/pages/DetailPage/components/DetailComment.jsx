@@ -59,6 +59,7 @@ const DetailComment = ({ bId }) => {
 export default DetailComment;
 
 const Container = styled.div`
+  width: 100%;
   margin-bottom: 5.31rem;
   display: inline-flex;
   flex-direction: column;
