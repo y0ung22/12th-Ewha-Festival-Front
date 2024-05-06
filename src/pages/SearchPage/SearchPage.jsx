@@ -91,8 +91,8 @@ const SearchPage = () => {
             <>
               <TotalBooth>총 {totalItem}개의 부스</TotalBooth>
               <div className='infiniteBox'>
-                {booths.map((item, index) => (
-                  <ScrapCard key={index} item={item} />
+                {booths.map(item => (
+                  <ScrapCard key={item.id} item={item} />
                 ))}
               </div>
               {hasNextPage &&
