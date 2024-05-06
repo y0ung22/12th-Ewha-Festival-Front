@@ -112,6 +112,11 @@ const Box = styled.div`
 
   cursor: pointer;
 
+  @media (max-width: 390px) {
+    width: 162px;
+    height: 187.7px;
+  }
+
   img {
     position: absolute;
     top: 20px;
