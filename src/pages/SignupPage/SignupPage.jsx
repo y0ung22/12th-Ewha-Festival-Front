@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { S } from './components/Signup.style';
 
 //icons
@@ -24,7 +23,6 @@ const SignupPage = () => {
   const [passwordCheck, setPasswordCheck] = useState('');
   const [nickname, setNickname] = useState('');
 
-  const navigate = useNavigate();
   const signupForm = useRecoilValue(SignupState);
   const setSignupForm = useSetRecoilState(SignupState);
 
@@ -48,7 +46,7 @@ const SignupPage = () => {
   }, [username]);
 
   //비밀번호 일치확인
-  const isPwSame = (password != '') & (password === passwordCheck);
+  const isPwSame = (password !== '') & (password === passwordCheck);
 
   //버튼 활성화
   const [fieldSatisfied, setFieldSatisfied] = useState(false);
@@ -71,8 +69,6 @@ const SignupPage = () => {
       });
     }
     setFieldSatisfied(isSatisfied);
-    // console.log('duplicate: ' + duplicate);
-    // console.log('isSatisfied: ' + isSatisfied);
   }, [username, duplicate, password, passwordCheck, isPwSame, nickname]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -97,13 +93,8 @@ const SignupPage = () => {
 
   //회원가입 post 함수
   const handleOnSubmit = () => {
-    PostSignup(
-      signupForm.username,
-      signupForm.password,
-      signupForm.nickname,
-      navigate
-    );
-    console.log(signupForm.username);
+    PostSignup(signupForm.username, signupForm.password, signupForm.nickname);
+    setIsModalOpen(false);
   };
 
   return (
