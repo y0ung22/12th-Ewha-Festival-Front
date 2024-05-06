@@ -6,6 +6,7 @@ import def from '../../../assets/images/default-card.png';
 // lions 이미지
 import lions1 from '../images/lions1.jpg';
 import lions2 from '../images/lions2.jpg';
+import lions4 from '../images/lions4.png';
 import lions5 from '../images/lions5.png';
 import lions6 from '../images/lions6.png';
 import lions7 from '../images/lions7.png';
@@ -14,8 +15,10 @@ import lions9 from '../images/lions9.png';
 
 // tf 이미지
 import tf1 from '../images/tf1.jpg';
+import tf2 from '../images/tf2.jpg';
 import tf3 from '../images/tf3.jpg';
 import tf4 from '../images/tf4.jpg';
+import tf6 from '../images/tf6.jpg';
 import tf7 from '../images/tf7.jpg';
 import tf8 from '../images/tf8.jpg';
 import tf9 from '../images/tf9.png';
@@ -50,8 +53,8 @@ export const LionsData = [
     info: '컴공 22',
     name: '유서연',
     part: '프론트엔드',
-    work: '메인 페이지\n검색 페이지',
-    img: def
+    work: '부스 상세 페이지\n공지사항 관련 페이지\n축제 일정 관련 페이지\n축준위 부스 수정 목록 페이지\n대동제 소개 / 배리어프리 페이지',
+    img: lions4
   },
   {
     id: 5,
@@ -110,7 +113,7 @@ export const TfData = [
     name: '이진',
     part: '권리',
     work: '권리부스 운영\n배리어프리존 관리\n비거니즘 가이드라인 배포',
-    img: def
+    img: tf2
   },
   {
     id: 3,
@@ -142,7 +145,7 @@ export const TfData = [
     name: '신지원',
     part: '대외협력',
     work: '아티스트, 프로모션 업체\n컨택 및 관리\n야시장 기획 및 관리',
-    img: def
+    img: tf6
   },
   {
     id: 7,

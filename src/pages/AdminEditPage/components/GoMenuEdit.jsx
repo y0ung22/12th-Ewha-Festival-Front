@@ -54,6 +54,7 @@ const GoMenuEdit = ({
           msg1='메뉴를 삭제하시겠습니까?'
           msg2='삭제된 내용은 되돌릴 수 없습니다'
           msgType={1}
+          setIsModalOpen={toggleModal}
           onClickYes={executeDelete}
         />
       )}
