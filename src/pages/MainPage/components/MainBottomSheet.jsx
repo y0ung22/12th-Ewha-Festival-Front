@@ -110,7 +110,7 @@ const MainBottomSheet = () => {
         animate={animateState}
         variants={{
           opened: { top: `6rem` },
-          closed: { top: '86vh' }
+          closed: { top: '83vh' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
@@ -206,8 +206,8 @@ const BoxContainer = styled.div`
 
 const ToggleButton = styled.button`
   position: fixed;
-  top: 5rem;
-  z-index: 20;
+  top: 3rem;
+  z-index: 151;
 
   display: inline-flex;
   padding: 0.625rem 2.0625rem;
