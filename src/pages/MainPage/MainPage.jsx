@@ -31,7 +31,7 @@ export default MainPage;
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 105vh;
+  height: 100vh;
   overflow: hidden;
 
   -webkit-user-select: none;

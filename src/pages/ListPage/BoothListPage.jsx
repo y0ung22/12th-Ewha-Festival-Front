@@ -50,8 +50,8 @@ const BoothListPage = () => {
         </TopDiv>
         <TotalBooth>총 {totalItems}개의 부스</TotalBooth>
         <ResultDiv>
-          {boothList?.map((item, index) => (
-            <ScrapCard key={index} item={item} />
+          {boothList?.map(item => (
+            <ScrapCard key={item.id} item={item} />
           ))}
         </ResultDiv>
         {totalItems > 10 && (

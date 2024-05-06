@@ -91,7 +91,6 @@ const MainBottomSheet = () => {
 
     const newIsOpened = info.offset.y < 0;
     setIsOpen(newIsOpened);
-    window.scrollTo(0, 0);
   };
 
   const handleCloseModal = () => {
@@ -110,8 +109,8 @@ const MainBottomSheet = () => {
         initial='closed'
         animate={animateState}
         variants={{
-          opened: { top: `-34.3rem` },
-          closed: { top: '-1rem' }
+          opened: { top: `6rem` },
+          closed: { top: '88vh' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
@@ -144,8 +143,8 @@ const MainBottomSheet = () => {
 export default MainBottomSheet;
 
 const BottomSheetContainer = styled(motion.div)`
-  position: relative;
-  /* bottom: 0; */
+  position: fixed;
+  bottom: 0;
   width: 390px;
   height: calc(100vh - 3rem);
   z-index: 10;
@@ -171,7 +170,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 7rem);
 
   &::-webkit-scrollbar {
     display: none;

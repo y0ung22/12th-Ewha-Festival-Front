@@ -51,8 +51,8 @@ const PerfListPage = () => {
         </TopDiv>
         <TotalBooth>총 {totalItems}개의 공연</TotalBooth>
         <ResultDiv>
-          {perfList?.map((item, index) => (
-            <ScrapCard key={index} item={item} />
+          {perfList?.map(item => (
+            <ScrapCard key={item.id} item={item} />
           ))}
         </ResultDiv>
 

@@ -48,7 +48,14 @@ export default MainMenuCard;
 
 const Card = styled.div`
   position: relative;
-  aspect-ratio: 9.125 / 11.375;
+
+  @media (max-width: 410px) {
+    aspect-ratio: ${props =>
+      props.size === 'small' ? '9.125 / 11.375' : '10.625 / 12.3125'};
+    width: 100%;
+    height: 100%;
+  }
+
   width: 9.125rem;
   height: 11.375rem;
   flex-shrink: 0;
