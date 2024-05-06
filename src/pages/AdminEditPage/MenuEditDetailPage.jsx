@@ -52,10 +52,6 @@ const MenuEditDetailPage = () => {
     formData.append('vegan', menuData.vegan);
     formData.append('is_soldout', menuData.opened);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-
     try {
       await PatchMenu(boothId, menuId, formData);
       alert('메뉴가 성공적으로 수정되었습니다.');

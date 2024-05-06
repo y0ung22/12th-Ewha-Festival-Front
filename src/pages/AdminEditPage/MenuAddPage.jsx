@@ -34,12 +34,10 @@ const MenuAddPage = () => {
 
     const formData = new FormData();
 
-    // 이미지가 있을 경우만 formData에 추가
     if (img) {
       formData.append('img', img);
     }
 
-    // 나머지 데이터는 직접적으로 formData에 추가
     formData.append('menu', menu);
     formData.append('price', price);
     formData.append('vegan', vegan);

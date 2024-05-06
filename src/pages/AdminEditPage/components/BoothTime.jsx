@@ -15,7 +15,6 @@ const BoothTime = ({ rows, setRows, initialTime }) => {
 
   useEffect(() => {
     console.log('rows 바뀜!!!', rows);
-    // onDayEdit(rows);
   }, [rows]);
 
   useEffect(() => {

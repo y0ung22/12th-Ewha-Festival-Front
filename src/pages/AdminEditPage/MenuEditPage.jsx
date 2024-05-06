@@ -14,7 +14,6 @@ const MenuEditPage = () => {
   const [menuList, setMenuList] = useState([]);
   const navigate = useNavigate();
 
-  // MenuEditPage 컴포넌트 내부
   useEffect(() => {
     fetchMenuList();
   }, [id]);

@@ -65,8 +65,6 @@ const BoothEditPage = () => {
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
 
-    console.log(JSON.stringify('boothData.days: ', boothData.days));
-
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }

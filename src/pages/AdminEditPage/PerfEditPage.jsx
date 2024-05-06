@@ -65,12 +65,8 @@ const PerfEditPage = () => {
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
     try {
-      await PatchBooth(id, formData); // 수정된 API 호출
+      await PatchBooth(id, formData);
       alert('부스 정보가 성공적으로 수정되었습니다.');
       navigate(`/detail/${id}`);
     } catch (error) {
