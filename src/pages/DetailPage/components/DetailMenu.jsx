@@ -79,19 +79,22 @@ const DetailMenu = ({ m }) => {
 export default DetailMenu;
 
 const Container = styled.div`
-  margin-bottom: 40px;
-  width: 100%;
+  width: 390px;
+  margin: 0 -20px 40px;
   height: auto;
+
+  @media (max-width: 390px) {
+    width: calc(100% + 40px);
+  }
 `;
 
 const SwiperContainer = styled.div`
-  width: 350px;
-
-  @media (max-width: 370px) {
-    width: 100%;
-  }
+  width: 100%;
 
   .swiper-slide {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 0.62rem;
