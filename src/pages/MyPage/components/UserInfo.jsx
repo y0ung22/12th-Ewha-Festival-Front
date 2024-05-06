@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { SignupState } from '../../../assets/recoil/apiRecoil';
 import { getCookie } from '../../../api/http.js';
 import { Logout } from '../../../api/auth.js';
@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 const UserInfo = () => {
   const setCookieNickname = useSetRecoilState(SignupState);
-  // const nickname = useRecoilValue(SignupState).nickname;
   const nickname = getCookie('nickname');
   const navigate = useNavigate();
 
