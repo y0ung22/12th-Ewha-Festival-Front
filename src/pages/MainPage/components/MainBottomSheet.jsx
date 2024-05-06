@@ -109,8 +109,8 @@ const MainBottomSheet = () => {
         initial='closed'
         animate={animateState}
         variants={{
-          opened: { top: `10rem`, overflowY: `scroll` },
-          closed: { top: '95vh', overflowY: 'unset' }
+          opened: { top: `10rem` },
+          closed: { top: '88vh' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
@@ -120,7 +120,12 @@ const MainBottomSheet = () => {
         dragElastic={0.1}
         onDragEnd={handleDragEnd}
       >
-        <Wrapper onPointerDown={e => dragControls.start(e)}>
+        <Wrapper
+          onPointerDown={e => dragControls.start(e)}
+          style={{
+            overflowY: isOpen ? `scroll` : `unset`
+          }}
+        >
           <HandlerContainer />
           <BoxContainer>
             {BoxList.map(item => (
@@ -163,6 +168,8 @@ const Wrapper = styled.div`
   border: 1px solid var(--gray04, #c1d9cc);
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: calc(100vh - 10rem);
 
   &::-webkit-scrollbar {
     display: none;
@@ -174,6 +181,7 @@ const HandlerContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 30px;
+  flex-shrink: 0;
 `;
 
 const BoxContainer = styled.div`
