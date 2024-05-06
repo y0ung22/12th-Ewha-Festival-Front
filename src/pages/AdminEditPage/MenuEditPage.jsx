@@ -114,4 +114,8 @@ const List = styled.div`
   align-content: flex-start;
   gap: 0.62rem 0.88rem;
   flex-wrap: wrap;
+
+  @media (max-width: 394px) {
+    gap: 0.31rem 0.44rem;
+  }
 `;

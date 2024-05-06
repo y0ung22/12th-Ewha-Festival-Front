@@ -18,7 +18,7 @@ const Box = styled.div`
   display: flex;
   width: 10.625rem;
   height: 12.3125rem;
-  padding: 60px 41px 46px 41px;
+  padding: 3.75rem 2.5625rem 2.875rem 2.5625rem;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
@@ -43,9 +43,9 @@ const Text = styled.div`
   color: var(--gray04);
   text-align: center;
   font-family: Pretendard;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 17px; /* 121.429% */
-  letter-spacing: -0.5px;
+  line-height: 1.0625rem;
+  letter-spacing: -0.03125rem;
 `;
