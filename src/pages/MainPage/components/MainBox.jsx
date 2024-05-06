@@ -35,8 +35,8 @@ const Wrapper = styled.div`
   aspect-ratio: ${props =>
     props.isAdmin ? '9.125 / 11.375' : '10.625 / 12.3125'};
 
-  width: 100%;
-  height: 100%;
+  width: 10.625rem;
+  height: 12.3125rem;
   max-width: ${props => (props.isAdmin ? '11rem' : '12.5rem')};
   flex-shrink: 0;
 
@@ -52,6 +52,11 @@ const Wrapper = styled.div`
     props.isAdmin
       ? '#fff'
       : 'linear-gradient(0deg,rgba(0, 255, 117, 0.2) 22.21%,rgba(217, 217, 217, 0) 119.97%)'};
+
+  @media (max-width: 390px) {
+    width: 100%;
+    height: 12.3125rem;
+  }
 `;
 
 const Title = styled.div`

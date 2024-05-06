@@ -40,7 +40,7 @@ const MenuCard = ({ item }) => {
         <span>{item.menu}</span>
         <span>{item.price}</span>
       </Text>
-      {item.is_soldout && <ClosedSign>운영종료</ClosedSign>}
+      {item.is_soldout || <ClosedSign>판매종료</ClosedSign>}
     </Card>
   );
 };
