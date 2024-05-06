@@ -110,7 +110,7 @@ const MainBottomSheet = () => {
         animate={animateState}
         variants={{
           opened: { top: `6rem` },
-          closed: { top: '88vh' }
+          closed: { top: '86vh' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
@@ -146,7 +146,7 @@ const BottomSheetContainer = styled(motion.div)`
   position: fixed;
   bottom: 0;
   width: 390px;
-  height: calc(100vh - 3rem);
+  height: calc(100vh - 6rem);
   z-index: 10;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
   margin-top: 2.06rem;

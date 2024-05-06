@@ -8,7 +8,7 @@ import DefaultCard from '../../../assets/images/default-card.png';
 
 import { PatchMenuScrap } from '../../../api/booth';
 
-const MainMenuCard = ({ item }) => {
+const MainMenuCard = ({ item, size }) => {
   const navigate = useNavigate();
   const [isScraped, setIsScraped] = useState(item.is_liked);
 
@@ -20,7 +20,7 @@ const MainMenuCard = ({ item }) => {
   };
 
   return (
-    <Card onClick={() => navigate(`/detail/${item.booth_id}`)}>
+    <Card onClick={() => navigate(`/detail/${item.booth_id}`)} size={size}>
       <div className='overlay' />
       {item.thumnail ? (
         <BackgroundImg src={item.thumnail} alt='menu img' />
@@ -49,7 +49,7 @@ export default MainMenuCard;
 const Card = styled.div`
   position: relative;
 
-  @media (max-width: 410px) {
+  @media (max-width: 440px) {
     aspect-ratio: ${props =>
       props.size === 'small' ? '9.125 / 11.375' : '10.625 / 12.3125'};
     width: 100%;

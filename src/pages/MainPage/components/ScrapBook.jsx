@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import CategorySlide from '../../../_common/CategorySlide';
-import ScrapCard from '../../../_common/ScrapCard';
+import MainScrapCard from './MainScrapCard';
 import MainMenuCard from './MainMenuCard';
 import MoreScapBox from './MoreScrapBox';
 
@@ -65,11 +65,11 @@ const ScrapBook = () => {
   const getCurrentList = () => {
     switch (select) {
       case '부스':
-        return { list: boothList, Component: ScrapCard };
+        return { list: boothList, Component: MainScrapCard };
       case '메뉴':
         return { list: menuList, Component: MainMenuCard };
       case '공연':
-        return { list: perfList, Component: ScrapCard };
+        return { list: perfList, Component: MainScrapCard };
       default:
         return { list: [], Component: null };
     }
@@ -225,11 +225,8 @@ const BlurBox = styled.div`
 
   aspect-ratio: 330/429;
 
-  /* max-width: 22rem;
-  min-height: 20rem; */
-
-  width: 85%;
-  max-height: 26.8125rem;
+  width: 78%;
+  max-height: 26rem;
 
   flex-shrink: 0;
   padding: 1.75rem 1.2rem 1.25rem;
