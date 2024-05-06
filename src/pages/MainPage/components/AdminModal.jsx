@@ -1,25 +1,39 @@
-import { useState } from 'react';
-import styled, { css } from 'styled-components';
+import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
+import styled from 'styled-components';
 
-const AdminModal = ({ setIsModal, onClickYes }) => {
+const AdminModal = ({ setIsModal }) => {
+  const [cookies, setCookie] = useCookies(['MODAL_EXPIRES']);
   const [clicked, setClicked] = useState(false);
-  // 모달 열기
-  const handleOnClickYes = () => {
-    setClicked(true);
-    setTimeout(() => {
-      onClickYes();
-      setClicked(false);
-    }, 380);
+
+  const getExpiredDate = days => {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date;
   };
 
-  // 모달 닫기
+  // 하루동안 보지않기
+  const handleOnClickYes = () => {
+    const expires = getExpiredDate(1);
+    setCookie('MODAL_EXPIRES', true, { path: '/', expires });
+    //setClicked(true);
+    setIsModal(false);
+  };
+
+  // 닫기
   const handleClose = () => {
     setClicked(true);
     setTimeout(() => {
       setIsModal(false);
-      setClicked(false);
+      //setClicked(false);
     }, 380);
   };
+
+  useEffect(() => {
+    if (cookies['MODAL_EXPIRES']) {
+      setIsModal(false);
+    }
+  }, [cookies, setIsModal]);
 
   return (
     <ModalWrapper>
