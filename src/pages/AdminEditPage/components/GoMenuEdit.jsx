@@ -116,6 +116,14 @@ const Box = styled.div`
     width: 162px;
     height: 187.7px;
   }
+  @media (max-width: 374px) {
+    width: 150px;
+    height: 173.8px;
+  }
+  @media (max-width: 350px) {
+    width: 145px;
+    height: 168px;
+  }
 
   img {
     position: absolute;
