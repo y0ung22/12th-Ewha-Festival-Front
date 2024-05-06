@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { motion, useDragControls } from 'framer-motion';
 
@@ -35,42 +35,42 @@ const BoxList = [
     title: 'TF팀 공지\n보러가기',
     guide: '실시간 공지를\n볼 수 있어요',
     image: num3,
-    path: '/'
+    path: '/notice'
   },
   {
     id: 4,
     title: '축제 일정\n보러가기',
     guide: '3일 간의 일정을\n확인해 보세요',
     image: num4,
-    path: '/'
+    path: '/program'
   },
   {
     id: 5,
-    title: '쓰레기통\n위치찾기',
-    guide: '쓰레기통 위치를\n확인해 보세요',
+    title: '주요 시설\n위치찾기',
+    guide: '쓰레기통과 그릇 반납\n장소 위치를 확인해요',
     image: num7,
-    path: '/'
+    path: '/facility'
   },
   {
     id: 6,
     title: '배리어프리\n확인하기',
     guide: '배리어프리 정보를\n확인해 보세요',
     image: num8,
-    path: '/'
+    path: '/barrierfree'
   },
   {
     id: 7,
     title: '우리 학교\n대동제 소개',
     guide: '우리 학교의\n대동제를 알아봐요',
     image: num5,
-    path: '/'
+    path: '/about'
   },
   {
     id: 8,
     title: '만든이들',
     guide: '대동제 운영에\n참여한 사람들이에요',
     image: num6,
-    path: '/'
+    path: '/makers'
   }
 ];
 
@@ -79,6 +79,15 @@ const MainBottomSheet = () => {
 
   const dragControls = useDragControls();
   const animateState = isOpen ? 'opened' : 'closed';
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.getElementById('bottomSheetContainer').style.overflowY = isOpen
+        ? 'scroll'
+        : 'none';
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [isOpen]);
 
   const handleDragEnd = (event, info) => {
     const offsetThreshold = 150;
@@ -105,11 +114,12 @@ const MainBottomSheet = () => {
         </ToggleButton>
       )}
       <BottomSheetContainer
+        id='bottomSheetContainer'
         initial='closed'
         animate={animateState}
         variants={{
-          opened: { top: `17vh` },
-          closed: { top: '85vh' }
+          opened: { top: `10rem` },
+          closed: { top: '44rem' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
@@ -118,13 +128,12 @@ const MainBottomSheet = () => {
         dragConstraints={{ top: 0, bottom: 0 }}
         dragElastic={0.1}
         onDragEnd={handleDragEnd}
-        style={{ overflowY: isOpen ? 'scroll' : 'hidden' }}
       >
-        <Wrapper>
-          <HandlerContainer onPointerDown={e => dragControls.start(e)} />
+        <Wrapper onPointerDown={e => dragControls.start(e)}>
+          <HandlerContainer />
           <BoxContainer>
             {BoxList.map(item => (
-              <MainBox key={item.id} item={item}></MainBox>
+              <MainBox key={item.id} item={item} />
             ))}
           </BoxContainer>
         </Wrapper>
@@ -141,7 +150,6 @@ const BottomSheetContainer = styled(motion.div)`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 84vh;
   z-index: 10;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
 
@@ -160,7 +168,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   overflow-y: scroll;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -171,7 +179,6 @@ const HandlerContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 30px;
-  cursor: grab;
 `;
 
 const BoxContainer = styled.div`
