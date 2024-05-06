@@ -25,6 +25,12 @@ html, body {
     
     position: relative;
     z-index: 0;
+
+    -ms-overflow-style:none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
 }
 
 a {
