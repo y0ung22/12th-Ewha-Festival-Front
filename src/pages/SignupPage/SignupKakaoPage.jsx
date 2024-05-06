@@ -6,6 +6,8 @@ import Modal from '../../_common/Modal';
 import { ReactComponent as NameIcon } from './images/namelogo.svg';
 import {} from '../../api/auth';
 
+import GraphemeSplitter from 'grapheme-splitter';
+
 //recoil
 import { PostNickname } from '../../api/auth';
 
@@ -21,6 +23,10 @@ const SignupKakaoPage = () => {
       setIsModalOpen(true);
     }
   };
+
+  //이모지 글자수
+  // var splitter = new GraphemeSplitter();
+  // splitter.countGraphemes();
 
   //닉네임 변경 post 함수
   const onSubmitNickname = () => {

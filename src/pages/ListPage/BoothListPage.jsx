@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, startTransition } from 'react';
 import styled from 'styled-components';
-import { useInView } from 'react-intersection-observer';
 
 import TopBar from '../../_common/TopBar';
 import Pagination from '../../_common/Pagination';

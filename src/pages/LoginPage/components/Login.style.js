@@ -7,6 +7,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
+  overflow: hidden;
+`;
+
+const Container = styled.div`
+  width: 15.625rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.div`
@@ -18,14 +25,15 @@ const Title = styled.div`
   line-height: 1.625rem; /* 108.333% */
   letter-spacing: -0.031rem;
   margin-top: 2.313rem;
-  margin-bottom: 6.063rem;
+  /* margin-bottom: 6.063rem; */
+  margin-bottom: 12vh;
 `;
 
 const Input = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 15.625rem;
+  width: 100%;
   height: 2.875rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
@@ -34,6 +42,7 @@ const Input = styled.div`
   margin-bottom: 0.938rem;
 
   input {
+    width: 100%;
     background-color: var(--gray02);
     font-size: 0.75rem;
     font-style: normal;
@@ -51,7 +60,7 @@ const LoginBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15.625rem;
+  width: 100%;
   height: 2.875rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
@@ -73,7 +82,7 @@ const KakaoLogin = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 15.625rem;
+  width: 100%;
   height: 2.875rem;
   flex-shrink: 0;
 
@@ -110,6 +119,7 @@ const GotoSignUp = styled.div`
 
 export const S = {
   Wrapper,
+  Container,
   Title,
   Input,
   LoginBtn,
