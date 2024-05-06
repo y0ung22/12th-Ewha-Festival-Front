@@ -118,7 +118,7 @@ const MainBottomSheet = () => {
         animate={animateState}
         variants={{
           opened: { top: `6rem` },
-          closed: { top: '83vh' }
+          closed: { top: '84vh' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
