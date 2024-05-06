@@ -179,6 +179,13 @@ const Search = styled(SearchIcon)`
 
 const Wrapper = styled.div`
   padding: 0 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: max-content;
+  min-height: 100%;
 `;
 
 const InfoDiv = styled.div`
