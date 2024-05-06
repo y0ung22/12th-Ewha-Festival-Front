@@ -15,7 +15,19 @@ const NavigateMainPage = () => {
   const performance = getCookie('performance') === 'true';
   const tf = getCookie('tf') === 'true';
 
+  //날짜 자동 설정
   const [selectDay, setSelectDay] = useRecoilState(DayState);
+
+  const today = new Date();
+  const day = today.getDate();
+
+  if (day < 8) {
+    setSelectDay(8);
+  } else if (day > 10) {
+    setSelectDay(10);
+  } else {
+    setSelectDay(day);
+  }
 
   if (performance && booth) {
     return <PerfMainPage />;
