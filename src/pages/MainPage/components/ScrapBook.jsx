@@ -30,6 +30,7 @@ const ScrapBook = () => {
 
   const clickTitle = () => {
     if (isLogin) {
+      setIsScrap(true);
     } else {
       navigate('/login');
     }

@@ -76,10 +76,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: max-content;
   min-height: 100%;
   padding: 0 1.06rem 3.75rem;
-  min-height: 100vh;
 
   background-color: #fff;
 `;
@@ -117,4 +116,6 @@ const ResultDiv = styled.div`
   justify-items: center;
   align-items: center;
   gap: 0.875rem 0.625rem;
+  height: max-content;
+  overflow-y: scroll;
 `;

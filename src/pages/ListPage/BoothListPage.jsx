@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef, startTransition } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useInView } from 'react-intersection-observer';
 
 import TopBar from '../../_common/TopBar';
 import Pagination from '../../_common/Pagination';
@@ -75,7 +74,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: max-content;
   min-height: 100%;
   padding: 0 1.06rem 3.75rem;
 
