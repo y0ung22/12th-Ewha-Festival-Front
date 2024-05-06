@@ -14,7 +14,6 @@ const MenuEditPage = () => {
   const [menuList, setMenuList] = useState([]);
   const navigate = useNavigate();
 
-  // MenuEditPage 컴포넌트 내부
   useEffect(() => {
     fetchMenuList();
   }, [id]);
@@ -38,35 +37,33 @@ const MenuEditPage = () => {
   };
 
   return (
-    <>
-      <Wrapper>
-        <TopBar />
-        <Container>
-          <Title>수정할 메뉴를 선택해주세요</Title>
-          <List dataLength={menuList.length}>
-            {menuList.map((item, index) => (
-              <div key={index}>
-                <GoMenuEdit
-                  key={index}
-                  menu={item.menu}
-                  price={item.price}
-                  img={item.img}
-                  is_soldout={item.is_soldout}
-                  boothId={id}
-                  menuId={item.id}
-                  onEditClick={() => handleEditClick(item.id)}
-                  onMenuDeleted={fetchMenuList}
-                />
-              </div>
-            ))}
-            <div onClick={handleAddClick}>
-              <GoMenuAdd />
+    <Wrapper>
+      <TopBar />
+      <Container>
+        <Title>수정할 메뉴를 선택해주세요</Title>
+        <List dataLength={menuList.length}>
+          {menuList.map((item, index) => (
+            <div key={index}>
+              <GoMenuEdit
+                key={index}
+                menu={item.menu}
+                price={item.price}
+                img={item.img}
+                is_soldout={item.is_soldout}
+                boothId={id}
+                menuId={item.id}
+                onEditClick={() => handleEditClick(item.id)}
+                onMenuDeleted={fetchMenuList}
+              />
             </div>
-          </List>
-        </Container>
-        <Footer />
-      </Wrapper>
-    </>
+          ))}
+          <div onClick={handleAddClick}>
+            <GoMenuAdd />
+          </div>
+        </List>
+      </Container>
+      <Footer />
+    </Wrapper>
   );
 };
 

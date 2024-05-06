@@ -48,7 +48,6 @@ const InputContainer = styled.div`
   padding: 11px 14px;
   flex-direction: column;
   align-items: flex-start;
-  //gap: 7px;
 
   border-radius: 15px;
   border: 1px solid #e7e7e7;
@@ -89,7 +88,7 @@ const SubmitBtn = styled.button`
   padding: 0.625rem 0rem;
   justify-content: center;
   align-items: center;
-  //gap: 10px;
+
   border-radius: 10px;
   border: 1px solid var(--green02);
   background: #07fb77;
@@ -112,7 +111,6 @@ const ImgBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  //gap: 10px;
   flex-shrink: 0;
 
   color: white;
@@ -146,10 +144,8 @@ const BTWrapper = styled.div`
 // MenuThumEdit의 Wrapper
 const MTWrapper = styled.div`
   width: 10.625rem;
-  //height: 12.3125rem;
   display: flex;
   flex-direction: column;
-  //align-items: center;
   gap: 16px;
 `;
 
@@ -157,32 +153,22 @@ const MTWrapper = styled.div`
 const boxType = {
   1: css`
     padding-top: 8.94rem;
-    //width: 350px;
-    //height: 197px;
-    //width: 21.875rem;
     height: 12.3125rem;
   `,
   2: css`
     padding-top: 162px;
-    //width: 170px;
-    //height: 284px;
-    //width: 10.625rem;
     height: 17.75rem;
   `
 };
 
 const btnType = {
   1: css`
-    //width: 21.875rem;
     height: 3.375rem;
     font-weight: 700;
     line-height: 1.25rem; /* 125% */
   `,
   2: css`
     padding: 49px 43px;
-    //width: 170px;
-    //height: 122px;
-    //width: 10.625rem;
     height: 7.625rem;
     font-weight: 500;
     line-height: 22px; /* 137.5% */
@@ -192,9 +178,6 @@ const btnType = {
 const BImgContainer = styled.div`
   ${({ type }) => boxType[type] || boxType[1]}
 
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
   position: relative;
   border-radius: 15px;
   background:

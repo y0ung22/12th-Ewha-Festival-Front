@@ -34,12 +34,10 @@ const MenuAddPage = () => {
 
     const formData = new FormData();
 
-    // 이미지가 있을 경우만 formData에 추가
     if (img) {
       formData.append('img', img);
     }
 
-    // 나머지 데이터는 직접적으로 formData에 추가
     formData.append('menu', menu);
     formData.append('price', price);
     formData.append('vegan', vegan);
@@ -59,54 +57,52 @@ const MenuAddPage = () => {
   };
 
   return (
-    <>
-      <S.Wrapper>
-        <TopBar />
-        <S.Container>
-          <form onSubmit={handleSubmit}>
-            <MenuThumAdd onImgUpload={handleImgUpload} />
-            <S.Box num={'25px'}>
-              <S.Title>메뉴 이름</S.Title>
-              <S.InputContainer>
-                <textarea
-                  id='menu'
-                  onChange={e => setMenu(e.target.value)}
-                  placeholder='메뉴명을 입력해주세요(최대 14자)'
-                  maxLength='14'
-                >
-                  {menu}
-                </textarea>
-              </S.InputContainer>
-            </S.Box>
-            <S.Box num={'17px'}>
-              <S.Title>가격</S.Title>
-              <S.InputContainer>
-                <textarea
-                  id='price'
-                  onChange={e => setPrice(e.target.value)}
-                  placeholder='가격을 입력해주세요 예) 4000'
-                  maxLength='14'
-                >
-                  {price}
-                </textarea>
-              </S.InputContainer>
-            </S.Box>
-            <S.Box num={'40px'}>
-              <S.Title>비건 여부</S.Title>
-              <MenuVegan setVegan={setVegan} />
-            </S.Box>
-            <S.Box num={'40px'}>
-              <S.Title>운영 여부</S.Title>
-              <MenuOpened opened={opened} setOpened={setOpened} />
-            </S.Box>
-            <S.SubmitBtn num1={'48px'} type='submit'>
-              작성 완료
-            </S.SubmitBtn>
-          </form>
-        </S.Container>
-        <Footer />
-      </S.Wrapper>
-    </>
+    <S.Wrapper>
+      <TopBar />
+      <S.Container>
+        <form onSubmit={handleSubmit}>
+          <MenuThumAdd onImgUpload={handleImgUpload} />
+          <S.Box num={'25px'}>
+            <S.Title>메뉴 이름</S.Title>
+            <S.InputContainer>
+              <textarea
+                id='menu'
+                onChange={e => setMenu(e.target.value)}
+                placeholder='메뉴명을 입력해주세요(최대 14자)'
+                maxLength='14'
+              >
+                {menu}
+              </textarea>
+            </S.InputContainer>
+          </S.Box>
+          <S.Box num={'17px'}>
+            <S.Title>가격</S.Title>
+            <S.InputContainer>
+              <textarea
+                id='price'
+                onChange={e => setPrice(e.target.value)}
+                placeholder='가격을 입력해주세요 예) 4000'
+                maxLength='14'
+              >
+                {price}
+              </textarea>
+            </S.InputContainer>
+          </S.Box>
+          <S.Box num={'40px'}>
+            <S.Title>비건 여부</S.Title>
+            <MenuVegan setVegan={setVegan} />
+          </S.Box>
+          <S.Box num={'40px'}>
+            <S.Title>운영 여부</S.Title>
+            <MenuOpened opened={opened} setOpened={setOpened} />
+          </S.Box>
+          <S.SubmitBtn num1={'48px'} type='submit'>
+            작성 완료
+          </S.SubmitBtn>
+        </form>
+      </S.Container>
+      <Footer />
+    </S.Wrapper>
   );
 };
 
