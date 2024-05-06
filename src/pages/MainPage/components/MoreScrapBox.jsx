@@ -21,7 +21,14 @@ const Card = styled.div`
   align-items: center;
   gap: 1rem;
 
-  aspect-ratio: 9.125 / 11.375;
+  overflow: hidden;
+
+  @media (max-width: 380px) {
+    aspect-ratio: 9.125 / 11.375;
+    width: 100%;
+    height: 100%;
+  }
+
   width: 9.125rem;
   height: 11.375rem;
   flex-shrink: 0;
@@ -38,10 +45,6 @@ const Card = styled.div`
   }
 
   span {
-    /* position: absolute;
-    top: 6.69rem;
-    right: 1.94rem; */
-
     color: var(--wh, #fff);
     text-align: center;
     font-size: 0.75rem;
