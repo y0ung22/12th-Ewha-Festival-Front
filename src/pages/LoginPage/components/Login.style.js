@@ -108,6 +108,7 @@ const KakaoLogin = styled.div`
 const ImgDiv = styled.div`
   margin-left: 4.174rem;
   margin-right: 0.813rem;
+  margin-top: 0.25rem;
 `;
 
 const GotoSignUp = styled.div`

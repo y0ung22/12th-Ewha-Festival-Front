@@ -23,7 +23,20 @@ const LoginPage = () => {
     } else if (password.trim() === '') {
       alert('비밀번호를 입력해주세요.');
     } else {
+
+      document.cookie = 'id=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+      document.cookie =
+        'nickname=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+      document.cookie =
+        'token=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+      document.cookie = 'tf=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+      document.cookie =
+        'booth=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+      document.cookie =
+        'performance=; expires =Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; //쿠키 삭제
+
       PostLogin(username, password).then().catch();
+
     }
   };
 

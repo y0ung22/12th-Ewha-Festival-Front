@@ -9,12 +9,6 @@ import MyScrap from './components/MyScrap';
 import CategorySlide from '../../_common/CategorySlide';
 
 const MyPage = () => {
-  const options = ['부스', '메뉴', '공연'];
-  const [select, setSelect] = useState('부스');
-  const handleOption = option => {
-    setSelect(option);
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -24,8 +18,7 @@ const MyPage = () => {
       <TopBar isMenu={true} />
       <Container>
         <UserInfo />
-        <CategorySlide {...{ options, handleOption, select }} />
-        <MyScrap select={select} />
+        <MyScrap />
       </Container>
       <Footer />
     </Wrapper>
@@ -53,4 +46,5 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 `;

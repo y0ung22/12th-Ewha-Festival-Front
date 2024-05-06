@@ -8,7 +8,7 @@ import DefaultCard from '../../../assets/images/default-card.png';
 
 import { PatchMenuScrap } from '../../../api/booth';
 
-const MainMenuCard = ({ item }) => {
+const MainMenuCard = ({ item, size }) => {
   const navigate = useNavigate();
   const [isScraped, setIsScraped] = useState(item.is_liked);
 
@@ -20,7 +20,7 @@ const MainMenuCard = ({ item }) => {
   };
 
   return (
-    <Card onClick={() => navigate(`/detail/${item.booth_id}`)}>
+    <Card size={size} onClick={() => navigate(`/detail/${item.booth_id}`)}>
       <div className='overlay' />
       {item.thumnail ? (
         <BackgroundImg src={item.thumnail} alt='menu img' />
@@ -35,7 +35,7 @@ const MainMenuCard = ({ item }) => {
           <ScrapOff onClick={e => handleScrap(e)} />
         )}
       </Scrap>
-      <Text>
+      <Text size={size}>
         <span>{item.name}</span>
         <span>{item.info}</span>
       </Text>
@@ -48,7 +48,6 @@ export default MainMenuCard;
 
 const Card = styled.div`
   position: relative;
-
   @media (max-width: 410px) {
     aspect-ratio: ${props =>
       props.size === 'small' ? '9.125 / 11.375' : '10.625 / 12.3125'};
@@ -58,8 +57,9 @@ const Card = styled.div`
 
   width: 9.125rem;
   height: 11.375rem;
+
   flex-shrink: 0;
-  border-radius: 0.9375rem;
+  border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
   overflow: hidden;
 
