@@ -17,8 +17,11 @@ export const PostSignup = async (user_id, password, nickname, navigate) => {
     document.cookie = `nickname=${response.data.data.nickname}; expires=${expirationDate.toUTCString()};`;
     //토큰 저장
     document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
+
     navigate('/');
     alert('가입이 완료되었습니다.');
+    window.location.reload();
+
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('회원가입 실패', error.response);
