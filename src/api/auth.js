@@ -167,3 +167,13 @@ export const GetScrapBooth = async (type, page) => {
     return Promise.reject(error);
   }
 };
+
+// TFRoute
+export default function TFRoute({ children }) {
+  if (getCookie('tf') === 'true') {
+    return children;
+  } else {
+    alert('접근이 불가합니다.');
+    return window.location.replace('/login');
+  }
+}
