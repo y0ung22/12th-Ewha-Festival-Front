@@ -228,7 +228,7 @@ const BlurBox = styled.div`
   /* max-width: 22rem;
   min-height: 20rem; */
 
-  width: 85%;
+  width: 80%;
   max-height: 26.8125rem;
 
   flex-shrink: 0;
