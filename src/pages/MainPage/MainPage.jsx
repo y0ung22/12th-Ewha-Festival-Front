@@ -16,7 +16,6 @@ const MainPage = () => {
         <ScrapBook />
         <MainBottomSheet />
       </ContentWrapper>
-      <Footer />
     </Wrapper>
   );
 };
