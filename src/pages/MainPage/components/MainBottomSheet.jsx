@@ -5,8 +5,6 @@ import { motion, useAnimation, useDragControls } from 'framer-motion';
 import MainBox from './MainBox';
 import Footer from '../../../_common/Footer';
 
-import useThrottle from '../../../assets/hooks/useThrottle';
-
 //images
 import num1 from '../images/main-1.png';
 import num2 from '../images/main-2.png';

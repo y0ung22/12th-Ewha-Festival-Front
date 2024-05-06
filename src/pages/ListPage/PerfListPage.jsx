@@ -42,9 +42,9 @@ const PerfListPage = () => {
   }, [currentPage]);
 
   return (
-    <>
+    <Wrapper>
       <TopBar isMenu={true} />
-      <Wrapper>
+      <Container>
         <TopDiv>
           <DaySlider setChoice={setSelectDay} />
           <SelectBtn category={'performance'} />
@@ -63,14 +63,26 @@ const PerfListPage = () => {
             setPage={setCurrentPage}
           />
         )}
-      </Wrapper>
-    </>
+      </Container>
+    </Wrapper>
   );
 };
 
 export default PerfListPage;
 
 const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+  background-color: var(--wh);
+`;
+
+const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
