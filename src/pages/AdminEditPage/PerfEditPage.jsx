@@ -29,6 +29,11 @@ const PerfEditPage = () => {
     opened: true
   });
 
+  // 페이지 상단으로 스크롤 이동
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     GetBoothInfo(id)
       .then(res => setBoothData(res))

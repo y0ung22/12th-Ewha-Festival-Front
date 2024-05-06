@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const AdminModal = ({ setIsModal }) => {
   const [cookies, setCookie] = useCookies(['MODAL_EXPIRES']);
   const [clicked, setClicked] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const getExpiredDate = days => {
     const date = new Date();
@@ -16,7 +17,6 @@ const AdminModal = ({ setIsModal }) => {
   const handleOnClickYes = () => {
     const expires = getExpiredDate(1);
     setCookie('MODAL_EXPIRES', true, { path: '/', expires });
-    //setClicked(true);
     setIsModal(false);
   };
 
@@ -25,15 +25,19 @@ const AdminModal = ({ setIsModal }) => {
     setClicked(true);
     setTimeout(() => {
       setIsModal(false);
-      //setClicked(false);
     }, 380);
   };
 
   useEffect(() => {
     if (cookies['MODAL_EXPIRES']) {
       setIsModal(false);
+    } else {
+      setIsModal(true);
     }
+    setIsLoaded(true);
   }, [cookies, setIsModal]);
+
+  if (!isLoaded) return null;
 
   return (
     <ModalWrapper>

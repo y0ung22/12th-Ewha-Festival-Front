@@ -54,6 +54,7 @@ const GoMenuEdit = ({
           msg1='메뉴를 삭제하시겠습니까?'
           msg2='삭제된 내용은 되돌릴 수 없습니다'
           msgType={1}
+          setIsModalOpen={toggleModal}
           onClickYes={executeDelete}
         />
       )}
@@ -110,6 +111,19 @@ const Box = styled.div`
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   cursor: pointer;
+
+  @media (max-width: 390px) {
+    width: 162px;
+    height: 187.7px;
+  }
+  @media (max-width: 374px) {
+    width: 150px;
+    height: 173.8px;
+  }
+  @media (max-width: 350px) {
+    width: 145px;
+    height: 168px;
+  }
 
   img {
     position: absolute;

@@ -4,57 +4,100 @@ import styled from 'styled-components';
 import { ReactComponent as AddIcon } from '../images/save_add.svg';
 import Pagination from '../../../_common/Pagination';
 import ScrapCard from '../../../_common/ScrapCard';
-import { GetScrapBooth } from '../../../api/auth';
+import MainMenuCard from '../../MainPage/components/MainMenuCard';
 
-const MyScrap = ({ select }) => {
+import { GetScrapBooth } from '../../../api/auth';
+import CategorySlide from '../../../_common/CategorySlide';
+
+const MyScrap = () => {
+  const options = ['부스', '메뉴', '공연'];
+  const [select, setSelect] = useState('부스');
+  const handleOption = option => {
+    setSelect(option);
+  };
+
   const [scrapBoothList, setScrapBoothList] = useState();
+  const [boothList, setBoothList] = useState([]);
+  const [menuList, setMenuList] = useState([]);
+  const [perfList, setPerfList] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
   const [totalPage, setTotalPage] = useState(3); // 전체 페이지
 
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   const [render, setRender] = useState(1);
-  // const rendering = () => setRender(render + 1);
 
   useEffect(() => {
     const handleScrap = async () => {
-      const scrapData = await GetScrapBooth(select, 1);
+      const scrapData = await GetScrapBooth(select, currentPage);
 
       setScrapBoothList(scrapData.data);
+      if (scrapData.message == '스크랩한 부스 목록 조회 성공') {
+        setBoothList(scrapData.data);
+      } else if (scrapData.message == '스크랩한 메뉴 목록 조회 성공') {
+        setMenuList(scrapData.data);
+      } else if (scrapData.message == '스크랩한 공연 목록 조회 성공') {
+        setPerfList(scrapData.data);
+      } else {
+      }
+
       setTotalPage(scrapData.total_page);
       setCurrentPage(scrapData.page);
       setTotalItems(scrapData.total);
     };
 
     handleScrap();
-  }, [render, select]);
+  }, [render, select, currentPage]);
+
+  //select 따라서 해당 리스트로 세팅
+  const getCurrentList = () => {
+    switch (select) {
+      case '부스':
+        return { list: boothList, Component: ScrapCard };
+      case '메뉴':
+        return { list: menuList, Component: MainMenuCard };
+      case '공연':
+        return { list: perfList, Component: ScrapCard };
+      default:
+        return { list: [], Component: null };
+    }
+  };
+
+  const renderList = () => {
+    const { list, Component } = getCurrentList();
+
+    if (list.length === 0) {
+      return (
+        <NoneWrapper>
+          <AddIcon />
+          <NoneDiv>스크랩한 내용이 아직 없어요 🥹</NoneDiv>
+        </NoneWrapper>
+      );
+    }
+
+    const itemList = list.map((item, index) => (
+      <Component key={index} item={item} />
+    ));
+    console.log('totalPage ' + totalPage);
+    console.log('currentPage ' + currentPage);
+
+    return <ScrapDiv>{itemList}</ScrapDiv>;
+  };
 
   return (
     <>
-      {scrapBoothList ? (
-        <>
-          <ScrapDiv>
-            {scrapBoothList.map((item, index) => (
-              <ScrapCard key={index} item={item} />
-            ))}
-          </ScrapDiv>
-
+      <CategorySlide {...{ options, handleOption, select }} />
+      <>
+        {renderList()}
+        {totalItems > 10 && (
           <Pagination
             total={totalPage}
             page={currentPage}
             setPage={setCurrentPage}
+            bottom={'4rem'}
           />
-        </>
-      ) : (
-        <>
-          <NoneWrapper>
-            <AddIcon />
-            <NoneDiv>스크랩한 내용이 아직 없어요 🥹</NoneDiv>
-          </NoneWrapper>
-        </>
-      )}
+        )}
+      </>
     </>
   );
 };
