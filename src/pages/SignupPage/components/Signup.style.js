@@ -18,6 +18,9 @@ const Container = styled.div`
   width: 15.625rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
 `;
 
 const Title = styled.div`
