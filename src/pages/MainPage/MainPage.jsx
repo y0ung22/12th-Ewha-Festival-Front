@@ -53,7 +53,7 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: max-content;
+  height: auto;
   min-height: 100%;
 
   overflow: hidden;
