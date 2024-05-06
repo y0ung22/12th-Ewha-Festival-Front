@@ -13,7 +13,8 @@ const ScrapCard = ({ item, size }) => {
   const navigate = useNavigate();
   const [isScraped, setIsScraped] = useState(item.is_liked);
 
-  const handleScrap = () => {
+  const handleScrap = e => {
+    e.stopPropagation();
     PatchBoothScrap(item.id)
       .then(res => setIsScraped(!isScraped))
       .catch();
@@ -26,9 +27,9 @@ const ScrapCard = ({ item, size }) => {
       onClick={() => navigate(`/detail/${item.id}`)}
     >
       {isScraped ? (
-        <ScrapOn onClick={handleScrap} />
+        <ScrapOn onClick={e => handleScrap(e)} />
       ) : (
-        <ScrapOff onClick={handleScrap} />
+        <ScrapOff onClick={e => handleScrap(e)} />
       )}
       <SpanDiv size={size}>
         <span>{item.name}</span>
@@ -43,12 +44,13 @@ export default ScrapCard;
 
 const Card = styled.div`
   position: relative;
-  aspect-ratio: ${props =>
-    props.size === 'small' ? '9.125 / 11.375' : '10.625 / 12.3125'};
-  width: 100%;
-  height: 100%;
 
-  min-height: ${props => (props.size === 'small' ? '10rem' : '11rem')};
+  @media (max-width: 370px) {
+    width: 100%;
+  }
+
+  width: ${props => (props.size === 'small' ? '9.125rem' : '10.625rem')};
+  height: ${props => (props.size === 'small' ? '11.375rem' : '12.3125rem')};
   flex-shrink: 0;
   border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
   background:

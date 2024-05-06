@@ -34,7 +34,6 @@ const TfEditPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // 부스 상세 GET
   useEffect(() => {
     GetTFBoothInfo(id)
       .then(res => setBoothData(res))
@@ -47,7 +46,6 @@ const TfEditPage = () => {
 
   const [rows, setRows] = useState([]);
 
-  // 수정 완료
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -72,10 +70,6 @@ const TfEditPage = () => {
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
     try {
       await PatchTFBooth(id, formData);
       alert('부스 정보가 성공적으로 수정되었습니다.');
@@ -88,9 +82,9 @@ const TfEditPage = () => {
   console.log('!!initialTime:', boothData.days);
 
   return (
-    <>
+    <S.Wrapper>
       <TopBar />
-      <S.Wrapper>
+      <S.Container>
         <form ref={formRef} onSubmit={handleSubmit}>
           <BoothThumbnail
             onImgUpload={handleImgUpload}
@@ -175,9 +169,9 @@ const TfEditPage = () => {
             작성 완료
           </S.SubmitBtn>
         </form>
-        <Footer />
-      </S.Wrapper>
-    </>
+      </S.Container>
+      <Footer />
+    </S.Wrapper>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
 import { S } from './AdminEdit.style';
 import default_banner from '../../../assets/images/default-banner.png';
 import default_card from '../../../assets/images/default-card.png';

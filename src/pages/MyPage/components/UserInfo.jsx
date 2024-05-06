@@ -9,7 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 const UserInfo = () => {
   const setCookieNickname = useSetRecoilState(SignupState);
-  const nickname = useRecoilValue(SignupState).nickname;
+  // const nickname = useRecoilValue(SignupState).nickname;
+  const nickname = getCookie('nickname');
   const navigate = useNavigate();
 
   useEffect(() => {

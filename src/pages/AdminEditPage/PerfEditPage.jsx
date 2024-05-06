@@ -65,12 +65,8 @@ const PerfEditPage = () => {
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
     try {
-      await PatchBooth(id, formData); // 수정된 API 호출
+      await PatchBooth(id, formData);
       alert('부스 정보가 성공적으로 수정되었습니다.');
       navigate(`/detail/${id}`);
     } catch (error) {
@@ -79,93 +75,91 @@ const PerfEditPage = () => {
   };
 
   return (
-    <>
-      <S.Wrapper>
-        <TopBar />
-        <S.Container>
-          <form ref={formRef} onSubmit={handleSubmit}>
-            <BoothThumbnail
-              onImgUpload={handleImgUpload}
-              initialThum={boothData.thumnail}
-            />
-            <S.Box>
-              <S.Title>공연 이름</S.Title>
-              <S.InputContainer>
-                <textarea
-                  id='name'
-                  value={boothData.name}
-                  onChange={e =>
-                    setBoothData({ ...boothData, name: e.target.value })
-                  }
-                  placeholder='공연명을 입력해주세요(최대 14자)'
-                  maxLength='14'
-                />
-              </S.InputContainer>
-            </S.Box>
-            <S.Box>
-              <S.Title>실시간 공지사항</S.Title>
-              <S.InputContainer num='80px'>
-                <textarea
-                  id='realtime'
-                  value={boothData.realtime}
-                  onChange={e =>
-                    setBoothData({ ...boothData, realtime: e.target.value })
-                  }
-                  placeholder='실시간으로 알리고 싶은 정보를 작성해주세요(최대 100자)'
-                  maxLength='100'
-                />
-              </S.InputContainer>
-            </S.Box>
-            <S.Box>
-              <S.Title>공연 운영시간</S.Title>
-              <BoothTime
-                rows={rows}
-                setRows={setRows}
-                initialTime={boothData.days}
-              />
-            </S.Box>
-            <S.Box>
-              <S.Title>공연 소개글</S.Title>
-              <S.InputContainer num='80px'>
-                <textarea
-                  id='description'
-                  value={boothData.description}
-                  onChange={e =>
-                    setBoothData({ ...boothData, description: e.target.value })
-                  }
-                  placeholder='공연에 대해 알리는 소개글을 작성해주세요(최대 100자)'
-                  maxLength='100'
-                />
-              </S.InputContainer>
-            </S.Box>
-            <S.Box>
-              <S.Title>공연 운영진 연락처</S.Title>
-              <S.InputContainer num='40px'>
-                <textarea
-                  id='contact'
-                  value={boothData.contact}
-                  onChange={e =>
-                    setBoothData({ ...boothData, contact: e.target.value })
-                  }
-                  placeholder='문의를 위한 공연 운영진 연락처를 남겨주세요&#13;&#10;예) 카카오톡 오픈채팅 링크'
-                />
-              </S.InputContainer>
-            </S.Box>
-            <S.Box>
-              <S.Title>운영 여부</S.Title>
-              <BoothOpened
-                opened={boothData.opened}
-                setOpened={newOpened =>
-                  setBoothData({ ...boothData, opened: newOpened })
+    <S.Wrapper>
+      <TopBar />
+      <S.Container>
+        <form ref={formRef} onSubmit={handleSubmit}>
+          <BoothThumbnail
+            onImgUpload={handleImgUpload}
+            initialThum={boothData.thumnail}
+          />
+          <S.Box>
+            <S.Title>공연 이름</S.Title>
+            <S.InputContainer>
+              <textarea
+                id='name'
+                value={boothData.name}
+                onChange={e =>
+                  setBoothData({ ...boothData, name: e.target.value })
                 }
+                placeholder='공연명을 입력해주세요(최대 14자)'
+                maxLength='14'
               />
-            </S.Box>
-            <S.SubmitBtn type='submit'>작성 완료</S.SubmitBtn>
-          </form>
-        </S.Container>
-        <Footer />
-      </S.Wrapper>
-    </>
+            </S.InputContainer>
+          </S.Box>
+          <S.Box>
+            <S.Title>실시간 공지사항</S.Title>
+            <S.InputContainer num='80px'>
+              <textarea
+                id='realtime'
+                value={boothData.realtime}
+                onChange={e =>
+                  setBoothData({ ...boothData, realtime: e.target.value })
+                }
+                placeholder='실시간으로 알리고 싶은 정보를 작성해주세요(최대 100자)'
+                maxLength='100'
+              />
+            </S.InputContainer>
+          </S.Box>
+          <S.Box>
+            <S.Title>공연 운영시간</S.Title>
+            <BoothTime
+              rows={rows}
+              setRows={setRows}
+              initialTime={boothData.days}
+            />
+          </S.Box>
+          <S.Box>
+            <S.Title>공연 소개글</S.Title>
+            <S.InputContainer num='80px'>
+              <textarea
+                id='description'
+                value={boothData.description}
+                onChange={e =>
+                  setBoothData({ ...boothData, description: e.target.value })
+                }
+                placeholder='공연에 대해 알리는 소개글을 작성해주세요(최대 100자)'
+                maxLength='100'
+              />
+            </S.InputContainer>
+          </S.Box>
+          <S.Box>
+            <S.Title>공연 운영진 연락처</S.Title>
+            <S.InputContainer num='40px'>
+              <textarea
+                id='contact'
+                value={boothData.contact}
+                onChange={e =>
+                  setBoothData({ ...boothData, contact: e.target.value })
+                }
+                placeholder='문의를 위한 공연 운영진 연락처를 남겨주세요&#13;&#10;예) 카카오톡 오픈채팅 링크'
+              />
+            </S.InputContainer>
+          </S.Box>
+          <S.Box>
+            <S.Title>운영 여부</S.Title>
+            <BoothOpened
+              opened={boothData.opened}
+              setOpened={newOpened =>
+                setBoothData({ ...boothData, opened: newOpened })
+              }
+            />
+          </S.Box>
+          <S.SubmitBtn type='submit'>작성 완료</S.SubmitBtn>
+        </form>
+      </S.Container>
+      <Footer />
+    </S.Wrapper>
   );
 };
 

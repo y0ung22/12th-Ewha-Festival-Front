@@ -41,9 +41,9 @@ const BoothListPage = () => {
   }, [currentPage]);
 
   return (
-    <>
+    <Wrapper>
       <TopBar isMenu={true} />
-      <Wrapper>
+      <Container>
         <TopDiv>
           <DaySlider setChoice={setSelectDay} />
           <SelectBtn category={'booth'} />
@@ -61,14 +61,26 @@ const BoothListPage = () => {
             setPage={setCurrentPage}
           />
         )}
-      </Wrapper>
-    </>
+      </Container>
+    </Wrapper>
   );
 };
 
 export default BoothListPage;
 
 const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+  background-color: var(--wh);
+`;
+
+const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -111,10 +123,8 @@ const ResultDiv = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.875rem 0.625rem;
-`;
+  justify-items: center;
 
-const Observer = styled.div`
-  width: 80vw;
-  height: 10px;
+  gap: 0.875rem 0.625rem;
+  height: max-content;
 `;

@@ -18,7 +18,6 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const setLoginInfo = useSetRecoilState(SignupState);
-  const loginInfo = useRecoilValue(SignupState);
 
   //로그인 함수
   const handleLogin = async () => {
@@ -49,10 +48,10 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      <S.Wrapper>
-        <TopBar isMenu={false} isMain={false} isWhite={true} />
-        <S.Title>로그인</S.Title>
+    <S.Wrapper>
+      <TopBar isMenu={false} isMain={false} isWhite={true} />
+      <S.Title>로그인</S.Title>
+      <S.Container>
         <S.Input>
           <IdIcon />
           <input
@@ -81,8 +80,8 @@ const LoginPage = () => {
         <S.GotoSignUp onClick={gotoSignup}>
           계정이 없다면? 회원가입 하러 가기
         </S.GotoSignUp>
-      </S.Wrapper>
-    </>
+      </S.Container>
+    </S.Wrapper>
   );
 };
 

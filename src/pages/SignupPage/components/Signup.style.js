@@ -7,6 +7,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
+  overflow: hidden;
+`;
+
+const Container = styled.div`
+  width: 15.625rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.div`
@@ -18,12 +25,12 @@ const Title = styled.div`
   line-height: 1.625rem; /* 108.333% */
   letter-spacing: -0.03125rem;
   margin-top: 2.3125rem;
-  margin-bottom: 6.0625rem;
+  margin-bottom: 12vh;
 `;
 
 const RowBox = styled.div`
   display: flex;
-  width: 15.625rem;
+  width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -75,6 +82,7 @@ const InputBox = styled.div`
   padding: 0.75rem;
 
   input {
+    width: 100%;
     background-color: var(--gray02);
     font-size: 0.75rem;
     font-style: normal;
@@ -117,6 +125,7 @@ const LoginBtn = styled.div`
 
 export const S = {
   Wrapper,
+  Container,
   Title,
   RowBox,
   IdCheckBtn,

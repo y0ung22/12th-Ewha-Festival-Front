@@ -1,5 +1,3 @@
-// 메뉴 상세 수정 대표 사진 컴포넌트
-
 import React, { useEffect, useState, useRef } from 'react';
 import { S } from './AdminEdit.style';
 import default_card from '../../../assets/images/default-card.png';

@@ -116,65 +116,66 @@ const SignupPage = () => {
           backLink='/login'
         />
         <S.Title>회원가입</S.Title>
-
-        <S.RowBox>
-          <S.InputBox num='187px'>
-            <IdIcon />
-            <input
-              placeholder='아이디'
-              type='text'
-              name='username'
-              onChange={e => setUsername(e.target.value)}
-            ></input>
-          </S.InputBox>
-          <S.IdCheckBtn onClick={clickIdValid}>중복확인</S.IdCheckBtn>
-        </S.RowBox>
-        {duplicate !== null && (
-          <S.IdCheckMsg>
-            {duplicate
-              ? '*다른 사람이 사용 중인 아이디입니다.'
-              : '*사용 가능한 아이디입니다.'}
-          </S.IdCheckMsg>
-        )}
-        <S.RowBox>
-          <S.InputBox num='250px'>
-            <PwIcon />
-            <input
-              type='password'
-              placeholder='비밀번호'
-              name='password'
-              onChange={e => setPassword(e.target.value)}
-            ></input>
-          </S.InputBox>
-        </S.RowBox>
-        <S.RowBox>
-          <S.InputBox num='212px'>
-            <PwIcon />
-            <input
-              type='password'
-              placeholder='비밀번호 확인'
-              name='passwordCheck'
-              onChange={e => setPasswordCheck(e.target.value)}
-            ></input>
-          </S.InputBox>
-          <S.IconDiv>
-            {isPwSame ? <CheckedIcon /> : <UncheckedIcon />}
-          </S.IconDiv>
-        </S.RowBox>
-        <S.RowBox>
-          <S.InputBox num='250px'>
-            <NameIcon />
-            <input
-              placeholder='닉네임(최대 8자)'
-              name='nickname'
-              onChange={e => setNickname(e.target.value)}
-              maxLength={8}
-            ></input>
-          </S.InputBox>
-        </S.RowBox>
-        <S.LoginBtn fieldSatisfied={fieldSatisfied} onClick={clickComplete}>
-          회원가입
-        </S.LoginBtn>
+        <S.Container>
+          <S.RowBox>
+            <S.InputBox num='187px'>
+              <IdIcon />
+              <input
+                placeholder='아이디'
+                type='text'
+                name='username'
+                onChange={e => setUsername(e.target.value)}
+              ></input>
+            </S.InputBox>
+            <S.IdCheckBtn onClick={clickIdValid}>중복확인</S.IdCheckBtn>
+          </S.RowBox>
+          {duplicate !== null && (
+            <S.IdCheckMsg>
+              {duplicate
+                ? '*다른 사람이 사용 중인 아이디입니다.'
+                : '*사용 가능한 아이디입니다.'}
+            </S.IdCheckMsg>
+          )}
+          <S.RowBox>
+            <S.InputBox num='250px'>
+              <PwIcon />
+              <input
+                type='password'
+                placeholder='비밀번호'
+                name='password'
+                onChange={e => setPassword(e.target.value)}
+              ></input>
+            </S.InputBox>
+          </S.RowBox>
+          <S.RowBox>
+            <S.InputBox num='212px'>
+              <PwIcon />
+              <input
+                type='password'
+                placeholder='비밀번호 확인'
+                name='passwordCheck'
+                onChange={e => setPasswordCheck(e.target.value)}
+              ></input>
+            </S.InputBox>
+            <S.IconDiv>
+              {isPwSame ? <CheckedIcon /> : <UncheckedIcon />}
+            </S.IconDiv>
+          </S.RowBox>
+          <S.RowBox>
+            <S.InputBox num='250px'>
+              <NameIcon />
+              <input
+                placeholder='닉네임(최대 8자)'
+                name='nickname'
+                onChange={e => setNickname(e.target.value)}
+                maxLength={8}
+              ></input>
+            </S.InputBox>
+          </S.RowBox>
+          <S.LoginBtn fieldSatisfied={fieldSatisfied} onClick={clickComplete}>
+            회원가입
+          </S.LoginBtn>
+        </S.Container>
       </S.Wrapper>
       {isModalOpen && (
         <Modal
