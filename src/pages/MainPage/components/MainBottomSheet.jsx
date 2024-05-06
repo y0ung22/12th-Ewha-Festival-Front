@@ -110,14 +110,14 @@ const MainBottomSheet = () => {
         animate={animateState}
         variants={{
           opened: { top: `6rem` },
-          closed: { top: '86vh' }
+          closed: { top: '83vh' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
         dragControls={dragControls}
         dragListener={false}
         dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={0.1}
+        dragElastic={0}
         onDragEnd={handleDragEnd}
       >
         <Wrapper
@@ -206,7 +206,7 @@ const BoxContainer = styled.div`
 
 const ToggleButton = styled.button`
   position: fixed;
-  top: 5rem;
+  top: 3rem;
   z-index: 151;
 
   display: inline-flex;
