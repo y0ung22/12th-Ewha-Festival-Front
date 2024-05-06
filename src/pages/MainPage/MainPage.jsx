@@ -57,5 +57,6 @@ const ContentWrapper = styled.div`
   min-height: 100%;
 
   overflow: hidden;
+  touch-action: none;
   z-index: 1;
 `;
