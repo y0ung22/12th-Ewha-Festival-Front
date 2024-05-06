@@ -7,8 +7,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-self: center;
+  align-self: center;
   background-color: white;
   overflow: hidden;
+
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
 
 const Container = styled.div`

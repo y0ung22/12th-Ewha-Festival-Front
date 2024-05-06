@@ -25,7 +25,7 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
   useEffect(() => {
     document.body.style.cssText = `
       position:fixed;
-      top: 0;
+      top: -${window.scrollY}px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -33,7 +33,8 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
     return () => {
       const scrollY = document.body.style.top;
       document.body.style.cssText = '';
-      window.scrollTo(0, parseInt(scrollY || '0'));
+      // window.scrollTo(0, parseInt(scrollY || '0'));
+      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     };
   }, []);
 
