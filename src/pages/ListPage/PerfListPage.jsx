@@ -18,7 +18,7 @@ const PerfListPage = () => {
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
   const [totalPage, setTotalPage] = useState(5); // 전체 페이지
 
-  const [selectDay, setSelectDay] = useState(8); //선택 요일
+  const [selectDay, setSelectDay] = useRecoilState(DayState); //선택 요일
   const [selectPlace, setSelectPlace] = useRecoilState(PlaceState); //선택 장소
 
   const [perfList, setPerfList] = useState([]);
@@ -34,6 +34,7 @@ const PerfListPage = () => {
 
   useEffect(() => {
     setCurrentPage(1);
+    console.log(selectDay);
     handleStart(selectDay, selectPlace['performance'], 1);
   }, [selectDay, selectPlace]);
 
@@ -46,7 +47,7 @@ const PerfListPage = () => {
       <TopBar isMenu={true} />
       <Container>
         <TopDiv>
-          <DaySlider setChoice={setSelectDay} />
+          <DaySlider />
           <SelectBtn category={'performance'} />
         </TopDiv>
         <TotalBooth>총 {totalItems}개의 공연</TotalBooth>

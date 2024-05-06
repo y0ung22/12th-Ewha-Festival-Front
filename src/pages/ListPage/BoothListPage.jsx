@@ -18,7 +18,7 @@ const BoothListPage = () => {
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
   const [totalPage, setTotalPage] = useState(5); // 전체 페이지
 
-  const [selectDay, setSelectDay] = useState(8); //선택 요일
+  const [selectDay, setSelectDay] = useRecoilState(DayState); //선택 요일
   const [selectPlace, setSelectPlace] = useRecoilState(PlaceState); //선택 장소
 
   const [boothList, setBoothList] = useState([]);
@@ -45,7 +45,7 @@ const BoothListPage = () => {
       <TopBar isMenu={true} />
       <Container>
         <TopDiv>
-          <DaySlider setChoice={setSelectDay} />
+          <DaySlider />
           <SelectBtn category={'booth'} />
         </TopDiv>
         <TotalBooth>총 {totalItems}개의 부스</TotalBooth>

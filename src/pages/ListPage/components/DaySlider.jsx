@@ -1,15 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const DaySlider = ({ setChoice }) => {
+import { useRecoilState } from 'recoil';
+import { DayState } from '../../../assets/recoil/apiRecoil';
+
+const DaySlider = () => {
   const options = ['수', '목', '금'];
-  const [select, setSelect] = useState(options[0]);
+
+  const [selectDay, setSelectDay] = useRecoilState(DayState);
+  const [select, setSelect] = useState(options[selectDay - 8]);
   const [highlightStyle, setHighlightStyle] = useState({});
   const optionRefs = useRef(new Array());
 
   useEffect(() => {
     const current = optionRefs.current[options.indexOf(select)];
-    setChoice(options.indexOf(select) + 8);
+    setSelectDay(options.indexOf(select) + 8);
     if (current) {
       const { offsetLeft: left, clientWidth: width } = current;
       setHighlightStyle({ left, width });

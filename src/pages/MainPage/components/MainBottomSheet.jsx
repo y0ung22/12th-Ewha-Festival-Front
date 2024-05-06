@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { motion, useDragControls } from 'framer-motion';
 
@@ -76,6 +76,7 @@ const BoxList = [
 
 const MainBottomSheet = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const boxContainerRef = useRef(null);
 
   const dragControls = useDragControls();
   const animateState = isOpen ? 'opened' : 'closed';
@@ -91,6 +92,13 @@ const MainBottomSheet = () => {
 
     const newIsOpened = info.offset.y < 0;
     setIsOpen(newIsOpened);
+    window.scrollTo(0, 0);
+
+    if (newIsOpened) {
+      if (boxContainerRef.current) {
+        boxContainerRef.current.scrollTo(0, 0);
+      }
+    }
   };
 
   const handleCloseModal = () => {
@@ -121,15 +129,15 @@ const MainBottomSheet = () => {
         onDragEnd={handleDragEnd}
       >
         <Wrapper
-          onPointerDown={e => dragControls.start(e)}
+          onPointerDown={e => !isOpen && dragControls.start(e)}
           style={{
             overflowY: isOpen ? `scroll` : `unset`
           }}
         >
           <HandlerContainer>
-            <div className='dragPoint' />
+            <div className='dragPoint' onClick={() => setIsOpen(!isOpen)} />
           </HandlerContainer>
-          <BoxContainer>
+          <BoxContainer ref={boxContainerRef}>
             {BoxList.map(item => (
               <MainBox key={item.id} item={item} />
             ))}
@@ -170,7 +178,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 6rem);
 
   &::-webkit-scrollbar {
     display: none;
@@ -191,6 +199,7 @@ const HandlerContainer = styled.div`
     z-index: 15;
     margin-top: 13px;
     border-radius: 1rem;
+    cursor: pointer;
   }
 `;
 
