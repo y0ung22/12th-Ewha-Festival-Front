@@ -92,6 +92,10 @@ export const KakaoLogin = async (code, navigate) => {
       //토큰 저장
       document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()};`;
 
+      localStorage.setItem('id', response.data.data.id);
+      localStorage.setItem('nickname', response.data.data.nickname);
+      localStorage.setItem('token', response.data.data.access_token);
+
       console.log(response.data);
       // window.location.replace('/');
       navigate('/');
