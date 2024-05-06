@@ -9,7 +9,7 @@ const Modal = ({ msgType, title, msg1, msg2, setIsModalOpen, onClickYes }) => {
     setTimeout(() => {
       onClickYes();
       setClicked(false);
-    }, 380);
+    }, 350);
   };
 
   // 모달 닫기
