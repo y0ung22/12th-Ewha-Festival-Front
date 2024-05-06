@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import { ReactComponent as AddIcon } from '../images/save_add.svg';
 import Pagination from '../../../_common/Pagination';
-import ScrapCard from '../../../_common/ScrapCard';
-import MainMenuCard from '../../MainPage/components/MainMenuCard';
+import ScrapBoothCard from './ScrapBoothCard';
+import ScrapMenuCard from './ScrapMenuCard';
 
 import { GetScrapBooth } from '../../../api/auth';
 import CategorySlide from '../../../_common/CategorySlide';
@@ -53,11 +53,11 @@ const MyScrap = () => {
   const getCurrentList = () => {
     switch (select) {
       case '부스':
-        return { list: boothList, Component: ScrapCard };
+        return { list: boothList, Component: ScrapBoothCard };
       case '메뉴':
-        return { list: menuList, Component: MainMenuCard };
+        return { list: menuList, Component: ScrapMenuCard };
       case '공연':
-        return { list: perfList, Component: ScrapCard };
+        return { list: perfList, Component: ScrapBoothCard };
       default:
         return { list: [], Component: null };
     }
