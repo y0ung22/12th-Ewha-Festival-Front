@@ -44,7 +44,6 @@ const Wrapper = styled.div`
   min-height: 100vh;
 
   background-color: var(--wh);
-  overflow: hidden;
 `;
 
 const Container = styled.div`

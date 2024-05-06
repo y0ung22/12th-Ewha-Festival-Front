@@ -35,10 +35,12 @@ const Wrapper = styled.div`
 `;
 const Card = styled.div`
   position: relative;
-  aspect-ratio: ${props =>
-    props.size === 'small' ? '9.125 / 11.375' : '170 / 197'};
-  width: ${props => (props.size === 'small' ? '9.125rem' : '100%')};
-  height: ${props => (props.size === 'small' ? '11.375rem' : '100%')};
+  @media (max-width: 370px) {
+    width: 100%;
+  }
+
+  width: ${props => (props.size === 'small' ? '9.125rem' : '10.625rem')};
+  height: ${props => (props.size === 'small' ? '11.375rem' : '12.3125rem')};
   flex-shrink: 0;
   flex-shrink: 0;
   border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};

@@ -44,12 +44,13 @@ export default ScrapCard;
 
 const Card = styled.div`
   position: relative;
-  aspect-ratio: ${props =>
-    props.size === 'small' ? '9.125 / 11.375' : '10.625 / 12.3125'};
-  width: 100%;
-  height: 100%;
 
-  max-height: ${props => (props.size === 'small' ? '14rem' : '15rem')};
+  @media (max-width: 370px) {
+    width: 100%;
+  }
+
+  width: ${props => (props.size === 'small' ? '9.125rem' : '10.625rem')};
+  height: ${props => (props.size === 'small' ? '11.375rem' : '12.3125rem')};
   flex-shrink: 0;
   border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
   background:
