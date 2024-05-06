@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import TopBar from '../../_common/TopBar';
+import MainTopBar from '../../_common/MainTopBar';
 import Footer from '../../_common/Footer';
 import AdminScrapBook from './components/AdminScrapBook';
 
@@ -10,7 +10,7 @@ const TFMainPage = () => {
   return (
     <>
       <Wrapper>
-        <TopBar isWhite={true} isMenu={true} isMain={true} />
+        <MainTopBar isMain={true} />
         <AdminScrapBook category={'TF'} />
         <Background src={background} alt='배경 이미지' />
       </Wrapper>
