@@ -148,9 +148,8 @@ const BottomSheetContainer = styled(motion.div)`
   left: 1;
   width: 390px;
   height: calc(100vh - 6rem);
-  z-index: 10;
+  z-index: 150;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
-  margin-top: 2.06rem;
 
   &::-webkit-scrollbar {
     display: none;
@@ -230,8 +229,4 @@ const ToggleButton = styled.button`
   letter-spacing: -0.03125rem;
 
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 `;
