@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-import DefaultCard from '../../../assets/images/default-card.png';
+import DefaultCard from '../images/booth-default.png';
 
 const TFBoothCard = ({ d, isEdit }) => {
   const navigate = useNavigate();
