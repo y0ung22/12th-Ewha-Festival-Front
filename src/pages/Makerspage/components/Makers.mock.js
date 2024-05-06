@@ -155,7 +155,7 @@ export const TfData = [
   {
     id: 8,
     info: '컴공 22',
-    name: '박서림',
+    name: '최정원',
     part: '부스',
     work: '부스 총괄 관리',
     img: tf8
