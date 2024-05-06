@@ -9,12 +9,13 @@ import { S } from './components/Makers.style';
 
 import { LionsData } from './components/Makers.mock';
 import { TfData } from './components/Makers.mock';
+import TFlist from './components/TFlist';
 
 const MakersPage = () => {
   return (
     <>
-      <TopBar />
       <S.Wrapper1>
+        <TopBar />
         <S.Text>
           2024
           <br />
@@ -34,9 +35,7 @@ const MakersPage = () => {
             <MakersBox data={TfData} />
           </S.BoxContainer>
         </S.Wrapper2>
-        <S.Explain>
-          *총 63인의 축제준비위원회 위원들과 함께 운영하고 있습니다.
-        </S.Explain>
+        <TFlist />
         <Footer />
       </S.Wrapper1>
     </>

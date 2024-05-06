@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { S } from './Makers.style';
 
 const MakersBox = ({ data }) => {

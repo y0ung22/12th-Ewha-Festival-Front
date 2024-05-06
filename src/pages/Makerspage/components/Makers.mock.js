@@ -1,14 +1,20 @@
 import example from '../images/example.webp';
+
+// 기본 이미지
+import def from '../../../assets/images/default-card.png';
+
 // lions 이미지
+import lions1 from '../images/lions1.jpg';
+import lions2 from '../images/lions2.jpg';
+import lions5 from '../images/lions5.png';
+import lions6 from '../images/lions6.png';
+import lions7 from '../images/lions7.png';
+
 // tf 이미지
 import tf1 from '../images/tf1.jpg';
-import tf2 from '../images/tf2.jpg';
-import tf3 from '../images/tf3.png';
+import tf3 from '../images/tf3.jpg';
 import tf4 from '../images/tf4.jpg';
-import tf5 from '../images/tf5.jpg';
-import tf6 from '../images/tf6.jpg';
 import tf7 from '../images/tf7.jpg';
-import tf8 from '../images/tf8.png';
 
 export const LionsData = [
   {
@@ -17,7 +23,7 @@ export const LionsData = [
     name: '김가영',
     part: '기획디자인',
     work: '전체 UI 기획 및\n디자인',
-    img: example
+    img: lions1
   },
   {
     id: 2,
@@ -25,7 +31,7 @@ export const LionsData = [
     name: '김지형',
     part: '기획디자인',
     work: '전체 UI 기획 및\n디자인',
-    img: example
+    img: lions2
   },
   {
     id: 3,
@@ -33,7 +39,7 @@ export const LionsData = [
     name: '변지혜',
     part: '프론트엔드',
     work: '메인 페이지\n검색 페이지',
-    img: example
+    img: def
   },
   {
     id: 4,
@@ -41,7 +47,7 @@ export const LionsData = [
     name: '유서연',
     part: '프론트엔드',
     work: '메인 페이지\n검색 페이지',
-    img: example
+    img: def
   },
   {
     id: 5,
@@ -49,7 +55,7 @@ export const LionsData = [
     name: '진규빈',
     part: '프론트엔드',
     work: '메인 페이지\n검색 페이지',
-    img: example
+    img: lions5
   },
   {
     id: 6,
@@ -57,7 +63,7 @@ export const LionsData = [
     name: '최지원',
     part: '프론트엔드',
     work: '메인 페이지\n검색 페이지',
-    img: example
+    img: lions6
   },
   {
     id: 7,
@@ -65,7 +71,7 @@ export const LionsData = [
     name: '허채린',
     part: '백엔드',
     work: '로그인/회원가입\n카카오 로그인\n마이페이지\n부스 수정 페이지\n데이터 수합 페이지',
-    img: example
+    img: lions7
   },
   {
     id: 8,
@@ -73,7 +79,7 @@ export const LionsData = [
     name: '심예원',
     part: '백엔드',
     work: '부스 수정 페이지\n메뉴 수정 페이지\n공지 조회 페이지\n공지 등록/수정/삭제\n상설 부스 페이지',
-    img: example
+    img: def
   },
   {
     id: 9,
@@ -81,7 +87,7 @@ export const LionsData = [
     name: '이다빈',
     part: '백엔드',
     work: '메인 페이지\n검색 페이지\n부스 상세 페이지\n부스 스크랩 구현\n방명록 작성/수정/삭제',
-    img: example
+    img: def
   }
 ];
 
@@ -100,7 +106,7 @@ export const TfData = [
     name: '이진',
     part: '권리',
     work: '권리부스 운영\n배리어프리존 관리\n비거니즘 가이드라인 배포',
-    img: tf2
+    img: def
   },
   {
     id: 3,
@@ -124,7 +130,7 @@ export const TfData = [
     name: '이지원',
     part: '홍보',
     work: '전체 축제 홍보 및\n홍보물 제작, 배포',
-    img: tf5
+    img: def
   },
   {
     id: 6,
@@ -132,7 +138,7 @@ export const TfData = [
     name: '신지원',
     part: '대외협력',
     work: '아티스트, 프로모션 업체\n컨택 및 관리\n야시장 기획 및 관리',
-    img: tf6
+    img: def
   },
   {
     id: 7,
@@ -148,6 +154,6 @@ export const TfData = [
     name: '박서림',
     part: '추천위원',
     work: '총학생회 및 중운위 소통',
-    img: tf8
+    img: def
   }
 ];

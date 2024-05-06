@@ -2,20 +2,29 @@ import styled, { css } from 'styled-components';
 
 // (공통) 중앙 정렬 Wrapper
 const Wrapper = styled.div`
+  padding: 0;
+  margin: 0;
   width: 100%;
   min-height: 100vh;
   background-color: white;
-
   display: flex;
-  //padding: 0px 20px;
   flex-direction: column;
   align-items: center;
+`;
+
+// (공통) topbar&footer 제외 wrapper
+const Container = styled.div`
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 // (공통) Title+요소 묶는 박스
 const Box = styled.div`
   margin-top: ${({ num }) => num || '35px'};
-
+  //padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -35,11 +44,11 @@ const Title = styled.div`
 // (공통) input 스타일
 const InputContainer = styled.div`
   display: flex;
-  width: 350px;
+  width: 100%; //21.875rem; //350px;
   padding: 11px 14px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 7px;
+  //gap: 7px;
 
   border-radius: 15px;
   border: 1px solid #e7e7e7;
@@ -47,7 +56,7 @@ const InputContainer = styled.div`
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   textarea {
-    width: 317px;
+    width: 19.8125rem; //317px;
     height: ${({ num }) => num || '20px'};
     resize: none;
     color: var(--bk01);
@@ -75,11 +84,12 @@ const SubmitBtn = styled.button`
   margin-top: ${({ num1 }) => num1 || '35px;'};
   margin-bottom: ${({ num2 }) => num2 || '150px;'};
 
+  width: 100%;
   display: inline-flex;
-  padding: 10px 145px;
+  padding: 0.625rem 0rem;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  //gap: 10px;
   border-radius: 10px;
   border: 1px solid var(--green02);
   background: #07fb77;
@@ -87,12 +97,11 @@ const SubmitBtn = styled.button`
   color: white;
   text-align: center;
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 20px; /* 125% */
-  letter-spacing: -0.5px;
-
+  line-height: 1.25rem; /* 125% */
+  letter-spacing: -0.03125rem;
   cursor: pointer;
   outline: none;
 `;
@@ -103,45 +112,78 @@ const ImgBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  //gap: 10px;
   flex-shrink: 0;
 
   color: white;
   text-align: center;
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.03125rem;
 
   cursor: pointer;
 `;
 
-// (BoothEditPage) 부스 썸네일 수정
+// boothThumbnail의 Wrapper
+const WrapperType = {
+  1: css`
+    width: 100%;
+  `,
+  2: css`
+    width: 10.625rem;
+  `
+};
+
+// boothThumbnail의 Wrapper
+const BTWrapper = styled.div`
+  ${({ type }) => WrapperType[type] || WrapperType[1]}
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+// MenuThumEdit의 Wrapper
+const MTWrapper = styled.div`
+  width: 10.625rem;
+  //height: 12.3125rem;
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+  gap: 16px;
+`;
+
+// boothThumbnail 썸네일 스타일
 const boxType = {
   1: css`
-    padding-top: 143px;
-    width: 350px;
-    height: 197px;
+    padding-top: 8.94rem;
+    //width: 350px;
+    //height: 197px;
+    //width: 21.875rem;
+    height: 12.3125rem;
   `,
   2: css`
     padding-top: 162px;
-    width: 170px;
-    height: 284px;
+    //width: 170px;
+    //height: 284px;
+    //width: 10.625rem;
+    height: 17.75rem;
   `
 };
 
 const btnType = {
   1: css`
-    padding: 10px 133px;
-    width: 350px;
-    height: 54px;
+    //width: 21.875rem;
+    height: 3.375rem;
     font-weight: 700;
-    line-height: 20px; /* 125% */
+    line-height: 1.25rem; /* 125% */
   `,
   2: css`
     padding: 49px 43px;
-    width: 170px;
-    height: 122px;
+    //width: 170px;
+    //height: 122px;
+    //width: 10.625rem;
+    height: 7.625rem;
     font-weight: 500;
     line-height: 22px; /* 137.5% */
   `
@@ -150,9 +192,10 @@ const btnType = {
 const BImgContainer = styled.div`
   ${({ type }) => boxType[type] || boxType[1]}
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  position: relative;
   border-radius: 15px;
   background:
     linear-gradient(
@@ -166,6 +209,7 @@ const BImgContainer = styled.div`
 
 const BImgEditBtn = styled(ImgBtn)`
   ${({ type }) => btnType[type] || btnType[1]}
+  width: 100%;
 
   background: rgba(0, 0, 0, 0.34);
   border-radius: 0px 0px 15px 15px;
@@ -201,25 +245,17 @@ const MImgAddBtn = styled(ImgBtn)`
   border-radius: 0px 0px 20px 20px;
 `;
 
-// boothThumbnail, MenuThumEdit의 Wrapper
-const Wrapper2 = styled.div`
-  margin-top: 16px;
-
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-`;
-
 export const S = {
   Wrapper,
+  Container,
   Box,
   Title,
   InputContainer,
   SubmitBtn,
+  BTWrapper,
+  MTWrapper,
   BImgContainer,
   BImgEditBtn,
   MImgContainer,
-  MImgAddBtn,
-  Wrapper2
+  MImgAddBtn
 };

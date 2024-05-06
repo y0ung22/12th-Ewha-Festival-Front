@@ -4,7 +4,7 @@ import { S } from './AdminEdit.style';
 import default_banner from '../../../assets/images/default-banner.png';
 import default_card from '../../../assets/images/default-card.png';
 
-const BoothThumbnail = ({ onImgUpload, type1, type2, initialThum }) => {
+const BoothThumbnail = ({ onImgUpload, type1, type2, type3, initialThum }) => {
   const [prevUrl, setPrevUrl] = useState('');
   const fileInputRef = useRef(null);
 
@@ -18,7 +18,7 @@ const BoothThumbnail = ({ onImgUpload, type1, type2, initialThum }) => {
     } else {
       setPrevUrl(initialThum);
     }
-  }, [initialThum, type1, type2]);
+  }, [initialThum, type1, type2, type3]);
 
   const handleImgChange = e => {
     const file = e.target.files[0];
@@ -38,10 +38,10 @@ const BoothThumbnail = ({ onImgUpload, type1, type2, initialThum }) => {
   };
 
   return (
-    <S.Wrapper2>
-      <S.Title text={'대표 사진'} />
-      <S.BImgContainer type={type1} prevUrl={prevUrl || default_banner}>
-        <S.BImgEditBtn onClick={handleBtnClick} type={type2}>
+    <S.BTWrapper type={type1}>
+      <S.Title>대표 사진</S.Title>
+      <S.BImgContainer type={type2} prevUrl={prevUrl || default_banner}>
+        <S.BImgEditBtn onClick={handleBtnClick} type={type3}>
           사진 교체하기
         </S.BImgEditBtn>
         <input
@@ -51,7 +51,7 @@ const BoothThumbnail = ({ onImgUpload, type1, type2, initialThum }) => {
           style={{ display: 'none' }}
         />
       </S.BImgContainer>
-    </S.Wrapper2>
+    </S.BTWrapper>
   );
 };
 

@@ -97,6 +97,7 @@ const TfEditPage = () => {
             initialThum={boothData.thumnail}
             type1='2'
             type2='2'
+            type3='2'
           />
           <S.Box>
             <S.Title>부스 이름</S.Title>
