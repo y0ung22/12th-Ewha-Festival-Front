@@ -14,7 +14,6 @@ import { PostMenu } from '../../api/booth';
 const MenuAddPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [img, setImg] = useState(null);
   const [menu, setMenu] = useState('');
   const [price, setPrice] = useState('');

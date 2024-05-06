@@ -58,11 +58,13 @@ function App() {
             <Route path={'/facility'} element={<FacilityPage />} />
             <Route path={'/my'} element={<MyPage />} />
 
+            {/* 메인 & 목록 & 검색 */}
             <Route path={'/'} element={<NavigateMainPage />} />
             <Route path={'/boothlist'} element={<BoothListPage />} />
             <Route path={'/perflist'} element={<PerfListPage />} />
             <Route path={'/search'} element={<SearchPage />} />
 
+            {/* 부스 & 공연 & 메뉴 수정 및 추가 */}
             <Route path={'/boothedit/:id'} element={<BoothEditPage />} />
             <Route path={'/perfedit/:id'} element={<PerfEditPage />} />
             <Route path={'/tfedit/:id'} element={<TfEditPage />} />

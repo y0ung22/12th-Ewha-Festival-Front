@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { S } from './AdminEdit.style';
+import default_card from '../../../assets/images/default-card.png';
 
 const MenuThumAdd = ({ onImgUpload }) => {
-  const [prevUrl, setPrevUrl] = useState('');
+  const [prevUrl, setPrevUrl] = useState(default_card);
   const fileInputRef = useRef(null);
 
   const handleImgChange = e => {
@@ -26,8 +27,7 @@ const MenuThumAdd = ({ onImgUpload }) => {
   return (
     <Wrapper>
       <S.Title text={'대표 사진'} />
-      <S.MImgContainer>
-        {prevUrl && <img src={prevUrl} alt='Thumbnail Preview' />}
+      <S.MImgContainer prevUrl={prevUrl}>
         <S.MImgAddBtn onClick={handleBtnClick}>사진 추가하기</S.MImgAddBtn>
         <input
           type='file'

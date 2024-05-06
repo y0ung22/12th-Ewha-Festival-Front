@@ -25,9 +25,9 @@ const GoMenuEdit = ({
 
   const executeDelete = async () => {
     try {
+      toggleModal();
       await DeleteMenu(boothId, menuId);
       alert('메뉴가 성공적으로 삭제되었습니다.');
-      toggleModal();
       navigate(`/menuedit/${boothId}`);
       onMenuDeleted();
     } catch (error) {

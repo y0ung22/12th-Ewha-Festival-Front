@@ -201,6 +201,7 @@ const ListBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.38rem;
 `;
 
 const List = styled.div`
