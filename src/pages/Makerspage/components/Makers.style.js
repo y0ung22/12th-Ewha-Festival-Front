@@ -2,8 +2,11 @@ import styled from 'styled-components';
 
 // MakersPage
 const Wrapper1 = styled.div`
-  width: 390px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
   min-height: 100vh;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +15,7 @@ const Wrapper1 = styled.div`
 `;
 
 const Wrapper2 = styled.div`
-  width: 330px;
+  width: 20.625rem;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -25,22 +28,21 @@ const Text = styled.div`
   color: var(--green06);
   text-align: center;
   font-family: Pretendard;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 26px; /* 108.333% */
-  letter-spacing: -0.5px;
+  line-height: 1.625rem;
+  letter-spacing: -0.03125rem;
 
-  margin-top: 37px;
+  margin-top: 2rem;
 `;
 
-// 구성 요소 박스
 const Title = styled.div`
   display: inline-flex;
-  padding: 8px 24px;
+  padding: 0.5rem 1.5rem;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   border-radius: 30px;
   background: var(--green01);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
@@ -48,11 +50,11 @@ const Title = styled.div`
   color: var(--wh01, var(--wh));
   text-align: center;
   font-family: Pretendard;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 20px; /* 153.846% */
-  letter-spacing: -0.5px;
+  line-height: 1.25rem; /* 153.846% */
+  letter-spacing: -0.03125rem;
   z-index: 1;
 `;
 
@@ -184,11 +186,24 @@ const Work = styled.div`
   white-space: pre-wrap;
 `;
 
-// 하단 멘트
-const Explain = styled.div`
-  margin-top: 15px;
-  margin-bottom: 70px;
+const ListWrapper = styled.div`
+  margin-top: 2.81rem;
+  margin-bottom: 4.12rem;
 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem 4rem;
+`;
+
+const ListBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const List = styled.div`
   color: var(--bk01);
   text-align: center;
   font-family: Pretendard;
@@ -203,7 +218,6 @@ export const S = {
   Wrapper1,
   Wrapper2,
   Text,
-  Explain,
   Title,
   BoxContainer,
   Box,
@@ -212,5 +226,8 @@ export const S = {
   Name,
   PartContainer,
   Part,
-  Work
+  Work,
+  ListWrapper,
+  ListBox,
+  List
 };

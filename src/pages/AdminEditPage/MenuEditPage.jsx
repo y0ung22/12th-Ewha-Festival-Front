@@ -7,7 +7,6 @@ import Footer from '../../_common/Footer';
 import GoMenuEdit from './components/GoMenuEdit';
 import GoMenuAdd from './components/GoMenuAdd';
 
-// import { menuData } from './components/mock'; // 임시 목데이터
 import { GetMenuList } from '../../api/booth';
 
 const MenuEditPage = () => {
@@ -107,15 +106,12 @@ const Title = styled.div`
 `;
 
 const List = styled.div`
+  width: 100%;
   display: flex;
   justify-content: ${({ dataLength }) =>
     dataLength % 2 === 0 ? 'flex-start' : 'center'};
   align-items: flex-start;
   align-content: flex-start;
-  gap: 0.62rem 0.88rem;
+  gap: 14px 10px;
   flex-wrap: wrap;
-
-  @media (max-width: 394px) {
-    gap: 0.31rem 0.44rem;
-  }
 `;

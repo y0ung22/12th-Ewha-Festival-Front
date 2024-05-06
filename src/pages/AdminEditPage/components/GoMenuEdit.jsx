@@ -71,8 +71,8 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
 
-  width: 10.625rem;
-  height: 12.3125rem;
+  width: 170px;
+  height: 197px;
   flex-shrink: 0;
 
   border-radius: 20px;
@@ -96,8 +96,8 @@ const Overlay = styled.div`
 
 const Box = styled.div`
   position: relative;
-  width: 10.625rem;
-  height: 12.3125rem;
+  width: 170px;
+  height: 197px;
   flex-shrink: 0;
   border-radius: 20px;
   background:
@@ -113,11 +113,11 @@ const Box = styled.div`
 
   img {
     position: absolute;
-    top: 1.25rem;
-    right: 1rem;
+    top: 20px;
+    right: 16px;
 
-    width: 1.625rem;
-    height: 1.625rem;
+    width: 26px;
+    height: 26px;
     flex-shrink: 0;
 
     z-index: 2;
@@ -131,7 +131,7 @@ const Name = styled.div`
   left: 17px;
 
   display: -webkit-box;
-  width: 8.5rem;
+  width: 136px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 
@@ -139,23 +139,23 @@ const Name = styled.div`
   color: var(--wh);
   text-overflow: ellipsis;
   font-family: Pretendard;
-  font-size: 1.25rem;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: 1.25rem;
-  letter-spacing: -0.01875rem;
+  line-height: 20px; /* 100% */
+  letter-spacing: -0.3px;
 `;
 
 const Price = styled.div`
   position: absolute;
-  bottom: 0.87rem;
-  left: 1.06rem;
+  bottom: 14px;
+  left: 17px;
 
   color: var(--wh, #fff);
   font-family: Pretendard;
-  font-size: 0.75rem;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.25rem;
-  letter-spacing: -0.03125rem;
+  line-height: 20px; /* 166.667% */
+  letter-spacing: -0.5px;
 `;

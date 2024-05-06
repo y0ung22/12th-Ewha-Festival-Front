@@ -56,7 +56,7 @@ const InputContainer = styled.div`
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.25) inset;
 
   textarea {
-    //width: 19.8125rem; //317px;
+    width: 19.8125rem; //317px;
     height: ${({ num }) => num || '20px'};
     resize: none;
     color: var(--bk01);
