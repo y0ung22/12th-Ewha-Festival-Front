@@ -11,7 +11,7 @@ import { ReactComponent as KaKaoIcon } from '../SignupPage/images/kakao_login.sv
 
 //api & recoil
 import { PostLogin } from '../../api/auth';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { SignupState } from '../../assets/recoil/apiRecoil';
 
 const LoginPage = () => {
@@ -35,6 +35,7 @@ const LoginPage = () => {
       console.log(loginData.data.data);
 
       navigate('/');
+      window.location.reload();
     }
   };
 
