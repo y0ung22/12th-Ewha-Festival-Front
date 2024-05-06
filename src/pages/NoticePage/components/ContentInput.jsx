@@ -7,7 +7,7 @@ const ContentInput = ({ newContent = '', handleContent }) => {
       <S.ContentInput
         type='text'
         placeholder='내용을 작성하세요(최대 310자)'
-        maxLength={310}
+        maxLength={311}
         value={newContent}
         onChange={handleContent}
       />
