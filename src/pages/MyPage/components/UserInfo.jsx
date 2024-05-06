@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useSetRecoilState } from 'recoil';
-import { SignupState } from '../../../assets/recoil/apiRecoil';
 import { getCookie } from '../../../api/http.js';
 import { Logout } from '../../../api/auth.js';
 import { useNavigate } from 'react-router-dom';
 
 const UserInfo = () => {
-  const setCookieNickname = useSetRecoilState(SignupState);
-  const nickname = getCookie('nickname');
   const navigate = useNavigate();
+  const [nickname, setNickname] = useState('');
 
   useEffect(() => {
     const token = getCookie('token');
     if (token) {
-      const storedNickname = getCookie('nickname');
-      setCookieNickname(prev => ({
-        ...prev,
-        nickname: storedNickname
-      }));
+      setNickname(localStorage.getItem('nickname'));
     } else {
       alert('로그인 정보를 찾을 수 없습니다.');
       navigate('/login');
     }
-  }, [setCookieNickname]);
+  }, []);
 
   return (
     <>
