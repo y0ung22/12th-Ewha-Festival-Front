@@ -18,7 +18,8 @@ export const returngasData = [
   {
     id: 3,
     location: '생활환경관',
-    detail: `다회용기:  생활환경관 32번 부스 옆\n부탄가스: 생활환경관 14번, 54번 부스 옆`,
+    detail:
+      '다회용기:  생활환경관 32번 부스 옆\n부탄가스: 생활환경관 14번, 54번 부스 옆',
     img: returngas3
   }
 ];
