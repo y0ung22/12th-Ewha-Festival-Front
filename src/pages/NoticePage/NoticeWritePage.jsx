@@ -20,7 +20,7 @@ const NoticeWritePage = () => {
 
   const handleTitle = useCallback(e => {
     setNewTitle(e.target.value);
-    if (e.target.value.length === 20) {
+    if (e.target.value.length > 26) {
       setTextLimitModal(true);
     } else {
       setTextLimitModal(false);
@@ -29,7 +29,7 @@ const NoticeWritePage = () => {
 
   const handleContent = useCallback(e => {
     setNewContent(e.target.value);
-    if (e.target.value.length === 310) {
+    if (e.target.value.length > 310) {
       setTextLimitModal(true);
     } else {
       setTextLimitModal(false);
