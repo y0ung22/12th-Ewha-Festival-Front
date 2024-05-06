@@ -88,9 +88,9 @@ const TfEditPage = () => {
   console.log('!!initialTime:', boothData.days);
 
   return (
-    <>
+    <S.Wrapper>
       <TopBar />
-      <S.Wrapper>
+      <S.Container>
         <form ref={formRef} onSubmit={handleSubmit}>
           <BoothThumbnail
             onImgUpload={handleImgUpload}
@@ -175,9 +175,9 @@ const TfEditPage = () => {
             작성 완료
           </S.SubmitBtn>
         </form>
-        <Footer />
-      </S.Wrapper>
-    </>
+      </S.Container>
+      <Footer />
+    </S.Wrapper>
   );
 };
 
