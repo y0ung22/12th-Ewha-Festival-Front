@@ -102,9 +102,9 @@ const TopDiv = styled.div`
 
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 1rem 1.06rem;
   background-color: #fff;
-  width: 100%;
+  width: calc(100% + 1.06rem * 2);
 `;
 
 const TotalBooth = styled.div`

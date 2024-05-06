@@ -27,7 +27,9 @@ const SelectBtn = ({ category }) => {
   const placeList = PlaceList[category];
   const [place, setPlace] = useRecoilState(PlaceState);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState(place[category]);
+  const [selectedPlace, setSelectedPlace] = useState(
+    place[category] === null ? '전체' : place[category]
+  );
 
   useEffect(() => {
     const placeValue = selectedPlace === '전체' ? null : selectedPlace;

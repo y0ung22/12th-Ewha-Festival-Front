@@ -35,42 +35,42 @@ const BoxList = [
     title: 'TF팀 공지\n보러가기',
     guide: '실시간 공지를\n볼 수 있어요',
     image: num3,
-    path: '/'
+    path: '/notice'
   },
   {
     id: 4,
     title: '축제 일정\n보러가기',
     guide: '3일 간의 일정을\n확인해 보세요',
     image: num4,
-    path: '/'
+    path: '/program'
   },
   {
     id: 5,
-    title: '쓰레기통\n위치찾기',
-    guide: '쓰레기통 위치를\n확인해 보세요',
+    title: '주요 시설\n위치찾기',
+    guide: '쓰레기통과 그릇 반납\n장소 위치를 확인해요',
     image: num7,
-    path: '/'
+    path: '/facility'
   },
   {
     id: 6,
     title: '배리어프리\n확인하기',
     guide: '배리어프리 정보를\n확인해 보세요',
     image: num8,
-    path: '/'
+    path: '/barrierfree'
   },
   {
     id: 7,
     title: '우리 학교\n대동제 소개',
     guide: '우리 학교의\n대동제를 알아봐요',
     image: num5,
-    path: '/'
+    path: '/about'
   },
   {
     id: 8,
     title: '만든이들',
     guide: '대동제 운영에\n참여한 사람들이에요',
     image: num6,
-    path: '/'
+    path: '/makers'
   }
 ];
 
