@@ -12,7 +12,8 @@ const MainMenuCard = ({ item }) => {
   const navigate = useNavigate();
   const [isScraped, setIsScraped] = useState(item.is_liked);
 
-  const handleScrap = () => {
+  const handleScrap = e => {
+    e.stopPropagation();
     PatchMenuScrap(item.id)
       .then(res => setIsScraped(!isScraped))
       .catch();
@@ -29,9 +30,9 @@ const MainMenuCard = ({ item }) => {
       <Tag>{item.vegan !== '논비건' && <span>{item.vegan}</span>}</Tag>
       <Scrap>
         {isScraped ? (
-          <ScrapOn onClick={handleScrap} />
+          <ScrapOn onClick={e => handleScrap(e)} />
         ) : (
-          <ScrapOff onClick={handleScrap} />
+          <ScrapOff onClick={e => handleScrap(e)} />
         )}
       </Scrap>
       <Text>

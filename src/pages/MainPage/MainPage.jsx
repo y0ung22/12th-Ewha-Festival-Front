@@ -15,8 +15,8 @@ const MainPage = () => {
         <TopBar isWhite={true} isMenu={true} isMain={true} />
         <ScrapBook />
         <MainBottomSheet />
-        <Footer />
       </ContentWrapper>
+      <Footer />
     </Wrapper>
   );
 };
