@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
+import Footer from '../../_common/Footer';
 import ScrapBook from './components/ScrapBook';
 import MainBottomSheet from './components/MainBottomSheet';
 
@@ -14,6 +15,7 @@ const MainPage = () => {
         <TopBar isWhite={true} isMenu={true} isMain={true} />
         <ScrapBook />
         <MainBottomSheet />
+        <Footer />
       </ContentWrapper>
     </Wrapper>
   );
