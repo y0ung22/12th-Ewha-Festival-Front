@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
+import Footer from '../../_common/Footer';
 import background from '../../assets/images/background.png';
 import logo from './images/main-logo.png';
 import AboutBox from './components/AboutBox';
@@ -22,6 +23,7 @@ const AboutPage = () => {
           <AboutBox key={index} t={t} />
         ))}
       </List>
+      <Footer />
     </Wrapper>
   );
 };
