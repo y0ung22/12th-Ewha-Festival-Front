@@ -173,6 +173,7 @@ const SearchIconDiv = styled.div`
 `;
 
 const List = styled.div`
+  width: 100%;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;

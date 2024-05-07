@@ -14,6 +14,7 @@ const TopBar = ({
   isMain = false,
   isAbout = false,
   isWhite = false,
+  isGreen = false,
   backLink
 }) => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const TopBar = ({
         {isMenu ? (
           <Menu
             onClick={() => setSidebarOpen(true)}
-            fill={isMain ? '#F7F7F7' : '#8E8E8E'}
+            fill={isMain ? (isGreen ? 'var(--green02)' : '#F7F7F7') : '#8E8E8E'}
           />
         ) : (
           <Back onClick={handleBackClick} />
@@ -76,6 +77,7 @@ const Wrapper = styled.div`
 const Menu = styled(MenuIcon)`
   margin: 3.75rem auto 1.63rem 1.25rem;
   cursor: pointer;
+  transition: fill 0.3s ease;
 `;
 
 const Back = styled(BackIcon)`

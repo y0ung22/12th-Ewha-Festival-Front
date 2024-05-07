@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import TopBar from '../../_common/TopBar';
 import background from '../../assets/images/background.png';
-import logo from './images/main-logo.svg';
+import logo from './images/main-logo.png';
 import AboutBox from './components/AboutBox';
 
 import { aboutData } from './components/aboutData';
