@@ -18,9 +18,9 @@ const Box = styled.div`
   display: flex;
   width: 170px;
   height: 197px;
-  padding: 60px 41px 46px 41px;
+  padding: 46px 41px 46px 41px;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: 13px;
   flex-shrink: 0;
@@ -37,6 +37,27 @@ const Box = styled.div`
   }
 
   cursor: pointer;
+
+  @media (max-width: 390px) {
+    width: 165px;
+    height: 191.2px;
+  }
+  @media (max-width: 380px) {
+    width: 160px;
+    height: 185.4px;
+  }
+  @media (max-width: 370px) {
+    width: 155px;
+    height: 179.6px;
+  }
+  @media (max-width: 360px) {
+    width: 150px;
+    height: 173.8px;
+  }
+  @media (max-width: 350px) {
+    width: 145px;
+    height: 168px;
+  }
 `;
 
 const Text = styled.div`

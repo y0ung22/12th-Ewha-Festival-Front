@@ -113,10 +113,18 @@ const Box = styled.div`
   cursor: pointer;
 
   @media (max-width: 390px) {
-    width: 162px;
-    height: 187.7px;
+    width: 165px;
+    height: 191.2px;
   }
-  @media (max-width: 374px) {
+  @media (max-width: 380px) {
+    width: 160px;
+    height: 185.4px;
+  }
+  @media (max-width: 370px) {
+    width: 155px;
+    height: 179.6px;
+  }
+  @media (max-width: 360px) {
     width: 150px;
     height: 173.8px;
   }
