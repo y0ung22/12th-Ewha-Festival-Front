@@ -250,8 +250,8 @@ const BlackContent = styled.div`
 
 const BlockBox = styled.div`
   width: 3.1rem;
-  display: flex;
-  padding: 0.3125rem 0.375rem;
+  display: inline-flex;
+  padding: 0.3125rem 0.3rem;
   justify-content: center;
   align-items: center;
 
