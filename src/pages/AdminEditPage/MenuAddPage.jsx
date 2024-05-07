@@ -43,9 +43,7 @@ const MenuAddPage = () => {
     formData.append('vegan', vegan);
     formData.append('is_soldout', opened); // True = 운영 중
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+ 
 
     try {
       await PostMenu(id, formData);

@@ -6,6 +6,7 @@ import def from '../../../assets/images/default-card.png';
 // lions 이미지
 import lions1 from '../images/lions1.jpg';
 import lions2 from '../images/lions2.jpg';
+import lions3 from '../images/lions3.jpg';
 import lions4 from '../images/lions4.png';
 import lions5 from '../images/lions5.png';
 import lions6 from '../images/lions6.png';
@@ -46,7 +47,7 @@ export const LionsData = [
     name: '변지혜',
     part: '프론트엔드',
     work: '메인 페이지\n축준위 메인 페이지\n부스/공연 관리자 메인 페이지\n검색 페이지\n부스/공연 목록 페이지',
-    img: def
+    img: lions3
   },
   {
     id: 4,

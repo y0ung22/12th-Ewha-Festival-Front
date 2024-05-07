@@ -70,9 +70,7 @@ const BoothEditPage = () => {
     formData.append('contact', boothData.contact);
     formData.append('opened', boothData.opened);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+
 
     try {
       await PatchBooth(id, formData);

@@ -205,7 +205,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 7.25rem);
 
   &::-webkit-scrollbar {
     display: none;

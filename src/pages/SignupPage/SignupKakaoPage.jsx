@@ -23,8 +23,6 @@ const SignupKakaoPage = () => {
 
   //닉네임 변경 post 함수
   const onSubmitNickname = () => {
-    console.log('nickname ' + nickname);
-    console.log('kakaoUsername ' + kakaoUsername);
     PostNickname(nickname, kakaoUsername);
     localStorage.removeItem('username');
   };
