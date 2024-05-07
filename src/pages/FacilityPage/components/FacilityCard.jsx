@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as VectorThin } from '../../../assets/icons/vector_thin.svg';
+import vector from '../images/vector.png';
 
 const FacilityCard = ({ key, location, detail, img, isLastElement }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ const FacilityCard = ({ key, location, detail, img, isLastElement }) => {
             <Detail>{detail}</Detail>
           </Contents>
           <VectorDiv isOpen={isOpen} onClick={clickCard}>
-            <VectorThin width={'22px'} />
+            <img src={vector} />
           </VectorDiv>
         </Container>
         {isOpen && (
@@ -53,21 +54,26 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-const Contents = styled.div`
   width: 100%;
+`;
+
+const Contents = styled.div`
+  width: 90%;
   padding: 1.25rem;
   gap: 0.63rem;
 `;
 
 const VectorDiv = styled.div`
   height: 22px;
-  padding-top: 10%;
+  /* @media (max-width) {
+    height: 15px;
+  } */
+
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-right: 1.28rem; */
-  transform: ${props => (props.isOpen ? 'rotate(270deg)' : 'rotate(90deg)')};
+  margin-right: 1.28rem;
+  transform: ${props => (props.isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   cursor: pointer;
 `;
 
