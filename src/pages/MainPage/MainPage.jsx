@@ -12,13 +12,20 @@ import background from '../../assets/images/background.png';
 
 const MainPage = () => {
   const [isModal, setIsModal] = useState(true);
+  const [menuGreen, setMenuGreen] = useState(false);
+
   return (
     <Wrapper>
       <Background src={background} alt='배경 이미지' />
       <ContentWrapper>
-        <TopBar isWhite={true} isMenu={true} isMain={true} />
+        <TopBar
+          isWhite={true}
+          isMenu={true}
+          isMain={true}
+          isGreen={menuGreen}
+        />
         <ScrapBook />
-        <MainBottomSheet />
+        <MainBottomSheet setMenuGreen={setMenuGreen} />
       </ContentWrapper>
       <Footer />
       {isModal && <AdminModal setIsModal={setIsModal} />}

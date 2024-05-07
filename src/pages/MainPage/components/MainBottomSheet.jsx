@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import { motion, useDragControls } from 'framer-motion';
 
 import MainBox from './MainBox';
-import Footer from '../../../_common/Footer';
 
 //images
 import num1 from '../images/main-1.png';
@@ -74,7 +73,7 @@ const BoxList = [
   }
 ];
 
-const MainBottomSheet = () => {
+const MainBottomSheet = ({ setMenuGreen }) => {
   const [isOpen, setIsOpen] = useState(false);
   const boxContainerRef = useRef(null);
 
@@ -97,12 +96,18 @@ const MainBottomSheet = () => {
     if (newIsOpened) {
       if (boxContainerRef.current) {
         boxContainerRef.current.scrollTo(0, 0);
+        setTimeout(() => {
+          setMenuGreen(true);
+        }, 300);
       }
     }
   };
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setTimeout(() => {
+      setMenuGreen(false);
+    }, 300);
   };
 
   return (
@@ -144,13 +149,39 @@ const MainBottomSheet = () => {
           </BoxContainer>
         </Wrapper>
       </BottomSheetContainer>
+      <Overlay
+        initial={false}
+        animate={animateState}
+        variants={{
+          opened: {
+            pointerEvents: 'all',
+            opacity: 1
+          },
+          closed: {
+            pointerEvents: 'none',
+            opacity: 0
+          }
+        }}
+        onTap={handleCloseModal}
+      />
     </>
   );
 };
 
 export default MainBottomSheet;
 
+const Overlay = styled(motion.div)`
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--wh);
+`;
+
 const BottomSheetContainer = styled(motion.div)`
+  z-index: 2;
   position: fixed;
   bottom: 0;
   left: 1;
