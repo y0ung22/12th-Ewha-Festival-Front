@@ -19,7 +19,7 @@ const MainPage = () => {
       <Background src={background} alt='배경 이미지' />
       <ContentWrapper>
         <TopBar
-          isWhite={true}
+          isWhite={!menuGreen}
           isMenu={true}
           isMain={true}
           isGreen={menuGreen}
