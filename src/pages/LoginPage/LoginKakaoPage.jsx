@@ -10,7 +10,6 @@ const LoginKakaoPage = () => {
 
   const getData = async () => {
     const response = await KakaoLogin(AUTHORIZATION_CODE, navigate);
-    console.log(response);
   };
 
   useEffect(() => {

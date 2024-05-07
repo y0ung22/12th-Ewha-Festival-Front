@@ -8,7 +8,6 @@ export const PostSignup = async (user_id, password, nickname) => {
       password: password,
       nickname: nickname
     });
-    console.log(response.data);
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
     //아이디(id) 저장
@@ -35,7 +34,6 @@ export const PostLogin = async (user_id, password) => {
       username: user_id,
       password: password
     });
-    console.log(response.data);
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
 
@@ -66,7 +64,6 @@ export const GetDuplicateId = async username => {
     const response = await http.post('/accounts/duplicate/', {
       username: username
     });
-    console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('중복확인 실패', error.response);
@@ -77,7 +74,6 @@ export const GetDuplicateId = async username => {
 export const KakaoLogin = async code => {
   try {
     const response = await http.get(`/accounts/kakao/callback/?code=${code}`);
-    console.log(response.data);
 
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
@@ -93,7 +89,6 @@ export const KakaoLogin = async code => {
       document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()}; path=/`;
 
       window.location.replace('/');
-
     } else {
       //처음 접속한 경우
       //아이디(username) 저장
@@ -113,7 +108,6 @@ export const PostNickname = async (nickname, username) => {
       nickname: nickname,
       username: username
     });
-    console.log(response.data);
 
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 72 * 60 * 60 * 1000);
@@ -162,7 +156,6 @@ export const GetScrapBooth = async (type, page) => {
         }
       }
     );
-    console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('스크랩한 부스 목록 조회 실패', error);

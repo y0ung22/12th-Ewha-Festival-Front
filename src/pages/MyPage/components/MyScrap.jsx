@@ -78,8 +78,6 @@ const MyScrap = () => {
     const itemList = list.map((item, index) => (
       <Component key={index} item={item} />
     ));
-    console.log('totalPage ' + totalPage);
-    console.log('currentPage ' + currentPage);
 
     return <ScrapDiv>{itemList}</ScrapDiv>;
   };

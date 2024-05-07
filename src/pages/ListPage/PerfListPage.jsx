@@ -126,6 +126,7 @@ const ResultDiv = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-items: center;
 
   gap: 0.875rem 0.625rem;
   height: max-content;
