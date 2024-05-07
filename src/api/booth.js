@@ -167,6 +167,7 @@ export const GetMenuDetail = async (boothId, menuId) => {
     return Promise.resolve(menuDetail);
   } catch (error) {
     console.error('메뉴 상세 조회 실패', error);
+
     return Promise.reject(error);
   }
 };
