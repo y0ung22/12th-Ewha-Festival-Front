@@ -24,6 +24,7 @@ const PerfListPage = () => {
   const [perfList, setPerfList] = useState([]);
 
   const handleStart = async (day, place, page) => {
+    sessionStorage.setItem('from', window.location.pathname);
     const placeValue = place === '전체' ? null : place;
     const perfListResult = await GetBoothList('공연', day, placeValue, page);
     setPerfList(perfListResult.data);

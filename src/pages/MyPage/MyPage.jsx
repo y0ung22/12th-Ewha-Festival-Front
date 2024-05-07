@@ -9,6 +9,7 @@ import MyScrap from './components/MyScrap';
 import CategorySlide from '../../_common/CategorySlide';
 
 const MyPage = () => {
+  sessionStorage.setItem('from', window.location.pathname);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

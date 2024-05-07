@@ -14,6 +14,7 @@ import { useRecoilState } from 'recoil';
 import { PlaceState, DayState } from '../../assets/recoil/apiRecoil';
 
 const BoothListPage = () => {
+  sessionStorage.setItem('from', window.location.pathname);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalItems, setTotalItems] = useState(null); // 전체 부스 개수
   const [totalPage, setTotalPage] = useState(5); // 전체 페이지

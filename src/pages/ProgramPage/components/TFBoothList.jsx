@@ -7,6 +7,7 @@ import TFBoothCard from './TFBoothCard';
 import { GetTFBoothList } from '../../../api/tf';
 
 const TFBoothList = () => {
+  sessionStorage.setItem('tf-booth-from', window.location.pathname);
   const isEdit = window.location.pathname === '/tfedit';
 
   const typeList = ['기획 부스', '권리팀 부스', '대외협력팀 부스'];
