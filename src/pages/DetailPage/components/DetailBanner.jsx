@@ -19,8 +19,7 @@ const DetailBanner = ({ b, program = false, rendering }) => {
   };
 
   function isValidUrl(url) {
-    const urlPattern =
-      /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\- .\/?%&=]*)?$/;
+    const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/;
     return urlPattern.test(url);
   }
 
