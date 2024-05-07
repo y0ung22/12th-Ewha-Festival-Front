@@ -96,18 +96,14 @@ const MainBottomSheet = ({ setMenuGreen }) => {
     if (newIsOpened) {
       if (boxContainerRef.current) {
         boxContainerRef.current.scrollTo(0, 0);
-        setTimeout(() => {
-          setMenuGreen(true);
-        }, 300);
+        setMenuGreen(true);
       }
     }
   };
 
   const handleCloseModal = () => {
     setIsOpen(false);
-    setTimeout(() => {
-      setMenuGreen(false);
-    }, 300);
+    setMenuGreen(false);
   };
 
   return (
