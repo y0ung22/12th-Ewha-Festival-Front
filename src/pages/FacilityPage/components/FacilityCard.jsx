@@ -21,7 +21,7 @@ const FacilityCard = ({ key, location, detail, img, isLastElement }) => {
             <Detail>{detail}</Detail>
           </Contents>
           <VectorDiv isOpen={isOpen} onClick={clickCard}>
-            <VectorThin />
+            <VectorThin width={'22px'} />
           </VectorDiv>
         </Container>
         {isOpen && (
@@ -52,6 +52,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 const Contents = styled.div`
   width: 100%;
@@ -60,10 +61,12 @@ const Contents = styled.div`
 `;
 
 const VectorDiv = styled.div`
+  height: 22px;
+  padding-top: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1.28rem;
+  /* margin-right: 1.28rem; */
   transform: ${props => (props.isOpen ? 'rotate(270deg)' : 'rotate(90deg)')};
   cursor: pointer;
 `;
