@@ -79,7 +79,7 @@ const Definition = styled.div`
 `;
 
 const List = styled.div`
-  margin: 2.31rem auto 15.56rem;
+  margin: 2.31rem auto 13.56rem;
   padding: 0 5.7%;
   width: 100%;
   display: flex;
