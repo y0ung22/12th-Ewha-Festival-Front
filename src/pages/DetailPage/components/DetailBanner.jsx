@@ -18,6 +18,12 @@ const DetailBanner = ({ b, program = false, rendering }) => {
       .catch();
   };
 
+  function isValidUrl(url) {
+    const urlPattern =
+      /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\- .\/?%&=]*)?$/;
+    return urlPattern.test(url);
+  }
+
   return (
     <>
       <Banner>
@@ -45,7 +51,17 @@ const DetailBanner = ({ b, program = false, rendering }) => {
         {!b.contact ? (
           <div />
         ) : (
-          <a href={b.contact} target='_blank' rel='noopener noreferrer'>
+          <a
+            href={!isValidUrl(b.contact) ? '#' : b.contact}
+            target='_blank'
+            rel='noopener noreferrer'
+            onClick={e => {
+              if (!isValidUrl(b.contact)) {
+                e.preventDefault();
+                alert('올바른 URL 형식이 아닙니다.');
+              }
+            }}
+          >
             <Contact>
               <span>운영진 연락처</span>
               <Message />
