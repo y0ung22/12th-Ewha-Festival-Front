@@ -55,5 +55,6 @@ const Wrapper = styled.div`
 
   div {
     margin: 3.81rem 1.19rem 1.44rem auto;
+    cursor: pointer;
   }
 `;
