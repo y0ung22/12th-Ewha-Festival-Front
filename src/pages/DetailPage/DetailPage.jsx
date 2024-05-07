@@ -27,9 +27,11 @@ const DetailPage = () => {
       });
   }, [id, render]);
 
+  const from = sessionStorage.getItem('from') ?? '/';
+
   return (
     <S.Wrapper>
-      <TopBar />
+      <TopBar backLink={from} />
       <S.Container>
         {boothData && (
           <>

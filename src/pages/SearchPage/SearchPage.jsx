@@ -15,6 +15,7 @@ import { CommonBtn } from '../../_common/Button';
 import useSearchInfiniteQuery from '../../assets/hooks/useSearchInfiniteQuery';
 
 const SearchPage = () => {
+  sessionStorage.setItem('from', window.location.pathname);
   const navigate = useNavigate();
   const categoryList = ['전체', '부스', '공연'];
 

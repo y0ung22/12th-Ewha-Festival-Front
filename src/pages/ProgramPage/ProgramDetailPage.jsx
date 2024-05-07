@@ -23,10 +23,12 @@ const ProgramDetailPage = () => {
       });
   }, []);
 
+  const from = sessionStorage.getItem('tf-booth-from') ?? '/program';
+
   return (
     <>
       <Wrapper>
-        <TopBar />
+        <TopBar backLink={from} />
         <Container>
           {boothData && (
             <>
