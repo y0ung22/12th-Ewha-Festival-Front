@@ -45,6 +45,10 @@ export default ScrapCard;
 const Card = styled.div`
   position: relative;
 
+  @media (max-width: 380px) {
+    width: 100%;
+  }
+
   width: ${props => (props.size === 'small' ? '9.125rem' : '10.625rem')};
   height: ${props => (props.size === 'small' ? '11.375rem' : '12.3125rem')};
   flex-shrink: 0;
