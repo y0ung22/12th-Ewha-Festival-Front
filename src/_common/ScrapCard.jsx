@@ -45,8 +45,10 @@ export default ScrapCard;
 const Card = styled.div`
   position: relative;
 
-  @media (max-width: 380px) {
+  @media (max-width: 460px) {
+    aspect-ratio: 10.625 / 12.3125;
     width: 100%;
+    height: 100%;
   }
 
   width: ${props => (props.size === 'small' ? '9.125rem' : '10.625rem')};
