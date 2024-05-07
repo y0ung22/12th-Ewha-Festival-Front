@@ -15,7 +15,6 @@ const useBoothInfiniteQuery = (type, day, place) => {
   } = useInfiniteQuery({
     queryKey: ['getNewBoothList', day, place],
     queryFn: ({ pageParam = 1 }) => {
-      console.log(type, day, place);
       return GetBoothList(type, day, place, pageParam);
     },
     getNextPageParam: lastPage =>

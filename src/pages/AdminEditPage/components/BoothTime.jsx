@@ -13,9 +13,7 @@ const BoothTime = ({ rows, setRows, initialTime }) => {
     { date: 10, day: '금요일' }
   ];
 
-  useEffect(() => {
-    console.log('rows 바뀜!!!', rows);
-  }, [rows]);
+  useEffect(() => {}, [rows]);
 
   useEffect(() => {
     const updatedRows = defaultDays.map(day => {
@@ -52,7 +50,6 @@ const BoothTime = ({ rows, setRows, initialTime }) => {
       i === index ? { ...row, [type]: value } : row
     );
     setRows(updatedRows);
-    console.log('나 바뀜', updatedRows);
   };
 
   // 유효한 입력 형식인지 검증

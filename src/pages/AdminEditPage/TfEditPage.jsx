@@ -79,8 +79,6 @@ const TfEditPage = () => {
     }
   };
 
-  console.log('!!initialTime:', boothData.days);
-
   return (
     <S.Wrapper>
       <TopBar />

@@ -59,7 +59,7 @@ const ScrapBook = () => {
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [select]);
 
   //select 따라서 해당 리스트로 세팅
   const getCurrentList = () => {

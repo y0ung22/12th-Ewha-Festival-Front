@@ -6,7 +6,6 @@ export const GetBoothList = async (type, day, college, page) => {
     const response = await http.get(
       `/booths/?type=${type}&day=${day}&college=${college}&page=${page}`
     );
-    console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('부스 목록 조회 실패', error);
@@ -92,7 +91,6 @@ export const GetBoothSearch = async (type, keyword, page) => {
     const response = await http.get(
       `/booths/search/?keyword=${keyword}&type=${type}&page=${page}`
     );
-    console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('부스 검색 조회 실패', error);
@@ -109,7 +107,6 @@ export const GetBoothHome = async () => {
         Authorization: `Bearer ${token}`
       }
     });
-    console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
     console.error('부스 홈 조회 실패', error);
@@ -121,7 +118,6 @@ export const GetBoothHome = async () => {
 export const GetBoothInfo = async boothId => {
   try {
     const response = await http.get(`/manages/${boothId}/`);
-    console.log(response.data.data);
     return Promise.resolve(response.data.data);
   } catch (error) {
     console.error('부스 상세 조회 실패', error);
@@ -146,7 +142,6 @@ export const PatchBooth = async (boothId, formData) => {
 export const GetMenuList = async boothId => {
   try {
     const response = await http.get(`/manages/${boothId}/menus/`);
-    console.log(response.data.data);
     return Promise.resolve(response.data.data);
   } catch (error) {
     console.error('메뉴 목록 조회 실패', error);
@@ -163,7 +158,6 @@ export const GetMenuDetail = async (boothId, menuId) => {
       ...response.data.data,
       opened: response.data.data.is_soldout
     };
-    console.log(menuDetail);
     return Promise.resolve(menuDetail);
   } catch (error) {
     console.error('메뉴 상세 조회 실패', error);

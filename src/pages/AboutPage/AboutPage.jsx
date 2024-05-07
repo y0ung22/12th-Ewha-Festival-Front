@@ -52,7 +52,14 @@ const Background = styled.img`
 
 const Logo = styled.img`
   margin: 2.75rem 5rem 2.87rem 4.94rem;
-  width: 60%;
+  width: 14.4375rem;
+  height: 10.875rem;
+  flex-shrink: 0;
+
+  @media (max-width: 576px) {
+    width: 60%;
+    height: auto;
+  }
 `;
 
 const Definition = styled.div`
