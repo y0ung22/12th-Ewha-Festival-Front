@@ -77,7 +77,7 @@ const getBoxList = myID => ({
     },
     {
       id: 9,
-      title: '축운위 부스\n관리하기',
+      title: '축준위 부스\n관리하기',
       guide: '상설 부스 페이지를\n관리해요',
       image: flag,
       path: '/tfedit'
