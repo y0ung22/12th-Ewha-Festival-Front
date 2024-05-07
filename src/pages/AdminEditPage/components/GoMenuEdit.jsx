@@ -93,6 +93,27 @@ const Overlay = styled.div`
   letter-spacing: -0.3px;
 
   z-index: 1;
+
+  @media (max-width: 390px) {
+    width: 165px;
+    height: 191.2px;
+  }
+  @media (max-width: 380px) {
+    width: 160px;
+    height: 185.4px;
+  }
+  @media (max-width: 370px) {
+    width: 155px;
+    height: 179.6px;
+  }
+  @media (max-width: 360px) {
+    width: 150px;
+    height: 173.8px;
+  }
+  @media (max-width: 350px) {
+    width: 145px;
+    height: 168px;
+  }
 `;
 
 const Box = styled.div`
