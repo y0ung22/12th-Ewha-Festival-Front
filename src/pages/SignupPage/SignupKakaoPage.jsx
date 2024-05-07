@@ -42,21 +42,23 @@ const SignupKakaoPage = () => {
       <S.Wrapper>
         <TopBar isMenu={false} isMain={false} isWhite={true} />
         <S.Title>회원가입</S.Title>
-        <S.RowBox>
-          <S.InputBox num='250px'>
-            <NameIcon />
-            <input
-              placeholder='닉네임(최대 8자)'
-              name='nickname'
-              value={nickname}
-              onChange={e => setNickname(e.target.value)}
-              maxLength={8}
-            ></input>
-          </S.InputBox>
-        </S.RowBox>
-        <S.LoginBtn fieldSatisfied={fieldSatisfied} onClick={clickComplete}>
-          회원가입
-        </S.LoginBtn>
+        <S.Container>
+          <S.RowBox>
+            <S.InputBox num='250px'>
+              <NameIcon />
+              <input
+                placeholder='닉네임(최대 8자)'
+                name='nickname'
+                value={nickname}
+                onChange={e => setNickname(e.target.value)}
+                maxLength={8}
+              ></input>
+            </S.InputBox>
+          </S.RowBox>
+          <S.LoginBtn fieldSatisfied={fieldSatisfied} onClick={clickComplete}>
+            회원가입
+          </S.LoginBtn>
+        </S.Container>
       </S.Wrapper>
       {isModalOpen && (
         <Modal

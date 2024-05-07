@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { motion, useDragControls } from 'framer-motion';
 
@@ -76,6 +76,7 @@ const BoxList = [
 
 const MainBottomSheet = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const boxContainerRef = useRef(null);
 
   const dragControls = useDragControls();
   const animateState = isOpen ? 'opened' : 'closed';
@@ -91,6 +92,13 @@ const MainBottomSheet = () => {
 
     const newIsOpened = info.offset.y < 0;
     setIsOpen(newIsOpened);
+    window.scrollTo(0, 0);
+
+    if (newIsOpened) {
+      if (boxContainerRef.current) {
+        boxContainerRef.current.scrollTo(0, 0);
+      }
+    }
   };
 
   const handleCloseModal = () => {
@@ -110,26 +118,26 @@ const MainBottomSheet = () => {
         animate={animateState}
         variants={{
           opened: { top: `6rem` },
-          closed: { top: '88vh' }
+          closed: { top: '92.5%' }
         }}
         transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         drag='y'
         dragControls={dragControls}
         dragListener={false}
         dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={0.1}
+        dragElastic={0}
         onDragEnd={handleDragEnd}
       >
         <Wrapper
-          onPointerDown={e => dragControls.start(e)}
+          onPointerDown={e => !isOpen && dragControls.start(e)}
           style={{
             overflowY: isOpen ? `scroll` : `unset`
           }}
         >
           <HandlerContainer>
-            <div className='dragPoint' />
+            <div className='dragPoint' onClick={() => setIsOpen(!isOpen)} />
           </HandlerContainer>
-          <BoxContainer>
+          <BoxContainer ref={boxContainerRef}>
             {BoxList.map(item => (
               <MainBox key={item.id} item={item} />
             ))}
@@ -145,11 +153,11 @@ export default MainBottomSheet;
 const BottomSheetContainer = styled(motion.div)`
   position: fixed;
   bottom: 0;
+  left: 1;
   width: 390px;
-  height: calc(100vh - 3rem);
-  z-index: 10;
+  height: calc(100vh - 6rem);
+  z-index: 150;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
-  margin-top: 2.06rem;
 
   &::-webkit-scrollbar {
     display: none;
@@ -162,7 +170,7 @@ const BottomSheetContainer = styled(motion.div)`
 
 const Wrapper = styled.div`
   position: relative;
-  z-index: 10;
+  z-index: 150;
   display: flex;
   flex-direction: column;
   border-radius: 1.875rem 1.875rem 0rem 0rem;
@@ -170,7 +178,7 @@ const Wrapper = styled.div`
   background: var(--wh01, #fff);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 6rem);
 
   &::-webkit-scrollbar {
     display: none;
@@ -191,6 +199,7 @@ const HandlerContainer = styled.div`
     z-index: 15;
     margin-top: 13px;
     border-radius: 1rem;
+    cursor: pointer;
   }
 `;
 
@@ -206,8 +215,8 @@ const BoxContainer = styled.div`
 
 const ToggleButton = styled.button`
   position: fixed;
-  top: 5rem;
-  z-index: 20;
+  top: 3rem;
+  z-index: 151;
 
   display: inline-flex;
   padding: 0.625rem 2.0625rem;
@@ -229,8 +238,4 @@ const ToggleButton = styled.button`
   letter-spacing: -0.03125rem;
 
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 `;

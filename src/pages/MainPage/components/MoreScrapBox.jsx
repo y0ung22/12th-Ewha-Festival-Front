@@ -23,14 +23,12 @@ const Card = styled.div`
 
   overflow: hidden;
 
-  @media (max-width: 380px) {
-    aspect-ratio: 9.125 / 11.375;
-    width: 100%;
-    height: 100%;
-  }
+  aspect-ratio: 9.125 / 11.375;
+  width: 100%;
+  height: 100%;
 
-  width: 9.125rem;
-  height: 11.375rem;
+  /* width: 9.125rem; */
+  max-height: 11.375rem;
   flex-shrink: 0;
 
   border-radius: 0.9375rem;

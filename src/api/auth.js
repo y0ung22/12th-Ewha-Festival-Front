@@ -93,6 +93,7 @@ export const KakaoLogin = async code => {
       document.cookie = `token=${response.data.data.access_token}; expires=${expirationDate.toUTCString()}; path=/`;
 
       window.location.replace('/');
+
     } else {
       //처음 접속한 경우
       //아이디(username) 저장

@@ -1,8 +1,10 @@
 import React from 'react';
 import GlobalStyles from './statics/styles/GlobalStyle';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { RecoilRoot } from 'recoil';
 import TFRoute from './api/auth';
+import ReactGA from 'react-ga';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
@@ -37,6 +39,16 @@ import ProgramListPage from './pages/ProgramPage/ProgramListPage';
 import ProgramDetailPage from './pages/ProgramPage/ProgramDetailPage';
 import ProgramListEditPage from './pages/ProgramPage/ProgramListEditPage';
 import BarrierFreePage from './pages/BarrierFreePage/BarrierFreePage';
+
+const gaTrackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
+ReactGA.initialize(gaTrackingId);
+
+const history = createBrowserHistory();
+history.listen(response => {
+  console.log(response.location.pathname);
+  ReactGA.set({ page: response.location.pathname });
+  ReactGA.pageview(response.location.pathname);
+});
 
 function App() {
   return (

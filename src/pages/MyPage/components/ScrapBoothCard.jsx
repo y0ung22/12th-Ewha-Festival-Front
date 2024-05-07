@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-import { PatchBoothScrap } from '../api/booth';
+import { PatchBoothScrap } from '../../../api/booth';
 
-import { ReactComponent as ScrapOff } from '../assets/icons/scrap-off.svg';
-import { ReactComponent as ScrapOn } from '../assets/icons/scrap-on.svg';
+import { ReactComponent as ScrapOff } from '../../../assets/icons/scrap-off.svg';
+import { ReactComponent as ScrapOn } from '../../../assets/icons/scrap-on.svg';
 
-import defaultCard from '../assets/images/default-card.png';
+import defaultCard from '../../../assets/images/default-card.png';
 
-const ScrapCard = ({ item, size }) => {
+const ScrapBoothCard = ({ item, size }) => {
   const navigate = useNavigate();
   const [isScraped, setIsScraped] = useState(item.is_liked);
 
@@ -40,13 +40,17 @@ const ScrapCard = ({ item, size }) => {
   );
 };
 
-export default ScrapCard;
+export default ScrapBoothCard;
 
 const Card = styled.div`
   position: relative;
+  width: 10.625rem;
+  height: 12.3125rem;
 
-  width: ${props => (props.size === 'small' ? '9.125rem' : '10.625rem')};
-  height: ${props => (props.size === 'small' ? '11.375rem' : '12.3125rem')};
+  @media (max-width: 410px) {
+    width: 100%;
+  }
+
   flex-shrink: 0;
   border-radius: ${props => (props.size === 'small' ? '0.9375rem' : '20px')};
   background:
@@ -68,34 +72,25 @@ const Card = styled.div`
 `;
 
 const SpanDiv = styled.div`
+  z-index: 2;
   position: absolute;
-  left: ${props => (props.size === 'small' ? '0.75rem' : '17px')};
-  right: 17px;
-  bottom: ${props => (props.size === 'small' ? '0.62rem' : '14px')};
+  left: 1.06rem;
+  right: 1.06rem;
+  bottom: 0.88rem;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 
   color: var(--wh);
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 20px;
-  letter-spacing: -0.3px;
-
-  span:nth-child(1) {
-    width: ${props => (props.size === 'small' ? '7.8rem' : '9rem')};
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
-    font-size: 1rem;
-    font-weight: 600;
-  }
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  letter-spacing: -0.01875rem;
 
   span:nth-child(2) {
-    font-size: 0.625rem;
-    font-style: normal;
+    font-size: 0.7rem;
     font-weight: 400;
+    letter-spacing: -0.03125rem;
   }
 `;
 
