@@ -16,8 +16,8 @@ const MenuAddPage = () => {
   const navigate = useNavigate();
   const [img, setImg] = useState(null);
   const [menu, setMenu] = useState('');
-  const [price, setPrice] = useState('');
-  const [vegan, setVegan] = useState('');
+  const [price, setPrice] = useState(0);
+  const [vegan, setVegan] = useState('논비건');
   const [opened, setOpened] = useState(true);
 
   // 페이지 상단으로 스크롤 이동
@@ -42,8 +42,6 @@ const MenuAddPage = () => {
     formData.append('price', price);
     formData.append('vegan', vegan);
     formData.append('is_soldout', opened); // True = 운영 중
-
- 
 
     try {
       await PostMenu(id, formData);
