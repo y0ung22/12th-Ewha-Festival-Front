@@ -19,8 +19,8 @@ const MenuEditDetailPage = () => {
   const [menuData, setMenuData] = useState({
     img: null,
     menu: '',
-    price: '',
-    vegan: '',
+    price: 0,
+    vegan: '논비건',
     opened: true
   });
 
