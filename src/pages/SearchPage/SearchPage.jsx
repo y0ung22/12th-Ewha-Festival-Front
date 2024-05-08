@@ -61,7 +61,7 @@ const SearchPage = () => {
   return (
     <>
       <TopWrapper>
-        <Back onClick={() => navigate(-1)} />
+        <Back onClick={() => navigate('/')} />
         <InputBox>
           <Input
             placeholder='검색어를 입력해주세요'
