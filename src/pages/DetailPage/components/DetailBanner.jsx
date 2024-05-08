@@ -232,6 +232,7 @@ const Notice = styled.div`
     display: flex;
     align-items: center;
     gap: 3px;
+    word-break: break-all;
   }
 
   span {
