@@ -85,6 +85,7 @@ const Container = styled.div`
     font-weight: 400;
     line-height: 1.25rem;
     letter-spacing: -0.03125rem;
+    white-space: pre-line;
 
     span:nth-child(1) {
       width: 3.4375rem;
