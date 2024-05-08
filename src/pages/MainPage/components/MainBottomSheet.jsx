@@ -31,7 +31,7 @@ const BoxList = [
   },
   {
     id: 3,
-    title: 'TF팀 공지\n보러가기',
+    title: '축준위 공지\n보러가기',
     guide: '실시간 공지를\n볼 수 있어요',
     image: num3,
     path: '/notice'

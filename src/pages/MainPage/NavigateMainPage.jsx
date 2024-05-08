@@ -8,7 +8,7 @@ import PerfMainPage from './PerfMainPage';
 import TFMainPage from './TFMainPage';
 
 import { useRecoilState } from 'recoil';
-import { PlaceState, DayState } from '../../assets/recoil/apiRecoil';
+import { DayState } from '../../assets/recoil/apiRecoil';
 
 const NavigateMainPage = () => {
   const booth = getCookie('booth') === 'true';
