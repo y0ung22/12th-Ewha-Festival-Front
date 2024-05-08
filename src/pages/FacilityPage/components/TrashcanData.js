@@ -47,7 +47,7 @@ export const trashcanData = [
   },
   {
     id: 7,
-    location: '후윳길',
+    location: '휴웃길',
     detail: '후윳길 1-5번 부스 사이',
     img: trashcan7
   },
