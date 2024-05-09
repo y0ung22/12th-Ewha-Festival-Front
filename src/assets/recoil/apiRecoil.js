@@ -21,5 +21,16 @@ export const PlaceState = atom({
 
 export const DayState = atom({
   key: 'DayState',
-  default: 9
+  default: (() => {
+    const today = new Date();
+    const day = today.getDate();
+
+    if (day < 8) {
+      return 8;
+    } else if (day > 10) {
+      return 10;
+    } else {
+      return day;
+    }
+  })()
 });
