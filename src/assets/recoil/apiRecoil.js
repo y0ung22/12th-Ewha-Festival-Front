@@ -21,5 +21,5 @@ export const PlaceState = atom({
 
 export const DayState = atom({
   key: 'DayState',
-  default: 8
+  default: 9
 });
