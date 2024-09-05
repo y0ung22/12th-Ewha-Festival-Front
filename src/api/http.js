@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const http = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: "http://13.209.81.181",
   //contentType: 'application/json; charset=utf-8;',
   withCredentials: true
 });
