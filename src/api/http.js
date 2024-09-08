@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const http = axios.create({
-  baseURL: "process.env.http://13.209.81.181",
+  baseURL: 'process.env.https://api.dpdnjs.shop/',
   //contentType: 'application/json; charset=utf-8;',
   withCredentials: true
 });
